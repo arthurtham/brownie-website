@@ -110,8 +110,23 @@ function get_user_guild_info($guild_id)
 }
 
 # A function to check if the user is a Red Shell, VIP, or overridden special role
-function check_role_validation() {
-    
+function check_roles($array_of_roles) {
+    for ($i = 0; $i < sizeof($array_of_roles); $i++) {
+        if (in_array($array_of_roles[$i], $_SESSION["roles"])) {
+            return true;
+        } 
+    }
+    return false;
+}
+
+# A function to check if the user is a member of Turtle Pond
+function check_guild_membership($guild_id) {
+    for ($i = 0; $i < sizeof($_SESSION['guilds']); $i++) {
+        if ($guild_id === $_SESSION['guilds'][$i]['id']) {
+            return true;
+        }
+    }
+    return false;
 }
 
 # A function to verify if login is legit

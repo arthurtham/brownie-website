@@ -50,8 +50,10 @@ require __DIR__ . "/config.php";
 		}
 		?>
 		<h2> User Details :</h2>
-		<p> Name : <?php echo $_SESSION['username'] . '#' . $_SESSION['discrim']; ?></p>
-		<p> ID : <?php echo $_SESSION['user_id']; ?></p>
+		<p> Name : <?php echo $_SESSION['username'] //. '#' . $_SESSION['discrim']; ?></p>
+		<p> ID : <?php //echo $_SESSION['user_id']; ?></p>
+		<p> Is Red Shell / Star : <?php echo check_roles([$sub_role_id, $vip_role_id, $override_role_id]); ?></p>
+		<p> Is In Turtle Pond : <?php echo check_guild_membership($guild_id); ?></p>
 		<?php
 		if (isset($_SESSION['email'])) {
 			echo '<p> Email: ' . $_SESSION['email'] . '</p>';
@@ -73,20 +75,20 @@ require __DIR__ . "/config.php";
 				<th>ID</th>
 			</tr>
 			<?php
-			for ($i = 0; $i < sizeof($_SESSION['guilds']); $i++) {
+			/*for ($i = 0; $i < sizeof($_SESSION['guilds']); $i++) {
 				echo "<tr><td>";
 				echo $_SESSION['guilds'][$i]['name'];
 				echo "<td>";
 				echo $_SESSION['guilds'][$i]['id'];
 				echo "</td>";
 				echo "</tr></td>";
-			}
+			}*/
 			?>
 		</table>
 		<br>
 		<h2> User Guild Info Response :</h2>
 		<div class="response-block">
-			<p> <?php echo json_encode($_SESSION['user_guild_info']); ?></p>
+			<p> <?php //echo json_encode($_SESSION['user_guild_info']); ?></p>
 			<p> <?php echo json_encode($_SESSION['roles']); ?></p>
 		</div>
 		<br>
