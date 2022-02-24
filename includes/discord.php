@@ -111,6 +111,9 @@ function get_user_guild_info($guild_id)
 
 # A function to check if the user is a Red Shell, VIP, or overridden special role
 function check_roles($array_of_roles) {
+    if ($_SESSION["roles"] === null) {
+        return false;
+    }
     for ($i = 0; $i < sizeof($array_of_roles); $i++) {
         if (in_array($array_of_roles[$i], $_SESSION["roles"])) {
             return true;
@@ -121,12 +124,22 @@ function check_roles($array_of_roles) {
 
 # A function to check if the user is a member of Turtle Pond
 function check_guild_membership($guild_id) {
-    for ($i = 0; $i < sizeof($_SESSION['guilds']); $i++) {
+    if (isset($_SESSION['user_guild_info']['roles'])) {
+        return true;
+    } else if ($_SESSION['user_guild_info']['code'] === 10004) {
+        return false;
+    } else {
+        return false;
+    }
+
+    //return (!($_SESSION['user_guild_info']['roles'] === null && $_SESSION['user_guild_info']['code'] === 10004 ));
+      
+    /*for ($i = 0; $i < sizeof($_SESSION['guilds']); $i++) {
         if ($guild_id === $_SESSION['guilds'][$i]['id']) {
             return true;
         }
-    }
-    return false;
+    }*/
+    //return false;
 }
 
 # A function to verify if login is legit

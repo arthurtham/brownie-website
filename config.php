@@ -30,4 +30,5 @@ $guild_id = "672311301233442826";
 # ROLES
 $sub_role_id = "895905631192621146";
 $vip_role_id = "705025058958999552";
-$override_role_id = "";
+$mod_role_id = "672370133276295178";
+$override_role_id = "0";

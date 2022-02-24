@@ -42,11 +42,11 @@ if (!get_user()) {
 # join_guild('SERVER_ID_HERE');
 
 # Fetching user guild details | (guilds scope)
-$_SESSION['guilds'] = get_guilds();
+//$_SESSION['guilds'] = get_guilds();
 
 # Fetching user connections | (connections scope)
 $_SESSION['user_guild_info'] = get_user_guild_info($guild_id);
 $_SESSION['roles'] = $_SESSION['user_guild_info']['roles'];
 
 # Redirecting to home page once all data has been fetched
-redirect("../index.php");
+redirect("/subs");
