@@ -26,7 +26,7 @@ require dirname(__DIR__, 1) . "/config.php";
 
 <head>
 	<title>Turtle Pond - Sub Perks</title>
-	<link rel="stylesheet" href="assets/css/style.css">
+	<style><?php include dirname(__DIR__, 1) . "/assets/css/style.css" ?> </style>
 </head>
 
 <body>
