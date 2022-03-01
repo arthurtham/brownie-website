@@ -26,24 +26,30 @@ require dirname(__DIR__, 1) . "/config.php";
 
 <head>
 	<title>Turtle Pond - Sub Perks</title>
-	<style><?php include dirname(__DIR__, 1) . "/assets/css/style.css" ?> </style>
+	<style><?php //include dirname(__DIR__, 1) . "/assets/css/style.css" ?> </style>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
 <body>
 	<?php require dirname(__DIR__, 1) . "/templates/navbar.php" ?>
+	<div class="container">
 	<h1 style="text-align: center;">Turtle Pond - Sub Perks</h1>
 	<?php
 	if (!isset($_SESSION['user'])) {
-		echo "You need to log in to Discord before viewing this page.";
+		echo "You need to log in to Discord before viewing this page.<br/>";
+		require dirname(__DIR__, 1) . "/templates/sub-perks-description.php";
 	} else { // User is logged in
 		if (!check_guild_membership($guild_id) || !check_roles([$sub_role_id, $vip_role_id, $mod_role_id])) {
 			require dirname(__DIR__, 1) . "/templates/login-required.php";
 		} else {
+			echo "<a href='/subs/blog'>Blog</a>";
 			require dirname(__DIR__, 1) . "/templates/debug.php";
 		}
 	}
 	?>
-		
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>
