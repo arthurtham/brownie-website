@@ -7,6 +7,7 @@ ini_set('display_errors', 1);
 require __DIR__ . "/includes/functions.php";
 require __DIR__ . "/includes/discord.php";
 require __DIR__ . "/config.php";
+require __DIR__ . "/includes/sessiontimer.php";
 ?>
 
 <html>

@@ -15,6 +15,7 @@ ini_set('display_errors', 1);
 require dirname(__DIR__, 1) . "/includes/functions.php";
 require dirname(__DIR__, 1) . "/includes/discord.php";
 require dirname(__DIR__, 1) . "/config.php";
+require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
 
 # ALL VALUES ARE STORED IN SESSION!
 # RUN `echo var_export([$_SESSION]);` TO DISPLAY ALL THE VARIABLE NAMES AND VALUES.
