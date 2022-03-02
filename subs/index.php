@@ -40,11 +40,52 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
 		echo "You need to log in to Discord before viewing this page.<br/>";
 		require dirname(__DIR__, 1) . "/templates/sub-perks-description.php";
 	} else { // User is logged in
-		if (!check_guild_membership($guild_id) || !check_roles([$sub_role_id, $vip_role_id, $mod_role_id])) {
-			require dirname(__DIR__, 1) . "/templates/login-required.php";
+		if (false) { //(!check_guild_membership($guild_id) || !check_roles([$sub_role_id, $vip_role_id, $mod_role_id])) {
+			//require dirname(__DIR__, 1) . "/templates/login-required.php";
 		} else {
+			echo "<div class='container'>";
+			echo "<div class='row'>";
 			echo "<a href='/subs/blog'>Blog</a>";
-			require dirname(__DIR__, 1) . "/templates/debug.php";
+			echo "</div>";
+			echo "<div class='row'>";
+			echo "<div class='col-md-3'>";
+			//require dirname(__DIR__, 1) . "/templates/debug.php";
+			echo '<div class="card">';
+			if (isset($_SESSION['user_avatar'])) {
+				echo '<img src="https://cdn.discordapp.com/avatars/';
+				$extention = is_animated($_SESSION['user_avatar']);
+				echo $_SESSION['user_id'] . "/" . $_SESSION['user_avatar'] . $extention;
+			} else {
+				echo '<img src="https://cdn.discordapp.com/embed/avatars/0.png"';
+			}
+			echo '" class="card-img-top" alt="..."/>';
+			echo '<div class="card-body"><h5 class="card-title">' . $_SESSION["username"] . '</h5>';
+			if (!check_roles([$sub_role_id, $vip_role_id, $mod_role_id])) {
+				echo '<h5><span class="badge bg-dark" style="width:100%">Not Subbed</span></h5>';
+			}
+			else {
+				if (check_roles([$sub_role_id])) {
+					echo '<h5><span class="badge bg-danger" style="width:100%">RED SHELLS (Subs)</span></h5>';
+				}
+				if (check_roles([$vip_role_id])) {
+					echo '<h5><span class="badge bg-warning" style="width:100%">STARS (VIPs)</span></h5>';
+				}
+				if (check_roles([$mod_role_id])) {
+					echo '<h5><span class="badge bg-info" style="width:100%">BLUE SHELLS (Mods)</span></h5>';
+				}
+				
+				
+			}
+			echo '<h5><span class="badge bg-secondary" style="width:100%">';
+			echo check_guild_membership($guild_id) ? 'Joined Turtle Pond Server' : 'Not in Turtle Pond Server';
+			echo '</span></h5>';
+			echo "</div>";
+			echo "</div>";
+			echo "</div>";
+			echo "<div class='col-md-9'>";
+			require dirname(__DIR__, 1) . "/templates/sub-perks-description.php";
+			echo "</div>";
+			echo "</div>";
 		}
 	}
 	?>
