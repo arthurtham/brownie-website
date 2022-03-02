@@ -10,6 +10,7 @@ ini_set('display_errors', 1);
 require dirname(__DIR__, 2) . "/includes/functions.php";
 require dirname(__DIR__, 2) . "/includes/discord.php";
 require dirname(__DIR__, 2) . "/config.php";
+require dirname(__DIR__, 2) . "/includes/sessiontimer.php";
 
 
 $find_md_file_name = function($v) { 
@@ -28,8 +29,7 @@ $find_md_file_name = function($v) {
 
 <body>
 	<?php require dirname(__DIR__, 2) . "/templates/navbar.php" ?>
-	<h1 style="text-align: center;">Blog Posts</h1>
-	<h2 style="text-align: center;">Turtle Pond - Sub Perks</h2>
+	<h1 style="text-align: center;">Blog Posts (Sub Perk)</h1>
 	<?php
 	if (!isset($_SESSION['user'])) {
 		echo "<div class='container'>"; 
