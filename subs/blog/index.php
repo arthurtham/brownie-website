@@ -15,30 +15,37 @@ require dirname(__DIR__, 2) . "/includes/sessiontimer.php";
 
 $find_md_file_name = function($v) { 
 	return strpos($v, ".md");
-}
-
+};
 ?>
 
 <html>
 
 <head>
-	<title>Turtle Pond - Sub Perks</title>
-	<style> <?php //include dirname(__DIR__, 2) . "/assets/css/style.css" ?> </style>
+	<?php 
+	if (isset($_GET["blog-id"])) {
+		$title_temp = explode("_", $_GET["blog-id"]);
+		$title = rtrim($title_temp[3], ".md");
+		echo "<title>BrowntulStar - Brown's Blog - ".$title."</title>";
+	} else {
+		echo "<title>BrowntulStar - Brown's Blog</title>";
+	} ?>
+	<link rel="stylesheet" href="/assets/css/style.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 
 <body>
 	<?php require dirname(__DIR__, 2) . "/templates/navbar.php" ?>
-	<h1 style="text-align: center;">Blog Posts (Sub Perk)</h1>
+	<div class='container body-container'>
 	<?php
-	if (!isset($_SESSION['user'])) {
-		echo "<div class='container'>"; 
+	if (!isset($_SESSION['user'])) { 
+		echo '<h1 style="text-align: center;">Brown\'s Blog</h1>';
 		echo "You need to log in to Discord before viewing this page.";
 		require dirname(__DIR__, 2) . "/templates/sub-perks-description.php";
 		echo "</div>";
 	} else { // User is logged in
 		if (!check_guild_membership($guild_id) || !check_roles([$sub_role_id, $vip_role_id, $mod_role_id])) {
-			echo "<div class='container'>";
+			echo '<h1 style="text-align: center;">Brown\'s Blog</h1>';
 			require dirname(__DIR__, 2) . "/templates/login-required.php";
 			echo "</div>";
 		} else {
@@ -46,11 +53,12 @@ $find_md_file_name = function($v) {
 				$blog_file_location = dirname(__DIR__, 2) . "/subs/blog/" . $_GET["blog-type"] . "/" . $_GET["blog-id"];
 				require dirname(__DIR__, 2) . "/templates/blog.php";
 			} else {
-				echo "<div class='container'>";
-				$directories = array(array("travelblog","Travel Blog"));
+				echo '<h1 style="text-align: center;">Brown\'s Blog</h1>';
+				$directories = array(array("travelblog","NYC Travel Blog"));
 				foreach ($directories as $directory) {	
 					echo "<h3>" . $directory[1] . "</h3>";
 					$file_directory = array_filter(scandir(__DIR__ . "/" . $directory[0]), $find_md_file_name);
+					$file_directory = array_reverse($file_directory);
 					foreach ($file_directory as $blog_entry) {
 						echo "<br/>";
 						$blog_entry_array = explode("_", $blog_entry);
@@ -67,7 +75,7 @@ $find_md_file_name = function($v) {
 		}
 	}
 	?>
-	
+	</div>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

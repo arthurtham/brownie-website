@@ -5,7 +5,7 @@ $client_id = "945960295191433221";
 
 # CLIENT SECRET
 # https://i.imgur.com/r5dYANR.png (screenshot)
-$secret_id = "";
+$secret_id = "***REMOVED***";
 
 # SCOPES SEPARATED BY SPACE
 # example: identify email guilds connections  
