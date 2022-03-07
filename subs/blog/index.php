@@ -25,18 +25,19 @@ $find_md_file_name = function($v) {
 	if (isset($_GET["blog-id"])) {
 		$title_temp = explode("_", $_GET["blog-id"]);
 		$title = rtrim($title_temp[3], ".md");
-		echo "<title>BrowntulStar - Brown's Blog - ".$title."</title>";
+		echo "<title>Turtle Pond - Brown's Blog - ".$title."</title>";
 	} else {
-		echo "<title>BrowntulStar - Brown's Blog</title>";
+		echo "<title>Turtle Pond - Brown's Blog</title>";
 	} ?>
 	<link rel="stylesheet" href="/assets/css/style.css">
+	<script src="https://kit.fontawesome.com/7f5f717705.js" crossorigin="anonymous"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 
 <body>
 	<?php require dirname(__DIR__, 2) . "/templates/navbar.php" ?>
-	<div class='container body-container'>
+	<div class='container body-container shadow'>
 	<?php
 	if (!isset($_SESSION['user'])) { 
 		echo '<h1 style="text-align: center;">Brown\'s Blog</h1>';
@@ -76,7 +77,7 @@ $find_md_file_name = function($v) {
 	}
 	?>
 	</div>
-	
+	<?php require dirname(__DIR__, 2) . "/templates/footer.php" ?>	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 

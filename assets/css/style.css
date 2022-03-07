@@ -4,15 +4,18 @@ div.container {
 
 div.container.body-container {
     border: 1px;
-    border-style: dotted;
     background-color: var(--bs-white) !important;
     padding: 20px;
     overflow: auto;
 }
 
 body {
-    background-color: var(--bs-gray-dark) !important;
+    background-color: var(--bs-gray) !important;
     display: grid;
     align-items: top;
-    grid-template-rows: min-content auto;
+    grid-template-rows: auto 1fr auto;
+    background-image:url(/assets/img/yoshi-background.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

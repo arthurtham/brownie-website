@@ -26,15 +26,16 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
 <html>
 
 <head>
-	<title>BrowntulStar - Sub Perks</title>
+	<title>Turtle Pond - Sub Perks</title>
 	<link rel="stylesheet" href="/assets/css/style.css">
+	<script src="https://kit.fontawesome.com/7f5f717705.js" crossorigin="anonymous"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">	
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 
 <body>
 	<?php require dirname(__DIR__, 1) . "/templates/navbar.php" ?>
-	<div class="container body-container">
+	<div class="container body-container shadow">
 	<h1 style="text-align: center;">Turtle Pond - Sub Perks</h1>
 	<?php
 	if (!isset($_SESSION['user'])) {
@@ -46,9 +47,9 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
 		} else {
 			echo "<div class='container'>";
 			echo "<div class='row'>";
-			echo "<div class='col-lg-4'>";
+			echo "<div class='col-lg-12'>";
 			//require dirname(__DIR__, 1) . "/templates/debug.php";
-			echo '<div class="card">';
+			echo '<center><div class="card" style="width:auto;max-width:400px"><center>';
 			if (isset($_SESSION['user_avatar'])) {
 				echo '<img src="https://cdn.discordapp.com/avatars/';
 				$extention = is_animated($_SESSION['user_avatar']);
@@ -56,7 +57,7 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
 			} else {
 				echo '<img src="https://cdn.discordapp.com/embed/avatars/0.png"';
 			}
-			echo '" class="card-img-top" alt="..."/>';
+			echo '" class="card-img-top" alt="..."/ style="width:auto;max-width:100px;"></center>';
 			echo '<div class="card-body"><h5 class="card-title">' . $_SESSION["username"] . '</h5>';
 			if (!check_roles([$sub_role_id, $vip_role_id, $mod_role_id])) {
 				echo '<h5><span class="badge bg-dark" style="width:100%">Not Subbed</span></h5>';
@@ -75,19 +76,18 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
 				
 			}
 			echo '<h5><span class="badge bg-secondary" style="width:100%">';
-			echo check_guild_membership($guild_id) ? 'Joined Turtle Pond Server' : 'Not in Turtle Pond Server';
+			echo check_guild_membership($guild_id) ? 'In Turtle Pond Server' : 'Not in Turtle Pond Server';
 			echo '</span></h5>';
-			echo "</div>";
-			echo "</div>";
-			echo "</div>";
-			echo "<div class='col-lg-8'>";
+			echo "</div></center>";
 			require dirname(__DIR__, 1) . "/templates/sub-perks-description.php";
+			echo "</div>";
 			echo "</div>";
 			echo "</div>";
 		}
 	}
 	?>
 	</div>
+	<?php require dirname(__DIR__, 1) . "/templates/footer.php" ?>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

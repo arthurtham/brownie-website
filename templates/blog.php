@@ -44,6 +44,8 @@ if ($myfile = fopen($blog_file_location . ".md", "r")) {
     die();
 }
 
+echo "</div></div>";
+
 
 ?>
 
