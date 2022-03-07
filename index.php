@@ -22,7 +22,7 @@ require __DIR__ . "/includes/sessiontimer.php";
 <body>
 	<?php require __DIR__ . "/templates/navbar.php" ?>
 	<div class="container body-container">
-		<h1 style="text-align: center;">Turtle Pond</h1>
+		<h1 style="text-align: center;">Browntul</h1>
 		<?php
 		echo "<h2 style='color:red; font-weight:900; text-align: center;'>Home Page </h2><br/>";
 		echo "<p><a href='subs'>Subs</a></p><br/>";
