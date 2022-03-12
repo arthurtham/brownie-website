@@ -6,7 +6,7 @@
  */
 
 # Including all the required scripts for demo
-require __DIR__ . "/functions.php";
+require __DIR__ . "/includes/functions.php";
 
 # Starting the session
 session_start();

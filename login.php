@@ -21,9 +21,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 # Including all the required scripts for demo
-require __DIR__ . "/discord.php";
-require __DIR__ . "/functions.php";
-require "../config.php";
+require __DIR__ . "/includes/discord.php";
+require __DIR__ . "/includes/functions.php";
+require "config.php";
 
 # Initializing all the required values for the script to work
 init($redirect_url, $client_id, $secret_id, $bot_token);
@@ -31,7 +31,7 @@ init($redirect_url, $client_id, $secret_id, $bot_token);
 # Fetching user details | (identify scope) (optionally email scope too if you want user's email) [Add identify AND email scope for the email!]
 if (!get_user()) {
     echo json_encode($_SESSION['user']);
-    redirect("/includes/logout.php");
+    redirect("/logout.php");
     die;
 };
 

@@ -35,7 +35,7 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
 
 <body>
 	<?php require dirname(__DIR__, 1) . "/templates/navbar.php" ?>
-	<div class="container body-container shadow">
+	<div class="container body-container">
 	<h1 style="text-align: center;">Turtle Pond - Sub Perks</h1>
 	<?php
 	if (!isset($_SESSION['user'])) {

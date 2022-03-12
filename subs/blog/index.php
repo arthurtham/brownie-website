@@ -37,7 +37,7 @@ $find_md_file_name = function($v) {
 
 <body>
 	<?php require dirname(__DIR__, 2) . "/templates/navbar.php" ?>
-	<div class='container body-container shadow'>
+	<div class='container body-container'>
 	<?php
 	if (!isset($_SESSION['user'])) { 
 		echo '<h1 style="text-align: center;">Brown\'s Blog</h1>';
