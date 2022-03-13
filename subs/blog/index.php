@@ -24,7 +24,7 @@ $find_md_file_name = function($v) {
 	<?php 
 	if (isset($_GET["blog-id"])) {
 		$title_temp = explode("_", $_GET["blog-id"]);
-		$title = rtrim($title_temp[3], ".md");
+		$title = $title_temp[3];
 		echo "<title>Turtle Pond - Brown's Blog - ".$title."</title>";
 	} else {
 		echo "<title>Turtle Pond - Brown's Blog</title>";
@@ -52,6 +52,7 @@ $find_md_file_name = function($v) {
 		} else {
 			if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 				$blog_file_location = dirname(__DIR__, 2) . "/subs/blog/" . $_GET["blog-type"] . "/" . $_GET["blog-id"];
+				$blog_id = rtrim(explode("_", $_GET["blog-id"])[4], ".md");
 				require dirname(__DIR__, 2) . "/templates/blog.php";
 				echo <<<DISQUS
 				<div id="disqus_thread"></div>
@@ -61,7 +62,7 @@ $find_md_file_name = function($v) {
 					*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
 					var disqus_config = function () {
 					this.page.url = "https://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"  // Replace PAGE_URL with your page's canonical URL variable
-					this.page.identifier = "{$_GET['blog-type']}-{$_GET['blog-id']}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+					this.page.identifier = "brownblog_$blog_id"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 					};
 					(function() { // DON'T EDIT BELOW THIS LINE
 					var d = document, s = d.createElement('script');
@@ -79,14 +80,21 @@ DISQUS;
 				foreach ($directories as $directory) {	
 					echo "<h3>" . $directory[1] . "</h3>";
 					$file_directory = array_filter(scandir(__DIR__ . "/" . $directory[0]), $find_md_file_name);
-					$file_directory = array_reverse($file_directory);
+					function file_compare($blog_entry_a, $blog_entry_b) {
+						$blog_entry_a = explode("_", $blog_entry_a);
+						$id_a = intval(rtrim($blog_entry_a[4], ".md"));
+						$blog_entry_b = explode("_", $blog_entry_b);
+						$id_b = intval(rtrim($blog_entry_b[4], ".md"));
+						return $id_a < $id_b ? 1 : -1;
+					}
+					usort($file_directory, "file_compare");
 					foreach ($file_directory as $blog_entry) {
 						echo "<br/>";
 						$blog_entry_array = explode("_", $blog_entry);
 						$month = $blog_entry_array[1];
 						$day = $blog_entry_array[2];
 						$year = $blog_entry_array[0];
-						$title = rtrim($blog_entry_array[3], ".md");
+						$title = $blog_entry_array[3];
 						echo $month . "/" . $day . "/" . $year . " - <a href=\"?blog-type=" .  $directory[0] . "&blog-id=" . rtrim($blog_entry, ".md") . "\">" . $title . "</a>";
 					}
 				}
