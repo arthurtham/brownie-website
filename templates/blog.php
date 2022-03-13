@@ -3,8 +3,15 @@
 require dirname(__DIR__, 1) . "/includes/Parsedown.php"; 
 
 $blogtype = "null";
-if ($_GET["blog-type"] === "travelblog") {
-    $blogtype = "NYC Travel Blog";
+switch ($_GET["blog-type"]) {
+    case "travelblog":
+        $blogtype = "NYC Travel Blog";
+        break;
+    case "techblog":
+        $blogtype = "Tech Blog";
+        break;
+    default:
+        $blogtype = "Unknown Category";
 }
 
 $blog_entry_array = explode("_", $_GET["blog-id"]);
