@@ -16,6 +16,15 @@ require dirname(__DIR__, 2) . "/includes/sessiontimer.php";
 $find_md_file_name = function($v) { 
 	return strpos($v, ".md");
 };
+
+function file_compare($blog_entry_a, $blog_entry_b) {
+	$blog_entry_a = explode("_", $blog_entry_a);
+	$id_a = intval(rtrim($blog_entry_a[4], ".md"));
+	$blog_entry_b = explode("_", $blog_entry_b);
+	$id_b = intval(rtrim($blog_entry_b[4], ".md"));
+	return $id_a < $id_b ? 1 : -1;
+}
+
 ?>
 
 <html>
@@ -75,28 +84,69 @@ $find_md_file_name = function($v) {
 				<script id="dsq-count-scr" src='//browntulstar-com.disqus.com/count.js' async></script>
 DISQUS;
 			} else {
+				echo <<<JQUERY
+				<script
+					src="https://code.jquery.com/jquery-3.6.0.min.js"
+					integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+					crossorigin="anonymous"></script>
+JQUERY;
+				echo '<script src="/assets/js/bootstrap-tab.js"></script>';
+				$directories = array(
+					array("travelblog","NYC Travel Blog", "Follow Browntul on his adventures in New York City. January 2022."),
+					array("techblog","Tech Blog", "Take a look at Browntul's technological advances in this monthly blog.")
+				);
+
 				echo '<h1 style="text-align: center;">Brown\'s Blog</h1>';
-				$directories = array(array("travelblog","NYC Travel Blog"));
+				echo <<<ABOUT
+					<center>Take a look at Browntul's blogs by clicking on the tabs below!</center><br/>
+ABOUT;
+				echo '<ul class="nav nav-tabs" id="blogdirectory" role="tablist">';
+				$show_active_toggle = "true";
+				$show_active_text = "active";
+				foreach ($directories as $directory) {
+					echo <<<ITEM
+					<li class="nav-item" role="presentation">
+						<button 
+						class="nav-link $show_active_text" 
+						id="$directory[0]-tab" 
+						data-bs-toggle="tab" 
+						data-bs-target="#$directory[0]-tab-content" 
+						type="button" 
+						role="tab" 
+						aria-controls="$directory[0]-tab" 
+						aria-selected="$show_active_toggle">$directory[1]</button>
+					</li>
+ITEM;
+				$show_active_toggle = "false";
+				$show_active_text = "";
+				}
+				echo '</ul>';
+				echo '<div class="tab-content" id="blogdirectorycontent" style="padding:20px">';
+				$show_active_toggle = true;
 				foreach ($directories as $directory) {	
-					echo "<h3>" . $directory[1] . "</h3>";
-					$file_directory = array_filter(scandir(__DIR__ . "/" . $directory[0]), $find_md_file_name);
-					function file_compare($blog_entry_a, $blog_entry_b) {
-						$blog_entry_a = explode("_", $blog_entry_a);
-						$id_a = intval(rtrim($blog_entry_a[4], ".md"));
-						$blog_entry_b = explode("_", $blog_entry_b);
-						$id_b = intval(rtrim($blog_entry_b[4], ".md"));
-						return $id_a < $id_b ? 1 : -1;
+					echo '<div class="tab-pane fade';
+					if ($show_active_toggle) {
+						echo ' show active';
+						$show_active_toggle = false;
 					}
+					echo '" id="'.$directory[0].'-tab-content" role="tabpanel" aria-labelledby="'.$directory[0].'-tab-content">';
+					echo "<h3>" . $directory[1] . "</h3>";
+					echo "<small>" . $directory[2] . "</small><br>";
+					$file_directory = array_filter(scandir(__DIR__ . "/" . $directory[0]), $find_md_file_name);
 					usort($file_directory, "file_compare");
 					foreach ($file_directory as $blog_entry) {
-						echo "<br/>";
 						$blog_entry_array = explode("_", $blog_entry);
 						$month = $blog_entry_array[1];
 						$day = $blog_entry_array[2];
 						$year = $blog_entry_array[0];
 						$title = $blog_entry_array[3];
+						if ($title[0] === "-") {
+							continue;
+						}
+						echo "<br/>";
 						echo $month . "/" . $day . "/" . $year . " - <a href=\"?blog-type=" .  $directory[0] . "&blog-id=" . rtrim($blog_entry, ".md") . "\">" . $title . "</a>";
 					}
+					echo "</div>";
 				}
 				echo "</div>";
 			}
