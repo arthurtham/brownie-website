@@ -23,6 +23,22 @@ require __DIR__ . "/includes/sessiontimer.php";
 <body>
 	<?php require __DIR__ . "/templates/navbar.php" ?>
 	<div class="container">
+		<?php
+		if (isset($_GET['logout'])) {
+			echo <<<LOGGEDOUT
+			<div class="toast show fade position-absolute start-50 translate-middle-x" role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header">
+				<strong class="me-auto">Logged out</strong>
+				<small>Just Now</small>
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+			<div class="toast-body">
+				You were logged out due to inactivity.
+			</div>
+			</div>
+LOGGEDOUT;
+		}
+		?>
 		<div class="d-flex align-items-center justify-content-center" style="height:100%">
 			<div class="box bg-light bg-gradient shadow" style="padding: 40px; border-radius: 10%">
 				<center><img src="/assets/img/browntulstar-logo.png" style="border-radius: 100%;width:auto;max-width:200px" />

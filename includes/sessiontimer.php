@@ -1,8 +1,8 @@
 <?php
-if (!isset($_SESSION['timeout']) && !isset($_SESSION['user'])) {
+if (!isset($_SESSION['timeout']) || !isset($_SESSION['user'])) {
     $_SESSION['timeout']=time();
 } else {
-    $inactive = 900; 
+    $inactive = 9000; 
     $session_life = time() - $_SESSION['timeout'];
     if ($session_life > $inactive)
     {  

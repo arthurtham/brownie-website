@@ -11,7 +11,8 @@ $blog_entry_array = explode("_", $_GET["blog-id"]);
 $month = $blog_entry_array[1];
 $day = $blog_entry_array[2];
 $year = $blog_entry_array[0];
-$title = rtrim($blog_entry_array[3], ".md");
+$title = $blog_entry_array[3];
+$id = rtrim($blog_entry_array[4], ".md");
 
 ?>
 
@@ -22,6 +23,7 @@ $title = rtrim($blog_entry_array[3], ".md");
         display: block;
         margin-left: auto;
         margin-right: auto;
+        padding: 10px;
     }
     video {
         width: auto;
@@ -33,7 +35,7 @@ $title = rtrim($blog_entry_array[3], ".md");
 </style>
 
 <?php 
-echo "<div class='row'><div class='col col-md-12'>";
+echo "<div class='row' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
 echo "<a href='/subs/blog'>Back</a>";
 echo "<center><h1>" . $title . "</h1>" . $blogtype . " | " .  $month . "/" . $day . "/" . $year .  "</center><hr><br/>";
 if ($myfile = fopen($blog_file_location . ".md", "r")) {
