@@ -6,7 +6,7 @@ if (!isset($_SESSION['timeout']) || !isset($_SESSION['user'])) {
     $session_life = time() - $_SESSION['timeout'];
     if ($session_life > $inactive)
     {  
-        header("Location: /logout.php");
+        header("Location: /logout.php?logout");
         die();     
     } 
     else 

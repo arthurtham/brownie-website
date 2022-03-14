@@ -14,7 +14,16 @@ session_start();
 # Closing the session and deleting all values associated with the session
 session_destroy();
 
+
+$argument_string = "";
+
+if (isset($_GET["logout"])) {
+    $argument_string = "?logout";
+} else if (isset($_GET["badauth"])) {
+    $argument_string = "?badauth";
+}
+
 # Redirecting the user back to login page
-redirect("/?logout");
+redirect("/".$argument_string);
 
 ?>

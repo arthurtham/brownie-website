@@ -10,6 +10,9 @@ switch ($_GET["blog-type"]) {
     case "techblog":
         $blogtype = "Tech Blog";
         break;
+    case "gamedevlogs":
+        $blogtype = "Game Dev Logs";
+        break;
     default:
         $blogtype = "Unknown Category";
 }

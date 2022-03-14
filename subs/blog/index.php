@@ -93,7 +93,8 @@ JQUERY;
 				echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 				$directories = array(
 					array("travelblog","NYC Travel Blog", "Follow Browntul on his adventures in New York City. January 2022."),
-					array("techblog","Tech Blog", "Take a look at Browntul's technological advances in this monthly blog.")
+					array("techblog","Tech Blog", "Take a look at Browntul's technological advances in this monthly blog."),
+					array("gamedevlogs","Game Dev Logs", "Deep dive into Browntul's thoughts as he makes web games for fun.")
 				);
 
 				echo '<h1 style="text-align: center;">Brown\'s Blog</h1>';

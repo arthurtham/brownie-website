@@ -31,9 +31,10 @@ init($redirect_url, $client_id, $secret_id, $bot_token);
 # Fetching user details | (identify scope) (optionally email scope too if you want user's email) [Add identify AND email scope for the email!]
 if (!get_user()) {
     echo json_encode($_SESSION['user']);
-    redirect("/logout.php");
+    redirect("/logout.php?badauth");
     die;
 };
+$_SESSION['timeout']=time();
 
 # Uncomment this for using it WITH email scope and comment line 32.
 #get_user($email=True);

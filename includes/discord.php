@@ -126,8 +126,6 @@ function check_roles($array_of_roles) {
 function check_guild_membership($guild_id) {
     if (isset($_SESSION['user_guild_info']['roles'])) {
         return true;
-    } else if ($_SESSION['user_guild_info']['code'] === 10004) {
-        return false;
     } else {
         return false;
     }

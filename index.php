@@ -38,6 +38,20 @@ require __DIR__ . "/includes/sessiontimer.php";
 			</div>
 LOGGEDOUT;
 		}
+		if (isset($_GET['badauth'])) {
+			echo <<<BADAUTH
+			<div class="toast show fade position-absolute start-50 translate-middle-x" role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header">
+				<strong class="me-auto">Log in not successful</strong>
+				<small>Just Now</small>
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+			<div class="toast-body">
+				Discord authentication was not successful. Please try again.
+			</div>
+			</div>
+BADAUTH;
+		}
 		?>
 		<div class="d-flex align-items-center justify-content-center" style="height:100%">
 			<div class="box bg-light bg-gradient shadow" style="padding: 40px; border-radius: 10%">
