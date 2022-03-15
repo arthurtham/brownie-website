@@ -38,10 +38,7 @@ function file_compare($blog_entry_a, $blog_entry_b) {
 	} else {
 		echo "<title>Turtle Pond - Brown's Blog</title>";
 	} ?>
-	<link rel="stylesheet" href="/assets/css/style.css">
-	<script src="https://kit.fontawesome.com/7f5f717705.js" crossorigin="anonymous"></script>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<?php require dirname(__DIR__, 2) . "/templates/header-includes.php" ?>
 </head>
 
 <body>
@@ -84,12 +81,6 @@ function file_compare($blog_entry_a, $blog_entry_b) {
 				<script id="dsq-count-scr" src='//browntulstar-com.disqus.com/count.js' async></script>
 DISQUS;
 			} else {
-				echo <<<JQUERY
-				<script
-					src="https://code.jquery.com/jquery-3.6.0.min.js"
-					integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-					crossorigin="anonymous"></script>
-JQUERY;
 				echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 				$directories = array(
 					array("travelblog","NYC Travel Blog", "Follow Browntul on his adventures in New York City. January 2022."),
