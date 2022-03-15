@@ -14,7 +14,7 @@ body {
     display: grid;
     align-items: top;
     grid-template-rows: auto 1fr auto;
-    background-image:url(/assets/img/yoshi-background.jpg);
+    background-image:url(/assets/img/video-game-sweden.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
