@@ -2,7 +2,7 @@
 
 echo <<<NAVBAR
     <header>
-    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark" style="position:fixed; width:100%; top:0; padding-left:20px; padding-right:20px;">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <img src="/assets/img/turtleavatar.png" width=30px height=30px class="d-inline-block align-top" />

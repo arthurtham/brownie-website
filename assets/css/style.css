@@ -5,8 +5,7 @@ div.container {
 div.container.body-container {
     border: 1px;
     background-color: var(--bs-white) !important;
-    padding: 20px;
-    overflow: auto;
+    padding: 75px 100px 100px 100px !important;
 }
 
 body {
@@ -18,4 +17,5 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
