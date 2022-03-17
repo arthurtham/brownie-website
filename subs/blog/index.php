@@ -53,7 +53,8 @@ function file_compare($blog_entry_a, $blog_entry_b) {
 	} else { // User is logged in
 		if (!check_guild_membership($guild_id) || !check_roles([$sub_role_id, $vip_role_id, $mod_role_id])) {
 			echo '<h1 style="text-align: center;">Brown\'s Blog</h1>';
-			require dirname(__DIR__, 2) . "/templates/login-required.php";
+			echo "You need to fulfill the sub requirements <a href='/subs'>here</a> before viewing this page.";
+			require dirname(__DIR__, 2) . "/templates/sub-perks-description.php";
 			echo "</div>";
 		} else {
 			if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {

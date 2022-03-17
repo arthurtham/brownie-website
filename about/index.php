@@ -28,6 +28,12 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
 <head>
 	<title>BrowntulStar - About</title>
 	<?php require dirname(__DIR__, 1) . "/templates/header-includes.php" ?>
+    <style>
+		.body-container hr {
+			margin-top:50px !important;
+			margin-bottom:50px !important;
+		}
+	</style>
 </head>
 
 <body>
@@ -35,8 +41,9 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
 	<div class="container body-container" style="padding-top:50px;padding-bottom:100px">
         <center><img src="/assets/img/browntulstar-logo.png" style="border-radius: 100%;width:auto;max-width:200px" /></center>
         <h1 style="text-align: center;">Hi, I'm Browntul.</h1>
-        <p style="text-align: center;">You can call me Brown, Browntul, Brown Toaster, BT, Star... whatever works for you.</p>
-        <p style="text-align: center;">I'm an aspiring game developer / designer. <br />
+        <p style="text-align: center;">You can call me Brown, Browntul, Brown Toaster, BT, Star... actually, "Brown" is fine :)</p>
+        <p style="text-align: center;">My pronouns are he/him/his. <br />
+            I'm an aspiring game developer / designer. <br />
             I stream Switch games and KartRider Rush+ on the NA/West server. <br />
             I also host coding and game-jam streams.</p>
         <p style="text-align: center;">I hope you all can jump along for the ride!</p>
@@ -149,30 +156,6 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
                     </div>
                 </div>
             </div>
-            <br/>
-            <div class="row">
-                <div class="col col-md-3 offset-md-3">
-                    <div class="card" style="width: 100%; height:100%">
-                        <img src="/assets/img/beanteam.png" class="card-img-top" alt="comfy cafe logo" style="padding: 20px;object-fit: contain;height:200px">
-                        <div class="card-body">
-                            <h5 class="card-title  text-center">Bean Team</h5>
-                            <p style="text-align:center"><a href="https://www.twitch.tv/team/beanteam" target="_blank">Stream Team</a></p>
-                            <p style="text-align:center">Arguably the most wholesome (and pepega) fam here on Twitch!</p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-md-3">
-                    <div class="card" style="width: 100%; height:100%">
-                        <img src="/assets/img/katsklassroom.jpeg" class="card-img-top" alt="comfy cafe logo" style="padding: 20px;object-fit: contain;height:200px">
-                        <div class="card-body">
-                            <h5 class="card-title  text-center">Kat's Klassroom</h5>
-                            <p style="text-align:center"><a href="https://www.twitch.tv/team/katsklassroom" target="_blank">Stream Team</a></p>
-                            <p style="text-align:center">A new stream team dedicated to supporting each other in Kat's classroom-like community!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <hr />
             <div class="row">
                 <div class="col col-md-12">
@@ -193,6 +176,7 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
                                 <i class="fa fa-envelope" aria-hidden="true"></i> Email
                             </a>
                         </button>
+                        <br/>
                     </center>
                 </div>
             </div>
