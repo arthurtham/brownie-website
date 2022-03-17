@@ -52,8 +52,6 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
                             <ul>
                                 <li>Build: DK, Wiggler, Azure Roller, Parafoil</li>
                                 <li>Rank: 21,038 VR as of Oct 13th, 2021</li>
-                                <li>Clan: No clan</li>
-                                <li>Representing: Independent (Current), Yume (Formerly, Free-for-all), UCI (Free-for-all)</li>
                                 <li>Tournament Highlights: </li>
                                 <ul>
                                     <li>Change Thru Games Mario Kart 8 Deluxe reigning champion (2018)</li>
@@ -98,32 +96,36 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
         <h2 style="text-align: center;">Things I Do</h2>
         <div class="container">
             <div class="row">
-                <div class="col col-md-3">
+                <div class="col col-lg-3">
                     <div class="card" style="width: 100%; height:100%">
+                    <center><img src="/assets/img/turtlecirclehack.png" class="card-img-top" alt="" style="object-fit:contain;height:150px;padding:20px"></center>
                         <div class="card-body">
                             <h5 class="card-title  text-center">Coding</h5>
-                            <p style="text-align:center">I make games for fun, and I create coding content every Tuesday on stream.</p>
+                            <p style="text-align:center">I make games for fun, and I create coding content on stream.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col col-md-3">
+                <div class="col col-lg-3">
                     <div class="card" style="width: 100%; height:100%">
+                    <center><img src="/assets/img/turtlecirclecaster.png" class="card-img-top" alt="" style="object-fit:contain;height:150px;padding:20px"></center>
                         <div class="card-body">
                             <h5 class="card-title  text-center">Shoutcasting</h5>
                             <p style="text-align:center">I shoutcast VALORANT and Tetris tournaments year-round!</p>
                         </div>
                     </div>
                 </div>
-                <div class="col col-md-3">
+                <div class="col col-lg-3">
                     <div class="card" style="width: 100%; height:100%">
+                    <center><img src="/assets/img/turtlecirclekj.png" class="card-img-top" alt="" style="object-fit:contain;height:150px;padding:20px"></center>
                         <div class="card-body">
                             <h5 class="card-title  text-center">Event Planning</h5>
                             <p style="text-align:center">I help plan streamer tournaments and events hosted on Twitch.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col col-md-3">
+                <div class="col col-lg-3">
                     <div class="card" style="width: 100%; height:100%">
+                    <center><img src="/assets/img/turtlecirclegood.png" class="card-img-top" alt="" style="object-fit:contain;height:150px;padding:20px"></center>
                         <div class="card-body">
                             <h5 class="card-title  text-center">Community Modding</h5>
                             <p style="text-align:center">I mod for streamer and game-jam communities on Discord and Twitch.</p>
@@ -136,7 +138,20 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
         <h2 style="text-align: center;">My Stream Teams</h2>
         <div class="container">
             <div class="row">
-                <div class="col col-md-3">
+                <div class="col col-md-6 offset-md-3">
+                    <div class="card" style="width: 100%; height:100%">
+                        <img src="/assets/img/comfycafelogo.png" class="card-img-top" alt="comfy cafe logo" style="padding: 20px;object-fit: contain;height:200px">
+                        <div class="card-body">
+                            <h5 class="card-title  text-center">Comfy Cafe</h5>
+                            <p style="text-align:center"><a href="https://comfycafe.carrd.co" target="_blank">Content Creation Team</a></p>
+                            <p style="text-align:center">Chaotic Online Mutual Friendships For You</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col col-md-3 offset-md-3">
                     <div class="card" style="width: 100%; height:100%">
                         <img src="/assets/img/beanteam.png" class="card-img-top" alt="comfy cafe logo" style="padding: 20px;object-fit: contain;height:200px">
                         <div class="card-body">
@@ -144,16 +159,6 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
                             <p style="text-align:center"><a href="https://www.twitch.tv/team/beanteam" target="_blank">Stream Team</a></p>
                             <p style="text-align:center">Arguably the most wholesome (and pepega) fam here on Twitch!</p>
                             
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-md-6">
-                    <div class="card" style="width: 100%; height:100%">
-                        <img src="/assets/img/comfycafelogo.png" class="card-img-top" alt="comfy cafe logo" style="padding: 20px;object-fit: contain;height:200px">
-                        <div class="card-body">
-                            <h5 class="card-title  text-center">Comfy Cafe</h5>
-                            <p style="text-align:center"><a href="https://comfycafe.carrd.co" target="_blank">Content Creation Team</a></p>
-                            <p style="text-align:center">Chaotic Online Mutual Friendships For You</p>
                         </div>
                     </div>
                 </div>
