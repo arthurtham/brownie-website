@@ -4,7 +4,10 @@ echo <<<NAVBAR
     <header>
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">BrowntulStar</a>
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/turtleavatar.png" width=30px height=30px class="d-inline-block align-top" />
+            BrowntulStar
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -19,7 +22,7 @@ echo <<<NAVBAR
                     <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">Portfolio</h6></li>
                     <li><a class="dropdown-item disabled">Games</a></li>
-                    <li><a class="dropdown-item disabled">Shoutcasting</a></li>
+                    <li><a class="dropdown-item" href="/about/shoutcasting">Shoutcasting</a></li>
                 </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -43,7 +46,6 @@ if (isset($_SESSION['user'])) {
     echo "<a href='$auth_url'><button class='btn btn-success'>Discord Login</button></a>";
 }
 echo <<<NAVBAR
-                &nbsp;<a href="/discord"><button class='btn btn-primary' style='background-color:#5865F2 !important'>Turtle Pond Server</button></a>
             </li>
         </div>
     </div>
