@@ -114,7 +114,7 @@ ITEM;
 				$show_active_text = "";
 				}
 				echo '</ul>';
-				echo '<div class="tab-content" id="blogdirectorycontent" style="padding:20px">';
+				echo '<div class="tab-content bg-dark" id="blogdirectorycontent" style="padding:20px;color:white">';
 				$show_active_toggle = true;
 				foreach ($directories as $directory) {	
 					echo '<div class="tab-pane fade';

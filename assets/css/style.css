@@ -6,6 +6,7 @@ div.container.body-container {
     border: 1px;
     background-color: var(--bs-white) !important;
     padding: 75px 100px 100px 100px !important;
+    box-shadow: 0px 0px 10px #000000;
 }
 
 body {
