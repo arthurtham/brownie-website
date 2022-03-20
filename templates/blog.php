@@ -27,7 +27,7 @@ $id = rtrim($blog_entry_array[4], ".md");
 ?>
 
 <style>
-    img {
+    .blog-images img {
         width: auto;
         max-width: 400px;
         display: block;
@@ -45,7 +45,7 @@ $id = rtrim($blog_entry_array[4], ".md");
 </style>
 
 <?php 
-echo "<div class='row' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
+echo "<div class='row blog-images' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
 echo "<a href='/subs/blog'>Back</a>";
 echo "<center><h1>" . ltrim($title,"-") . "</h1>" . $blogtype . " | " .  $month . "/" . $day . "/" . $year .  "</center><hr><br/>";
 if ($myfile = fopen($blog_file_location . ".md", "r")) {

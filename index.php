@@ -23,28 +23,20 @@ require __DIR__ . "/includes/sessiontimer.php";
 		<?php
 		if (isset($_GET['logout'])) {
 			echo <<<LOGGEDOUT
-			<div class="toast show fade position-absolute start-50 translate-middle-x" role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast show fade position-absolute start-50 translate-middle-x" role="alert" aria-live="assertive" aria-atomic="true" style="margin-top:50px">
 			<div class="toast-header">
-				<strong class="me-auto">Logged out</strong>
-				<small>Just Now</small>
+				<strong class="me-auto">You were logged out due to inactivity.</strong>
 				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-			</div>
-			<div class="toast-body">
-				You were logged out due to inactivity.
 			</div>
 			</div>
 LOGGEDOUT;
 		}
 		if (isset($_GET['badauth'])) {
 			echo <<<BADAUTH
-			<div class="toast show fade position-absolute start-50 translate-middle-x" role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast show fade position-absolute start-50 translate-middle-x" role="alert" aria-live="assertive" aria-atomic="true" style="margin-top:50px">
 			<div class="toast-header">
-				<strong class="me-auto">Log in not successful</strong>
-				<small>Just Now</small>
+				<strong class="me-auto">Login unsuccessful. Please try again.</strong>
 				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-			</div>
-			<div class="toast-body">
-				Discord authentication was not successful. Please try again.
 			</div>
 			</div>
 BADAUTH;

@@ -21,7 +21,7 @@ echo <<<NAVBAR
                     <li><a class="dropdown-item" href="/about">About Me</a></li>
                     <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">Portfolio</h6></li>
-                    <li><a class="dropdown-item disabled">Games</a></li>
+                    <li><a class="dropdown-item" href="/about/coding">Coding</a></li>
                     <li><a class="dropdown-item" href="/about/shoutcasting">Shoutcasting</a></li>
                 </ul>
                 </li>
@@ -35,6 +35,8 @@ echo <<<NAVBAR
                     <li><h6 class="dropdown-header">Sub Perks</h6></li>
                     <li><a class="dropdown-item" href="/subs/blog">Blog</a></li>
                 </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="mailto:browntulstar@browntulstar.com" target="_blank">Contact</a>
                 </li>
             </ul>
             <li class="d-flex">
