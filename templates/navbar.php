@@ -34,6 +34,7 @@ echo <<<NAVBAR
                     <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">Sub Perks</h6></li>
                     <li><a class="dropdown-item" href="/subs/blog">Blog</a></li>
+                    <li><a class="dropdown-item" href="/subs/giveaway">Giveaways</a></li>
                 </ul>
                 <li class="nav-item">
                     <a class="nav-link" href="mailto:browntulstar@browntulstar.com" target="_blank">Contact</a>
