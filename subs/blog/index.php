@@ -33,10 +33,9 @@ function file_compare($blog_entry_a, $blog_entry_b) {
 	<?php 
 	if (isset($_GET["blog-id"])) {
 		$title_temp = explode("_", $_GET["blog-id"]);
-		$title = $title_temp[3];
-		echo "<title>Turtle Pond - Brown's Blog - ".$title."</title>";
+		$title = "Turtle Pond - Brown's Blog - " . $title_temp[3];
 	} else {
-		echo "<title>Turtle Pond - Brown's Blog</title>";
+		$title = "Turtle Pond - Brown's Blog";
 	} ?>
 	<?php require dirname(__DIR__, 2) . "/templates/header-includes.php" ?>
 </head>

@@ -26,7 +26,7 @@ require dirname(__DIR__, 1) . "/includes/sessiontimer.php";
 <html>
 
 <head>
-	<title>BrowntulStar - About</title>
+	<?php $title = "BrowntulStar - About" ?>
 	<?php require dirname(__DIR__, 1) . "/templates/header-includes.php" ?>
     <style>
 		.body-container hr {

@@ -15,7 +15,7 @@ require dirname(__DIR__, 2) . "/includes/sessiontimer.php";
 <html>
 
 <head>
-	<title>BrowntulStar - Coding</title>
+	<?php $title = "BrowntulStar - Coding" ?>
 	<?php require dirname(__DIR__, 2) . "/templates/header-includes.php" ?>
 </head>
 
@@ -84,6 +84,7 @@ require dirname(__DIR__, 2) . "/includes/sessiontimer.php";
                     </div>
                 </div>
             </p>
+        </div>
     </div>
 	<?php require dirname(__DIR__, 2) . "/templates/footer.php" ?>
 	

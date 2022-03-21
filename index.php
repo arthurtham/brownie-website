@@ -13,7 +13,7 @@ require __DIR__ . "/includes/sessiontimer.php";
 <html>
 
 <head>
-	<title>BrowntulStar - Home</title>
+	<?php $title = "BrowntulStar - Home" ?>
 	<?php require __DIR__ . "/templates/header-includes.php" ?>
 </head>
 
