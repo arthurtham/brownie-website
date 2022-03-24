@@ -18,7 +18,17 @@
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>https://browntulstar.com/privacy/</loc>
+  <lastmod>2022-03-17T11:57:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://browntulstar.com/about/shoutcasting/</loc>
+  <lastmod>2022-03-17T11:57:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://browntulstar.com/about/coding/</loc>
   <lastmod>2022-03-17T11:57:45+00:00</lastmod>
   <priority>0.80</priority>
 </url>

@@ -32,7 +32,7 @@ function file_compare($blog_entry_a, $blog_entry_b) {
 
 <head>
 	<?php 
-	echo "<title>Turtle Pond - Brown's Giveaways</title>";
+	$title = "Turtle Pond - Brown's Giveaways";
 	require dirname(__DIR__, 2) . "/templates/header-includes.php" 
 	?>
 </head>
