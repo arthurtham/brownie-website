@@ -46,7 +46,7 @@ $id = rtrim($blog_entry_array[4], ".md");
 
 <?php 
 echo "<div class='row blog-images' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
-echo "<a href='/subs/blog'>Back</a>";
+echo "<a href='/subs/blog'>Back to Blog Directory</a>";
 echo "<center><h1>" . ltrim($title,"-") . "</h1>" . $blogtype . " | " .  $month . "/" . $day . "/" . $year .  "</center><hr><br/>";
 if ($myfile = fopen($blog_file_location . ".md", "r")) {
     echo Parsedown::instance()->text(fread($myfile, filesize($blog_file_location . ".md")));

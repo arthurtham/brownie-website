@@ -37,6 +37,9 @@ echo <<<NAVBAR
                     <li><a class="dropdown-item" href="/subs/giveaway">Giveaways</a></li>
                 </ul>
                 <li class="nav-item">
+                    <a class="nav-link" href="/stream">Stream</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="mailto:browntulstar@browntulstar.com" target="_blank">Contact</a>
                 </li>
             </ul>
