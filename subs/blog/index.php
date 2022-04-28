@@ -1,8 +1,12 @@
 <?php
+
+
 $dir = dirname(__DIR__, 2);
-$find_md_file_name = function($v) { 
-	return strpos($v, ".md");
-};
+
+require_once($dir . "/includes/mysql.php");
+// $find_md_file_name = function($v) { 
+// 	return strpos($v, ".md");
+// };
 
 function file_compare($blog_entry_a, $blog_entry_b) {
 	$blog_entry_a = explode("_", $blog_entry_a);
@@ -13,8 +17,16 @@ function file_compare($blog_entry_a, $blog_entry_b) {
 }
 
 if (isset($_GET["blog-id"])) {
-	$title_temp = explode("_", $_GET["blog-id"]);
-	$title = "Turtle Pond - Brown's Blog - " . $title_temp[3];
+	//$title_temp = explode("_", $_GET["blog-id"]);
+	//$title = "Turtle Pond - Brown's Blog - " . $title_temp[3];
+	$sql = "SELECT blog_name FROM blog_posts WHERE blog_id = \"".$_GET['blog-id']."\""; 
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) {
+		while ($blog_post = $result->fetch_assoc()) {
+			$blog_title = $blog_post["blog_name"];
+		}
+	}
+	$title = "Turtle Pond - Brown's Blog - $blog_title";
 } else {
 	$title = "Turtle Pond - Brown's Blog";
 }
@@ -35,8 +47,8 @@ if (!isset($_SESSION['user'])) {
 		echo "</div>";
 	} else {
 		if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
-			$blog_file_location = $dir . "/subs/blog/" . $_GET["blog-type"] . "/" . $_GET["blog-id"];
-			$blog_id = rtrim(explode("_", $_GET["blog-id"])[4], ".md");
+			$blog_type = $_GET["blog-type"];
+			$blog_id = $_GET["blog-id"];
 			require $dir . "/templates/blog.php";
 			echo <<<DISQUS
 			<div id="disqus_thread"></div>
@@ -60,11 +72,21 @@ if (!isset($_SESSION['user'])) {
 DISQUS;
 		} else {
 			echo '<script src="/assets/js/bootstrap-tab.js"></script>';
-			$directories = array(
-				array("travelblog","NYC Travel Blog", "Follow Browntul on his adventures in New York City. January 2022."),
-				array("techblog","Tech Blog", "Take a look at Browntul's technological advances in this monthly blog."),
-				array("gamedevlogs","Game Dev Logs", "Deep dive into Browntul's thoughts as he makes web games for fun.")
-			);
+
+			// $directories = array(
+			// 	array("travelblog","NYC Travel Blog", "Follow Browntul on his adventures in New York City. January 2022."),
+			// 	array("techblog","Tech Blog", "Take a look at Browntul's technological advances in this monthly blog."),
+			// 	array("gamedevlogs","Game Dev Logs", "Deep dive into Browntul's thoughts as he makes web games for fun.")
+			// );
+
+			$directories = array();
+			$sql = "SELECT blog_type, name, description FROM blog_types";
+			$result = $conn->query($sql);
+			if ($result->num_rows > 0) {
+				while ($row = $result->fetch_assoc()) {
+					array_push($directories, array($row["blog_type"],$row["name"],$row["description"]));
+				}
+			}
 
 			echo '<h1 style="text-align: center;">Brown\'s Blog</h1>';
 			echo <<<ABOUT
@@ -102,19 +124,24 @@ ITEM;
 				echo '" id="'.$directory[0].'-tab-content" role="tabpanel" aria-labelledby="'.$directory[0].'-tab-content">';
 				echo "<h3>" . $directory[1] . "</h3>";
 				echo "<small>" . $directory[2] . "</small><br>";
-				$file_directory = array_filter(scandir(__DIR__ . "/" . $directory[0]), $find_md_file_name);
-				usort($file_directory, "file_compare");
-				foreach ($file_directory as $blog_entry) {
-					$blog_entry_array = explode("_", $blog_entry);
-					$month = $blog_entry_array[1];
-					$day = $blog_entry_array[2];
-					$year = $blog_entry_array[0];
-					$title = $blog_entry_array[3];
-					if ($title[0] === "-") {
-						continue;
+
+
+				//$file_directory = array_filter(scandir(__DIR__ . "/" . $directory[0]), $find_md_file_name);
+				//usort($file_directory, "file_compare");
+				$sql = "SELECT * FROM blog_posts WHERE blog_type = \"".$directory[0]."\" AND visible = 1 ORDER BY blog_date DESC, blog_id DESC, blog_name ASC;";
+				#echo $sql;
+				$result = $conn->query($sql);
+				if ($result->num_rows > 0) {
+					while ($blog_entry = $result->fetch_assoc()) {
+						$blog_date = $blog_entry["blog_date"];
+						$blog_id = $blog_entry["blog_id"];
+						$blog_name = $blog_entry["blog_name"];
+						if ($title[0] === "-") {
+							continue;
+						}
+						echo "<br/>";
+						echo explode(" ",$blog_date)[0] . " - <a href=\"?blog-type=" .  $directory[0] . "&blog-id=" . $blog_id . "\">" . $blog_name . "</a>";
 					}
-					echo "<br/>";
-					echo $month . "/" . $day . "/" . $year . " - <a href=\"?blog-type=" .  $directory[0] . "&blog-id=" . rtrim($blog_entry, ".md") . "\">" . $title . "</a>";
 				}
 				echo "</div>";
 			}
