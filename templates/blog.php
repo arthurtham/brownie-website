@@ -45,7 +45,7 @@ STYLE;
             echo "<p>Note: This blog post is not visible in the main directory.</p>";
         }*/
         if (!$blog_post["published"]) {
-            echo "<p>Note: This blog post is not published.</p>";
+            echo "<p>Note: This blog post is not published. Come back again soon!</p>";
         } else {
             echo Parsedown::instance()->text($blog_post["blog_content"]);
         }
