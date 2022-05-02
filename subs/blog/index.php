@@ -56,26 +56,6 @@ if (!isset($_SESSION['user'])) {
 			$blog_type = $_GET["blog-type"];
 			$blog_id = $_GET["blog-id"];
 			require $dir . "/templates/blog.php";
-			echo <<<DISQUS
-			<div id="disqus_thread"></div>
-			<script>
-				/**
-				*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-				*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-				var disqus_config = function () {
-				this.page.url = "https://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"  // Replace PAGE_URL with your page's canonical URL variable
-				this.page.identifier = "brownblog_$blog_id"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-				};
-				(function() { // DON'T EDIT BELOW THIS LINE
-				var d = document, s = d.createElement('script');
-				s.src = 'https://browntulstar-com.disqus.com/embed.js';
-				s.setAttribute('data-timestamp', +new Date());
-				(d.head || d.body).appendChild(s);
-				})();
-			</script>
-			<noscript>Please enable JavaScript to view the <a href='https://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
-			<script id="dsq-count-scr" src='//browntulstar-com.disqus.com/count.js' async></script>
-DISQUS;
 		} else {
 			echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 
@@ -157,7 +137,7 @@ ITEM;
 								continue;
 							}
 							echo "<br/>";
-							echo explode(" ",$blog_date)[0] . " - <a href=\"?blog-type=" .  $directory[0] . "&blog-id=" . $blog_id . "\">" . $blog_name . "</a>";
+							echo explode(" ",$blog_date)[0] . " - <a href=\"?blog-type=" .  $blog_entry["blog_type"] . "&blog-id=" . $blog_id . "\">" . $blog_name . "</a>";
 						}
 					} else {
 						if ($directory[0] === "search") {

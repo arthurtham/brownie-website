@@ -46,10 +46,11 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($blog_post = $result->fetch_assoc()) {
         $blog_id = $blog_post['blog_id'];
+        $blog_type = $blog_post['blog_type'];
         echo "<tr><td>".$blog_id.
         "</td><td>".$blog_post['blog_name'].
         "</td><td>".$blog_post['blog_date'].
-        "</td><td>".$blog_post['blog_type'].
+        "</td><td>".$blog_type.
         "</td><td>".$blog_post['visible'].
         "</td><td>".$blog_post['published'].
         "</td><td><a href='blog_editor.php?blog_id=$blog_id'><button type='button'>Edit</button></a>".
