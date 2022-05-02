@@ -23,12 +23,12 @@ $result = $conn->query($sql);
 if ($result === TRUE) {
     echo "<p>Success!</p>";
     echo "<a href='/admin/blog.php'><button>Main</button></a></p>";
-    echo "<p>$sql</p>";
+    echo "<code>$sql</code>";
 } else {
     echo "<p>Failure: $conn->error </p>";
-    echo "<p>$sql</p>";
+    echo "<code>$sql</code>";
 }
-print_r($_POST);
+//print_r($_POST);
 
 
 

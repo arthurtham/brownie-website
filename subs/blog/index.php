@@ -16,6 +16,12 @@ function file_compare($blog_entry_a, $blog_entry_b) {
 	return $id_a < $id_b ? 1 : -1;
 }
 
+if (isset($_GET["search-text"])) {
+	$search_text = $_GET["search-text"];
+} else {
+	$search_text = "";
+}
+
 if (isset($_GET["blog-id"])) {
 	//$title_temp = explode("_", $_GET["blog-id"]);
 	//$title = "Turtle Pond - Brown's Blog - " . $title_temp[3];
@@ -80,6 +86,7 @@ DISQUS;
 			// );
 
 			$directories = array();
+			array_push($directories, array("search", "Search", "Search for a blog post."));
 			$sql = "SELECT blog_type, name, description FROM blog_types";
 			$result = $conn->query($sql);
 			if ($result->num_rows > 0) {
@@ -128,19 +135,36 @@ ITEM;
 
 				//$file_directory = array_filter(scandir(__DIR__ . "/" . $directory[0]), $find_md_file_name);
 				//usort($file_directory, "file_compare");
-				$sql = "SELECT * FROM blog_posts WHERE blog_type = \"".$directory[0]."\" AND visible = 1 ORDER BY blog_date DESC, blog_id DESC, blog_name ASC;";
-				#echo $sql;
-				$result = $conn->query($sql);
-				if ($result->num_rows > 0) {
-					while ($blog_entry = $result->fetch_assoc()) {
-						$blog_date = $blog_entry["blog_date"];
-						$blog_id = $blog_entry["blog_id"];
-						$blog_name = $blog_entry["blog_name"];
-						if ($title[0] === "-") {
-							continue;
+				if ($directory[0] === "search") {
+					echo "<br/>";
+					echo '<form action="" method="get">
+                    <input type="text" name="search-text" id="search-text" placeholder="Search..." value="'.$search_text.'"></input>
+                    <button type="submit">Search</button>
+                	</form>';
+					$sql = 'SELECT * FROM blog_posts WHERE (LOCATE("'.mysqli_real_escape_string($conn,$search_text).'",blog_name)>0 OR LOCATE("'.mysqli_real_escape_string($conn,$search_text).'",blog_content)>0) AND visible = 1 ORDER BY blog_date DESC, blog_id DESC, blog_name ASC;';
+				} else {
+					$sql = "SELECT * FROM blog_posts WHERE blog_type = \"".$directory[0]."\" AND visible = 1 ORDER BY blog_date DESC, blog_id DESC, blog_name ASC;";
+				}
+				//echo $sql;
+				if ($directory[0] !== "search" || strlen($search_text) > 0) {
+					$result = $conn->query($sql);
+					if ($result->num_rows > 0) {
+						while ($blog_entry = $result->fetch_assoc()) {
+							$blog_date = $blog_entry["blog_date"];
+							$blog_id = $blog_entry["blog_id"];
+							$blog_name = $blog_entry["blog_name"];
+							if ($title[0] === "-") {
+								continue;
+							}
+							echo "<br/>";
+							echo explode(" ",$blog_date)[0] . " - <a href=\"?blog-type=" .  $directory[0] . "&blog-id=" . $blog_id . "\">" . $blog_name . "</a>";
 						}
-						echo "<br/>";
-						echo explode(" ",$blog_date)[0] . " - <a href=\"?blog-type=" .  $directory[0] . "&blog-id=" . $blog_id . "\">" . $blog_name . "</a>";
+					} else {
+						if ($directory[0] === "search") {
+							echo "(No search results...)";
+						} else {
+							echo ("(No blog entries...)");
+						}
 					}
 				}
 				echo "</div>";

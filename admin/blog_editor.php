@@ -93,7 +93,7 @@ $html_blog_types .= "</select>";
 
 echo <<<FORM
 <div class="container">
-<div class="row"><div class="col"><h1>Blog Editor</h1></div></div>
+<div class="row"><div class="col"><h1>Blog Editor</h1><a href="blog.php"><button type="button">Back to Blog Posts</button></a></div></div>
 <div class="row">
 <div class="col col-md-6">
 <form action="blog_process.php" method="post">
