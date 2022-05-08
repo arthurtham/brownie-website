@@ -32,7 +32,7 @@ if (isset($_GET["blog-id"])) {
 			$blog_title = $blog_post["blog_name"];
 		}
 	}
-	$title = "Turtle Pond - Brown's Blog - $blog_title";
+	$title = "$blog_title - Turtle Pond - Brown's Blog";
 } else {
 	$title = "Turtle Pond - Brown's Blog";
 }
@@ -62,7 +62,7 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 } else {
 	echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 	$directories = array();
-	array_push($directories, array("search", "Search", "Search for a blog post."));
+	array_push($directories, array("search", "Search", "Search for a blog post, or pick a category above."));
 	$sql = "SELECT blog_type, name, description FROM blog_types";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
@@ -113,7 +113,7 @@ ITEM;
 		//usort($file_directory, "file_compare");
 		if ($directory[0] === "search") {
 			echo "<br/>";
-			echo '<form action="" method="get">
+			echo '<form action="/subs/blog/" method="get">
 			<input type="text" name="search-text" id="search-text" placeholder="Search..." value="'.$search_text.'"></input>
 			<button type="submit">Search</button>
 			</form>';
@@ -139,14 +139,14 @@ ITEM;
 				if ($directory[0] === "search") {
 					echo "(No search results...)";
 				} else {
-					echo ("(No blog entries...)");
+					echo "(No blog entries...)";
 				}
 			}
 		}
 		echo "</div>";
 	}
 	echo "</div>";
-}
-		
+}	
 ?>
+</div>
 <?php require $dir . "/templates/footer.php" ?>	

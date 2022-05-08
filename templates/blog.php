@@ -22,7 +22,7 @@ if ($result->num_rows > 0) {
         echo <<<STYLE
         <style>
         .blog-images img {
-            width: auto;
+            width: 100%;
             max-width: 400px;
             display: block;
             margin-left: auto;
@@ -30,17 +30,18 @@ if ($result->num_rows > 0) {
             padding: 10px;
         }
         video {
-            width: auto;
-            max-width: 300px;
+            width: 100%;
+            max-width: 400px;
             display: block;
             margin-left: auto;
             margin-right: auto;
+            padding-bottom: 20px;
         }
     </style>
 STYLE;
         echo "<div class='row blog-images' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
-        echo "<a href='/subs/blog'>Back to Blog Directory</a>";
-        echo "<center><h1>" . $blog_post["blog_name"] . "</h1>" . $blog_post["blog_type_name"] . " | " . explode(" ",$blog_post["blog_date"])[0] .  "</center><hr><br/>";
+        echo "<center><h1>" . $blog_post["blog_name"] . "</h1><a href='/subs/blog/#$blog_type-tab'>" . $blog_post["blog_type_name"] . "</a> | " . explode(" ",$blog_post["blog_date"])[0] .  "</center>";
+        echo "<center>/ subs / <a href='/subs/blog'>blog</a> / <a href='/subs/blog/#$blog_type-tab'>$blog_type</a></center><hr><br/>";
         /*if (!$blog_post["visible"]) {
             echo "<p>Note: This blog post is not visible in the main directory.</p>";
         }*/
@@ -74,26 +75,8 @@ DISQUS;
 } else {
     echo "An error occured when attempting to open this blog post.";
     //echo $sql;
-    //header("Location: /subs/blog");
     //die();
 }
-
-// echo "<div class='row blog-images' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
-// echo "<a href='/subs/blog'>Back to Blog Directory</a>";
-// echo "<center><h1>" . ltrim($title,"-") . "</h1>" . $blogtype . " | " .  $month . "/" . $day . "/" . $year .  "</center><hr><br/>";
-
-
-// if ($myfile = fopen($blog_file_location . ".md", "r")) {
-//     echo Parsedown::instance()->text(fread($myfile, filesize($blog_file_location . ".md")));
-//     fclose($myfile);
-// } else {
-//     header("Location: /subs/blog");
-//     die();
-// }
-
-// echo "</div></div>";
-
-
 ?>
 
 
