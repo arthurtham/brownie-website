@@ -13,14 +13,5 @@ require $dir . "/templates/header.php";
         width="100%"
         allowfullscreen>
     </iframe>
-    
-    <p>
-    <iframe id="open-web-calendar" 
-style="background:url('https://raw.githubusercontent.com/niccokunzmann/open-web-calendar/master/static/img/loaders/circular-loader.gif') center center no-repeat;"
-src="https://open-web-calendar.herokuapp.com/calendar.html?url=https%3A%2F%2Fapi.twitch.tv%2Fhelix%2Fschedule%2Ficalendar%3Fbroadcaster_id%3D174220979&amp;title=Browntul&#039;s%20Stream%20Schedule&amp;tabs=month&amp;tabs=agenda"
-sandbox="allow-scripts allow-same-origin allow-top-navigation"
-allowTransparency="true" scrolling="no" 
-frameborder="0" height="600px" width="100%"></iframe>
-    </p>
 </div>
 <?php require $dir . "/templates/footer.php" ?>

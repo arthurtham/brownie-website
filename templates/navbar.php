@@ -45,11 +45,12 @@ echo <<<NAVBAR
             </ul>
             <li class="d-flex">
 NAVBAR;
+$_SESSION['redirect'] = $_SERVER["REQUEST_URI"];
 $auth_url = url($client_id, $redirect_url, $scopes);
 if (isset($_SESSION['user'])) {
-    echo '<button class="btn btn-primary">Hello, ' . $_SESSION['username'] . '!</a></li>&nbsp;<li class="d-flex"><a href="/logout.php"><button class="btn btn-danger">Logout</button></a>';
+    echo '<a href="/profile"><button class="btn btn-primary">Hello, ' . $_SESSION['username'] . '!</button></a></li>&nbsp;<li class="d-flex"><a href="/logout.php"><button class="btn btn-danger">Logout</button></a>';
 } else {
-    echo "<a href='$auth_url'><button class='btn btn-success'>Discord Login</button></a>";
+    echo "<a href='" . $auth_url ."'><button class='btn btn-success'>Discord Login</button></a>";
 }
 echo <<<NAVBAR
             </li>

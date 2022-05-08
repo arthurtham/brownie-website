@@ -39,7 +39,7 @@ $search_criteria = (isset($_GET["search-text"]) ? (
     ) : "");
 
 
-$sql = "SELECT * FROM blog_posts $search_criteria ORDER BY blog_id DESC, blog_name ASC;";
+$sql = "SELECT * FROM blog_posts $search_criteria ORDER BY id DESC, blog_id DESC, blog_name ASC;";
 //echo "<p>$sql</p>";
 echo "<table class='table'><tr><th>Blog ID</th><th>Blog Name</th><th>Blog Date</th><th>Blog Type</th><th>Visible<th>Published</th><th>Actions</th>";
 $result = $conn->query($sql);

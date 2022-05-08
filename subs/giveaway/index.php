@@ -19,18 +19,21 @@ require $dir . "/templates/header.php";
 <div class='container body-container'>
 <?php
 if (!isset($_SESSION['user'])) { 
-	echo '<h1 style="text-align: center;">Brown\'s Giveaways</h1>';
-	echo "You need to log in to Discord before viewing this page.";
+	echo "<div class='alert alert-danger' role='alert'>
+	<center>You need to log in to Discord before viewing this page.</center>
+	</div>";
+	echo "<h1 class='text-center'>Brown's Giveaways</h1>";
 	require $dir . "/templates/sub-perks-description.php";
 	echo "</div>";
 } else { // User is logged in
 	if (!check_guild_membership($guild_id) || !check_roles([$sub_role_id, $vip_role_id, $mod_role_id])) {
-		echo '<h1 style="text-align: center;">Brown\'s Giveaways</h1>';
-		echo "You need to fulfill the sub requirements <a href='/subs'>here</a> before viewing this page.";
+		echo "<div class='alert alert-danger' role='alert'>
+		<center>You need to fulfill the sub requirements <a href='/subs'>here</a> before viewing this page.</center>
+		</div>";
+		echo "<h1 class='text-center'>Brown's Giveaways</h1>";
 		require $dir . "/templates/sub-perks-description.php";
 		echo "</div>";
 	} else {
-		echo "<h1 class='text-center'>Brown's Giveaways</h1>";
 		echo "<p class='text-center'>Claim sub-exclusive giveaways on this page, as a special thanks to you!</p>";
 		echo "<hr/>";
 		try {
