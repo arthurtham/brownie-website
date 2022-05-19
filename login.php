@@ -43,7 +43,7 @@ $_SESSION['timeout']=time();
 # join_guild('SERVER_ID_HERE');
 
 # Fetching user guild details | (guilds scope)
-//$_SESSION['guilds'] = get_guilds();
+$_SESSION['guilds'] = get_guilds();
 
 # Fetching user connections | (connections scope)
 $_SESSION['user_guild_info'] = get_user_guild_info($guild_id);

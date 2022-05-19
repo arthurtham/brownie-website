@@ -34,6 +34,7 @@ if (!isset($_SESSION['user'])) {
 		require $dir . "/templates/sub-perks-description.php";
 		echo "</div>";
 	} else {
+		echo "<h1 class='text-center'>Brown's Giveaways</h1>";
 		echo "<p class='text-center'>Claim sub-exclusive giveaways on this page, as a special thanks to you!</p>";
 		echo "<hr/>";
 		try {

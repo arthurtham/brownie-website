@@ -47,7 +47,7 @@ require $dir . "/templates/header.php";
         <div class="row">
             <div class="col col-md-5 offset-md-1">
                 <div class="card" style="width: 100%; height:100%">
-                    <center><img src="/assets/img/hackuwu.png" class="img-fluid rounded-start" style="object-fit:contain;width:auto;height:200px;padding-top:20px" alt="..."></center>
+                    <center><img src="/assets/img/hackuwu-logo.png" class="img-fluid rounded-start" style="object-fit:contain;width:auto;height:200px;padding-top:20px" alt="..."></center>
                     <div class="card-body">
                         <h4 class="card-title text-center">HackUWU</h4>
                         <p class="card-text text-center"></p>
