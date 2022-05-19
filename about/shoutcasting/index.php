@@ -10,24 +10,26 @@ require $dir . "/templates/header.php";
     <p></p>
     <p>Here's a list of tournaments I've shoutcasted:</p>
     <ul>
-        <li>ValorANT Tournament (March 2022)</li>
-        <li>Happy Valrootines VALORANT Tournament (February 2022)</li>
-        <li>CGT: Friendship Games (February 2022)</li>
-        <li>Happy Roolidays VALORANT Tournament (December 2021)</li>
-        <li>Change Thru Games: Tetris and VALORANT (2020-present)</li> 
-        <li>O Snap Its a VALORANT Tournament (osnapitskat) (August 2020, July 2021, November 2021)</li>
+        <li>CGT: Battle of the Coasts (May 2022) - Play-by-Play, Color Analyst</li>
+        <li>ValorANT Tournament (March 2022) - Play-by-Play</li>
+        <li>Happy Valrootines VALORANT Tournament (February 2022) - Play-by-Play</li>
+        <li>CGT: Friendship Games (February 2022) - Play-by-Play</li>
+        <li>Happy Roolidays VALORANT Tournament (December 2021) - Play-by-Play</li>
+        <li>Change Thru Games: Tetris and VALORANT (2020-present) - Play-by-Play</li> 
+        <li>O Snap Its a VALORANT Tournament (osnapitskat) (August 2020, July 2021, November 2021) - Shoutcaster</li>
     </ul>
     <p>If you are interested in booking me to shoutcast your games, please email me by clicking on the <strong>Contact</strong> button on the navigation bar on the top of this page!</p>
     <hr>
     <p><center>
 
     <h2>Highlights</h2>
-    <div id="carouselVideos" class="carousel carousel-dark slide" data-bs-ride="carousel" style="min-height:600px">
+    <div id="carouselVideos" class="carousel carousel-dark" data-bs-ride="carousel" style="min-height:600px">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="2" aria-label="Slide 3"></button>
             <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="4" aria-label="Slide 5"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -46,6 +48,11 @@ require $dir . "/templates/header.php";
                 <blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">I miss shoutcasting :(<br>Happy 1-year anniversary of shoutcasting Tetris for <a href="https://twitter.com/ChangeThruGames?ref_src=twsrc%5Etfw">@ChangeThruGames</a> 🥳 <a href="https://t.co/mOELNtibxe">pic.twitter.com/mOELNtibxe</a></p>&mdash; Browntul (@browntulstar) <a href="https://twitter.com/browntulstar/status/1400271125620281344?ref_src=twsrc%5Etfw">June 3, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 <br/><br/>
             </div>
+            <div class="carousel-item">
+                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I had fun shoutcasting <a href="https://twitter.com/_WilsonChang?ref_src=twsrc%5Etfw">@_WilsonChang</a> CGT again. Lucky to be paired up with analyst <a href="https://twitter.com/AwesomeLioness1?ref_src=twsrc%5Etfw">@AwesomeLioness1</a> and the legendary <a href="https://twitter.com/Zaeter_?ref_src=twsrc%5Etfw">@Zaeter_</a>. <a href="https://twitter.com/heine1004?ref_src=twsrc%5Etfw">@heine1004</a> &#39;s shoutcasting debut was spectacular! Hope we can do this again.<br><br>Thread: a sample of casting clips with me paired with each caster. <a href="https://t.co/OHYB33izbs">https://t.co/OHYB33izbs</a></p>&mdash; Browntul (@browntulstar) <a href="https://twitter.com/browntulstar/status/1526335377287413761?ref_src=twsrc%5Etfw">May 16, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>                <br/><br/>
+                <br/><br/>
+            </div>
+            
         </div>
     </div>
 
