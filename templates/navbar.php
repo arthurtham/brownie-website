@@ -25,6 +25,9 @@ echo <<<NAVBAR
                     <li><a class="dropdown-item" href="/about/shoutcasting">Shoutcasting</a></li>
                 </ul>
                 </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/announcements">Announcements</a>
+                </li>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarSubs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Sub Perks
