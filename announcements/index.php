@@ -77,11 +77,7 @@ ITEM;
 			echo explode(" ",$announcement_date)[0] . " - <a href=\"?announcement-id=" . $announcement_id . "\">" . $announcement_name . "</a>";
 		}
 	} else {
-		if ($directory[0] === "search") {
-			echo "(No search results...)";
-		} else {
-			echo "(No blog entries...)";
-		}
+		echo "(No entries...)";
 	}
 	//echo $sql;
 	echo "</div>";

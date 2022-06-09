@@ -65,6 +65,10 @@ if (isset($_GET["announcement_id"])) {
     }
 }
 
+if ($announcement_published == "1") {
+    $announcement_published = "checked";
+}
+
 echo <<<FORM
 <div class="container">
 <div class="row"><div class="col"><h1>Announcement Editor</h1><a href="announcement.php"><button type="button">Back to Announcement Posts</button></a></div></div>
