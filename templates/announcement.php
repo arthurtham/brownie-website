@@ -61,8 +61,8 @@ STYLE;
 DISQUS;
     }
 } else {
-    echo "An error occured when attempting to open this announcement post.";
-    echo $sql;
+    echo "<center><h1>Announcements</h1></center><hr/>";
+    echo "<p>Note: This announcement is not published or no longer exists!</p>";
     //die();
 }
 ?>
