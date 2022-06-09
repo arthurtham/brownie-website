@@ -30,13 +30,15 @@ if ($result->num_rows > 0) {
     </style>
 STYLE;
         echo "<div class='row blog-images' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
-        echo "<center><h1>" . $announcement_embed["announcement_name"] . "</h1><a href='/announcements/'>" . "Announcements" . "</a> | " . explode(" ",$announcement_embed["announcement_date"])[0] .  "</center><br/><hr/>";
-        $announcement_embed_contents = $announcement_embed["announcement_embed"];
-        echo <<<IFRAME
-<iframe width='100%' height='500px' scrolling='yes' frameborder='0' src="$announcement_embed_contents"></iframe>
-
-IFRAME;
-        echo "</div></div><hr>";
+        if (!$announcement_embed["published"]) {
+            echo "<center><h1>Announcements</h1></center><hr/>";
+            echo "<p>Note: This announcement is not published or no longer exists!</p>";
+        } else {
+            echo "<center><h1>" . $announcement_embed["announcement_name"] . "</h1><a href='/announcements/'>" . "Announcements" . "</a> | " . explode(" ",$announcement_embed["announcement_date"])[0] .  "</center><br/><hr/>";
+            $announcement_embed_contents = $announcement_embed["announcement_embed"];
+            echo Parsedown::instance()->text($announcement_embed_contents);
+        }
+        echo "</div></div>";
         echo <<<DISQUS
 			<div id="disqus_thread"></div>
 			<script>

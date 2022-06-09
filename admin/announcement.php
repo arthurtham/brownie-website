@@ -35,13 +35,13 @@ require $dir . "/includes/admin-check.php";
 <?php
 
 $search_criteria = (isset($_GET["search-text"]) ? (
-    'WHERE LOCATE("'.mysqli_real_escape_string($conn,$_GET["search-text"]).'",announcement_name)>0'
+    'WHERE LOCATE("'.mysqli_real_escape_string($conn,$_GET["search-text"]).'",announcement_name)>0 OR LOCATE("'.mysqli_real_escape_string($conn,$_GET["search-text"]).'",announcement_embed)>0'
     ) : "");
 
 
 $sql = "SELECT * FROM announcement_embeds $search_criteria ORDER BY id DESC, announcement_id DESC, announcement_name ASC;";
 //echo "<p>$sql</p>";
-echo "<table class='table'><tr><th>Announcement ID</th><th>Announcement Name</th><th>Announcement Date</th><th>Embed Link</th><th>Actions</th>";
+echo "<table class='table'><tr><th>Announcement ID</th><th>Announcement Name</th><th>Announcement Date</th><th>Published</th><th>Actions</th>";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($announcement_post = $result->fetch_assoc()) {
@@ -50,7 +50,7 @@ if ($result->num_rows > 0) {
         echo "<tr><td>".$announcement_id.
         "</td><td>".$announcement_post['announcement_name'].
         "</td><td>".$announcement_post['announcement_date'].
-        "</td><td><a href='$announcement_embed' target='_blank'><button type='button'>View Source</button></a>".
+        "</td><td>".$announcement_post['published'].
         "</td><td><a href='announcement_editor.php?announcement_id=$announcement_id'><button type='button'>Edit</button></a>".
         "<a target='_blank' href='/announcements/?announcement-id=$announcement_id'><button type='button'>View</button></a>".
         "</td></tr>";

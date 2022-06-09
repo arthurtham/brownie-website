@@ -59,9 +59,9 @@ ITEM;
 	<button type="submit">Search</button>
 	</form>';
 	if (isset($_GET["search-text"])) {
-		$sql = 'SELECT * FROM announcement_embeds WHERE (LOCATE("'.mysqli_real_escape_string($conn,$search_text).'",announcement_name)>0) ORDER BY announcement_date DESC, announcement_id DESC, announcement_name ASC;';
+		$sql = 'SELECT * FROM announcement_embeds WHERE published=1 AND (LOCATE("'.mysqli_real_escape_string($conn,$search_text).'",announcement_name)>0 OR LOCATE("'.mysqli_real_escape_string($conn,$search_text).'",announcement_embed)>0) ORDER BY announcement_date DESC, announcement_id DESC, announcement_name ASC;';
 	} else {
-		$sql = 'SELECT * FROM announcement_embeds ORDER BY announcement_date DESC, announcement_id DESC, announcement_name ASC;';
+		$sql = 'SELECT * FROM announcement_embeds WHERE published=1 ORDER BY announcement_date DESC, announcement_id DESC, announcement_name ASC;';
 	}
 	//$sql = "SELECT * FROM blog_posts WHERE blog_type = \"".$directory[0]."\" AND visible = 1 ORDER BY blog_date DESC, blog_id DESC, blog_name ASC;";
 	$result = $conn->query($sql);
