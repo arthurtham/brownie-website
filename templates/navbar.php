@@ -38,6 +38,7 @@ echo <<<NAVBAR
                     <li><h6 class="dropdown-header">Sub Perks</h6></li>
                     <li><a class="dropdown-item" href="/subs/blog">Blog</a></li>
                     <li><a class="dropdown-item" href="/subs/giveaway">Giveaways</a></li>
+                    <li><a class="dropdown-item" href="/subs/karaoke">Tank Engine Karaoke</a></li>
                 </ul>
                 <li class="nav-item">
                     <a class="nav-link" href="/stream">Stream</a>
