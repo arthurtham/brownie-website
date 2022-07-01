@@ -6,7 +6,7 @@ require $dir . "/templates/header.php";
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
     <h1 class="text-center">Coding</h1>
     <p>I'm a coder at heart. I started making games when I was in high school, and continue to make mini web games as
-        a hobby! I currently make content in collaboration with <strong>Cloudinary</strong> and <strong>My First Game Jam</strong> which is featured on my streams from time to time.
+        a hobby! I currently make content in collaboration with <strong>My First Game Jam</strong> which is featured on my streams from time to time.
     </p>
     <hr>
     <p>
@@ -20,7 +20,7 @@ require $dir . "/templates/header.php";
                     <center><img src="/assets/img/cloudinary.png" class="img-fluid rounded-start" width=100% style="max-width:200px;padding-top:20px" alt="..."></center>
                     <div class="card-body">
                         <h4 class="card-title text-center">Coding with Cloudinary</h4>
-                        <p class="card-text text-center">In coding streams sponsored by Cloudinary, viewers learn how to create fast and personalized media experiences with Cloudinary APIs, Widgets, and SDKs. Viewers also learn about the power of game development and design though the power of media and web technologies such as Javascript and Python.</p>
+                        <p class="card-text text-center">In coding streams sponsored by Cloudinary, viewers learn how to create fast and personalized media experiences with Cloudinary APIs, Widgets, and SDKs. This series is now retired.</p>
                         <p class="card-text text-center"><small class="text-muted">For more information about Cloudinary, go to <br><a href="https://www.cloudinary.com" target="_blank">https://www.cloudinary.com</a></small></p>
                     </div>
                 </div>

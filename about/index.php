@@ -17,7 +17,7 @@ require $dir . "/templates/header.php"
     <p style="text-align: center;">You can call me Brown, Browntul, Brown Toaster, BT, Star... actually, "Brown" is fine :)</p>
     <p style="text-align: center;">My pronouns are he/him/his. <br />
         I'm an aspiring game developer / designer. <br />
-        I stream Switch games and KartRider Rush+ on the NA/West server. <br />
+        I stream multiplayer games on the NA/West server. <br />
         I also host coding and game-jam streams.</p>
     <p style="text-align: center;">I hope you all can jump along for the ride!</p>
     <hr>
@@ -31,7 +31,6 @@ require $dir . "/templates/header.php"
                         <h5 class="card-title  text-center">Mario Kart 8 Deluxe</h5>
                         <ul>
                             <li>Build: DK, Wiggler, Azure Roller, Parafoil</li>
-                            <li>Rank: 21,038 VR as of Oct 13th, 2021</li>
                             <li>Tournament Highlights: </li>
                             <ul>
                                 <li>Change Thru Games Mario Kart 8 Deluxe reigning champion (2018)</li>
@@ -47,8 +46,7 @@ require $dir . "/templates/header.php"
                     <div class="card-body">
                         <h5 class="card-title  text-center">KartRider Rush+</h5>
                         <ul>
-                            <li>Build: BROWN, Jin Ramen Kart, Busta Bear, Mech Core.</li>
-                            <li>Rank: Legend (Season 9)</li>
+                            <li>Rank: Legend (Season 9, 13)</li>
                             <li>Club: TurtleNation</li>
                         </ul>
                     </div>
@@ -65,7 +63,7 @@ require $dir . "/templates/header.php"
                                 <li>Primary: Killjoy</li>
                                 <li>Secondaries: Viper, Astra</li>
                             </ul>
-                            <li>Rank: Silver 1 (Ep 4 Act 1)</li>
+                            <li>Rank: Gold 1 (Ep 4 Act 3)</li>
                         </ul>
                     </div>
                 </div>

@@ -30,7 +30,7 @@ if (!isset($_SESSION['user'])) {
 		echo "<h1 class='text-center'>Tank Engine Karaoke</h1>";
 		echo "<p class='text-center'>Sing Along with Browntul the Tank Engine!</p>";
 		echo "<hr/>";
-		require_once "karaoke.php";
+		require_once $dir . "/templates/karaoke.php";
 	}
 }
 ?>
