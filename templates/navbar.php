@@ -19,15 +19,26 @@ echo <<<NAVBAR
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarAbout"> 
                     <li><a class="dropdown-item" href="/about">About Me</a></li>
+                    <li><a class="dropdown-item" href="/announcements">Announcements</a></li>
                     <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">Portfolio</h6></li>
                     <li><a class="dropdown-item" href="/about/coding">Coding</a></li>
                     <li><a class="dropdown-item" href="/about/shoutcasting">Shoutcasting</a></li>
+                    <li><hr class="dropdown-divider" />
+                    <li><h6 class="dropdown-header">Live</h6></li>
+                    <li><a class="dropdown-item" href="/stream">Stream</a></li>
                 </ul>
                 </li>
-                <li class="nav-item">
-                <a class="nav-link" href="/announcements">Announcements</a>
-                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarStore" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Store
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarStore">
+                    <li><a class="dropdown-item" href="/store">Store Home</a></li>
+                    <li><hr class="dropdown-divider" />
+                    <li><h6 class="dropdown-header">Service Requests Manager</h6></li>
+                    <li><a class="dropdown-item" href="/store/lookup.php">My Requests</a></li>
+                </ul>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarSubs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Sub Perks
@@ -38,11 +49,8 @@ echo <<<NAVBAR
                     <li><h6 class="dropdown-header">Sub Perks</h6></li>
                     <li><a class="dropdown-item" href="/subs/blog">Blog</a></li>
                     <li><a class="dropdown-item" href="/subs/giveaway">Giveaways</a></li>
-                    <li><a class="dropdown-item" href="/subs/karaoke">Tank Engine Karaoke</a></li>
+                    <li><a class="dropdown-item" href="/store">Store -> Merchandise</a></li>
                 </ul>
-                <li class="nav-item">
-                    <a class="nav-link" href="/stream">Stream</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="mailto:browntulstar@browntulstar.com" target="_blank">Contact</a>
                 </li>

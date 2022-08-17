@@ -1,3 +1,3 @@
 <?php
-redirect("/shoutcasting");
+header("Location: /shoutcasting");
 ?>

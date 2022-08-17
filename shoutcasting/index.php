@@ -92,6 +92,6 @@ require $dir . "/templates/header.php";
         <li><strong>O Snap Its a VALORANT Tournament by osnapitskat</strong><br/>(August 2020, July 2021, November 2021, June 2022) - Shoutcaster<br/>
         <a href="https://twitch.tv/osnapitskat">https://twitch.tv/osnapitskat</a></li>
     </ul>
-    <p>If you are interested in booking me to shoutcast your games, please email me by clicking on the <strong>Contact</strong> button on the navigation bar on the top of this page!</p>
+    <p>If you are interested in booking me to shoutcast your games, please go to the <strong><a href="/store">Store</a></strong> page and book a time! Or, email me by clicking on the <strong>Contact</strong> button on the navigation bar on the top of this page!</p>
 </div>
 <?php require $dir . "/templates/footer.php" ?>
