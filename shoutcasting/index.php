@@ -24,15 +24,21 @@ require $dir . "/templates/header.php";
             <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="5" aria-label="Slide 6"></button>
             <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="6" aria-label="Slide 7"></button>
             <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="7" aria-label="Slide 8"></button>
+            <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="8" aria-label="Slide 9"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
+                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">It was a fun time shoutcasting in Summer Splash 3 VALORANT Sponsored by HyperX on <a href="https://twitter.com/HLG_UCR?ref_src=twsrc%5Etfw">@HLG_UCR</a> Twitch. Thanks to our SoCal university organizers for their support.<br><br>I&#39;ve attached a subset of clips that feature me as pbp with <a href="https://twitter.com/hiyahappiness?ref_src=twsrc%5Etfw">@hiyahappiness</a> , and analyst with <a href="https://twitter.com/Caster_Admiral?ref_src=twsrc%5Etfw">@Caster_Admiral</a> . <a href="https://t.co/iSxXFmotXv">https://t.co/iSxXFmotXv</a></p>&mdash; Browntul | Shoutcaster &amp; Game Designer (@browntulstar) <a href="https://twitter.com/browntulstar/status/1564785683452944386?ref_src=twsrc%5Etfw">August 31, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>                <br/><br/>
+                <a target="_blank" href="https://twitter.com/browntulstar/status/1564785683452944386">Click here to watch all clips from this tournament</a>
+                <br/><br/><br/>
+            </div>
+            <div class="carousel-item">
                 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">It was a great time shoutcasting <a href="https://twitter.com/shygori?ref_src=twsrc%5Etfw">@shygori</a> &#39;s VALADIES tournament earlier this month! This clip, between Waku Waku and KIMBAO, is one of my favorites. <br><br>🎙️ <a href="https://twitter.com/browntulstar?ref_src=twsrc%5Etfw">@browntulstar</a> (pbp), <a href="https://twitter.com/AwesomeLioness1?ref_src=twsrc%5Etfw">@AwesomeLioness1</a> (analyst)<br>📷 <a href="https://twitter.com/shygori?ref_src=twsrc%5Etfw">@shygori</a> <br>🎮 <a href="https://twitter.com/PlayVALORANT?ref_src=twsrc%5Etfw">@PlayVALORANT</a> <a href="https://twitter.com/hashtag/VALORANT?src=hash&amp;ref_src=twsrc%5Etfw">#VALORANT</a><br>📺 <a href="https://t.co/wPIjswjh94">https://t.co/wPIjswjh94</a> <a href="https://t.co/G9004rSVi7">pic.twitter.com/G9004rSVi7</a></p>&mdash; Browntul (@browntulstar) <a href="https://twitter.com/browntulstar/status/1552196396442271744?ref_src=twsrc%5Etfw">July 27, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>            
                 <br/><br/>
             </div>
             <div class="carousel-item">
                 <p>Shoutcaster Showcase: Games 1 and 3</p>
-                <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/T09ec4OrCBg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe style="max-width: 100% !important;width: auto !important;height: 315;" src="https://www.youtube-nocookie.com/embed/T09ec4OrCBg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <br><br><a target="_blank" href="https://www.youtube.com/watch?v=4rRH1gWFBB0">Click here to watch the full vod</a>
             </div>
             <div class="carousel-item">
@@ -69,6 +75,10 @@ require $dir . "/templates/header.php";
     <hr>
     <p>Here's a list of tournaments I've shoutcasted:</p>
     <ul>
+        <li><strong>Summer Splash 3 VALORANT Sponsored by HyperX on Highlander Gaming UC Riverside</strong><br/>(August 2022) - Play-by-Play, Color Analyst<br/>
+        <a href="https://twitch.tv/hlgucr">https://twitch.tv/hlgucr</a></li>
+        <li><strong>Turtle-Tiger Tiny Tourney</strong><br/>(July 2022) - Play-by-Play<br/>
+        <a href="https://twitch.tv/browntulstar">https://twitch.tv/browntulstar</a></li>
         <li><strong>Shygori's VALADIES All Girls Tourney</strong><br/>(July 2022) - Play-by-Play, Color Analyst<br/>
         <a href="https://twitch.tv/shygori">https://twitch.tv/shygori</a></li>
         <li><strong>SOGIMA Summer Ace</strong><br/>(July 2022) - Play-by-Play, Color Analyst<br/>
