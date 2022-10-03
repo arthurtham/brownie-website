@@ -75,6 +75,8 @@ require $dir . "/templates/header.php";
     <hr>
     <p>Here's a list of tournaments I've shoutcasted:</p>
     <ul>
+        <li><strong>The ValoRoo Tournament Series: Mid-Autumn Edition</strong><br/>(September 2022) - Play-by-Play, Color Analyst<br/>
+        <a href="https://twitch.tv/rooyemi">https://twitch.tv/rooyemi</a></li>
         <li><strong>Summer Splash 3 VALORANT Sponsored by HyperX on Highlander Gaming UC Riverside</strong><br/>(August 2022) - Play-by-Play, Color Analyst<br/>
         <a href="https://twitch.tv/hlgucr">https://twitch.tv/hlgucr</a></li>
         <li><strong>Turtle-Tiger Tiny Tourney</strong><br/>(July 2022) - Play-by-Play<br/>
