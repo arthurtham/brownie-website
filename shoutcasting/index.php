@@ -75,6 +75,12 @@ require $dir . "/templates/header.php";
     <hr>
     <p>Here's a list of tournaments I've shoutcasted:</p>
     <ul>
+        <li><strong>CGT: Halloween Special</strong><br/>(October 2022) - Play-by-Play, Color Analyst<br/>
+        <a href="https://twitch.tv/wilsonchang">https://twitch.tv/wilsonchang</a></li>
+        <li><strong>Spook Rush Tournament</strong><br/>(October 2022) - Play-by-Play<br/>
+        <a href="https://twitch.tv/chumbygal">https://twitch.tv/chumbygal</a></li>
+        <li><strong>Brownie Meow-Meow VALORANT Scrimmage Series</strong><br/>(October 2022) - Play-by-Play<br/>
+        <a href="https://twitch.tv/browntulstar">https://twitch.tv/browntulstar</a></li>
         <li><strong>The ValoRoo Tournament Series: Mid-Autumn Edition</strong><br/>(September 2022) - Play-by-Play, Color Analyst<br/>
         <a href="https://twitch.tv/rooyemi">https://twitch.tv/rooyemi</a></li>
         <li><strong>Summer Splash 3 VALORANT Sponsored by HyperX on Highlander Gaming UC Riverside</strong><br/>(August 2022) - Play-by-Play, Color Analyst<br/>

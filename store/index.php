@@ -82,7 +82,10 @@ foreach ($directories as $directory) {
                     $item_units = $item["item_units"];
                     $item_id = $item["item_id"];
                     $available = $item["available"] ? 1 : 0;
-                    $book_button = $available ? '<a href="/store/book?item-id='.$item_id.'"><button class="btn btn-primary">Book now</button></a>' : '<button class="btn btn-primary" disabled>Unavailable</button>'; 
+                    $book_button = $available ? '<a href="mailto:browntulstar@browntulstar.com?subject=Booking Inquiry for '.
+                    $item_name.'&body=(Describe your event and include dates and times as well as information flyers)"><button class="btn btn-primary">Book now</button></a> via email!
+                    <br><small>If the email conversation leads to a booking, PayPal will be used for invoicing.</small>' : '<button class="btn btn-primary" disabled>Unavailable</button>'; 
+                    // Original code: '<a href="/store/book?item-id='.$item_id.'"><button class="btn btn-primary">Book now</button> via email</a>'
                     echo <<<LISTINGS
                     <div class="card" style="width: 100%;color:black">
                         <!--<img src="..." class="card-img-top" alt="...">-->
