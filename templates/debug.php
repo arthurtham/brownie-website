@@ -1,7 +1,7 @@
 <h2> User Details :</h2>
 <p> Name : <?php echo $_SESSION['username'] //. '#' . $_SESSION['discrim']; ?></p>
 <!--<p> ID : <?php //echo $_SESSION['user_id']; ?></p>-->
-<p> Is Red Shell / Star : <?php echo check_roles([$sub_role_id, $vip_role_id, $override_role_id]) ? "true" : "false"; ?></p>
+<p> Is Red Shell / Star : <?php echo check_roles([$discord_sub_role_id, $sub_role_id, $vip_role_id, $override_role_id]) ? "true" : "false"; ?></p>
 <p> Is In Turtle Pond : <?php echo check_guild_membership($guild_id) ? "true" : "false"; ?></p>
 
 <p> Profile Picture : <img src="https://cdn.discordapp.com/avatars/<?php $extention = is_animated($_SESSION['user_avatar']);

@@ -12,9 +12,14 @@ DISC;
     ?></li>
     <li>Satisfy at least one role requirement: 
         <ul>
-            <li>Red Shells (Subs): <?php 
+            <li>Red Shells (Twitch Subs): <?php 
                 echo check_roles([$sub_role_id]) ? "Subbed on Twitch!" : <<<DISC
                 Gain this role by subbing to Browntul on https://twitch.tv/browntulstar and linking your Twitch account to Discord.
+DISC;
+                ?></li>
+            <li>Red Shells (Discord Subs): <?php 
+                echo check_roles([$discord_sub_role_id]) ? "Subbed on Discord!" : <<<DISC
+                Gain this role by subbing to Browntul in the Turtle Pond Discord server.
 DISC;
                 ?></li>
             <li>Stars (VIPs): <?php 

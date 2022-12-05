@@ -11,12 +11,15 @@ if (isset($_SESSION['user_avatar'])) {
 }
 echo '" class="card-img-top" alt="..."/ style="width:auto;max-width:100px;"></center>';
 echo '<div class="card-body"><h5 class="card-title">' . $_SESSION["username"] . '</h5>';
-if (!check_roles([$sub_role_id, $vip_role_id, $mod_role_id])) {
+if (!check_roles([$discord_sub_role_id, $sub_role_id, $vip_role_id, $mod_role_id])) {
     echo '<h5><span class="badge bg-dark" style="width:100%">Not Subbed</span></h5>';
 }
 else {
     if (check_roles([$sub_role_id])) {
-        echo '<h5><span class="badge bg-danger" style="width:100%">RED SHELLS (Subs)</span></h5>';
+        echo '<h5><span class="badge bg-danger" style="width:100%">RED SHELLS (Twitch Subs)</span></h5>';
+    }
+    if (check_roles([$discord_sub_role_id])) {
+        echo '<h5><span class="badge bg-danger" style="width:100%">RED SHELLS (Discord Subs)</span></h5>';
     }
     if (check_roles([$vip_role_id])) {
         echo '<h5><span class="badge bg-warning" style="width:100%">STARS (VIPs)</span></h5>';
