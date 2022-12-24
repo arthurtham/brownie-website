@@ -7,11 +7,6 @@
     </div>
     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
         <li class="ms-3">
-            <a style="text-decoration: none;font-size:32px" href="/privacy">
-                <button class="btn btn-dark btn-sm">Privacy Policy</button>
-            </a> 
-        </li>
-        <li class="ms-3">
             <a style="text-decoration: none;font-size:32px" href="/discord" target="_blank">
                 <i class="fab fa-discord"></i>
             </a> 
@@ -20,11 +15,26 @@
             <a style="text-decoration: none;font-size:32px" href="https://twitch.tv/browntulstar" target="_blank">
                 <i class="fab fa-twitch"></i>
             </a> </li>
-        <li class="ms-3">
-            <a style="text-decoration: none;font-size:32px" href="https://twitter.com/browntulstar" target="_blank">
-                <i class="fab fa-twitter"></i>
-            </a>
-        </li>
+            <li class="ms-3">
+                <a style="text-decoration: none;font-size:32px" href="https://twitter.com/browntulstar" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </li>
+            <li class="ms-3">
+                <a style="text-decoration: none;font-size:32px" href="mailto:browntulstar@browntulstar.com" target="_blank">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </li>
+            <li class="ms-3">
+                <a style="text-decoration: none;font-size:32px" href="https://linktr.ee/browntulstar" target="_blank">
+                    <button class="btn btn-dark btn-sm">More Links</button>
+                </a>
+            </li>
+            <li class="ms-3">
+                <a style="text-decoration: none;font-size:32px" href="/privacy">
+                    <button class="btn btn-dark btn-sm">Privacy Policy</button>
+                </a> 
+            </li>
     </ul>
 </footer>
 

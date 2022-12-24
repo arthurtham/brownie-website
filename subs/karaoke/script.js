@@ -43,9 +43,9 @@ jQuery(function ($) {
                 npAction.text('catJAM');
             }).on('pause', function () {
                 playing = false;
-                npAction.text('Paused');
+                npAction.text('Pausedge');
             }).on('ended', function () {
-                npAction.text('Paused');
+                npAction.text('Pausedge');
                 if ((index + 1) < trackCount) {
                     index++;
                     loadTrack(index);

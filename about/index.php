@@ -133,18 +133,8 @@ require $dir . "/templates/header.php"
                 <center>
                 <h2>Let's Chat!</h2>
                     <button class="btn btn-primary">
-                        <a style="color:white; text-decoration: none;font-size:24px" href="https://twitter.com/browntulstar" target="_blank">
-                            <i class="fab fa-twitter"></i> Twitter
-                        </a>
-                    </button>
-                    <button class="btn btn-primary">
-                    <a style="color:white; text-decoration: none;font-size:24px" href="https://twitch.tv/browntulstar" target="_blank">
-                        <i class="fab fa-twitch"></i> Twitch
-                    </a>
-                    </button>
-                    <button class="btn btn-primary">
-                        <a style="color:white; text-decoration: none;font-size:24px" href="mailto:browntulstar@gmail.com" target="_blank">
-                            <i class="fa fa-envelope" aria-hidden="true"></i> Email
+                        <a style="color:white; text-decoration: none;font-size:24px" href="https://linktr.ee/browntulstar" target="_blank">
+                            Linktree
                         </a>
                     </button>
                     <br/>

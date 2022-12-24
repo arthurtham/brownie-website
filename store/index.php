@@ -18,8 +18,8 @@ echo '<script src="/assets/js/bootstrap-tab.js"></script>';
     <p>Welcome to the store page. Here, you can request the services of Browntul that is offering.</p>
     <p>When you select a service, Browntul will be notified via PayPal to review your request.</p>
     <div class='alert alert-success' role='alert'>
-        <center>This system is on a trial run. If there are any errors, please contact Browntul via email.<br/>
-        Make sure you are logged in before booking a service!</center>
+        <center>Request a service using email!<br>
+        Once you're approved to book a request, make sure you are logged in via Discord before completing the online form.</center>
 	</div>
 
 <?php
