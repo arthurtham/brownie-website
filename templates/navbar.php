@@ -43,9 +43,6 @@ echo <<<NAVBAR
                 <a class="nav-link dropdown-toggle" href="#" id="navbarSubs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Sub Perks
                 </a>
-                <li class="nav-item">
-                    <a class="nav-link" href="/r/tourney23" target="_blank">#BrownieVal</a>
-                </li>
                 <ul class="dropdown-menu" aria-labelledby="navbarSubs">
                     <li><a class="dropdown-item" href="/subs">Subs Home</a></li>
                     <li><hr class="dropdown-divider" />
@@ -54,6 +51,9 @@ echo <<<NAVBAR
                     <li><a class="dropdown-item" href="/subs/giveaway">Giveaways</a></li>
                     <li><a class="dropdown-item" href="/subs/karaoke">Tank Engine Karaoke</a></li>
                 </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="/r/tourney23" target="_blank">#BrownieVal</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="mailto:browntulstar@browntulstar.com" target="_blank">Contact</a>
                 </li>
