@@ -11,8 +11,19 @@ require $dir . "/templates/header.php";
     <p>Below are some of my favorite highlights throughout my shoutcasting career, followed by a list of tournaments I've shoutcasted.</p>
     <hr>
     <p><center>
-
-    <h2>Highlights</h2>
+    <h2>2022 Highlights</h2>
+    <iframe width="100%" height="315" style="max-width:516px"
+    src="https://www.youtube.com/embed/mM0aQ0V4EjI" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+    </center>
+    </p>
+    <hr>
+    <p><center>
+    <h2>Event Highlights</h2>
     <h5>Click the bars on the bottom to scroll</h5>
     <div id="carouselVideos" class="carousel carousel-dark" data-bs-ride="carousel" data-bs-interval="false" style="min-height:600px">
         <div class="carousel-indicators">
