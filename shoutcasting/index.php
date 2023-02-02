@@ -1,8 +1,15 @@
 <?php
 $dir = dirname(__DIR__, 1);
 $title = "BrowntulStar - Shoutcasting";
+
+$find_md_file_name = function($v) { 
+	return strpos($v, ".md");
+};
+
+require $dir . "/includes/Parsedown.php"; 
 require $dir . "/templates/header.php";
 ?>
+
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
     <h1 class="text-center">Shoutcasting Portfolio</h1>
     <p>I am an amateur play-by-play shoutcaster, with a recurring casting role for Wilson Chang's Chang Gang Tournaments, Rooyemi's VALORANT tournaments, and Change Thru Games' VALORANT and Tetris tournaments.</p>
@@ -88,46 +95,20 @@ require $dir . "/templates/header.php";
     <p>
         <div style="overflow-y:auto;height:400px;border-style:solid;border-size:1px;border-color:black">
             <ul>
-                <li><strong>CGT: Winter Warfare</strong><br/>(December 2022) - Color Analyst<br/>
-                <a href="https://twitch.tv/wilsonchang">https://twitch.tv/wilsonchang</a></li>
-                <li><strong>Matadorworld 2022: The Bill Imada Invitational</strong><br/>(November 2022) - Color Analyst<br/>
-                <a href="https://www.twitch.tv/csunesports">https://www.twitch.tv/csunesports</a></li>
-                <li><strong>CGT: Halloween Special</strong><br/>(October 2022) - Play-by-Play, Color Analyst<br/>
-                <a href="https://twitch.tv/wilsonchang">https://twitch.tv/wilsonchang</a></li>
-                <li><strong>Spook Rush Tournament</strong><br/>(October 2022) - Play-by-Play<br/>
-                <a href="https://twitch.tv/chumbygal">https://twitch.tv/chumbygal</a></li>
-                <li><strong>Brownie Meow-Meow VALORANT Scrimmage Series</strong><br/>(October 2022) - Play-by-Play<br/>
-                <a href="https://twitch.tv/browntulstar">https://twitch.tv/browntulstar</a></li>
-                <li><strong>The ValoRoo Tournament Series: Mid-Autumn Edition</strong><br/>(September 2022) - Play-by-Play, Color Analyst<br/>
-                <a href="https://twitch.tv/rooyemi">https://twitch.tv/rooyemi</a></li>
-                <li><strong>Summer Splash 3 VALORANT Sponsored by HyperX on Highlander Gaming UC Riverside</strong><br/>(August 2022) - Play-by-Play, Color Analyst<br/>
-                <a href="https://twitch.tv/hlgucr">https://twitch.tv/hlgucr</a></li>
-                <li><strong>Turtle-Tiger Tiny Tourney</strong><br/>(July 2022) - Play-by-Play<br/>
-                <a href="https://twitch.tv/browntulstar">https://twitch.tv/browntulstar</a></li>
-                <li><strong>Shygori's VALADIES All Girls Tourney</strong><br/>(July 2022) - Play-by-Play, Color Analyst<br/>
-                <a href="https://twitch.tv/shygori">https://twitch.tv/shygori</a></li>
-                <li><strong>SOGIMA Summer Ace</strong><br/>(July 2022) - Play-by-Play, Color Analyst<br/>
-                <a href="https://twitch.tv/sooomoza">https://twitch.tv/sooomoza</a></li>
-                <li><strong>CGT: Battle of the Streamers</strong><br/>(June 2022) - Play-by-Play<br/>
-                <a href="https://twitch.tv/wilsonchang">https://twitch.tv/wilsonchang</a></li>
-                <li><strong>Brownie-Chicks VALORANT Scrimmage Series</strong><br/>(June 2022) - Play-by-Play<br/>
-                <a href="https://twitch.tv/browntulstar">https://twitch.tv/browntulstar</a></li>
-                <li><strong>CGT: Battle of the Coasts</strong><br/>(May 2022) - Play-by-Play, Color Analyst<br/>
-                <a href="https://twitch.tv/wilsonchang">https://twitch.tv/wilsonchang</a></li>
-                <li><strong>ValorANT Tournament (UCI)</strong><br/>(March 2022) - Play-by-Play<br/>
-                <a href="https://twitch.tv/rooyemi">https://twitch.tv/rooyemi</a></li>
-                <li><strong>Happy Valrootines VALORANT Tournament</strong><br/>(February 2022) - Play-by-Play<br/>
-                <a href="https://twitch.tv/rooyemi">https://twitch.tv/rooyemi</a></li>
-                <li><strong>CGT: Friendship Games</strong><br/>(February 2022) - Play-by-Play<br/>
-                <a href="https://twitch.tv/wilsonchang">https://twitch.tv/wilsonchang</a></li>
-                <li><strong>Happy Roolidays VALORANT Tournament</strong><br/>(December 2021) - Play-by-Play<br/>
-                <a href="https://twitch.tv/rooyemi">https://twitch.tv/rooyemi</a></li>
-                <li><strong>Change Thru Games (UCI): Tetris and VALORANT</strong><br/>(2020-present) - Play-by-Play<br/>
-                <a href="https://twitch.tv/changethrugames">https://twitch.tv/changethrugames</a></li> 
-                <li><strong>O Snap Its a VALORANT Tournament by osnapitskat</strong><br/>(August 2020, July 2021, November 2021, June 2022) - Shoutcaster<br/>
-                <a href="https://twitch.tv/osnapitskat">https://twitch.tv/osnapitskat</a></li>
+                <?php
+                try {
+                    if ($myfile = fopen("shoutcasting.md", "r")) {
+                        echo Parsedown::instance()->text(fread($myfile, filesize("shoutcasting.md")));
+                        fclose($myfile);
+                        } else {
+                            echo "There was a problem loading the list of activities.";
+                        }
+                    } catch (Exception $e) {
+                        echo "There was a problem loading the list of activities.";
+                }
+                ?>
             </ul>
-                </div>
+        </div>
     <p>If you are interested in booking me to shoutcast your games, please go to the <strong><a href="/store">Store</a></strong> page and book a time! Or, email me by clicking on the <strong>Contact</strong> button on the navigation bar on the top of this page!</p>
 </div>
 <?php require $dir . "/templates/footer.php" ?>
