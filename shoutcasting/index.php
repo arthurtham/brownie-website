@@ -1,6 +1,6 @@
 <?php
 $dir = dirname(__DIR__, 1);
-$title = "BrowntulStar - Shoutcasting";
+$title = "BrowntulStar - Esports Broadcasting Portfolio";
 
 $find_md_file_name = function($v) { 
 	return strpos($v, ".md");
@@ -11,14 +11,15 @@ require $dir . "/templates/header.php";
 ?>
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <h1 class="text-center">Shoutcasting Portfolio</h1>
-    <p>I am an amateur play-by-play shoutcaster, with a recurring casting role for Wilson Chang's Chang Gang Tournaments, Rooyemi's VALORANT tournaments, and Change Thru Games' VALORANT and Tetris tournaments.</p>
+    <h1 class="text-center">Esports Broadcasting Portfolio</h1>
+    <h2 class="text-center">Shoutcasting / Commentary</h2>
+    <p>I am an play-by-play shoutcaster, with a recurring casting role for Wilson Chang's Chang Gang Tournaments, Rooyemi's VALORANT tournaments, and Change Thru Games' VALORANT and Tetris tournaments.</p>
     <p>I offer <strong>play-by-play shoutcasting</strong> with puns, hype, and laughter for VALORANT, with flexibility for variety games like Mario Kart and Tetris.</p>
-    <p>On occasion, I host the Brownie-Toaster VALORANT Scrimmage Series on my Twitch channel to give newer shoutcasters and observers a shot at these great roles, while providing new tournament players a chance to play in a tournament environment.
+    <p>On occasion, I host the Brownie-Toaster VALORANT events on my Twitch channel to give newer shoutcasters and observers a shot at these great roles, while providing new tournament players a chance to play in a tournament environment.
     <p>Below are some of my favorite highlights throughout my shoutcasting career, followed by a list of tournaments I've shoutcasted.</p>
     <hr>
     <p><center>
-    <h2>2022 Highlights</h2>
+    <h2>2022 Shoutcasting Highlights</h2>
     <iframe width="100%" height="315" style="max-width:516px"
     src="https://www.youtube.com/embed/mM0aQ0V4EjI" 
         title="YouTube video player" 
@@ -30,7 +31,7 @@ require $dir . "/templates/header.php";
     </p>
     <hr>
     <p><center>
-    <h2>Event Highlights</h2>
+    <h2>Shoutcasting Event Highlights</h2>
     <h5>Click the bars on the bottom to scroll</h5>
     <div id="carouselVideos" class="carousel carousel-dark" data-bs-ride="carousel" data-bs-interval="false" style="min-height:600px">
         <div class="carousel-indicators">
@@ -109,6 +110,27 @@ require $dir . "/templates/header.php";
                 ?>
             </ul>
         </div>
-    <p>If you are interested in booking me to shoutcast your games, please go to the <strong><a href="/store">Store</a></strong> page and book a time! Or, email me by clicking on the <strong>Contact</strong> button on the navigation bar on the top of this page!</p>
+    <hr>
+    <h2 class="text-center">Producer/Organizer Events List</h2>
+    <p>Since late 2022/early 2023, I started to produce and organize my own esports events for the community to enjoy. I sometimes produce for other events in VALORANT and KartRider as well.</p>
+    <p>Here's a list of tournaments I've been a tournament organizer or producer for:</p>
+    <p>
+        <div style="overflow-y:auto;height:400px;border-style:solid;border-size:1px;border-color:black">
+            <ul>
+                <?php
+                try {
+                    if ($myfile = fopen("producing.md", "r")) {
+                        echo Parsedown::instance()->text(fread($myfile, filesize("producing.md")));
+                        fclose($myfile);
+                        } else {
+                            echo "There was a problem loading the list of activities.";
+                        }
+                    } catch (Exception $e) {
+                        echo "There was a problem loading the list of activities.";
+                }
+                ?>
+            </ul>
+        </div>
+
 </div>
 <?php require $dir . "/templates/footer.php" ?>
