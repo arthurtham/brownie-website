@@ -113,6 +113,18 @@ require $dir . "/templates/header.php";
     <hr>
     <h2 class="text-center">Producer/Organizer Events List</h2>
     <p>Since late 2022/early 2023, I started to produce and organize my own esports events for the community to enjoy. I sometimes produce for other events in VALORANT and KartRider as well.</p>
+    <p><center>
+    <h2>Producer Graphics Packages</h2>
+    <iframe width="100%" height="315" style="max-width:516px"
+    src="https://www.youtube.com/embed/ag3RgaXbLoM" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+    </center>
+    </p>
+    
     <p>Here's a list of tournaments I've been a tournament organizer or producer for:</p>
     <p>
         <div style="overflow-y:auto;height:400px;border-style:solid;border-size:1px;border-color:black">
