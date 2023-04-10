@@ -1,6 +1,6 @@
 <?php
 $dir = dirname(__DIR__, 1);
-$title = "BrowntulStar - Store";
+$title = "BrowntulStar - Services";
 require_once($dir . "/includes/mysql.php");
 require $dir . "/templates/header.php";
 echo '<script src="/assets/js/bootstrap-tab.js"></script>';
@@ -14,19 +14,17 @@ echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 </style>
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <h1 style="text-align: center;">Store</h1>
-    <p>Welcome to the store page. Here, you can request the services of Browntul that is offering.</p>
-    <p>When you select a service, Browntul will be notified via PayPal to review your request.</p>
+    <h1 style="text-align: center;">Services</h1>
+    <p>Welcome to the services page. Here, you can request the services of Browntul that is offering.</p>
     <div class='alert alert-success' role='alert'>
-        <center>Request a service using email!<br>
-        Once you're approved to book a request, make sure you are logged in via Discord before completing the online form.</center>
+        <center>Request a service using email!</center>
 	</div>
 
 <?php
 $directories = array();
 array_push($directories, array("shoutcasting", "Shoutcasting", "Want Browntul to shoutcast your games? Check out the services you can request below!<br/>Currently, Browntul is offering shoutcasting services for VALORANT."));
-array_push($directories, array("merch", "Merchandise", "Check out the merchandise store where you can flex your Turtle Pond gear!"));
-array_push($directories, array("donate", "Donate", "Looking to gift Browntul things? Get more out of your donation!"));
+//array_push($directories, array("merch", "Merchandise", "Check out the merchandise store where you can flex your Turtle Pond gear!"));
+array_push($directories, array("donate", "Donate", "Directly support Browntul through these methods!"));
 // $sql = "SELECT blog_type, name, description FROM blog_types";
 // $result = $conn->query($sql);
 // if ($result->num_rows > 0) {
@@ -103,11 +101,11 @@ LISTINGS;
                 }
             }
         break;
-        case "merch":
+        /*case "merch":
             echo "<p>Use the link below to access the merchandise store. If you are subscribed to Browntul on Twitch, you can enjoy a discount on your merchandise purchased.</p>
             <p><image src='https://cdn.streamelements.com/merch/static/se-merch-logo-dark.svg' /></p>
             <p><a href='https://merch.streamelements.com/browntulstar' target='_blank'><button class='btn btn-primary'>Go to Store</button></a></p>";
-            break;
+            break;*/
         case "donate":
             echo "<p>Use the link below to donate to Browntul! Note that donations are not refundable.</p>
             <p><a href='https://streamelements.com/browntulstar/tip' target='_blank'><button class='btn btn-primary'>Donate (StreamElements)</button></a></p>

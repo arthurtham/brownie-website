@@ -28,11 +28,9 @@ if (!isset($_SESSION['user'])) {
     require $dir . "/templates/profile-box.php";
 	echo '<div class="row"><div class="col col-md-6 offset-md-3">';
 	echo '<p class="text-center">Look at you! '.$quote_array[$quote].'</p>';
-	echo '<p class="text-center">You get more perks if you 
-	<a href="https://support.discord.com/hc/en-us/articles/212112068-Twitch-Integration-FAQ" target="_blank">
-		<strong>link your Twitch account to Discord</strong></a>
+	echo '<p class="text-center">You get more perks if you subscribe
 		and <strong><a href="/discord" target="_blank">
-		join the Turtle Pond Discord</a></strong>!';
+		join the Discord</a></strong>!';
     echo "</div></div>";
 	echo "</div>";
 }

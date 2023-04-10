@@ -2,7 +2,7 @@
 if (!isset($_SESSION['timeout']) || !isset($_SESSION['user'])) {
     $_SESSION['timeout']=time();
 } else {
-    $inactive = 9000; 
+    $inactive = 1800; 
     $session_life = time() - $_SESSION['timeout'];
     if ($session_life > $inactive)
     {  

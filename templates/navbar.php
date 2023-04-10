@@ -23,7 +23,7 @@ echo <<<NAVBAR
                     <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">Portfolio</h6></li>
                     <li><a class="dropdown-item" href="/about/coding">Coding</a></li>
-                    <li><a class="dropdown-item" href="/about/shoutcasting">Shoutcasting</a></li>
+                    <li><a class="dropdown-item" href="/about/shoutcasting">Esports Portfolio</a></li>
                     <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">Live</h6></li>
                     <li><a class="dropdown-item" href="/stream">Stream</a></li>
@@ -31,10 +31,10 @@ echo <<<NAVBAR
                 </li>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarStore" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Store
+                    Services
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarStore">
-                    <li><a class="dropdown-item" href="/store">Store Home</a></li>
+                    <li><a class="dropdown-item" href="/store">Services / Donate</a></li>
                     <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">Service Requests Manager</h6></li>
                     <li><a class="dropdown-item" href="/store/lookup.php">My Requests</a></li>
@@ -52,7 +52,7 @@ echo <<<NAVBAR
                     <li><a class="dropdown-item" href="/subs/karaoke">Tank Engine Karaoke</a></li>
                 </ul>
                 <li class="nav-item">
-                    <a class="nav-link" href="/r/tourney23" target="_blank">#BrownieVal</a>
+                    <a class="nav-link" href="https://brownieval.browntulstar.com" target="_blank">#BrownieVal</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="mailto:browntulstar@browntulstar.com" target="_blank">Contact</a>
@@ -63,7 +63,7 @@ NAVBAR;
 $_SESSION['redirect'] = $_SERVER["REQUEST_URI"];
 $auth_url = url($client_id, $redirect_url, $scopes);
 if (isset($_SESSION['user'])) {
-    echo '<a href="/profile"><button class="btn btn-primary">Hello, ' . $_SESSION['username'] . '!</button></a></li>&nbsp;<li class="d-flex"><a href="/logout.php"><button class="btn btn-danger">Logout</button></a>';
+    echo '<a href="/profile"><button class="btn btn-primary">Logged in as: ' . $_SESSION['username'] . '</button></a></li>&nbsp;<li class="d-flex"><a href="/logout.php"><button class="btn btn-danger">Logout</button></a>';
 } else {
     echo "<a href='" . $auth_url ."'><button class='btn btn-success'>Discord Login</button></a>";
 }

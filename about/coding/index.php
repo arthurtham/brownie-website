@@ -45,17 +45,7 @@ require $dir . "/templates/header.php";
         </div>
         <br>
         <div class="row">
-            <div class="col col-md-5 offset-md-1">
-                <div class="card" style="width: 100%; height:100%">
-                    <center><img src="/assets/img/hackuwu-logo.png" class="img-fluid rounded-start" style="object-fit:contain;width:auto;height:200px;padding-top:20px" alt="..."></center>
-                    <div class="card-body">
-                        <h4 class="card-title text-center">HackUWU</h4>
-                        <p class="card-text text-center"></p>
-                        <p class="card-text text-center"><small class="text-muted">Play this game at  <br><a href="https://www.hackuwu.tech" target="_blank">https://www.hackuwu.tech</a></small></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-md-5">
+            <div class="col col-md-6 offset-md-3">
                 <div class="card" style="width: 100%; height:100%">
                     <center><img src="/assets/img/concentration.png" class="img-fluid rounded-start" style="object-fit:contain;width:auto;height:200px;padding-top:20px" alt="..."></center>
                     <div class="card-body">

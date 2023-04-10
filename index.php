@@ -29,17 +29,9 @@ BADAUTH;
 	?>
 	<div class="d-flex align-items-center justify-content-center" style="height:100%">
 		<div class="box bg-light bg-gradient shadow" style="padding: 40px; border-radius: 10%">
-			<center><img src="/assets/img/browntulstar-logo.png" style="border-radius: 100%;width:auto;max-width:200px" />
+			<center><img src="/assets/img/turtleavatar.png" style="border-radius: 100%;width:auto;max-width:200px" />
 			<h1 style="text-align: center;">Browntul</h1>
-			<p>Streamer, Game Designer, Shoutcaster</p>
-				<h2>
-					<a style="text-decoration: none" href="https://twitch.tv/browntulstar" target="_blank">
-						<i class="fab fa-twitch"></i>
-					</a> 
-					<a style="text-decoration: none" href="https://twitter.com/browntulstar" target="_blank">
-						<i class="fab fa-twitter"></i>
-					</a>
-				</h2>
+			<p>Shoutcaster/Producer, Streamer, Game Designer</p>
 			</center>
 		</div>
 	</div>

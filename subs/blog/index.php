@@ -79,6 +79,15 @@ ABOUT;
 	$show_active_toggle = "true";
 	$show_active_text = "active";
 	foreach ($directories as $directory) {
+		if (isset($_GET["category"])) {
+			if (strcmp($_GET["category"], $directory[0] . "-tab") === 0) {
+				$show_active_toggle = "true";
+				$show_active_text = "active";
+			} else {
+				$show_active_toggle = "false";
+				$show_active_text = " ";
+			}
+		}
 		echo <<<ITEM
 		<li class="nav-item" role="presentation">
 			<button 
@@ -92,16 +101,22 @@ ABOUT;
 			aria-selected="$show_active_toggle">$directory[1]</button>
 		</li>
 ITEM;
-	$show_active_toggle = "false";
-	$show_active_text = "";
+		$show_active_toggle = "false";
+		$show_active_text = "";
 	}
 	echo '</ul>';
 	echo '<div class="tab-content bg-dark" id="blogdirectorycontent" style="padding:20px;color:white">';
 	$show_active_toggle = true;
 	foreach ($directories as $directory) {	
 		echo '<div class="tab-pane fade';
-		if ($show_active_toggle) {
-			echo ' show active';
+		if (isset($_GET["category"])) {
+			if (strcmp($_GET["category"], $directory[0] . "-tab") === 0) {
+				echo ' show active';
+			};
+		} else {
+			if ($show_active_toggle) {
+				echo ' show active';
+			}
 			$show_active_toggle = false;
 		}
 		echo '" id="'.$directory[0].'-tab-content" role="tabpanel" aria-labelledby="'.$directory[0].'-tab-content">';

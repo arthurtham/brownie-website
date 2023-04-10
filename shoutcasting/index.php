@@ -1,6 +1,6 @@
 <?php
 $dir = dirname(__DIR__, 1);
-$title = "BrowntulStar - Esports Broadcasting Portfolio";
+$title = "BrowntulStar - Esports Portfolio";
 
 $find_md_file_name = function($v) { 
 	return strpos($v, ".md");
@@ -11,7 +11,20 @@ require $dir . "/templates/header.php";
 ?>
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <h1 class="text-center">Esports Broadcasting Portfolio</h1>
+    <h1 class="text-center">Esports Portfolio</h1>
+    <p>Here you can take a look at my shoutcasting and production highlights.</p>
+
+    <ul class="nav nav-tabs" id="portfolioContentTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="shoutcasting-tab" data-bs-toggle="tab" data-bs-target="#shoutcasting" type="button" role="tab" aria-controls="home" aria-selected="true">Shoutcasting</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="producer-tab" data-bs-toggle="tab" data-bs-target="#producer" type="button" role="tab" aria-controls="profile" aria-selected="false">Broadcast Production</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="portfolioContent">
+        <div class="tab-pane fade show active" id="shoutcasting" role="tabpanel" aria-labelledby="shoutcasting-tab">
+            
     <h2 class="text-center">Shoutcasting / Commentary</h2>
     <p>I am an play-by-play shoutcaster, with a recurring casting role for Wilson Chang's Chang Gang Tournaments, Rooyemi's VALORANT tournaments, and Change Thru Games' VALORANT and Tetris tournaments.</p>
     <p>I offer <strong>play-by-play shoutcasting</strong> with puns, hype, and laughter for VALORANT, with flexibility for variety games like Mario Kart and Tetris.</p>
@@ -110,7 +123,15 @@ require $dir . "/templates/header.php";
                 ?>
             </ul>
         </div>
-    <hr>
+    </p>
+
+
+        </div>
+        <div class="tab-pane fade" id="producer" role="tabpanel" aria-labelledby="producer-tab">
+          
+
+
+
     <h2 class="text-center">Producer/Organizer Events List</h2>
     <p>Since late 2022/early 2023, I started to produce and organize my own esports events for the community to enjoy. I sometimes produce for other events in VALORANT and KartRider as well.</p>
     <p><center>
@@ -143,6 +164,11 @@ require $dir . "/templates/header.php";
                 ?>
             </ul>
         </div>
+
+        
+        </div>
+    </div>
+
 
 </div>
 <?php require $dir . "/templates/footer.php" ?>
