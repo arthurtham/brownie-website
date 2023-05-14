@@ -129,11 +129,11 @@ require $dir . "/templates/header.php"
         <div class="row">
             <div class="col col-md-6 offset-md-3">
                 <div class="card" style="width: 100%; height:100%">
-                    <img src="/assets/img/comfycafelogo.png" class="card-img-top" alt="comfy cafe logo" style="padding: 20px;object-fit: contain;height:200px">
+                    <img src="/assets/img/kazokulogo.png" class="card-img-top" alt="kazoku logo" style="padding: 20px;object-fit: contain;height:200px">
                     <div class="card-body">
-                        <h5 class="card-title  text-center">Comfy Cafe</h5>
-                        <p style="text-align:center"><a href="https://comfycafe.carrd.co" target="_blank">Content Creation Team</a></p>
-                        <p style="text-align:center">Chaotic Online Mutual Friendships For You</p>
+                        <h5 class="card-title  text-center">Kazoku</h5>
+                        <p style="text-align:center"><a href="https://bio.site/kazoku" target="_blank">Content Creation Team</a></p>
+                        <p style="text-align:center"></p>
                     </div>
                 </div>
             </div>
