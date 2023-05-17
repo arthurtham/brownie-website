@@ -87,7 +87,6 @@ require $dir . "/templates/header.php"
         <div class="row">
             <div class="col col-lg-3">
                 <div class="card" style="width: 100%; height:100%">
-                <center><img src="/assets/img/turtlecirclehack.png" class="card-img-top" alt="" style="object-fit:contain;height:150px;padding:20px"></center>
                     <div class="card-body">
                         <h5 class="card-title  text-center">Coding</h5>
                         <p style="text-align:center">I make games for fun, and I create coding content on stream.</p>
@@ -96,7 +95,6 @@ require $dir . "/templates/header.php"
             </div>
             <div class="col col-lg-3">
                 <div class="card" style="width: 100%; height:100%">
-                <center><img src="/assets/img/turtlecirclecaster.png" class="card-img-top" alt="" style="object-fit:contain;height:150px;padding:20px"></center>
                     <div class="card-body">
                         <h5 class="card-title  text-center">Shoutcasting</h5>
                         <p style="text-align:center">I shoutcast and produce VALORANT tournaments year-round!</p>
@@ -105,7 +103,6 @@ require $dir . "/templates/header.php"
             </div>
             <div class="col col-lg-3">
                 <div class="card" style="width: 100%; height:100%">
-                <center><img src="/assets/img/turtlecirclekj.png" class="card-img-top" alt="" style="object-fit:contain;height:150px;padding:20px"></center>
                     <div class="card-body">
                         <h5 class="card-title  text-center">Event Planning</h5>
                         <p style="text-align:center">I help plan streamer tournaments and events hosted on Twitch.</p>
@@ -114,7 +111,6 @@ require $dir . "/templates/header.php"
             </div>
             <div class="col col-lg-3">
                 <div class="card" style="width: 100%; height:100%">
-                <center><img src="/assets/img/turtlecirclegood.png" class="card-img-top" alt="" style="object-fit:contain;height:150px;padding:20px"></center>
                     <div class="card-body">
                         <h5 class="card-title  text-center">Community Modding</h5>
                         <p style="text-align:center">I mod for streamer and game-jam communities on Discord and Twitch.</p>
