@@ -29,19 +29,40 @@ require $dir . "/templates/header.php";
     <p>I am an play-by-play shoutcaster, with a recurring casting role for Wilson Chang's Chang Gang Tournaments, Rooyemi's VALORANT tournaments, and Change Thru Games' VALORANT and Tetris tournaments.</p>
     <p>I offer <strong>play-by-play shoutcasting</strong> with puns, hype, and laughter for VALORANT, with flexibility for variety games like Mario Kart and Tetris.</p>
     <p>On occasion, I host the Brownie-Toaster VALORANT events on my Twitch channel to give newer shoutcasters and observers a shot at these great roles, while providing new tournament players a chance to play in a tournament environment.
-    <p>Below are some of my favorite highlights throughout my shoutcasting career, followed by a list of tournaments I've shoutcasted.</p>
-    <hr>
-    <p><center>
-    <h2>2022 Shoutcasting Highlights</h2>
-    <iframe width="100%" height="315" style="max-width:516px"
-    src="https://www.youtube.com/embed/mM0aQ0V4EjI" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-    </iframe>
-    </center>
-    </p>
+        <p>Below are some of my favorite highlights throughout my shoutcasting career, followed by a list of tournaments I've shoutcasted.</p>
+        <p>
+            <center>
+            <h2>2022 Shoutcasting Highlights</h2>
+            <iframe width="100%" height="315" style="max-width:516px"
+            src="https://www.youtube.com/embed/mM0aQ0V4EjI" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+            </center>
+        </p>
+        <hr>
+        <p>Here's a list of tournaments I've shoutcasted:</p>
+        <p>
+            <div style="overflow-y:auto;height:400px;border-style:solid;border-size:1px;border-color:black">
+                <ul>
+                    <?php
+                    try {
+                        if ($myfile = fopen("shoutcasting.md", "r")) {
+                            echo Parsedown::instance()->text(fread($myfile, filesize("shoutcasting.md")));
+                            fclose($myfile);
+                            } else {
+                                echo "There was a problem loading the list of activities.";
+                            }
+                        } catch (Exception $e) {
+                            echo "There was a problem loading the list of activities.";
+                    }
+                    ?>
+                </ul>
+            </div>
+        </p>
+        <hr>
     <hr>
     <p><center>
     <h2>Shoutcasting Event Highlights</h2>
@@ -57,9 +78,15 @@ require $dir . "/templates/header.php";
             <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="6" aria-label="Slide 7"></button>
             <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="7" aria-label="Slide 8"></button>
             <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="8" aria-label="Slide 9"></button>
+            <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="9" aria-label="Slide 10"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
+                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">We had a fun time casting collegiate <a href="https://twitter.com/hashtag/VALORANT?src=hash&amp;ref_src=twsrc%5Etfw">#VALORANT</a> games together! <br><br>Thanks to <a href="https://twitter.com/UltEsport?ref_src=twsrc%5Etfw">@UltEsport</a> for extending the invite to me and my co-caster <a href="https://twitter.com/tyjustinty?ref_src=twsrc%5Etfw">@tyjustinty</a>! It makes me want to check out <a href="https://twitter.com/hashtag/CVAL?src=hash&amp;ref_src=twsrc%5Etfw">#CVAL</a> even more!<br><br>🧵A play from each game ⬇️ <a href="https://t.co/d4iWSkC23K">https://t.co/d4iWSkC23K</a> <a href="https://t.co/crlpkR0uAq">pic.twitter.com/crlpkR0uAq</a></p>&mdash; KZO_Browntul | Commentator (@browntulstar) <a href="https://twitter.com/browntulstar/status/1647820041470222337?ref_src=twsrc%5Etfw">April 17, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <a target="_blank" href="https://twitter.com/browntulstar/status/1647820041470222337">Click here to watch all clips from this tournament</a>
+                <br/><br/><br/>
+            </div>
+            <div class="carousel-item">
                 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">It was a fun time shoutcasting in Summer Splash 3 VALORANT Sponsored by HyperX on <a href="https://twitter.com/HLG_UCR?ref_src=twsrc%5Etfw">@HLG_UCR</a> Twitch. Thanks to our SoCal university organizers for their support.<br><br>I&#39;ve attached a subset of clips that feature me as pbp with <a href="https://twitter.com/hiyahappiness?ref_src=twsrc%5Etfw">@hiyahappiness</a> , and analyst with <a href="https://twitter.com/Caster_Admiral?ref_src=twsrc%5Etfw">@Caster_Admiral</a> . <a href="https://t.co/iSxXFmotXv">https://t.co/iSxXFmotXv</a></p>&mdash; Browntul | Shoutcaster &amp; Game Designer (@browntulstar) <a href="https://twitter.com/browntulstar/status/1564785683452944386?ref_src=twsrc%5Etfw">August 31, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>                <br/><br/>
                 <a target="_blank" href="https://twitter.com/browntulstar/status/1564785683452944386">Click here to watch all clips from this tournament</a>
                 <br/><br/><br/>
@@ -104,26 +131,6 @@ require $dir . "/templates/header.php";
     </div>
 
     </center></p>
-    <hr>
-    <p>Here's a list of tournaments I've shoutcasted:</p>
-    <p>
-        <div style="overflow-y:auto;height:400px;border-style:solid;border-size:1px;border-color:black">
-            <ul>
-                <?php
-                try {
-                    if ($myfile = fopen("shoutcasting.md", "r")) {
-                        echo Parsedown::instance()->text(fread($myfile, filesize("shoutcasting.md")));
-                        fclose($myfile);
-                        } else {
-                            echo "There was a problem loading the list of activities.";
-                        }
-                    } catch (Exception $e) {
-                        echo "There was a problem loading the list of activities.";
-                }
-                ?>
-            </ul>
-        </div>
-    </p>
 
 
         </div>

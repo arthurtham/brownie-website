@@ -76,7 +76,7 @@ foreach ($directories as $directory) {
                     $item_name = $item["item_name"];
                     $item_type = $item["item_type"];
                     $item_description = $item["item_description"];
-                    $item_price = $item["item_price"];
+                    $item_price = number_format($item["item_price"], 2);
                     $item_units = $item["item_units"];
                     $item_id = $item["item_id"];
                     $available = $item["available"] ? 1 : 0;
