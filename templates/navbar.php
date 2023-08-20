@@ -23,7 +23,7 @@ echo <<<NAVBAR
                     <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">Portfolio</h6></li>
                     <li><a class="dropdown-item" href="/about/coding">Coding</a></li>
-                    <li><a class="dropdown-item" href="/about/shoutcasting">Esports Portfolio</a></li>
+                    <li><a class="dropdown-item" href="/about/shoutcasting">Commentating<br>and Production</a></li>
                     <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">Live</h6></li>
                     <li><a class="dropdown-item" href="/stream">Stream</a></li>
@@ -31,13 +31,10 @@ echo <<<NAVBAR
                 </li>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarStore" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Services
+                    Services / Donate
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarStore">
                     <li><a class="dropdown-item" href="/store">Services / Donate</a></li>
-                    <li><hr class="dropdown-divider" />
-                    <li><h6 class="dropdown-header">Service Requests Manager</h6></li>
-                    <li><a class="dropdown-item" href="/store/lookup.php">My Requests</a></li>
                 </ul>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarSubs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -48,14 +45,10 @@ echo <<<NAVBAR
                     <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">Sub Perks</h6></li>
                     <li><a class="dropdown-item" href="/subs/blog">Blog</a></li>
-                    <li><a class="dropdown-item" href="/subs/giveaway">Giveaways</a></li>
                     <li><a class="dropdown-item" href="/subs/karaoke">Tank Engine Karaoke</a></li>
                 </ul>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://brownieval.browntulstar.com" target="_blank">#BrownieVal</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="mailto:browntulstar@browntulstar.com" target="_blank">Contact</a>
+                    <a class="nav-link" href="https://brownieval.browntulstar.com" target="_blank">#BrownieVAL</a>
                 </li>
             </ul>
             <li class="d-flex">
