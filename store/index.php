@@ -15,9 +15,11 @@ echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
     <h1 style="text-align: center;">Services</h1>
-    <p>Welcome to the services page. Here, you can request the services of Browntul that is offering.</p>
+    <p>Welcome to the services page. Here, you can request the services of Browntul that is offering. You can also donate
+        things to Browntul to help him out!
+    </p>
     <div class='alert alert-success' role='alert'>
-        <center>Request a service using email!</center>
+        <center>Request a service using Fiverr or email!</center>
 	</div>
 
 <?php
@@ -25,13 +27,7 @@ $directories = array();
 array_push($directories, array("shoutcasting", "Shoutcasting", "Want Browntul to shoutcast your games? Check out the services you can request below!<br/>Currently, Browntul is offering shoutcasting services for VALORANT."));
 //array_push($directories, array("merch", "Merchandise", "Check out the merchandise store where you can flex your Turtle Pond gear!"));
 array_push($directories, array("donate", "Donate", "Directly support Browntul through these methods!"));
-// $sql = "SELECT blog_type, name, description FROM blog_types";
-// $result = $conn->query($sql);
-// if ($result->num_rows > 0) {
-//     while ($row = $result->fetch_assoc()) {
-//         array_push($directories, array($row["blog_type"],$row["name"],$row["description"]));
-//     }
-// }
+
 echo '<ul class="nav nav-tabs" id="storedirectory" role="tablist">';
 $show_active_toggle = "true";
 $show_active_text = "active";
@@ -79,10 +75,16 @@ foreach ($directories as $directory) {
                     $item_price = number_format($item["item_price"], 2);
                     $item_units = $item["item_units"];
                     $item_id = $item["item_id"];
+                    $item_url = $item["item_url"];
+                    $item_service = $item["item_service"];
                     $available = $item["available"] ? 1 : 0;
-                    $book_button = $available ? '<a href="mailto:browntulstar@browntulstar.com?subject=Booking Inquiry for '.
-                    $item_name.'&body=(Describe your event and include dates and times as well as information flyers)"><button class="btn btn-primary">Book now</button></a> via email!
-                    <br><small>If the email conversation leads to a booking, PayPal will be used for invoicing.</small>' : '<button class="btn btn-primary" disabled>Unavailable</button>'; 
+                    $book_button = $available ? 
+                    $item_service === "email" ? 
+                        '<a href="'.$item_url.'?subject=Booking Inquiry for '.$item_name.'&body=(Describe your event and include dates 
+and times as well as information flyers)"><button class="btn btn-primary">Book now</button></a> via email!
+                        <br><small>If the email conversation leads to a booking, PayPal will be used for invoicing.</small>' 
+                        : '<a href="'.$item_url.'" target="_blank"><button class="btn btn-primary">Buy now</button></a> via '.$item_service.'' 
+                    : '<button class="btn btn-primary" disabled>Unavailable</button>'; 
                     // Original code: '<a href="/store/book?item-id='.$item_id.'"><button class="btn btn-primary">Book now</button> via email</a>'
                     echo <<<LISTINGS
                     <div class="card" style="width: 100%;color:black">
@@ -92,7 +94,7 @@ foreach ($directories as $directory) {
                             <p class="card-text">
                                 $item_description
                             </p>
-                            <p><span class="badge bg-danger"> Cost: USD$$item_price per $item_units</span></p>
+                            <p><span class="badge bg-danger"> Starting Cost: USD$$item_price per $item_units</span></p>
                             $book_button
                         </div>
                     </div>
