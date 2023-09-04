@@ -1,11 +1,13 @@
-
 .vscode/settings.json
 config.php
+.htaccess
+includes/.env.php
 subs/giveaway/giveaway-links.md
 subs/blog/techblog
 subs/blog/gamedevlogs
 subs/blog/travelblog
-includes/.env.php
+subs/karaoke/media/
+subs/karaoke/tracks.js
 subs/karaoke/karaoke copy.php
 shoutcasting/shoutcasting.md
 shoutcasting/producing.md
