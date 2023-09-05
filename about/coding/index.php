@@ -15,17 +15,7 @@ require $dir . "/templates/header.php";
         </div>
         <br>
         <div class="row">
-            <div class="col col-md-5 offset-md-1">
-                <div class="card" style="width: 100%; height:100%">
-                    <center><img src="/assets/img/cloudinary.png" class="img-fluid rounded-start" width=100% style="max-width:200px;padding-top:20px" alt="..."></center>
-                    <div class="card-body">
-                        <h4 class="card-title text-center">Coding with Cloudinary</h4>
-                        <p class="card-text text-center">In coding streams sponsored by Cloudinary, viewers learn how to create fast and personalized media experiences with Cloudinary APIs, Widgets, and SDKs. This series is now retired.</p>
-                        <p class="card-text text-center"><small class="text-muted">For more information about Cloudinary, go to <br><a href="https://www.cloudinary.com" target="_blank">https://www.cloudinary.com</a></small></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-md-5">
+            <div class="col col-md-8 offset-md-2">
                 <div class="card" style="width: 100%; height:100%">
                     <center><img src="/assets/img/mfgj-logo.png" class="img-fluid rounded-start" width=100% style="max-width:200px;padding-top:20px" alt="...">
                     </center>
