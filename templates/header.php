@@ -7,7 +7,7 @@ if (!isset($dir)) {
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-# Including all the required scripts for demo
+# Including all the required scripts
 require $dir . "/includes/default-includes.php";
 ?>
 

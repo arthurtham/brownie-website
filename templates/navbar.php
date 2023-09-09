@@ -47,18 +47,24 @@ echo <<<NAVBAR
                     <li><a class="dropdown-item" href="/subs/blog">Blog</a></li>
                     <li><a class="dropdown-item" href="/subs/karaoke">Tank Engine Karaoke</a></li>
                 </ul>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://brownieval.browntulstar.com" target="_blank">#BrownieVAL</a>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarEvents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Special Events
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarEvents">
+                    <li><a class="dropdown-item" href="https://brownieval.browntulstar.com" target="_blank">#BrownieVAL</a></li>
+                    <li><a class="dropdown-item" href="https://subathon.browntulstar.com" target="_blank">Mini-Subathon Spectacular</a></li>
+                </ul>
                 </li>
             </ul>
             <li class="d-flex">
 NAVBAR;
-$_SESSION['redirect'] = $_SERVER["REQUEST_URI"];
-$auth_url = url($client_id, $redirect_url, $scopes);
+// Auth_URL now handled in login file
+// $auth_url = url($client_id, $redirect_url, $scopes);\
 if (isset($_SESSION['user'])) {
-    echo '<a href="/profile"><button class="btn btn-primary">Logged in as: ' . $_SESSION['username'] . '</button></a></li>&nbsp;<li class="d-flex"><a href="/logout.php"><button class="btn btn-danger">Logout</button></a>';
+    echo '<a href="/profile"><button class="btn btn-primary"><i class="fa-brands fa-discord"></i> ' . $_SESSION['username'] . '</button></a></li>&nbsp;<li class="d-flex"><a href="/logout.php"><button class="btn btn-danger">Logout</button></a>';
 } else {
-    echo "<a href='" . $auth_url ."'><button class='btn btn-success'>Discord Login</button></a>";
+    echo "<a href='" . "/login.php" ."'><button class='btn btn-success'><i class='fa-brands fa-discord'></i> Login</button></a>";
 }
 echo <<<NAVBAR
             </li>

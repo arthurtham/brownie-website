@@ -30,8 +30,9 @@ init($redirect_url, $client_id, $secret_id, $bot_token);
 
 # Fetching user details | (identify scope) (optionally email scope too if you want user's email) [Add identify AND email scope for the email!]
 if (!get_user()) {
-    echo json_encode($_SESSION['user']);
-    redirect("/logout.php?badauth");
+    $auth_url = url($client_id, $redirect_url, $scopes);
+    //echo json_encode($_SESSION['user']);
+    redirect($auth_url);
     die;
 };
 $_SESSION['timeout']=time();
