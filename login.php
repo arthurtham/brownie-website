@@ -30,10 +30,16 @@ init($redirect_url, $client_id, $secret_id, $bot_token);
 
 # Fetching user details | (identify scope) (optionally email scope too if you want user's email) [Add identify AND email scope for the email!]
 if (!get_user()) {
-    $auth_url = url($client_id, $redirect_url, $scopes);
-    //echo json_encode($_SESSION['user']);
-    redirect($auth_url);
-    die;
+    if ($_SESSION['signin-attempted'] === 0 || !isset($_SESSION['signin-attempted'])) {
+        $_SESSION['signin-attempted'] = 1;
+        $auth_url = url($client_id, $redirect_url, $scopes);
+        // echo json_encode($_SESSION['user']);
+        redirect($auth_url);
+        die;
+    } else {
+        $_SESSION['signin-attempted'] = 0;
+        redirect("/logout.php?badauth");
+    }
 };
 $_SESSION['timeout']=time();
 
@@ -52,4 +58,4 @@ $_SESSION['roles'] = $_SESSION['user_guild_info']['roles'];
 
 # Redirecting to home page once all data has been fetched
 //redirect("/subs");
-redirect(rtrim(rtrim($_SESSION['redirect'], "?logout")), "?badauth");
+redirect(str_replace(array("?logout", "?badauth"), array("",""), $_SESSION['redirect']));
