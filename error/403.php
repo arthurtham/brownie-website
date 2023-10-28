@@ -7,8 +7,8 @@ require $dir . "/templates/header.php";
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
     <div class="d-flex align-items-center justify-content-center" style="height:100%">
         <span>
-            <h1 class="text-center">404 Not Found</h1>
-            <p>Uh oh! Looks like this page doesn't exist. Uninspirational!</p>
+            <h1 class="text-center">403 Forbidden</h1>
+            <p>Looks like you're missing some permissions. Uninspirational!</p>
         </span>
     </div>
 </div>
