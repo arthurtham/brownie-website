@@ -14,7 +14,11 @@ require $dir . "/templates/header.php";
                 in #BrownieVAL Arena. The ranks listed for each player is the highest
                 rank that a player achieved in either Episode 6 or 7, whichever is higher.
                 They must have also played at least 10 competitive games for that episode
-                which the rank will be used. For the ranked restrictions, please go to
+                which the rank will be used. </p>
+            <p>The <strong>Wildcard</strong> player can be used to replace any player on the 
+                starting roster as long as the Wildcard player is ranked the same or lower as
+                the replaced player.</p>
+            <p>For the ranked restrictions, please go to
                 the #BrownieVAL Discord server or go to 
                 <a href="https://arena.browntulstar.com/rules" target="_blank">
                     the rules page</a>.
@@ -24,8 +28,9 @@ require $dir . "/templates/header.php";
 <?php   
             $totalPlayers = 8;
             $ranks = array("-","Iron","Bronze","Silver","Gold","Platinum","Diamond","Ascendant","Immortal","Radiant");
-            for ($_i = 1; $_i <= $totalPlayers; ++$_i) {
-                echo '<label for="rank'.$_i.'">Player '.$_i.':  </label>';
+            for ($_k = 1; $_k <= $totalPlayers; ++$_k) {
+                $_i = $_k === 8 ? "Wildcard" : $_k;
+                echo '<label for="rank'.$_i.'" style="width:150px">Player '.$_i.':  </label>';
                 echo '<select style="width:200px" name="rank'.$_i.'" id="rank'.$_i.'">';
                 for ($_j = 0; $_j < count($ranks); ++$_j) {
                     $rank = $ranks[$_j];
@@ -51,7 +56,8 @@ require $dir . "/templates/header.php";
             "DiamondPlus": 3,
             "AscendantPlus": 2,
             "ImmortalPlus": 1,
-            "Radiant": 0
+            "Radiant": 0,
+            "Wildcard": 1
         };
         let rankNames = {
             "-": "roster spots left to fill with",
@@ -59,14 +65,16 @@ require $dir . "/templates/header.php";
             "DiamondPlus": "Diamond or above",
             "AscendantPlus": "Ascendant or above",
             "ImmortalPlus": "Immortal or above",
-            "Radiant": "Radiant"
+            "Radiant": "Radiant",
+            "Wildcard": "Wildcard"
         }
         let aboveRankRestriction = (totalNumber > rankThresholds[rankToCheck]);
         return (aboveRankRestriction ? "<strong>" : "") 
-            + "You have "+totalNumber.toString()+" "+rankNames[rankToCheck]+" players, which is <em>"
+            + "You have "+totalNumber.toString()+" "+rankNames[rankToCheck]+" player"
+            + (totalNumber != 1 ? "s" : "").toString()+", which is <em>"
             + (aboveRankRestriction ? "above" : "within")
             + "</em> the roster restriction of "
-            + rankThresholds[rankToCheck] + " players."
+            + rankThresholds[rankToCheck] + " player"+ (totalNumber != 1 ? "s" : "").toString()+"."
             + (aboveRankRestriction ? "</strong>" : "");
     }
 
@@ -74,10 +82,14 @@ require $dir . "/templates/header.php";
         const sumReduce = (a, b) => ((a ? a : 0) + (b ? b : 0));
         let rankCounts = {};
         let rankList = document.querySelectorAll('[id^="rank"');
-        console.log(rankList);
+        //console.log(rankList);
         rankList.forEach(function(rank) {
             //console.log(rank.value);
-            rankCounts[rank.value] = (rankCounts[rank.value] + 1) || 1;
+            if (rank.name.includes("Wildcard")) {
+                rankCounts["Wildcard"] = rank.value === "-" ? 0 : 1;
+            } else {
+                rankCounts[rank.value] = (rankCounts[rank.value] + 1) || 1;
+            }
         });
         
         rankCounts["PlatinumMinus"] = [
@@ -108,15 +120,17 @@ require $dir . "/templates/header.php";
         ].reduce(sumReduce);
         rankCounts["-"] = [
             rankCounts["-"],
+            (rankCounts["Wildcard"] === 0) ? 1 : 0,
             0
         ].reduce(sumReduce);
         console.log(rankCounts);
 
-        resultHtml = "<h1>Results</h1><p><strong>BOLD</strong> means requirement not met.</p><ul>";
+        resultHtml = "<h1>Results</h1><p><strong>BOLD</strong> means requirement not met.</p><p>Wildcard players are not calculated for the ranked restrictions.</p><ul>";
         ["PlatinumMinus","DiamondPlus","AscendantPlus","ImmortalPlus","Radiant","-"].forEach(function (rank) {
             resultHtml += "<li>" + checkRank(rank,rankCounts[rank]) + "</li>";
         })
-        resultHtml += "</ul>"
+        resultHtml += "</ul><p>The Wildcard player is not calculated in the results above (except for roster spots to fill). \
+Remember that the Wildcard player can be used to replace any player on the starting roster as long as the Wildcard player is ranked the same or lower as the replaced player.";
 
 
         let resultsBox = document.getElementById("resultsBox");
