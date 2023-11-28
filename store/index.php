@@ -110,7 +110,7 @@ LISTINGS;
             break;*/
         case "donate":
             echo "<p>Use the link below to donate to Browntul! Note that donations are not refundable.</p>
-            <p><a href='https://streamelements.com/browntulstar/tip' target='_blank'><button class='btn btn-primary'>Donate (StreamElements)</button></a></p>
+            <p><a href='https://streamlabs.com/browntulstar/tip' target='_blank'><button class='btn btn-primary'>Donate (StreamLabs)</button></a></p>
             <p>You can also buy Browntul gift cards and plushies, via Throne Gifts! Use the link below to donate with this method:</p>
             <a href='https://thronegifts.com/u/browntulstar' target='_blank'><img height='60' style='border:0px;height:60px;' src='https://firebasestorage.googleapis.com/v0/b/onlywish-9d17b.appspot.com/o/common%2Fbrandassets%2FWishlistButton_V1.png?alt=media&token=dafe4567-b095-48c4-9a09-6abfd14ee04f' border='0' alt='My Wishlist' /></a>";
         default:
