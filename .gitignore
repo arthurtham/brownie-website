@@ -1,6 +1,7 @@
 .vscode/settings.json
 config.php
 .htaccess
+compose-dev.yaml
 includes/.env.php
 subs/giveaway/giveaway-links.md
 subs/blog/techblog
