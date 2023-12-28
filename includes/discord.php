@@ -124,20 +124,12 @@ function check_roles($array_of_roles) {
 
 # A function to check if the user is a member of Turtle Pond
 function check_guild_membership($guild_id) {
-    if (isset($_SESSION['user_guild_info']['roles'])) {
-        return true;
-    } else {
-        return false;
-    }
-
-    //return (!($_SESSION['user_guild_info']['roles'] === null && $_SESSION['user_guild_info']['code'] === 10004 ));
-      
-    /*for ($i = 0; $i < sizeof($_SESSION['guilds']); $i++) {
+    for ($i = 0; $i < sizeof($_SESSION['guilds']); $i++) {
         if ($guild_id === $_SESSION['guilds'][$i]['id']) {
             return true;
         }
-    }*/
-    //return false;
+    }
+    return false;
 }
 
 # A function to verify if login is legit

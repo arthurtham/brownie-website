@@ -21,7 +21,15 @@ if (isset($_GET["logout"])) {
     $argument_string = "?logout";
 } else if (isset($_GET["badauth"])) {
     $argument_string = "?badauth";
+} else if (isset($_GET["expired"])) {
+    $argument_string = "?expired";
 }
+
+# Reset redirect
+$_SESSION['redirect'] = "/";
+
+# Reset expired session timer
+unset($_SESSION['timeout_since_login']);
 
 # Redirecting the user back to login page
 redirect("/".$argument_string);

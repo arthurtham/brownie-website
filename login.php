@@ -58,4 +58,4 @@ $_SESSION['roles'] = $_SESSION['user_guild_info']['roles'];
 
 # Redirecting to home page once all data has been fetched
 //redirect("/subs");
-redirect(str_replace(array("?logout", "?badauth"), array("",""), $_SESSION['redirect']));
+redirect(str_replace(array("?logout", "?badauth", "?expired"), array("",""), $_SESSION['redirect']));
