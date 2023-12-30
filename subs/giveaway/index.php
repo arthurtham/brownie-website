@@ -12,7 +12,6 @@ function file_compare($blog_entry_a, $blog_entry_b) {
 	$id_b = intval(rtrim($blog_entry_b[4], ".md"));
 	return $id_a < $id_b ? 1 : -1;
 }
-require $dir . "/includes/Parsedown.php"; 
 require $dir . "/templates/header.php";
 ?>
 

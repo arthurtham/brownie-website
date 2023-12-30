@@ -1,6 +1,5 @@
 <?php
 
-require dirname(__DIR__, 1) . "/includes/Parsedown.php"; 
 
 //MYSQL is already imported
 $sql = "SELECT * FROM announcement_embeds WHERE announcement_id = '".$_GET['announcement-id']."' LIMIT 1";

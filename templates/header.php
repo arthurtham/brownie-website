@@ -1,7 +1,7 @@
 <?php
 
 if (!isset($dir)) {
-    $dir = __DIR__;
+    $dir = dirname(__DIR__, 1);
 }
 # Enabling error display
 error_reporting(E_ALL);
@@ -14,7 +14,6 @@ require $dir . "/includes/default-includes.php";
 <html>
 
 <head>
-	<?php // $title = "BrowntulStar - Home" ?>
 	<?php require $dir . "/templates/header-includes.php" ?>
 </head>
 

@@ -1,6 +1,5 @@
 <?php
 
-require dirname(__DIR__, 1) . "/includes/Parsedown.php"; 
 
 $legacy_link = explode("_",$blog_id);
 if (count($legacy_link) == 5) {

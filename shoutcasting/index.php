@@ -6,7 +6,6 @@ $find_md_file_name = function($v) {
 	return strpos($v, ".md");
 };
 
-require $dir . "/includes/Parsedown.php"; 
 require $dir . "/templates/header.php";
 ?>
 
