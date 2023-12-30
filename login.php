@@ -54,7 +54,8 @@ $_SESSION['guilds'] = get_guilds();
 
 # Fetching user connections | (connections scope)
 $_SESSION['user_guild_info'] = get_user_guild_info($guild_id);
-$_SESSION['roles'] = $_SESSION['user_guild_info']['roles'];
+$_SESSION['user_guild_info_brownieval'] = get_user_guild_info($brownieval_guild_id);
+$_SESSION['roles'] = array_merge($_SESSION['user_guild_info']['roles'],$_SESSION['user_guild_info_brownieval']['roles']);
 
 # Redirecting to home page once all data has been fetched
 //redirect("/subs");

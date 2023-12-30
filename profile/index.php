@@ -30,7 +30,7 @@ if (!isset($_SESSION['user'])) {
 	echo '<p class="text-center">Look at you! '.$quote_array[$quote].'</p>';
 	echo '<p class="text-center">You get more perks if you subscribe
 		and <strong><a href="/discord" target="_blank">
-		join the Discord</a></strong>!';
+		join the community Discord</a></strong>!';
     echo "</div></div>";
 	echo "</div>";
 }

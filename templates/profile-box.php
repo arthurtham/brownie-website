@@ -22,7 +22,7 @@ else {
         echo '<h5><span class="badge bg-danger" style="width:100%">RED SHELLS (Discord Subs)</span></h5>';
     }
     if (check_roles([$vip_role_id])) {
-        echo '<h5><span class="badge bg-warning" style="width:100%">STARS (VIPs)</span></h5>';
+        echo '<h5><span class="badge bg-warning" style="width:100%">STARS (VIP Access)</span></h5>';
     }
     if (check_roles([$mod_role_id])) {
         echo '<h5><span class="badge bg-info" style="width:100%">BLUE SHELLS (Mods)</span></h5>';
@@ -32,6 +32,9 @@ else {
 }
 echo '<h5><span class="badge bg-secondary" style="width:100%">';
 echo check_guild_membership($guild_id) ? 'In Turtle Pond Server' : 'Not in Turtle Pond Server';
+echo '</span></h5>';
+echo '<h5><span class="badge bg-secondary" style="width:100%">';
+echo check_guild_membership($brownieval_guild_id) ? 'In BrownieVAL Server' : 'Not in BrownieVAL Server';
 echo '</span></h5>';
 echo "</div></center>";
 echo "</div>";
