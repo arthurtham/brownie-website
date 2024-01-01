@@ -16,7 +16,7 @@ if (!isset($_SESSION['user'])) {
   die();
 } 
 // Check user perms
-else if (!check_guild_membership($brownieval_guild_id) || !check_roles([$brownieval_admin_access_id])) {
+else if (!(check_guild_membership($cloudinary_guild_id) || (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_admin_access_id]))) ) {
 		echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
     echo "<div class='alert alert-danger' role='alert'>
 		<center>This BrownieVAL tool requires you to have the appropriate BrownieVAL web admin access role on Discord.
@@ -26,6 +26,7 @@ else if (!check_guild_membership($brownieval_guild_id) || !check_roles([$brownie
     die();
 }?>
 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <link href="https://unpkg.com/cloudinary-video-player@1.10.4/dist/cld-video-player.min.css" 
     rel="stylesheet">
 <script src="https://unpkg.com/cloudinary-video-player@1.10.4/dist/cld-video-player.min.js" 
@@ -35,6 +36,13 @@ else if (!check_guild_membership($brownieval_guild_id) || !check_roles([$brownie
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
     <h1 class="text-center">Overlay Generator for #BrownieVAL</h1>
+
+    <div class="alert alert-dark">
+      In this demo, users can upload their VALORANT clips and then add
+      the BrownieVAL special overlays on top of it. During development,
+      anyone in the Cloudinary Discord server or any BrownieVAL 
+      members with the web access role can try it out for free.
+    </div>
 
     <div style="display: span">
       <button id="upload-box" class="cloudinary-button"> ... </button>
@@ -64,15 +72,37 @@ else if (!check_guild_membership($brownieval_guild_id) || !check_roles([$brownie
   });
   
   var generateSignature = function(callback, params_to_sign){
+      //console.log(params_to_sign);
       $.ajax({
         url     : "/includes/cloudinarysign.php",
         type    : "GET",
         dataType: "text",
         data    : { data: params_to_sign},
-        complete: function() {console.log("complete")},
+        complete: function() {
+          //console.log("complete")
+        },
         success : function(signature, textStatus, xhr) { callback(signature); },
-        error   : function(xhr, status, error) { console.log(xhr, status, error); }
+        error   : function(xhr, status, error) {
+          //console.log(xhr, status, error); 
+        }
       });
+  }
+
+  var downloadSignedVideo = function(link, filename) {
+    axios({
+        url: link,
+        method: 'GET',
+        responseType: 'blob'
+    })
+        .then((response) => {
+            const url = window.URL
+                .createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', filename+'.mp4');
+            document.body.appendChild(link);
+            link.click();
+        })
   }
   
   var myWidget = cloudinary.applyUploadWidget(document.getElementById("upload-box"),
@@ -92,8 +122,9 @@ else if (!check_guild_membership($brownieval_guild_id) || !check_roles([$brownie
       multiple: false,
       defaultSource: "local",
       clientAllowedFormats: "mp4",
-      maxFileSize: "100000000",
+      maxFileSize: "104857600",
       thumbnails: false,
+      autoMinimize: true,
       styles: {
           palette: {
               window: "#5D005D",
@@ -121,21 +152,20 @@ else if (!check_guild_membership($brownieval_guild_id) || !check_roles([$brownie
     }, 
     (error, result) => { 
       if (!error && result && result.event === "success") { 
-        console.log('Result: ', result.info); 
+        //console.log('Result: ', result.info); 
         player.source(result.info.eager[0].secure_url);
         document.getElementById("download-button-span").innerHTML='\
-          <a href="'+result.info.eager[0].secure_url+'" target="_blank">\
-          <button id="upload-box" class="cloudinary-button">Download Processed Video</button></a>';
+          <button id="upload-box" class="cloudinary-button" \
+          onclick=downloadSignedVideo("'+result.info.eager[0].secure_url+'","'+(result.info.public_id).split("/").slice(-1)+'_edited")>\
+          Download Processed Video</button></a>';
         myWidget.close({quiet: true});
       } else if (!error && result) {
-        console.log('Event:' , result.event);
+        //console.log('Event:' , result.event);
       } else {
-        console.log("Error: ", error);
+        //console.log("Error: ", error);
         alert("Error: " + error["statusText"]);
       }
     });
-  
-    
   
   
   document.getElementById("upload-box").addEventListener("click", function(){
