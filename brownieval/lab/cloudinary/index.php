@@ -24,7 +24,10 @@ else if (!(check_guild_membership($cloudinary_guild_id) || (check_guild_membersh
 		</div></div>";
     require $dir . "/templates/footer.php"; 
     die();
-}?>
+}
+
+$_SESSION['cloudinary_timer_start']=time();
+?>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <link href="https://unpkg.com/cloudinary-video-player@1.10.4/dist/cld-video-player.min.css" 
@@ -45,8 +48,12 @@ else if (!(check_guild_membership($cloudinary_guild_id) || (check_guild_membersh
     </div>
 
     <div style="display: span">
-      <button id="upload-box" class="cloudinary-button"> ... </button>
+      <span id="upload-box-span" style="display: none"><button id="upload-box" class="cloudinary-button"> ... </button></span>
       <span id="download-button-span"></span>
+    </div>
+
+    <div id="cloudinary-upload-widget-span" style="display: span">
+
     </div>
 
     <hr />
@@ -84,6 +91,7 @@ else if (!(check_guild_membership($cloudinary_guild_id) || (check_guild_membersh
         success : function(signature, textStatus, xhr) { callback(signature); },
         error   : function(xhr, status, error) {
           //console.log(xhr, status, error); 
+          alert(xhr.status + ": " + xhr.responseText);
         }
       });
   }
@@ -125,6 +133,7 @@ else if (!(check_guild_membership($cloudinary_guild_id) || (check_guild_membersh
       maxFileSize: "104857600",
       thumbnails: false,
       autoMinimize: true,
+      inlineContainer: document.getElementById('cloudinary-upload-widget-span'),
       styles: {
           palette: {
               window: "#5D005D",
@@ -154,6 +163,7 @@ else if (!(check_guild_membership($cloudinary_guild_id) || (check_guild_membersh
       if (!error && result && result.event === "success") { 
         //console.log('Result: ', result.info); 
         player.source(result.info.eager[0].secure_url);
+        document.getElementById("cloudinary-upload-widget-span").style.display = "none";
         document.getElementById("download-button-span").innerHTML='\
           <button id="upload-box" class="cloudinary-button" \
           onclick=downloadSignedVideo("'+result.info.eager[0].secure_url+'","'+(result.info.public_id).split("/").slice(-1)+'_edited")>\
@@ -163,14 +173,18 @@ else if (!(check_guild_membership($cloudinary_guild_id) || (check_guild_membersh
         //console.log('Event:' , result.event);
       } else {
         //console.log("Error: ", error);
-        alert("Error: " + error["statusText"]);
+        //myWidget.close();
+        //myWidget.open();
+        alert("Error: " + error["statusText"] + "\nPlease refresh this page and try again.");
       }
     });
   
   
-  document.getElementById("upload-box").addEventListener("click", function(){
-      myWidget.open();
-    }, false);
+  // document.getElementById("upload-box").addEventListener("click", function(){
+  //     myWidget.open();
+  //   }, false);
+
+    myWidget.open();
 </script>
 
 
