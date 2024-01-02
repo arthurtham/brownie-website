@@ -25,20 +25,20 @@ foreach ($result["resources"] as $rid => $resource) {
 $admin_api = new AdminApi();
 
 foreach (array_chunk($public_ids_to_delete, 100) as $public_ids_to_delete_chunk) {
-    echo "<pre>";
-    print_r($public_ids_to_delete_chunk);
-    echo "</pre>";
-    echo "<pre>";
+    // echo "<pre>";
+    // print_r($public_ids_to_delete_chunk);
+    // echo "</pre>";
+    // echo "<pre>";
     print_r($admin_api -> deleteAssets($public_ids_to_delete_chunk, array(
         "invalidate" => true,
         "resource_type" => "video"
     )));
-    echo "</pre>";
+    // echo "</pre>";
 }
 
-echo "<h1>List of deleted assets:</h1><pre>";
+echo "List of deleted assets on ".date_format(date_create(),"c").": \n";
 print_r($uploaded_at);
-echo "</pre>";
+echo "\n";
 
 
 ?>
