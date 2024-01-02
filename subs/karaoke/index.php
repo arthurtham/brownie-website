@@ -19,7 +19,7 @@ if (!isset($_SESSION['user'])) {
 	require $dir . "/templates/sub-perks-description.php";
 	echo "</div>";
 } else { // User is logged in
-	if (!check_guild_membership($guild_id) || !check_roles([$discord_sub_role_id, $sub_role_id, $vip_role_id, $mod_role_id])) {
+	if (!check_guild_membership($guild_id) || !check_roles($sub_perk_roles)) {
 		echo "<div class='alert alert-danger' role='alert'>
 		<center>You need to fulfill the sub requirements <a href='/subs'>here</a> before viewing this page.</center>
 		</div>";

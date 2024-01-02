@@ -16,10 +16,10 @@ if (!isset($_SESSION['user'])) {
   die();
 } 
 // Check user perms
-else if (!(check_guild_membership($cloudinary_guild_id) || (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_admin_access_id]))) ) {
+else if (!(check_guild_membership($cloudinary_guild_id) || (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_admin_access_id])) || (check_guild_membership($guild_id) && check_roles($sub_perk_roles) )) ) {
 		echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
     echo "<div class='alert alert-danger' role='alert'>
-		<center>This BrownieVAL tool requires you to have the appropriate BrownieVAL web admin access role on Discord.
+		<center>This BrownieVAL tool requires you to have the appropriate roles on Discord.
     Get this role first, then re-log in to this website.</center>
 		</div></div>";
     require $dir . "/templates/footer.php"; 

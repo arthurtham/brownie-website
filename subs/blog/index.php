@@ -41,7 +41,7 @@ require $dir . "/templates/header.php" ?>
 <div class='container body-container'>
 <?php
  // User is logged in
-if (!isset($_SESSION['user']) || !check_guild_membership($guild_id) || !check_roles([$discord_sub_role_id, $sub_role_id, $vip_role_id, $mod_role_id])) {
+if (!isset($_SESSION['user']) || !check_guild_membership($guild_id) || !check_roles($sub_perk_roles)) {
 	//echo '<h1 style="text-align: center;">Brown\'s Blog</h1>';
 	echo "<div class='alert alert-danger' role='alert'>
 	<center>To view these blog posts, you must sign in via Discord and fulfill the sub requirements listed 
@@ -51,7 +51,7 @@ if (!isset($_SESSION['user']) || !check_guild_membership($guild_id) || !check_ro
 	//echo "</div>";
 }
 if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
-	if (!isset($_SESSION['user']) || !check_guild_membership($guild_id) || !check_roles([$discord_sub_role_id, $sub_role_id, $vip_role_id, $mod_role_id])) {
+	if (!isset($_SESSION['user']) || !check_guild_membership($guild_id) || !check_roles($sub_perk_roles)) {
 		echo '<h1 style="text-align: center;">Brown\'s Blog</h1>';
 		require $dir . "/templates/sub-perks-description.php";
 	} else {

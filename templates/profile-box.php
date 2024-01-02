@@ -11,8 +11,8 @@ if (isset($_SESSION['user_avatar'])) {
 }
 echo '" class="card-img-top" alt="..."/ style="width:auto;max-width:100px;"></center>';
 echo '<div class="card-body"><h5 class="card-title">' . $_SESSION["username"] . '</h5>';
-if (!check_roles([$discord_sub_role_id, $sub_role_id, $vip_role_id, $mod_role_id])) {
-    echo '<h5><span class="badge bg-dark" style="width:100%">Not Subbed</span></h5>';
+if (!check_roles($sub_perk_roles)) {
+    echo '<h5><span class="badge bg-dark" style="width:100%">Big Fan</span></h5>';
 }
 else {
     if (check_roles([$sub_role_id])) {
@@ -30,12 +30,8 @@ else {
     
     
 }
-echo '<h5><span class="badge bg-secondary" style="width:100%">';
-echo check_guild_membership($guild_id) ? 'In Turtle Pond Server' : 'Not in Turtle Pond Server';
-echo '</span></h5>';
-echo '<h5><span class="badge bg-secondary" style="width:100%">';
-echo check_guild_membership($brownieval_guild_id) ? 'In BrownieVAL Server' : 'Not in BrownieVAL Server';
-echo '</span></h5>';
+echo check_guild_membership($guild_id) ? '<h5><span class="badge bg-secondary" style="width:100%">Turtle Pond Server Member</span></h5>' : '<h5><span class="badge bg-secondary" style="width:100%">Not in Turtle Pond Server</h5>';
+echo check_guild_membership($brownieval_guild_id) ? '<h5><span class="badge bg-secondary" style="width:100%">BrownieVAL Server Member</span></h5>' : '';
 echo "</div></center>";
 echo "</div>";
 echo "</div>";
