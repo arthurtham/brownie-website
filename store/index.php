@@ -65,6 +65,9 @@ foreach ($directories as $directory) {
             break;
         case "donate":
             queryShopItems($conn, "donate");
+            break;
+        case "merch":
+            queryShopItems($conn, "merch");
         default:
             break;
     }
