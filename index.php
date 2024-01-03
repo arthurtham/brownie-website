@@ -41,7 +41,12 @@ EXPIRED;
 		<div class="box bg-light bg-gradient shadow" style="padding: 40px; border-radius: 10%">
 			<center><img src="/assets/img/turtleavatar.png" style="border-radius: 100%;width:auto;max-width:200px" />
 			<h1 style="text-align: center;">Browntul</h1>
-			<p>Shoutcaster/Producer, Streamer, and Developer</p>
+			<p>Turtle Streamer and Shoutcaster/Producer</p>
+			<span style="display: block; text-align: center">
+				<a href="/about" class="btn btn-success" style="width: 100%; margin-bottom:6px;">About</a>
+				<a href="/store" class="btn btn-danger"  style="width: 100%; margin-bottom:6px;">Support/Donate</a>
+				<a href="/subs"  class="btn btn-primary" style="width: 100%; margin-bottom:6px;">Sub Perks</a>
+			</span>
 			</center>
 		</div>
 	</div>

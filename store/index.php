@@ -1,6 +1,6 @@
 <?php
 $dir = dirname(__DIR__, 1);
-$title = "BrowntulStar - Services";
+$title = "BrowntulStar - Support";
 require_once($dir . "/includes/mysql.php");
 require $dir . "/templates/header.php";
 echo '<script src="/assets/js/bootstrap-tab.js"></script>';
@@ -14,19 +14,16 @@ echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 </style>
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <h1 style="text-align: center;">Services</h1>
-    <p>Welcome to the services page. Here, you can request the services of Browntul that is offering. You can also donate
-        things to Browntul to help him out!
-    </p>
-    <div class='alert alert-success' role='alert'>
-        <center>Request a service using Fiverr or email!</center>
-	</div>
+    <h1 style="text-align: center;">Support Browntul</h1>
+    <center>
+        <p>Thank you for supporting me! Please take a look at ways you can support me.</p>
+    </center>
 
 <?php
 $directories = array();
+array_push($directories, array("donate", "Donate", "Directly support Browntul via these options!"));
 array_push($directories, array("shoutcasting", "Shoutcasting", "Want Browntul to shoutcast your games? Check out the services you can request below!<br/>Currently, Browntul is offering shoutcasting services for VALORANT."));
 //array_push($directories, array("merch", "Merchandise", "Check out the merchandise store where you can flex your Turtle Pond gear!"));
-array_push($directories, array("donate", "Donate", "Directly support Browntul through these methods!"));
 
 echo '<ul class="nav nav-tabs" id="storedirectory" role="tablist">';
 $show_active_toggle = "true";
@@ -64,55 +61,10 @@ foreach ($directories as $directory) {
     // Select listings
     switch ($directory[0]) {
         case "shoutcasting":
-            //TODO: add the listings
-            $sql = "SELECT * FROM shop_item_types WHERE item_type = 'shoutcasting'";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                while ($item = $result->fetch_assoc()) {
-                    $item_name = $item["item_name"];
-                    $item_type = $item["item_type"];
-                    $item_description = $item["item_description"];
-                    $item_price = number_format($item["item_price"], 2);
-                    $item_units = $item["item_units"];
-                    $item_id = $item["item_id"];
-                    $item_url = $item["item_url"];
-                    $item_service = $item["item_service"];
-                    $available = $item["available"] ? 1 : 0;
-                    $book_button = $available ? 
-                    $item_service === "email" ? 
-                        '<a href="'.$item_url.'?subject=Booking Inquiry for '.$item_name.'&body=(Describe your event and include dates 
-and times as well as information flyers)"><button class="btn btn-primary">Book now</button></a> via email!
-                        <br><small>If the email conversation leads to a booking, PayPal will be used for invoicing.</small>' 
-                        : '<a href="'.$item_url.'" target="_blank"><button class="btn btn-primary">Buy now</button></a> via '.$item_service.'' 
-                    : '<button class="btn btn-primary" disabled>Unavailable</button>'; 
-                    // Original code: '<a href="/store/book?item-id='.$item_id.'"><button class="btn btn-primary">Book now</button> via email</a>'
-                    echo <<<LISTINGS
-                    <div class="card" style="width: 100%;color:black">
-                        <!--<img src="..." class="card-img-top" alt="...">-->
-                        <div class="card-body">
-                            <h5 class="card-title">$item_name</h5>
-                            <p class="card-text">
-                                $item_description
-                            </p>
-                            <p><span class="badge bg-danger"> Starting Cost: USD$$item_price per $item_units</span></p>
-                            $book_button
-                        </div>
-                    </div>
-                    <br />
-LISTINGS;
-                }
-            }
-        break;
-        /*case "merch":
-            echo "<p>Use the link below to access the merchandise store. If you are subscribed to Browntul on Twitch, you can enjoy a discount on your merchandise purchased.</p>
-            <p><image src='https://cdn.streamelements.com/merch/static/se-merch-logo-dark.svg' /></p>
-            <p><a href='https://merch.streamelements.com/browntulstar' target='_blank'><button class='btn btn-primary'>Go to Store</button></a></p>";
-            break;*/
+            queryShopItems($conn, "shoutcasting"); 
+            break;
         case "donate":
-            echo "<p>Use the link below to donate to Browntul! Note that donations are not refundable.</p>
-            <p><a href='https://streamlabs.com/browntulstar/tip' target='_blank'><button class='btn btn-primary'>Donate (StreamLabs)</button></a></p>
-            <p>You can also buy Browntul gift cards and plushies, via Throne Gifts! Use the link below to donate with this method:</p>
-            <a href='https://thronegifts.com/u/browntulstar' target='_blank'><img height='60' style='border:0px;height:60px;' src='https://firebasestorage.googleapis.com/v0/b/onlywish-9d17b.appspot.com/o/common%2Fbrandassets%2FWishlistButton_V1.png?alt=media&token=dafe4567-b095-48c4-9a09-6abfd14ee04f' border='0' alt='My Wishlist' /></a>";
+            queryShopItems($conn, "donate");
         default:
             break;
     }
@@ -120,7 +72,58 @@ LISTINGS;
 }
 echo "</div>";
 
-?>
+echo "</div>";
 
-</div>
-<?php require $dir . "/templates/footer.php" ?>
+
+function queryShopItems($conn, $queryString) {
+    $sql = "SELECT * FROM shop_item_types WHERE item_type = '".$queryString."'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($item = $result->fetch_assoc()) {
+            $item_thumbnail = $item["item_thumbnail"];
+            $item_name = $item["item_name"];
+            $item_type = $item["item_type"];
+            $item_description = $item["item_description"];
+            $item_price = number_format($item["item_price"], 2);
+            $item_units = $item["item_units"];
+            $item_id = $item["item_id"];
+            $item_url = $item["item_url"];
+            $item_service = $item["item_service"];
+            $available = $item["available"] ? 1 : 0;
+            $book_button = $available ? 
+            $item_service === "email" ? 
+                '<a href="'.$item_url.'?subject=Inquiry for '.$item_name.'&body=(Describe your event and include dates 
+    and times as well as information flyers)"><button class="btn btn-primary">Request</button></a> via email!
+                <br><small>If the email conversation leads to a booking, PayPal will be used for invoicing.</small>' 
+                : '<a href="'.$item_url.'" target="_blank"><button class="btn btn-primary">Support</button></a> via '.$item_service.'' 
+            : '<button class="btn btn-primary" disabled>Unavailable</button>'; 
+            echo <<<LISTINGS
+            <div class="card" style="width: 100%;color:black">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <center><img src="$item_thumbnail" style="max-height: 200px; max-width: 100%;" /></center>
+                                <br />
+                            </div>
+                            <div class="col-lg-8">
+                                <h5 class="card-title">$item_name</h5>
+                                <p class="card-text">
+                                    $item_description
+                                </p>
+                                <p><span class="badge bg-danger"> Starting at USD$$item_price per $item_units</span></p>
+                                $book_button
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+LISTINGS;
+        }
+    }
+}
+
+require $dir . "/templates/footer.php";
+
+?>

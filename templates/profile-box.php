@@ -21,6 +21,9 @@ else {
     if (check_roles([$discord_sub_role_id])) {
         echo '<h5><span class="badge bg-danger" style="width:100%">RED SHELLS (Discord Subs)</span></h5>';
     }
+    if (check_roles([$kofi_role_id])) {
+        echo '<h5><span class="badge bg-danger" style="width:100%">KOFI SUPPORTER</span></h5>';
+    }
     if (check_roles([$vip_role_id])) {
         echo '<h5><span class="badge bg-warning" style="width:100%">STARS (VIP Access)</span></h5>';
     }
