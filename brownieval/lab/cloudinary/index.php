@@ -16,7 +16,10 @@ if (!isset($_SESSION['user'])) {
   die();
 } 
 // Check user perms
-else if (!(check_guild_membership($cloudinary_guild_id) || (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_admin_access_id])) || (check_guild_membership($guild_id) && check_roles($sub_perk_roles) )) ) {
+else if (!(check_guild_membership($cloudinary_guild_id) || 
+  (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_admin_access_id])) || 
+  (check_guild_membership($guild_id) && check_roles($sub_perk_roles) )) 
+  ) {
 		echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
     echo "<div class='alert alert-danger' role='alert'>
 		<center>This BrownieVAL tool requires you to have the appropriate roles on Discord.
@@ -38,13 +41,25 @@ $_SESSION['cloudinary_timer_start']=time();
 <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <h1 class="text-center">Overlay Generator for #BrownieVAL</h1>
+    <h1 class="text-center">#BrownieVAL Clip Generator</h1>
 
-    <div class="alert alert-dark">
-      In this demo, users can upload their VALORANT clips and then add
-      the BrownieVAL special overlays on top of it. During development,
-      anyone in the Cloudinary Discord server or any BrownieVAL 
-      members with the web access role can try it out for free.
+    <div class="alert alert-success">
+      <p><strong>Upload your best VALORANT clip (up to 15 seconds in length) and post it 
+      on Twitter/X with the hashtag #BrownieVAL and #MyBrownieVALClip!</strong> Then, you'll get 
+      to see how cool it is to be in #BrownieVAL!</p>
+      <ul>
+        <li>Upload your best VALORANT clip (Resolution: 16:9 or 1920x1080)</li>
+        <li>Max length: 15 sec. Max file size: 100 MB.</li>
+        <li>Wait for a while for the video to generate.</li>
+        <li>The resulting video will appear below, and you can download it and post it on social media!</li>
+        <li>If there is an error, refresh the page and try again.</li>
+      </ul>
+      <p>In this demo, users can upload their VALORANT clips and then add
+      the BrownieVAL special overlays on top of it.</p>
+    </div>
+    <div class="alert alert-danger">
+      <p><strong>Abuse of this tool will lead to a irrevocable ban on all social media platforms
+        that Browntul and BrownieVAL is on.</strong></p> 
     </div>
 
     <div style="display: span">
@@ -57,8 +72,8 @@ $_SESSION['cloudinary_timer_start']=time();
     </div>
 
     <hr />
-    <h3> Results </h3>
-    <div class="alert alert-dark">
+    <div id="results-div" class="alert alert-dark" style="display: none">
+      <h3> Results </h3>
       <div id="video-player-div">
         <video id="video-player-media"></video>
       </div> 
@@ -79,18 +94,16 @@ $_SESSION['cloudinary_timer_start']=time();
   });
   
   var generateSignature = function(callback, params_to_sign){
-      //console.log(params_to_sign);
+      // console.log(params_to_sign);
       $.ajax({
         url     : "/includes/cloudinarysign.php",
         type    : "GET",
         dataType: "text",
-        data    : { data: params_to_sign},
+        data    : {data: params_to_sign},
         complete: function() {
-          //console.log("complete")
         },
         success : function(signature, textStatus, xhr) { callback(signature); },
         error   : function(xhr, status, error) {
-          //console.log(xhr, status, error); 
           alert(xhr.status + ": " + xhr.responseText);
         }
       });
@@ -118,11 +131,13 @@ $_SESSION['cloudinary_timer_start']=time();
       api_key : "<?=$CLOUDINARY_API_KEY ?>", 
       cloudName: "<?=$CLOUDINARY_CLOUD_NAME ?>", 
       buttonCaption: "Upload Video",
-      uploadPreset: "com-browntulstar-brownieval-sandbox",
+      uploadPreset: "com-browntulstar-brownieval-generator-v1",
+      context: {
+        username: "<?=$_SESSION["username"] ?>"
+      },
       uploadSignature: generateSignature,
       sources: [
           "local",
-          "url",
           "google_drive"
       ],
       showAdvancedOptions: false,
@@ -130,6 +145,7 @@ $_SESSION['cloudinary_timer_start']=time();
       multiple: false,
       defaultSource: "local",
       clientAllowedFormats: "mp4",
+      resourceType: "video",
       maxFileSize: "104857600",
       thumbnails: false,
       autoMinimize: true,
@@ -161,28 +177,20 @@ $_SESSION['cloudinary_timer_start']=time();
     }, 
     (error, result) => { 
       if (!error && result && result.event === "success") { 
-        //console.log('Result: ', result.info); 
-        player.source(result.info.eager[0].secure_url);
+        player.source(result.info.secure_url);
         document.getElementById("cloudinary-upload-widget-span").style.display = "none";
+        document.getElementById("results-div").style.display = "block";
         document.getElementById("download-button-span").innerHTML='\
           <button id="upload-box" class="cloudinary-button" \
-          onclick=downloadSignedVideo("'+result.info.eager[0].secure_url+'","'+(result.info.public_id).split("/").slice(-1)+'_edited")>\
+          onclick=downloadSignedVideo("'+result.info.secure_url+'","'+(result.info.public_id).split("/").slice(-1)+'_edited")>\
           Download Processed Video</button></a>';
+        
         myWidget.close({quiet: true});
       } else if (!error && result) {
-        //console.log('Event:' , result.event);
       } else {
-        //console.log("Error: ", error);
-        //myWidget.close();
-        //myWidget.open();
         alert("Error: " + error["statusText"] + "\nPlease refresh this page and try again.");
       }
     });
-  
-  
-  // document.getElementById("upload-box").addEventListener("click", function(){
-  //     myWidget.open();
-  //   }, false);
 
     myWidget.open();
 </script>
