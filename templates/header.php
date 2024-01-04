@@ -14,6 +14,7 @@ require $dir . "/includes/default-includes.php";
 <html>
 
 <head>
+	<?php require $dir . "/includes/ganalytics.php" ?>
 	<?php require $dir . "/templates/header-includes.php" ?>
 </head>
 

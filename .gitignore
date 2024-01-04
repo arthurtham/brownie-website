@@ -16,3 +16,4 @@ privacy/privacy-policy.md
 composer.phar
 vendor/
 includes/cloudinary.env.php
+includes/ganalytics.php
