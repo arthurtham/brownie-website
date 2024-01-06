@@ -9,22 +9,29 @@ require $dir . "/includes/cloudinary.env.php";
 // Check login
 if (!isset($_SESSION['user'])) { 
   echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
-	echo "<div class='alert alert-danger' role='alert'>
-	<center>This BrownieVAL tool requires you to log in to Discord with the appropriate roles.</center>
-	</div></div>";
+  echo "<div class='alert alert-danger' role='alert'>
+  <center>You need to log in with Discord and have the necessary roles in order to access this page.</center>
+  </div>";
+  echo '<div class="alert alert-success" role="alert">
+  <p><strong>During the competition period, you can use this tool for free as long as you are a member of the Turtle Pond or #BrownieVAL Community!</strong></p>
+  <p>Link: <a href="https://browntulstar.com/r/brownievaldiscord" target="_blank">#BrownieVAL Discord</a> - Link: <a href="https://browntulstar.com/discord" target="_blank">Turtle Pond Discord</a></p> 
+  </div></div>';
   require $dir . "/templates/footer.php"; 
   die();
 } 
 // Check user perms
 else if (!(check_guild_membership($cloudinary_guild_id) || 
-  (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_admin_access_id])) || 
-  (check_guild_membership($guild_id) && check_roles($sub_perk_roles) )) 
+  (check_guild_membership($brownieval_guild_id) )||//&& check_roles([$brownieval_admin_access_id])) || 
+  (check_guild_membership($guild_id) ))//&& check_roles($sub_perk_roles) )) 
   ) {
 		echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
     echo "<div class='alert alert-danger' role='alert'>
-		<center>This BrownieVAL tool requires you to have the appropriate roles on Discord.
-    Get this role first, then re-log in to this website.</center>
-		</div></div>";
+    <center>You need to have the necessary roles in order to access this page.</center>
+    </div>";
+    echo '<div class="alert alert-success" role="alert">
+    <p><strong>During the competition period, you can use this tool for free as long as you are a member of the Turtle Pond or #BrownieVAL Community!</strong></p>
+    <p>Link: <a href="https://browntulstar.com/r/brownievaldiscord" target="_blank">#BrownieVAL Discord</a> - Link: <a href="https://browntulstar.com/discord" target="_blank">Turtle Pond Discord</a></p> 
+    </div></div>';
     require $dir . "/templates/footer.php"; 
     die();
 }
@@ -44,18 +51,20 @@ $_SESSION['cloudinary_timer_start']=time();
     <h1 class="text-center">#BrownieVAL Clip Generator</h1>
 
     <div class="alert alert-success">
-      <p><strong>Upload your best VALORANT clip (up to 15 seconds in length) and post it 
-      on Twitter/X with the hashtag #BrownieVAL and #MyBrownieVALClip!</strong> Then, you'll get 
+      <p><strong>Upload your best VALORANT clip (up to 30 seconds in length) and post it 
+      on Twitter/X with the hashtag <a href="https://twitter.com/hashtag/MyBrownieVALClip" target="_blank">#MyBrownieVALClip!</a></strong> Then, you'll get 
       to see how cool it is to be in #BrownieVAL!</p>
       <ul>
-        <li>Upload your best VALORANT clip (Resolution: 16:9 or 1920x1080)</li>
-        <li>Max length: 15 sec. Max file size: 100 MB.</li>
-        <li>Wait for a while for the video to generate.</li>
-        <li>The resulting video will appear below, and you can download it and post it on social media!</li>
-        <li>If there is an error, refresh the page and try again.</li>
+        <li>Upload your best VALORANT clip (Aspect Ratio must be 16:9)</li>
+        <li>Max length: 30 sec. Max file size: 100 MB.</li>
+        <li>If a video is longer than 30 seconds, then it will be cut off from the end of the video.</li>
+        <li>Wait for a while for the video to generate. The resulting video will appear below when it is done generating.</li>
+        <li>You can then download it and post it on social media!</li>
+        <li>If there is an error, you can refresh the page and try again.</li>
       </ul>
-      <p>In this demo, users can upload their VALORANT clips and then add
-      the BrownieVAL special overlays on top of it.</p>
+    </div>
+    <div class="alert alert-success">
+      <p><strong>During the competition period, you can use this tool for free as long as you are a member of the Turtle Pond or #BrownieVAL Community!</strong></p> 
     </div>
     <div class="alert alert-danger">
       <p><strong>Abuse of this tool will lead to a irrevocable ban on all social media platforms
@@ -85,12 +94,13 @@ $_SESSION['cloudinary_timer_start']=time();
     cloudName: 'browntulstar',
     fluid: true,
     controls: true,
-    muted: true,
+    muted: false,
     colors: {
       accent: '#af0303'
     },
     hideContextMenu: true,
-    autoplay: true
+    autoplay: true,
+    posterOptions: { publicId: "brownieval/generator/BrownieVALCloudinaryIntroV2"}
   });
   
   var generateSignature = function(callback, params_to_sign){
@@ -131,7 +141,7 @@ $_SESSION['cloudinary_timer_start']=time();
       api_key : "<?=$CLOUDINARY_API_KEY ?>", 
       cloudName: "<?=$CLOUDINARY_CLOUD_NAME ?>", 
       buttonCaption: "Upload Video",
-      uploadPreset: "com-browntulstar-brownieval-generator-v1",
+      uploadPreset: "com-browntulstar-brownieval-generator-v2",
       context: {
         username: "<?=$_SESSION["username"] ?>"
       },
@@ -144,7 +154,7 @@ $_SESSION['cloudinary_timer_start']=time();
       cropping: false,
       multiple: false,
       defaultSource: "local",
-      clientAllowedFormats: "mp4",
+      clientAllowedFormats: "mp4,mkv,mov",
       resourceType: "video",
       maxFileSize: "104857600",
       thumbnails: false,
@@ -189,6 +199,8 @@ $_SESSION['cloudinary_timer_start']=time();
       } else if (!error && result) {
       } else {
         alert("Error: " + error["statusText"] + "\nPlease refresh this page and try again.");
+        myWidget.close();
+        myWidget.open();
       }
     });
 

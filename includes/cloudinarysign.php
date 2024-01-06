@@ -6,9 +6,11 @@ use Cloudinary\Api\ApiUtils;
 if (!isset($_GET)) {
     http_response_code(400);
     die("This request is not eligible.");
-} else if ($_GET["data"]["source"] !== "uw" || !isset($_GET["data"]["timestamp"])) {
+} 
+
+if ($_GET["data"]["source"] !== "uw" || !isset($_GET["data"]["timestamp"])) {
     http_response_code(400);
-    die("This request is not eligible.");
+    die("This request is missing required parameters.");
 };
 
 session_start();
@@ -21,13 +23,16 @@ if (!isset($_SESSION['cloudinary_timer_start'])
     die("This session has expired. Please refresh the page and try again.");
 }
 
+//Hijack GET request to always use this prefix
+$_GET["uploadPreset"] = "com-browntulstar-brownieval-generator-v2";
+
  ApiUtils::signRequest($_GET["data"], (object) array(
     "apiSecret" => $CLOUDINARY_API_SECRET,
     "apiKey" => $CLOUDINARY_API_KEY,
     "signatureAlgorithm" => "sha256",
 ));
 
-$_SESSION['cloudinary_timer_start'] -= $cloudinary_timer_duration;
+//$_SESSION['cloudinary_timer_start'] -= $cloudinary_timer_duration;
 
 echo $_GET["data"]["signature"];
 ?>
