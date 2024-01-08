@@ -50,25 +50,33 @@ $_SESSION['cloudinary_timer_start']=time();
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
     <h1 class="text-center">#BrownieVAL Clip Generator</h1>
 
-    <div class="alert alert-success">
+    <div class="alert alert-dark">
       <p><strong>Upload your best VALORANT clip (up to 30 seconds in length) and post it 
       on Twitter/X with the hashtag <a href="https://twitter.com/hashtag/MyBrownieVALClip" target="_blank">#MyBrownieVALClip!</a></strong> Then, you'll get 
       to see how cool it is to be in #BrownieVAL!</p>
       <ul>
-        <li>Upload your best VALORANT clip (Aspect Ratio must be 16:9)</li>
-        <li>Max length: 30 sec. Max file size: 100 MB.</li>
-        <li>If a video is longer than 30 seconds, then it will be cut off from the end of the video.</li>
-        <li>Wait for a while for the video to generate. The resulting video will appear below when it is done generating.</li>
-        <li>You can then download it and post it on social media!</li>
-        <li>If there is an error, you can refresh the page and try again.</li>
+        <li>Upload your best VALORANT clip:</li>
+        <ul>
+          <li>Max length: 30 sec. (longer clips will be trimmed)</li>
+          <li>Max file size: 100 MB.</li>
+          <li>Aspect Ratio: 16:9</li>
+        </ul>
+        <li>Once the video is uploaded, wait a minute or two for it to generate.</li>
+        <li>Once it's done generating, you can download it and post it on social media using 
+          <strong><a href="https://twitter.com/hashtag/MyBrownieVALClip" target="_blank">#MyBrownieVALClip!</a></strong>
+        </li>
+        <li>If there is an error, please refresh the page and try again.</li>
       </ul>
     </div>
     <div class="alert alert-success">
-      <p><strong>During the competition period, you can use this tool for free as long as you are a member of the Turtle Pond or #BrownieVAL Community!</strong></p> 
+      <p><strong>During the competition period, you can use this tool for free as long as you are a member of the Turtle Pond or #BrownieVAL Community!</strong></p>
+      <p>Make sure to submit your #MyBrownieVAL Clip to the #clip-competition channel in the 
+        <strong><a href="https://browntulstar.com/r/brownievaldiscord" target="_blank">#BrownieVAL Discord</a></strong>!</p> 
     </div>
     <div class="alert alert-danger">
       <p><strong>Abuse of this tool will lead to a irrevocable ban on all social media platforms
         that Browntul and BrownieVAL is on.</strong></p> 
+      <p><strong>Privacy</strong>: This tool uploads your video to Cloudinary, which will additionally store information about your connections on Discord (ie. your linked Twitter/Twitch profiles).</p>
     </div>
 
     <div style="display: span">
@@ -143,13 +151,49 @@ $_SESSION['cloudinary_timer_start']=time();
       buttonCaption: "Upload Video",
       uploadPreset: "com-browntulstar-brownieval-generator-v2",
       context: {
-        username: "<?=$_SESSION["username"] ?>"
+        discord_username: "<?=$_SESSION["username"] ?>",
+        discord_id: "<?=$_SESSION["user"]["id"] ?>",
+        twitch_connections: "<?php 
+        $twitch_connections = array_filter(
+            $_SESSION["user_connections"],
+            function ($item) {
+              return $item["type"] === "twitch";
+            });
+        foreach ($twitch_connections as $connection) {
+          echo $connection["name"] . ":" . $connection["id"] . ":";
+        }
+            ?>",
+        twitter_connections: "<?php 
+        $twitter_connections = array_filter(
+            $_SESSION["user_connections"],
+            function ($item) {
+              return $item["type"] === "twitter";
+            });
+        foreach ($twitter_connections as $connection) {
+          echo $connection["name"] . ":" . $connection["id"] . ":";
+        }
+            ?>"
       },
       uploadSignature: generateSignature,
       sources: [
           "local",
           "google_drive"
       ],
+      text: {
+        "en": {
+          "queue": {
+            "title_uploading_with_counter": "Uploading video...",
+            "title_processing_with_counter": "Adding #BrownieVAL overlays to video (est: 1 min)"
+          },
+          "local": {
+            "dd_title_single": "Drag and Drop Your Video Here",
+            "browse": "Browse..."
+          },
+          "google_drive": {
+            "no_auth_title": "Upload a video from your Google Drive."
+          }
+        }
+      },
       showAdvancedOptions: false,
       cropping: false,
       multiple: false,

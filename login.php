@@ -53,6 +53,8 @@ $_SESSION['timeout']=time();
 $_SESSION['guilds'] = get_guilds();
 
 # Fetching user connections | (connections scope)
+$_SESSION['user_connections'] = get_connections();
+
 $_SESSION['user_guild_info'] = get_user_guild_info($guild_id);
 $_SESSION['user_guild_info_brownieval'] = get_user_guild_info($brownieval_guild_id);
 $_SESSION['roles'] = array_merge(

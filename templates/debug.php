@@ -1,3 +1,13 @@
+<?php 
+if (!isset($dir)) {
+    $dir = dirname(__DIR__, 1);
+}
+require $dir . "/templates/header.php";
+
+?>
+
+<div class="container body-container">
+
 <h2> User Details :</h2>
 <p> Name : <?php echo $_SESSION['username'] //. '#' . $_SESSION['discrim']; ?></p>
 <!--<p> ID : <?php //echo $_SESSION['user_id']; ?></p>-->
@@ -9,11 +19,11 @@
 <br>
 <h2>User Response :</h2>
 <div class="response-block">
-    <p><?php echo json_encode($_SESSION['user']); ?></p>
+    <pre><?php echo json_encode($_SESSION['user'], JSON_PRETTY_PRINT); ?></pre>
 </div>
 <br>
 <h2> User Guilds :</h2>
-<table border="1">
+<!-- <table border="1">
     <tr>
         <th>NAME</th>
         <th>ID</th>
@@ -28,11 +38,20 @@
         echo "</tr></td>";
     }
     ?>
-</table>
+</table> -->
 <br>
 <h2> User Guild Info Response :</h2>
 <div class="response-block">
-    <p> <?php echo json_encode($_SESSION['user_guild_info']); ?></p>
-    <p> <?php echo json_encode($_SESSION['roles']); ?></p>
+    <pre> <?php echo json_encode($_SESSION['user_guild_info'], JSON_PRETTY_PRINT); ?></pre>
+    <pre> <?php echo json_encode($_SESSION['roles'], JSON_PRETTY_PRINT); ?></pre>
+    <pre> <?php echo json_encode($_SESSION['user_connections'], JSON_PRETTY_PRINT); ?></pre>
+
 </div>
 <br>
+
+</div>
+
+<?php
+require $dir . "/templates/footer.php";
+
+?>
