@@ -51,9 +51,13 @@ echo <<<NAVBAR
                     <li><h6 class="dropdown-header">#BrownieVAL</h6></li>
                     <li><a class="dropdown-item" href="https://brownieval.browntulstar.com" target="_blank">#BrownieVAL</a></li>
                     <li><hr class="dropdown-divider" />
+                    <li><h6 class="dropdown-header">#MyBrownieVALClip Competition</h6></li>
+                    <li><a class="dropdown-item" href="https://birthday2024.browntulstar.com/clipcompetition" target="_blank">Info</a></li>
+                    <li><a class="dropdown-item" href="/r/clipcompetition" target="_blank">Clip Generator</a></li>
+                    <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">Special Streams</h6></li>
                     <li><a class="dropdown-item" href="https://subathon.browntulstar.com" target="_blank">Mini-Subathon Spectacular</a></li>
-                    <li><a class="dropdown-item" href="https://birthday2024.browntulstar.com" target="_blank">Birthday Stream 2024</a></li>
+                    <li><a class="dropdown-item" href="https://birthday2024.browntulstar.com" target="_blank">Birthday Bash 2024</a></li>
                 </ul>
                 </li>
             </ul>

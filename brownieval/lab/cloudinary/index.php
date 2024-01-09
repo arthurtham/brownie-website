@@ -1,6 +1,6 @@
 <?php
 $dir = dirname(__DIR__, 3);
-$title = "BrownieVAL - Cloudinary";
+$title = "BrownieVAL - Clip Generator";
 
 require $dir . "/templates/header.php";
 require $dir . "/includes/cloudinary.env.php";
@@ -15,7 +15,9 @@ if (!isset($_SESSION['user'])) {
   echo '<div class="alert alert-success" role="alert">
   <p><strong>During the competition period, you can use this tool for free as long as you are a member of the Turtle Pond or #BrownieVAL Community!</strong></p>
   <p>Link: <a href="https://browntulstar.com/r/brownievaldiscord" target="_blank">#BrownieVAL Discord</a> - Link: <a href="https://browntulstar.com/discord" target="_blank">Turtle Pond Discord</a></p> 
-  </div></div>';
+  </div>
+  <iframe width="100%" height="400" src="https://www.youtube.com/embed/E_fOq0oxsRM?si=CHW4wgvGX1b5dpap" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>';
   require $dir . "/templates/footer.php"; 
   die();
 } 
@@ -31,7 +33,9 @@ else if (!(check_guild_membership($cloudinary_guild_id) ||
     echo '<div class="alert alert-success" role="alert">
     <p><strong>During the competition period, you can use this tool for free as long as you are a member of the Turtle Pond or #BrownieVAL Community!</strong></p>
     <p>Link: <a href="https://browntulstar.com/r/brownievaldiscord" target="_blank">#BrownieVAL Discord</a> - Link: <a href="https://browntulstar.com/discord" target="_blank">Turtle Pond Discord</a></p> 
-    </div></div>';
+    </div>
+    <iframe width="100%" height="400" src="https://www.youtube.com/embed/E_fOq0oxsRM?si=CHW4wgvGX1b5dpap" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>';
     require $dir . "/templates/footer.php"; 
     die();
 }
