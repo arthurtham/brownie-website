@@ -161,7 +161,7 @@ $_SESSION['cloudinary_timer_start']=time();
         $twitch_connections = array_filter(
             $_SESSION["user_connections"],
             function ($item) {
-              return $item["type"] === "twitch";
+              return array_key_exists("type", $item) && $item["type"] === "twitch";
             });
         foreach ($twitch_connections as $connection) {
           echo $connection["name"] . ":" . $connection["id"] . ":";
@@ -171,7 +171,7 @@ $_SESSION['cloudinary_timer_start']=time();
         $twitter_connections = array_filter(
             $_SESSION["user_connections"],
             function ($item) {
-              return $item["type"] === "twitter";
+              return array_key_exists("type", $item) && $item["type"] === "twitter";
             });
         foreach ($twitter_connections as $connection) {
           echo $connection["name"] . ":" . $connection["id"] . ":";

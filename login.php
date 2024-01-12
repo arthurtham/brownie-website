@@ -17,8 +17,8 @@
 # FEEL FREE TO JOIN MY SERVER FOR ANY QUERIES - https://join.markis.dev
 
 # Enabling error display
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 # Including all the required scripts for demo
 require __DIR__ . "/includes/discord.php";
