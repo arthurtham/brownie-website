@@ -25,7 +25,7 @@ else if (!(check_guild_membership($cloudinary_guild_id) ||
   ) {
 		echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
     echo "<div class='alert alert-danger' role='alert'>
-    <center>You need to have the necessary roles in order to access this page.</center>
+    <center>You need to have the necessary roles (ie. subscriber role) in order to access this page.</center>
     </div>";
     echo '
     <iframe width="100%" height="400" src="https://www.youtube.com/embed/E_fOq0oxsRM?si=CHW4wgvGX1b5dpap" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

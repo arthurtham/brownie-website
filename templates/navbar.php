@@ -42,6 +42,7 @@ echo <<<NAVBAR
                     <li><h6 class="dropdown-header">Sub Perks</h6></li>
                     <li><a class="dropdown-item" href="/subs/blog">Blog</a></li>
                     <li><a class="dropdown-item" href="/subs/karaoke">Tank Engine Karaoke</a></li>
+                    <li><a class="dropdown-item" href="/r/clipcompetition">#BrownieVAL Clip Generator</a></li>
                 </ul>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarEvents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,10 +51,6 @@ echo <<<NAVBAR
                 <ul class="dropdown-menu" aria-labelledby="navbarEvents">
                     <li><h6 class="dropdown-header">#BrownieVAL</h6></li>
                     <li><a class="dropdown-item" href="https://brownieval.browntulstar.com" target="_blank">#BrownieVAL</a></li>
-                    <li><hr class="dropdown-divider" />
-                    <li><h6 class="dropdown-header">#MyBrownieVALClip Competition</h6></li>
-                    <li><a class="dropdown-item" href="https://birthday2024.browntulstar.com/clipcompetition" target="_blank">Info</a></li>
-                    <li><a class="dropdown-item" href="/r/clipcompetition">Clip Generator</a></li>
                     <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">Special Streams</h6></li>
                     <li><a class="dropdown-item" href="https://subathon.browntulstar.com" target="_blank">Mini-Subathon Spectacular</a></li>
