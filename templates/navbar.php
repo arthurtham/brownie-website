@@ -53,7 +53,7 @@ echo <<<NAVBAR
                     <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">#MyBrownieVALClip Competition</h6></li>
                     <li><a class="dropdown-item" href="https://birthday2024.browntulstar.com/clipcompetition" target="_blank">Info</a></li>
-                    <li><a class="dropdown-item" href="/r/clipcompetition" target="_blank">Clip Generator</a></li>
+                    <li><a class="dropdown-item" href="/r/clipcompetition">Clip Generator</a></li>
                     <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">Special Streams</h6></li>
                     <li><a class="dropdown-item" href="https://subathon.browntulstar.com" target="_blank">Mini-Subathon Spectacular</a></li>

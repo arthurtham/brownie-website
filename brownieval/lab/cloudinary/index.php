@@ -12,10 +12,7 @@ if (!isset($_SESSION['user'])) {
   echo "<div class='alert alert-danger' role='alert'>
   <center>You need to log in with Discord and have the necessary roles in order to access this page.</center>
   </div>";
-  echo '<div class="alert alert-success" role="alert">
-  <p><strong>During the competition period, you can use this tool for free as long as you are a member of the Turtle Pond or #BrownieVAL Community!</strong></p>
-  <p>Link: <a href="https://browntulstar.com/r/brownievaldiscord" target="_blank">#BrownieVAL Discord</a> - Link: <a href="https://browntulstar.com/discord" target="_blank">Turtle Pond Discord</a></p> 
-  </div>
+  echo '
   <iframe width="100%" height="400" src="https://www.youtube.com/embed/E_fOq0oxsRM?si=CHW4wgvGX1b5dpap" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   </div>';
   require $dir . "/templates/footer.php"; 
@@ -23,17 +20,14 @@ if (!isset($_SESSION['user'])) {
 } 
 // Check user perms
 else if (!(check_guild_membership($cloudinary_guild_id) || 
-  (check_guild_membership($brownieval_guild_id) )||//&& check_roles([$brownieval_admin_access_id])) || 
-  (check_guild_membership($guild_id) ))//&& check_roles($sub_perk_roles) )) 
+  (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_admin_access_id])) || 
+  (check_guild_membership($guild_id) && check_roles($sub_perk_roles) )) 
   ) {
 		echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
     echo "<div class='alert alert-danger' role='alert'>
     <center>You need to have the necessary roles in order to access this page.</center>
     </div>";
-    echo '<div class="alert alert-success" role="alert">
-    <p><strong>During the competition period, you can use this tool for free as long as you are a member of the Turtle Pond or #BrownieVAL Community!</strong></p>
-    <p>Link: <a href="https://browntulstar.com/r/brownievaldiscord" target="_blank">#BrownieVAL Discord</a> - Link: <a href="https://browntulstar.com/discord" target="_blank">Turtle Pond Discord</a></p> 
-    </div>
+    echo '
     <iframe width="100%" height="400" src="https://www.youtube.com/embed/E_fOq0oxsRM?si=CHW4wgvGX1b5dpap" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>';
     require $dir . "/templates/footer.php"; 
@@ -54,6 +48,23 @@ $_SESSION['cloudinary_timer_start']=time();
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
     <h1 class="text-center">#BrownieVAL Clip Generator</h1>
 
+    <div style="display: span">
+      <span id="upload-box-span" style="display: none"><button id="upload-box" class="cloudinary-button"> ... </button></span>
+      <span id="download-button-span"></span>
+    </div>
+
+    <div id="cloudinary-upload-widget-span" style="display: span">
+
+    </div>
+
+    <hr />
+    <div id="results-div" class="alert alert-dark" style="display: none">
+      <h3> Results </h3>
+      <div id="video-player-div">
+        <video id="video-player-media"></video>
+      </div> 
+    </div>
+
     <div class="alert alert-dark">
       <p><strong>Upload your best VALORANT clip (up to 30 seconds in length) and post it 
       on Twitter/X with the hashtag <a href="https://twitter.com/hashtag/MyBrownieVALClip" target="_blank">#MyBrownieVALClip!</a></strong> Then, you'll get 
@@ -72,33 +83,13 @@ $_SESSION['cloudinary_timer_start']=time();
         <li>If there is an error, please refresh the page and try again.</li>
       </ul>
     </div>
-    <div class="alert alert-success">
-      <p><strong>During the competition period, you can use this tool for free as long as you are a member of the Turtle Pond or #BrownieVAL Community!</strong></p>
-      <p>Make sure to submit your #MyBrownieVAL Clip to the #clip-competition channel in the 
-        <strong><a href="https://browntulstar.com/r/brownievaldiscord" target="_blank">#BrownieVAL Discord</a></strong>!</p> 
-    </div>
     <div class="alert alert-danger">
       <p><strong>Abuse of this tool will lead to a irrevocable ban on all social media platforms
         that Browntul and BrownieVAL is on.</strong></p> 
       <p><strong>Privacy</strong>: This tool uploads your video to Cloudinary, which will additionally store information about your connections on Discord (ie. your linked Twitter/Twitch profiles).</p>
     </div>
 
-    <div style="display: span">
-      <span id="upload-box-span" style="display: none"><button id="upload-box" class="cloudinary-button"> ... </button></span>
-      <span id="download-button-span"></span>
-    </div>
-
-    <div id="cloudinary-upload-widget-span" style="display: span">
-
-    </div>
-
-    <hr />
-    <div id="results-div" class="alert alert-dark" style="display: none">
-      <h3> Results </h3>
-      <div id="video-player-div">
-        <video id="video-player-media"></video>
-      </div> 
-    </div>
+    
 </div>
 
 <script type="text/javascript"> 
@@ -153,7 +144,7 @@ $_SESSION['cloudinary_timer_start']=time();
       api_key : "<?=$CLOUDINARY_API_KEY ?>", 
       cloudName: "<?=$CLOUDINARY_CLOUD_NAME ?>", 
       buttonCaption: "Upload Video",
-      uploadPreset: "com-browntulstar-brownieval-generator-v2",
+      uploadPreset: "<?=$CLOUDINARY_BROWNIEVAL_PREFIX ?>",
       context: {
         discord_username: "<?=$_SESSION["username"] ?>",
         discord_id: "<?=$_SESSION["user"]["id"] ?>",

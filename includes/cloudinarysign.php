@@ -24,7 +24,7 @@ if (!isset($_SESSION['cloudinary_timer_start'])
 }
 
 //Hijack GET request to always use this prefix
-$_GET["uploadPreset"] = "com-browntulstar-brownieval-generator-v2";
+$_GET["uploadPreset"] = $CLOUDINARY_BROWNIEVAL_PREFIX;
 
  ApiUtils::signRequest($_GET["data"], (object) array(
     "apiSecret" => $CLOUDINARY_API_SECRET,
