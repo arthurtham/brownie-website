@@ -19,6 +19,7 @@ echo <<<NAVBAR
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarAbout"> 
                     <li><a class="dropdown-item" href="/about">About Me</a></li>
+                    <li><a class="dropdown-item" href="/about/credits">Credits</a></li>
                     <li><hr class="dropdown-divider" />
                     <li><h6 class="dropdown-header">Portfolio</h6></li>
                     <li><a class="dropdown-item" href="/about/coding">Coding</a></li>

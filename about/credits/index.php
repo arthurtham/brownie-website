@@ -63,7 +63,7 @@ require $dir . "/templates/footer.php";
 
 
 function queryArtEntries($conn) {
-    $sql = "SELECT * FROM artists WHERE entry_active = 1";
+    $sql = "SELECT * FROM artists WHERE entry_active = 1 ORDER BY sort_order ASC;";
     $result = $conn->query($sql);
     return $result;
 }
