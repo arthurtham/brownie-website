@@ -75,8 +75,8 @@ function echoHighlightedArtEntries($result) {
             if ($item["entry_highlight"] == 0) {
                 continue;
             }
-            echo '<div class="carousel-item' . ($show_active_text) . '" style="background-color:black;">';
-            echo '<img src="'.$item["portfolio_image"].'" class="d-block w-80" style="width:100%;height:500px;object-fit:contain" alt="..." />';
+            echo '<div class="carousel-item' . ($show_active_text) . '" style="background-color:black;" oncontextmenu="return false;">';
+            echo '<img src="'.$item["portfolio_image"].'" class="d-block w-80" style="width:100%;height:500px;object-fit:contain;" alt="portfolio-image-'.$item["name"].'" />';
             echo '<div class="carousel-caption d-none d-md-block" style="background-color:rgb(0,0,0,0.7)">';
             echo '<h5>'.$item["name"].'</h5>';
             echo '<p>'.$item["subheader"].'</p>';
@@ -96,10 +96,13 @@ function echoCardEntries($result) {
                 if ($count > 0) {
                     echo '</div>';
                 }
-                echo '<div class="row" style="padding-bottom:10px">';
+                echo '<div class="row" style="padding-bottom:10px" oncontextmenu="return false;">';
             }
-            echo '<div class="col-sm-4 d-flex align-items-stretch"><div class="card" style="width:100% !important">';
-            echo '<img src="'.$item["logo_image"].'" class="card-img-top" alt="...">';
+            echo '<div class="col-md-4 d-flex align-items-stretch"><div class="card" style="width:100% !important;">';
+            echo '<div style="position:relative;background-color:lightgray"><img src="'.$item["portfolio_image"].'" 
+            class="card-img-top" alt="portfolio-image-'.$item["name"].'"><img src="'.$item["logo_image"].'" 
+            style="position:absolute;top:0px;left:0px;width:75px;height:75px;background-color:gray;border: 2px solid black;border-width:thick" 
+            alt="logo-image-'.$item["name"].'"></div>';
             echo '<div class="card-body">';
             echo '<button type="button" class="btn btn-dark" style="width:100%;margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-'.$item["name"].'">Info</button>';
             echo '<h5 class="card-title">'.$item["name"].'</h5>';
@@ -145,7 +148,7 @@ function echoModalEntries($result) {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body" style="height:60vh;overflow-y:auto">
-                            <center><img src="{$item["portfolio_image"]}" style="width:auto;height:300px;object-fit:contain" /></center><br />
+                            <center><img src="{$item["logo_image"]}" style="width:auto;height:300px;object-fit:contain;border: 3px solid black;border-radius:20px;" alt="portfolio-image-{$item["name"]}" /></center><br />
                             <h5>{$item["name"]}</h5>
                             <p>{$item["subheader"]}</p>
                             <p>{$item["description"]}</p>
