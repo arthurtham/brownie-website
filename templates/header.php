@@ -18,5 +18,10 @@ require $dir . "/includes/default-includes.php";
 	<?php require $dir . "/templates/header-includes.php" ?>
 </head>
 
-<body>
+<?php if (isset($title) && $title === "BrowntulStar - Home") {
+	echo '<body class="home">';
+} else {
+	echo '<body>';
+}
+?>
 	<?php require $dir . "/templates/navbar.php" ?>

@@ -8,6 +8,9 @@
 # Including all the required scripts for demo
 require __DIR__ . "/includes/functions.php";
 
+# Save Redirect in case we need it
+$_REDIRECT_URL = $_SESSION['redirect'];
+
 # Starting the session
 session_start();
 
@@ -19,14 +22,14 @@ $argument_string = "";
 
 if (isset($_GET["logout"])) {
     $argument_string = "?logout";
+    $_SESSION['redirect'] = "/";
 } else if (isset($_GET["badauth"])) {
     $argument_string = "?badauth";
+    $_SESSION['redirect'] = "$_REDIRECT_URL";
 } else if (isset($_GET["expired"])) {
     $argument_string = "?expired";
+    $_SESSION['redirect'] = "$_REDIRECT_URL";
 }
-
-# Reset redirect
-$_SESSION['redirect'] = "/";
 
 # Reset expired session timer
 unset($_SESSION['timeout_since_login']);

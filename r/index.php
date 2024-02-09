@@ -10,7 +10,7 @@ $sql = "SELECT * FROM shortlinks WHERE shortcode = \"".mysqli_real_escape_string
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($item = $result->fetch_assoc()) {
-        header("Location: ".$item["fulllink"]);
+        header("Location: ".$item["fulllink"], TRUE, 301);
     }
 } else {
     header("Location: /");

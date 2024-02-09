@@ -20,3 +20,12 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
+
+body.home {
+    background-image: none;
+    background: rgb(63,13,27);
+    background: -moz-linear-gradient(180deg, rgba(63,13,27,1) 0%, rgba(114,24,49,1) 45%, rgba(190,40,81,1) 100%);
+    background: -webkit-linear-gradient(180deg, rgba(63,13,27,1) 0%, rgba(114,24,49,1) 45%, rgba(190,40,81,1) 100%);
+    background: linear-gradient(180deg, rgba(63,13,27,1) 0%, rgba(114,24,49,1) 45%, rgba(190,40,81,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3f0d1b",endColorstr="#be2851",GradientType=1);
+}
