@@ -44,6 +44,7 @@ echo <<<NAVBAR
                     <li><a class="dropdown-item" href="/subs/blog">Blog</a></li>
                     <li><a class="dropdown-item" href="/subs/karaoke">Tank Engine Karaoke</a></li>
                     <li><a class="dropdown-item" href="/r/clipcompetition">#BrownieVAL Clip Generator</a></li>
+                    <li><a class="dropdown-item" href="/brownieval/subonlyvideos">#BrownieVAL Sub-only VODs</a></li>
                 </ul>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarEvents" role="button" data-bs-toggle="dropdown" aria-expanded="false">

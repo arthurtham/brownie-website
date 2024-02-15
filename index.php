@@ -43,9 +43,16 @@ EXPIRED;
 			<h1>Browntul</h1>
 			<h5 style="margin-top:-10px">@browntulstar</h5>
 			<p>Turtle Streamer and Shoutcaster/Producer</p>
+			<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
+				<a class="btn btn-dark w-100" href="/stream">
+					<i class="fa-brands fa-twitch"></i>
+					Stream
+				</a>
+			</span>
 			<span class="d-flex flex-row gap-1" style="text-align: center">
-				<a href="/about" class="btn btn-success" style="width: 50%; margin-bottom:6px;">About</a>
-				<a href="/subs"  class="btn btn-warning" style="width: 50%; margin-bottom:6px;">Sub Perks</a>
+				<a href="/about" class="btn btn-success" style="width: 33%; margin-bottom:6px;">About</a>
+				<a href="/shoutcasting"  class="btn btn-danger" style="width: 34%; margin-bottom:6px;">Portfolio</a>
+				<a href="/subs"  class="btn btn-warning" style="width: 33%; margin-bottom:6px;">Subs</a>
 			</span>
 			<span class="d-flex flex-row gap-2 justify-content-center">
 				<a style="text-decoration: none;font-size:32px" href="https://twitch.tv/browntulstar" target="_blank">

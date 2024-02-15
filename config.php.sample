@@ -1,0 +1,53 @@
+<?php
+##############################
+###########DISCORD############
+##############################
+
+# CLIENT ID
+$client_id = "";
+
+# CLIENT SECRET
+$secret_id = "";
+
+# SCOPES SEPARATED BY SPACE
+$scopes = "identify connections guilds guilds.members.read";
+
+# REDIRECT URL
+$redirect_url = "http://".$_SERVER["HTTP_HOST"]."/login.php";
+
+# IMPORTANT READ THIS:
+# - Set the `$bot_token` to your bot token if you want to use guilds.join scope to add a member to your server
+# - Check login.php for more detailed info on this.
+# - Leave it as it is if you do not want to use 'guilds.join' scope.
+$bot_token = null;
+
+# TURTLE POND GUILD ID
+$guild_id = "";
+# BROWNIEVAL GUILD ID
+$brownieval_guild_id = ""; 
+# CLOUDINARY GUILD ID
+$cloudinary_guild_id = "";
+
+# ROLES
+$sub_role_id = "";
+$discord_sub_role_id = "";
+$vip_role_id = "";
+$mod_role_id = "";
+$kofi_role_id = "";
+$turtle_role_id = "";
+$turtle_id = "";
+$brownieval_admin_access_id = "";
+$brownieval_player_access_id = "";
+$override_role_id = "";
+
+$sub_perk_roles = array($discord_sub_role_id, $sub_role_id, $vip_role_id, $mod_role_id, $kofi_role_id);
+
+##############################
+###########TWITCH#############
+##############################
+$twitch_client_id = "";
+$twitch_client_secret = "";
+$twitch_user_id = "";
+$brownieval_sub_only_videos = array();
+
+?>
