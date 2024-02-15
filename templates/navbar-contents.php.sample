@@ -1,0 +1,28 @@
+<?php
+/**
+ * A sample file showing how to construct the navbar_contents array.
+ */
+$navbar_contents = array(
+    array(
+        "type" => "nav-dropdown",
+        "id" => "About",
+        "href" => "#",
+        "contents" => "About",
+        "children" => array(
+            array(
+                "type" => "dropdown-item",
+                "href" => "/about",
+                "popout" => false,
+                "contents" => "About Me"
+            ),
+        )
+    )
+    , array(
+        "type" => "nav-item",
+        "href" => "/store",
+        "popout" => false,
+        "contents" => "Support/Donate"
+    )
+)
+
+?>
