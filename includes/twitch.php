@@ -60,6 +60,9 @@ function _helper_twitch_get_videos($url) {
                 $entry["thumbnail_url"] = str_replace("%{width}x%{height}", "320x180", $entry["thumbnail_url"]);
                 array_push($resulting_data, $entry);
             }
+            usort($resulting_data, function($a, $b) {
+                return intval(strtotime($a["published_at"]) < intval(strtotime($b["published_at"])));
+            });
             return $resulting_data;
         } else if (isset($results['error']) && (isset($results['status']) && ($results['status'] == "401"))) {
             if (twitch_get_access_token() === -1) {
@@ -82,8 +85,10 @@ function twitch_get_videos_by_id($video_ids) {
     $url = $GLOBALS['twitch_api_url'] . "/helix/videos?";
     $_first_video = true;
     foreach ($video_ids as $video_id) {
-        if ($_first_video) {
+        if (!$_first_video) {
             $url .= "&";
+        } else {
+            $_first_video = false;
         }
         $url .= "id=" . $video_id;
     }
