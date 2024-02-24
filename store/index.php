@@ -21,7 +21,7 @@ echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 
 <?php
 $directories = array();
-array_push($directories, array("donate", "Donate", "Directly support Browntul via these options!<br/>For subscriptions, all prices listed below are rates for the lowest subscription tier."));
+array_push($directories, array("donate", "Support", "Directly support Browntul via these options!<br/>Scroll to the bottom to see all the sub perks."));
 array_push($directories, array("shoutcasting", "Shoutcasting", "Want Browntul to shoutcast your games? Check out the services you can request below!<br/>All prices listed below are starting rates."));
 array_push($directories, array("merch", "Store", "Check out these featured store items that you can purchase for a one-time fee!"));
 
@@ -65,6 +65,7 @@ foreach ($directories as $directory) {
             break;
         case "donate":
             queryShopItems($conn, "donate");
+            require $dir . "/templates/sub-perks-description.php";
             break;
         case "merch":
             queryShopItems($conn, "merch");

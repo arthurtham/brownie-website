@@ -16,21 +16,17 @@ $quote = array_rand(
 
 if (!isset($_SESSION['user'])) {
 	echo '<div class="container body-container">';
-	echo "<div class='alert alert-danger' role='alert'>
-	<center>You need to log in to Discord before viewing this page.</center>
-	</div>";
 	echo '<h1 style="text-align: center;">Turtle Pond - Profile</h1>';
-	require $dir . "/templates/sub-perks-description.php";
+	echo "<div class='alert alert-danger' role='alert'>
+	<center>Please log in to view your profile.</center>
+	</div>";
 	echo "</div>";
 } else { // User is logged in
-    echo '<div class="container body-container"';
-    echo '<p><h1 class="text-center">Turtle Pond - Profile</h1></p>';
+	echo '<div class="d-flex flex-column align-items-center justify-content-center" style="height:100%">';
+    echo '<p><h1 class="text-center" style="color:white">Turtle Pond - Profile</h1></p>';
     require $dir . "/templates/profile-box.php";
-	echo '<div class="row"><div class="col col-md-6 offset-md-3">';
-	echo '<p class="text-center">Look at you! '.$quote_array[$quote].'</p>';
-	echo '<p class="text-center">You get more perks if you subscribe
-		and <strong><a href="/discord" target="_blank">
-		join the community Discord</a></strong>!';
+	echo '<div class="row"><div class="col col-md-12">';
+	echo '<p class="text-center" style="color:white;font-weight:bold">Look at you! '.$quote_array[$quote].'</p>';
     echo "</div></div>";
 	echo "</div>";
 }

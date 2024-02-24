@@ -18,8 +18,17 @@ require $dir . "/includes/default-includes.php";
 	<?php require $dir . "/templates/header-includes.php" ?>
 </head>
 
-<?php if (isset($title) && $title === "BrowntulStar - Home") {
+<?php if (isset($title) && in_array($title, array(
+	"BrowntulStar - Home"
+))
+) {
 	echo '<body class="home">';
+} else if (isset($title) && in_array($title, array(
+	"Turtle Pond - Sub Perks",
+	"Turtle Pond - Profile"
+))
+) {
+	echo '<body class="profile">';
 } else {
 	echo '<body>';
 }

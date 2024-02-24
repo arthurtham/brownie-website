@@ -50,9 +50,13 @@ EXPIRED;
 				</a>
 			</span>
 			<span class="d-flex flex-row gap-1" style="text-align: center">
-				<a href="/about" class="btn btn-success" style="width: 33%; margin-bottom:6px;">About</a>
-				<a href="/shoutcasting"  class="btn btn-danger" style="width: 34%; margin-bottom:6px;">Portfolio</a>
-				<a href="/subs"  class="btn btn-warning" style="width: 33%; margin-bottom:6px;">Subs</a>
+				<a href="/about" class="btn btn-success" style="width: 50%; margin-bottom:6px;">About</a>
+				<a href="/shoutcasting"  class="btn btn-success" style="width: 50%; margin-bottom:6px;">Portfolio</a>
+			</span>
+			<span class="d-flex flex-row gap-1" style="text-align: center">
+				<a href="/subs"  class="btn btn-danger" style="width: 50%; margin-bottom:6px;">Sub Perks</a>
+				<a href="/store"  class="btn btn-warning" style="width: 50%; margin-bottom:6px;">Services/Support</a>
+
 			</span>
 			<span class="d-flex flex-row gap-2 justify-content-center">
 				<a style="text-decoration: none;font-size:32px" href="https://twitch.tv/browntulstar" target="_blank">

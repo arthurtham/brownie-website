@@ -22,6 +22,14 @@ require $dir . "/templates/header.php"
         <div class="row">
             <div class="col-sm">
                 <div class="card" style="width: 100%; height:100%">
+                    <img src="/assets/img/honkaistarrail.jpg" class="card-img-top" alt="qingque honkai star rail" style="object-fit: cover;height:200px">
+                    <div class="card-body">
+                        <h5 class="card-title  text-center">Honkai: Star Rail</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card" style="width: 100%; height:100%">
                     <img src="/assets/img/mk8dx.jpg" class="card-img-top" alt="mario kart 8 deluxe" style="object-fit: cover;height:200px">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Mario Kart 8 Deluxe</h5>
@@ -44,21 +52,13 @@ require $dir . "/templates/header.php"
                     </div>
                 </div>
             </div>
-            <div class="col-sm">
-                <div class="card" style="width: 100%; height:100%">
-                    <img src="/assets/img/honkaistarrail.jpg" class="card-img-top" alt="qingque honkai star rail" style="object-fit: cover;height:200px">
-                    <div class="card-body">
-                        <h5 class="card-title  text-center">Honkai: Star Rail</h5>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <hr>
     <h2 style="text-align: center;">Activities</h2>
     <div class="container">
         <div class="row">
-            <div class="col-sm">
+            <div class="col-sm-4">
                 <div class="card" style="width: 100%; height:100%">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Coding</h5>
@@ -66,27 +66,19 @@ require $dir . "/templates/header.php"
                     </div>
                 </div>
             </div>
-            <div class="col-sm">
+            <div class="col-sm-4">
                 <div class="card" style="width: 100%; height:100%">
                     <div class="card-body">
-                        <h5 class="card-title  text-center">Shoutcasting</h5>
-                        <p style="text-align:center">I shoutcast and produce VALORANT tournaments year-round!</p>
+                        <h5 class="card-title  text-center">Broadcast and Event Planning</h5>
+                        <p style="text-align:center">I shoutcast and produce VALORANT tournaments year-round! I also help plan streamer tournaments and events hosted on Twitch</p>
                     </div>
                 </div>
             </div>
-            <div class="col-sm">
-                <div class="card" style="width: 100%; height:100%">
-                    <div class="card-body">
-                        <h5 class="card-title  text-center">Event Planning</h5>
-                        <p style="text-align:center">I help plan streamer tournaments and events hosted on Twitch.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
+            <div class="col-sm-4">
                 <div class="card" style="width: 100%; height:100%">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Community Modding</h5>
-                        <p style="text-align:center">I mod for streamer and game-jam communities on Discord and Twitch.</p>
+                        <p style="text-align:center">I mod for online communities on Discord, Twitch, and itch.io.</p>
                     </div>
                 </div>
             </div>
