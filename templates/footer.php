@@ -1,10 +1,13 @@
 <?php
 
+
+
 if (!isset($_FOOTER_ENABLE) || $_FOOTER_ENABLE == true) {
+    $_footer_style = (!isset($_FOOTER_HOME) || $_FOOTER_HOME == false) ? "position:fixed;bottom:0;padding: 10px;z-index:2" : "bottom:0;padding: 10px;z-index:2";
     echo <<<FOOTER
 
 
-<footer class="d-flex flex-column w-100 justify-content-center align-items-center border-top bg-light" style="position:fixed;bottom:0;padding: 10px;z-index:2">
+<footer class="d-flex flex-column w-100 justify-content-center align-items-center border-top bg-light" style="{$_footer_style}">
     <div class="row" style="width:100wh auto">
         <ul class="nav col-sm-12 justify-content-beginning list-unstyled d-flex">
             <li class="ms-2">

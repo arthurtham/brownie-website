@@ -12,7 +12,7 @@ require $dir . "/templates/header.php"
 </style>
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <center><img src="/assets/img/turtleavatar.png" style="border-radius: 100%;width:auto;max-width:200px" /></center>
+    <center><img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/browntulstar-logo-v1-large.webp" style="border-radius: 100%;width:auto;max-width:200px" /></center>
     <h1 style="text-align: center;">Hi, I'm Browntul.</h1>
     <p style="text-align: center;">My pronouns are he/him/his. It's nice to meet you!</p>
     <p style="text-align: center;">I hope you all can jump along for the ride!</p>
@@ -20,33 +20,33 @@ require $dir . "/templates/header.php"
     <h2 style="text-align: center;">Current Games</h2>
     <div class="container">
         <div class="row">
-            <div class="col-sm">
+            <div class="col-lg-3">
                 <div class="card" style="width: 100%; height:100%">
-                    <img src="/assets/img/honkaistarrail.jpg" class="card-img-top" alt="qingque honkai star rail" style="object-fit: cover;height:200px">
+                    <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/games-honkaistarrail.webp" class="card-img-top" alt="qingque honkai star rail" style="object-fit: cover;height:200px">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Honkai: Star Rail</h5>
                     </div>
                 </div>
             </div>
-            <div class="col-sm">
+            <div class="col-lg-3">
                 <div class="card" style="width: 100%; height:100%">
-                    <img src="/assets/img/mk8dx.jpg" class="card-img-top" alt="mario kart 8 deluxe" style="object-fit: cover;height:200px">
+                    <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/games-mk8dx.webp" class="card-img-top" alt="mario kart 8 deluxe" style="object-fit: cover;height:200px">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Mario Kart 8 Deluxe</h5>
                     </div>
                 </div>
             </div>
-            <div class="col-sm">
+            <div class="col-lg-3">
                 <div class="card" style="width: 100%; height:100%">
-                    <img src="/assets/img/krr.jpg" class="card-img-top" alt="KRR" style="object-fit: cover;height:200px">
+                    <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/games-krr.webp" class="card-img-top" alt="KRR" style="object-fit: cover;height:200px">
                     <div class="card-body">
                         <h5 class="card-title  text-center">KartRider: Drift</h5>
                     </div>
                 </div>
             </div>
-            <div class="col-sm">
+            <div class="col-lg-3">
                 <div class="card" style="width: 100%; height:100%">
-                    <img src="/assets/img/valorant-kj.jpg" class="card-img-top" alt="valorant killjoy" style="object-fit: cover;height:200px">
+                    <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/games-valorant-kj.webp" class="card-img-top" alt="valorant killjoy" style="object-fit: cover;height:200px">
                     <div class="card-body">
                         <h5 class="card-title  text-center">VALORANT</h5>
                     </div>
@@ -58,7 +58,7 @@ require $dir . "/templates/header.php"
     <h2 style="text-align: center;">Activities</h2>
     <div class="container">
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-lg-4">
                 <div class="card" style="width: 100%; height:100%">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Coding</h5>
@@ -66,7 +66,7 @@ require $dir . "/templates/header.php"
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-lg-4">
                 <div class="card" style="width: 100%; height:100%">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Broadcast and Event Planning</h5>
@@ -74,7 +74,7 @@ require $dir . "/templates/header.php"
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-lg-4">
                 <div class="card" style="width: 100%; height:100%">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Community Modding</h5>
@@ -85,12 +85,22 @@ require $dir . "/templates/header.php"
         </div>
     </div>
     <hr>
-    <h2 style="text-align: center;">Stream Teams</h2>
+    <h2 style="text-align: center;">Organizations</h2>
     <div class="container">
         <div class="row">
-            <div class="col col-md-4 offset-md-2">
+            <div class="col-lg-6">
                 <div class="card" style="width: 100%; height:100%">
-                    <img src="/assets/img/kazokulogo.png" class="card-img-top" alt="kazoku logo" style="padding: 20px;object-fit: contain;height:200px">
+                    <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/team-comfycafelogo.webp" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: contain;height:200px">
+                    <div class="card-body">
+                        <h5 class="card-title  text-center">#BrownieVAL</h5>
+                        <p style="text-align:center"><a href="https://brownieval.browntulstar.com/" target="_blank">Owner</a></p>
+                        <p style="text-align:center"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card" style="width: 100%; height:100%">
+                    <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/team-kazoku.webp" class="card-img-top" alt="kazoku logo" style="padding: 20px;object-fit: contain;height:200px">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Kazoku</h5>
                         <p style="text-align:center"><a href="https://kazoteam.carrd.co/" target="_blank">Events Coordinator</a></p>
@@ -98,12 +108,24 @@ require $dir . "/templates/header.php"
                     </div>
                 </div>
             </div>
-            <div class="col col-md-4">
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
                 <div class="card" style="width: 100%; height:100%">
-                    <img src="/assets/img/comfycafelogo.png" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: contain;height:200px">
+                    <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/team-comfycafelogo.webp" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: contain;height:200px">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Okimi Cafe</h5>
                         <p style="text-align:center"><a href="https://okimicafe.crd.co/" target="_blank">Co-founder and Co-manager Emeritus</a></p>
+                        <p style="text-align:center"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card" style="width: 100%; height:100%">
+                    <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/team-comfycafelogo.webp" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: contain;height:200px">
+                    <div class="card-body">
+                        <h5 class="card-title  text-center">Rendezvous Valorant</h5>
+                        <p style="text-align:center"><a href="https://twitter.com/rendezvousval" target="_blank">Lead Play-by-play Caster</a></p>
                         <p style="text-align:center"></p>
                     </div>
                 </div>

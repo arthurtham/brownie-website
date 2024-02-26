@@ -14,16 +14,16 @@ echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 </style>
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <h1 style="text-align: center;">Support Browntul</h1>
+    <h1 style="text-align: center;">Support/Services</h1>
     <center>
         <p>Thank you for supporting me! Please take a look at ways you can support me.</p>
     </center>
 
 <?php
 $directories = array();
-array_push($directories, array("donate", "Support", "Directly support Browntul via these options!<br/>Scroll to the bottom to see all the sub perks."));
-array_push($directories, array("shoutcasting", "Shoutcasting", "Want Browntul to shoutcast your games? Check out the services you can request below!<br/>All prices listed below are starting rates."));
-array_push($directories, array("merch", "Store", "Check out these featured store items that you can purchase for a one-time fee!"));
+array_push($directories, array("donate", "Support Browntul", "Check out these sub perks to support Browntul!"));
+array_push($directories, array("shoutcasting", "Get Browntul on Broadcast", "Want Browntul to shoutcast/broadcast your games? Check out the services you can request below!<br/>All prices listed below are starting rates."));
+array_push($directories, array("merch", "Buy Cool Things", "Check out these featured store items that you can purchase!"));
 
 echo '<ul class="nav nav-tabs" id="storedirectory" role="tablist">';
 $show_active_toggle = "true";
@@ -64,8 +64,10 @@ foreach ($directories as $directory) {
             queryShopItems($conn, "shoutcasting"); 
             break;
         case "donate":
-            queryShopItems($conn, "donate");
+            echo "<hr style='margin-top: 0 !important; margin-bottom: 10px !important'>";
             require $dir . "/templates/sub-perks-description.php";
+            echo "<hr style='margin-top: 0 !important; margin-bottom: 10px !important'><h4>All Options</h4>";
+            queryShopItems($conn, "donate");
             break;
         case "merch":
             queryShopItems($conn, "merch");

@@ -1,22 +1,22 @@
 
-<div class="container rounded bg-dark text-white d-flex flex-column" style="max-width:85vmin;">
+<div class="container rounded bg-dark text-white" style="max-width:75vmin;width:auto;">
     <div class="row">
         <div class="col">
             <center><img src="/assets/img/turtle-adult.png" style="width:100%;max-width:200px" /></center><br/>
             <h2 class="text-center">Sub Perks</h2>
             <p class="text-center">Here's all the Twitch and Ko-fi perks. Each role corresponds to the Discord role in the Turtle Pond Discord Server.
-                Scroll horizontally to see the whole table. To refresh your roles, log out and log back in.</p>
+                To refresh your roles, log out and log back in.</p>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <div style="overflow-x:scroll">
+            <div style="overflow-x:auto">
                 <table class="table table-responsive table-hover table-striped table-striped-columns table-bordered table-dark" style="text-align:center">
-                    <thead class="thead-dark">
+                    <thead class="table-light">
                         <tr>
                         <th scope="col" style="width: 100%;min-width:150px">Sub Perks</th>
-                        <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-danger w-100">RED SHELLS<br/>(Twitch Subs)</span></th>
-                        <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-danger w-100">RED SHELLS<br/>(Ko-fi Supporter)</span></th>
+                        <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-danger w-100">RED SHELLS<br/>(Twitch)</span></th>
+                        <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-danger w-100">RED SHELLS<br/>(Ko-fi)</span></th>
                         <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-warning w-100">STARS<br/>(VIP)</span></th>
                         <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-info w-100">BLUE SHELLS<br/>(Mods)</span></th>
                         </tr>
@@ -104,8 +104,10 @@
                 Subscribe on Twitch
             </a>
         </div>
+    </div>
+    <div class="row p-3">
         <div class="col">
-            <a class="btn btn-light w-100" href='https://ko-fi.com/R6R02XQSW' target='_blank'>
+            <a class="btn btn-light w-100" href='https://ko-fi.com/browntulstar' target='_blank'>
                 <img height='24' style='border:0px;height:24px;' src='https://storage.ko-fi.com/cdn/kofi4.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' />
                 Join on Ko-fi
             </a>

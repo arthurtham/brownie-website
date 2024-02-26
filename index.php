@@ -37,11 +37,11 @@ BADAUTH;
 EXPIRED;
 	}
 	?>
-	<div class="d-flex align-items-center justify-content-center" style="height:100%">
-		<div class="box bg-light bg-gradient shadow" style="padding: 40px; border-radius: 10%">
-			<center><img src="/assets/img/turtleavatar.png" style="border-radius: 100%;width:auto;max-width:200px" />
+	<div class="d-flex align-items-center justify-content-center" style="height:100vh">
+		<div class="box bg-light bg-gradient shadow" style="padding: 40px; border-radius: 10%; width:100%; max-width:500px">
+			<center><img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/browntulstar-logo-v1-large.webp" style="border-radius: 100%;width:auto;max-width:200px" />
 			<h1>Browntul</h1>
-			<h5 style="margin-top:-10px">@browntulstar</h5>
+			<h5>@browntulstar</h5>
 			<p>Turtle Streamer and Shoutcaster/Producer</p>
 			<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
 				<a class="btn btn-dark w-100" href="/stream">
@@ -49,56 +49,23 @@ EXPIRED;
 					Stream
 				</a>
 			</span>
-			<span class="d-flex flex-row gap-1" style="text-align: center">
-				<a href="/about" class="btn btn-success" style="width: 50%; margin-bottom:6px;">About</a>
-				<a href="/shoutcasting"  class="btn btn-success" style="width: 50%; margin-bottom:6px;">Portfolio</a>
+			<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
+				<a href="/subs"  class="btn btn-danger w-100">Sub Perks</a>
 			</span>
 			<span class="d-flex flex-row gap-1" style="text-align: center">
-				<a href="/subs"  class="btn btn-danger" style="width: 50%; margin-bottom:6px;">Sub Perks</a>
-				<a href="/store"  class="btn btn-warning" style="width: 50%; margin-bottom:6px;">Services/Support</a>
-
+				<a href="/about" class="btn btn-secondary" style="width: 50%; margin-bottom:6px;">About</a>
+				<a href="/about/credits"  class="btn btn-secondary" style="width: 50%; margin-bottom:6px;">Credits</a>
 			</span>
-			<span class="d-flex flex-row gap-2 justify-content-center">
-				<a style="text-decoration: none;font-size:32px" href="https://twitch.tv/browntulstar" target="_blank">
-					<i class="fab fa-twitch"></i>
-				</a> 
-				<a style="text-decoration: none;font-size:32px" href="https://x.com/browntulstar" target="_blank">
-					<i class="fa-brands fa-x-twitter"></i>
-				</a>
-				<a style="text-decoration: none;font-size:32px" href="/youtube" target="_blank">
-					<i class="fa-brands fa-youtube"></i>
-				</a>
-				<a style="text-decoration: none;font-size:32px" href="/tiktok" target="_blank">
-					<i class="fa-brands fa-tiktok"></i>
-				</a>
-				<a style="text-decoration: none;font-size:32px" href="https://ko-fi.com/browntulstar" target="_blank">
-					<i class="fa-solid fa-mug-hot"></i>
-				</a>
-			</span>
-			<span class="d-flex flex-row justify-content-center">
-				<a style="text-decoration: none;font-size:32px;padding:6px" href="/discord" target="_blank">
-					<i class="fab fa-discord"></i>
-				</a> 
-				<a style="text-decoration: none;font-size:32px;padding:6px" href="mailto:browntulstar@browntulstar.com" target="_blank">
-					<i class="fa-solid fa-envelope"></i>
-				</a>
+			<span class="d-flex flex-row gap-1" style="text-align: center">
+				<a href="/shoutcasting"  class="btn btn-secondary" style="width: 50%; margin-bottom:6px;">Portfolio</a>
+				<a href="/store"  class="btn btn-secondary" style="width: 50%; margin-bottom:6px;">Support</a>
 			</span>
 			</center>
 		</div>
 	</div>
 </div>
 
-<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-<script>
-  kofiWidgetOverlay.draw('browntulstar', {
-    'type': 'floating-chat',
-    'floating-chat.donateButton.text': 'Support me',
-    'floating-chat.donateButton.background-color': '#fcbf47',
-    'floating-chat.donateButton.text-color': '#323842'
-  });
-</script>
-
 <?php 
-$_FOOTER_ENABLE = false; 
+$_FOOTER_HOME = true;
 require __DIR__ . "/templates/footer.php" 
 ?>
