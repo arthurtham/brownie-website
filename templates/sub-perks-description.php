@@ -2,7 +2,7 @@
 <div class="container rounded bg-dark text-white" style="max-width:75vmin;width:auto;">
     <div class="row">
         <div class="col">
-            <center><img src="/assets/img/turtle-adult.png" style="width:100%;max-width:200px" /></center><br/>
+            <center><img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,w_200,h_200,ar_1:1/com.browntulstar/img/turtle-adult.webp" style="width:100%;max-width:200px" /></center><br/>
             <h2 class="text-center">Sub Perks</h2>
             <p class="text-center">Here's all the Twitch and Ko-fi perks. Each role corresponds to the Discord role in the Turtle Pond Discord Server.
                 To refresh your roles, log out and log back in.</p>
