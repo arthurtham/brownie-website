@@ -4,7 +4,7 @@ if (!isset($dir)) {
     $dir = dirname(__DIR__, 1);
 }
 # Enabling error display
-error_reporting(E_ALL);
+error_reporting(0);
 ini_set('display_errors', 0);
 
 # Including all the required scripts
