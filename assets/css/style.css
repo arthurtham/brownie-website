@@ -32,6 +32,15 @@ div.container.body-container-no-bg {
     }
 }
 
+#center-block {
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 body {
     background-color: var(--bs-gray) !important;
     display: grid;
