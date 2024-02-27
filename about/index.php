@@ -90,7 +90,7 @@ require $dir . "/templates/header.php"
         <div class="row">
             <div class="col-lg-6">
                 <div class="card" style="width: 100%; height:100%">
-                    <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/team-comfycafelogo.webp" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: contain;height:200px">
+                    <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,b_gen_fill,w_430,h_261/com.browntulstar/img/brownieval-logo-v1.webp" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: contain;height:200px">
                     <div class="card-body">
                         <h5 class="card-title  text-center">#BrownieVAL</h5>
                         <p style="text-align:center"><a href="https://brownieval.browntulstar.com/" target="_blank">Owner</a></p>
@@ -122,7 +122,7 @@ require $dir . "/templates/header.php"
             </div>
             <div class="col-lg-6">
                 <div class="card" style="width: 100%; height:100%">
-                    <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/team-comfycafelogo.webp" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: contain;height:200px">
+                    <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,b_gen_fill,w_430,h_200/com.browntulstar/img/team-rdv.webp" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: contain;height:200px">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Rendezvous Valorant</h5>
                         <p style="text-align:center"><a href="https://twitter.com/rendezvousval" target="_blank">Lead Play-by-play Caster</a></p>

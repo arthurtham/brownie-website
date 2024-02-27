@@ -22,30 +22,24 @@ require $dir . "/templates/header.php";
 <?php
 $mysql_artists = queryArtEntries($conn);
 
-/* Carousel: Highlighting Artists*/
-echo '<div id="carouselArt" class="carousel carousel-dark slide">';
-echo '<div class="carousel-inner">';
-echoHighlightedArtEntries($mysql_artists);
-echo '</div>';
-echo <<<CAROUSELBUTTONS
-<button class="carousel-control-prev" type="button" data-bs-target="#carouselArt" data-bs-slide="prev">
-<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-<span class="visually-hidden">Previous</span>
-</button>
-<button class="carousel-control-next" type="button" data-bs-target="#carouselArt" data-bs-slide="next">
-<span class="carousel-control-next-icon" aria-hidden="true"></span>
-<span class="visually-hidden">Next</span>
-</button>
-CAROUSELBUTTONS;
-echo "</div>";
-
-?>
-
-<hr />
+/* Carousel: Highlighting Artists (temporary removal)*/
+// echo '<div id="carouselArt" class="carousel carousel-dark slide">';
+// echo '<div class="carousel-inner">';
+// echoHighlightedArtEntries($mysql_artists);
+// echo '</div>';
+// echo <<<CAROUSELBUTTONS
+// <button class="carousel-control-prev" type="button" data-bs-target="#carouselArt" data-bs-slide="prev">
+// <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+// <span class="visually-hidden">Previous</span>
+// </button>
+// <button class="carousel-control-next" type="button" data-bs-target="#carouselArt" data-bs-slide="next">
+// <span class="carousel-control-next-icon" aria-hidden="true"></span>
+// <span class="visually-hidden">Next</span>
+// </button>
+// CAROUSELBUTTONS;
+// echo "</div><hr />";
 
 
-
-<?php
 /* Specific Artists */
 echoCardEntries($mysql_artists);
 
@@ -124,21 +118,22 @@ function echoModalEntries($result) {
             /* Links */
             $links = array();
             foreach ([
-                "website"   => [$item["links_website"],"fa-solid fa-globe",""],
-                "twitch"    => [$item["links_twitch"],"fa-brands fa-twitch","https://twitch.tv/"],
-                "twitter"   => [$item["links_twitter"],"fa-brands fa-x-twitter","https://twitter.com/"],
-                "instagram" => [$item["links_instagram"],"fa-brands fa-instagram","https://instagram.com/"],
-                "ko-fi"      => [$item["links_kofi"],"fa-solid fa-mug-hot","https://ko-fi.com/"],
-                "vgen"      => [$item["links_vgen"],"fa-solid fa-v","https://vgen.co/"],
-                "etsy"      => [$item["links_etsy"],"fa-brands fa-etsy","https://etsy.com/shop/"]
+                "website"   => [$item["links_website"],"fa-solid fa-globe","","Website"],
+                "vgen"      => [$item["links_vgen"],"fa-solid fa-v","https://vgen.co/","VGen"],
+                "ko-fi"     => [$item["links_kofi"],"fa-solid fa-mug-hot","https://ko-fi.com/","Ko-fi"],
+                "etsy"      => [$item["links_etsy"],"fa-brands fa-etsy","https://etsy.com/shop/","Etsy"],
+                "twitch"    => [$item["links_twitch"],"fa-brands fa-twitch","https://twitch.tv/","Twitch"],
+                "twitter"   => [$item["links_twitter"],"fa-brands fa-x-twitter","https://twitter.com/","X (Twitter)"],
+                "instagram" => [$item["links_instagram"],"fa-brands fa-instagram","https://instagram.com/","Instagram"],
             ] as $category => $contents) {
                 if (strlen($contents[0]) <= 0) {
                     $links[$category] = "";
                 } else {
                     $links[$category] = '<a href="'.$contents[2].$contents[0].'" target="_blank" class="btn btn-dark" style="width:50px">
-                    <i class="'.$contents[1].'"></i></a> <strong>'.ucfirst($category).'</strong>: '.$contents[0].'<br />';
+                    <i class="'.$contents[1].'"></i></a> <strong>'.$contents[3].'</strong>: '.$contents[0].'<br />';
                 }
             }
+            $links_string = join($links);
 
             /* Export */
             echo <<<MODALENTRY
@@ -154,7 +149,8 @@ function echoModalEntries($result) {
                             <center><h5>{$item["name"]}</h5></center>
                             <center><p>{$item["subheader"]}</p></center>
                             <p>{$item["description"]}</p>
-                            <span>{$links["website"]}{$links["twitch"]}{$links["twitter"]}{$links["instagram"]}{$links["ko-fi"]}{$links["vgen"]}{$links["etsy"]}</span>
+                            <h5>Links</h5>
+                            <span>{$links_string}</span>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
