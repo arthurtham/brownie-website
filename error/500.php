@@ -8,8 +8,9 @@ require $dir . "/templates/header.php";
     <div class="d-flex align-items-center justify-content-center" style="height:100%">
         <span>
             <h1 class="text-center">500 Internal Error</h1>
-            <p>Something inside the Turtle Pond didn't work. Uninspirational!</p>
-            <p>It's not your fault, though. Please try again later.</p>
+            <p>Something inside the Turtle Pond didn't work. Uninspirational!<br/>
+            It's not your fault, though. It's best to let Browntul know about this error.<br/>
+            Otherwise, please try again later.</p>
         </span>
     </div>
 </div>

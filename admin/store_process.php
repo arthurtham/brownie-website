@@ -2,9 +2,9 @@
 
 $dir = dirname(__DIR__, 1);
 
+require $dir . "/includes/admin-check.php";
 require $dir . "/includes/default-includes.php";
 require_once($dir . "/includes/mysql.php");
-//require $dir . "/includes/admin-check.php";
 
 if (empty($_POST)) {
     die("No variables passed");

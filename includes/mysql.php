@@ -9,7 +9,8 @@ $dbname = $_environmental_variables["dbname"];
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
 	header("HTTP/1.0 500 Internal Server Error");
-	die();
+    include($dir . "/error/500.php");
+    die();
 	// die("Connection failed: " . $conn->connect_error);
 }
 ?>

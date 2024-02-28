@@ -3,6 +3,7 @@ $dir = dirname(__DIR__, 1);
 require_once($dir . "/includes/mysql.php");
 
 if (!isset($_GET["shortcode"])) {
+    header('HTTP/1.0 404 Not Found');
     include($dir . "/error/404.php");
     die();
 }
@@ -16,6 +17,7 @@ if ($result->num_rows > 0) {
         header("Location: ".$item["fulllink"]);
     }
 } else {
+    header('HTTP/1.0 404 Not Found');
     include($dir . "/error/404.php");
     die();
 }
