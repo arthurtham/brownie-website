@@ -1,5 +1,5 @@
 
-<div class="container rounded bg-dark text-white" style="max-width:75vmin;width:auto;">
+<center><div class="container rounded bg-dark text-white" style="max-width:min(600px,75vw);width:auto;margin:0">
     <div class="row">
         <div class="col">
             <center><img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,w_200,h_200,ar_1:1/com.browntulstar/img/turtle-adult.webp" style="width:100%;max-width:200px" /></center><br/>
@@ -121,4 +121,4 @@
             </a>
         </div>
     </div>
-</div>
+</div></center>
