@@ -9,11 +9,12 @@ require $dir . "/templates/header.php";
 ?>
 <div class="container body-container">
 <h1>Menu</h1>
-<a href="/admin/announcement.php">Announcement</a><br>
-<a href="/admin/blog.php">Blog</a><br>
-<a href="/admin/debug.php">Application Debug</a><br>
-<a href="/admin/phpinfo.php">PHPDebug</a><br>
-<a href="/admin/store.php">Store (obsolete)</a><br>
+<a class="btn btn-dark" href="/admin/announcement.php">Announcement</a><br>
+<a class="btn btn-dark" href="/admin/blog.php">Blog</a><br>
+<a class="btn btn-dark" href="/admin/shortlinks.php">Shortlinks</a><br>
+<a class="btn btn-dark" href="/admin/debug.php">Application Debug</a><br>
+<a class="btn btn-dark" href="/admin/phpinfo.php">PHPDebug</a><br>
+<a class="btn btn-dark" href="/admin/store.php">Store (obsolete)</a><br>
 </div>
 
 <?php
