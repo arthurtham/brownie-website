@@ -15,8 +15,8 @@
                     <thead class="table-light">
                         <tr>
                         <th scope="col" style="width: 100%;min-width:150px">Sub Perks</th>
-                        <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-danger w-100">RED SHELLS<br/>(Twitch)</span></th>
-                        <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-danger w-100">RED SHELLS<br/>(Ko-fi)</span></th>
+                        <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-danger w-100">RED SHELLS<br/>(Twitch Subs)</span></th>
+                        <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-danger w-100">RED SHELLS<br/>(Ko-fi Subs)</span></th>
                         <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-warning w-100">STARS<br/>(VIP)</span></th>
                         <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-info w-100">BLUE SHELLS<br/>(Mods)</span></th>
                         </tr>

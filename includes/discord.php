@@ -5,8 +5,9 @@
  * @copyright : https://markis.dev
  */
 
-# Starting session so we can store all the variables
-session_start();
+require_once __DIR__ . "/functions.php";
+ # Starting session so we can store all the variables
+start_session_custom();
 
 # Setting the base url for API requests
 $GLOBALS['base_url'] = "https://discord.com";
@@ -31,11 +32,15 @@ function url($clientid, $redirect, $scope)
 # A function to initialize and store access token in SESSION to be used for other requests
 function init($redirect_url, $client_id, $client_secret, $bot_token = null)
 {
+    $state = isset($_GET['state']) ? $_GET['state'] : "-1";
+    # Check if $state == $_SESSION['state'] to verify if the login is legit | CHECK THE FUNCTION get_state($state) FOR MORE INFORMATION.
+    if (!check_state($state)) {
+        // echo "state check failed";
+        return false;
+    }
     if ($bot_token != null)
         $GLOBALS['bot_token'] = $bot_token;
     $code = $_GET['code'];
-    $state = $_GET['state'];
-    # Check if $state == $_SESSION['state'] to verify if the login is legit | CHECK THE FUNCTION get_state($state) FOR MORE INFORMATION.
     $url = $GLOBALS['base_url'] . "/api/oauth2/token";
     $data = array(
         "client_id" => $client_id,
@@ -53,6 +58,7 @@ function init($redirect_url, $client_id, $client_secret, $bot_token = null)
     curl_close($curl);
     $results = json_decode($response, true);
     $_SESSION['access_token'] = $results['access_token'];
+    return true;
 }
 
 # A function to get user information | (identify scope)
@@ -76,7 +82,14 @@ function get_user($email = null)
     if ($email == True) {
         $_SESSION['email'] = $results['email'];
     }
-    return $_SESSION['user']['message'] !== "401: Unauthorized";
+    if (!isset($_SESSION['user']['message'])) {
+        return true;
+    }
+    else if ($_SESSION['user']['message'] !== "401: Unauthorized") {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 # A function to get user guilds | (guilds scope)

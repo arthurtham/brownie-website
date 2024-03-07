@@ -30,7 +30,7 @@ BADAUTH;
 		echo <<<EXPIRED
 		<div class="toast show fade position-absolute start-50 translate-middle-x" role="alert" aria-live="assertive" aria-atomic="true" style="margin-top:50px">
 		<div class="toast-header">
-			<strong class="me-auto">You're been logged in for a while. Please log in again.</strong>
+			<strong class="me-auto">You have been logged in for a while. Please log in again to continue your journey.</strong>
 			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 		</div>
 		</div>

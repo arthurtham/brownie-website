@@ -9,13 +9,19 @@
 require __DIR__ . "/includes/functions.php";
 
 # Save Redirect in case we need it
-$_REDIRECT_URL = $_SESSION['redirect'];
+$_REDIRECT_URL = "/";
+if (isset($_SESSION) && isset($_SESSION['redirect'])) {
+    $_REDIRECT_URL = is_null($_SESSION['redirect'], "/");
+}
 
-# Starting the session
-session_start();
-
-# Closing the session and deleting all values associated with the session
+//regenerate_session();
+// # Closing the session and deleting all values associated with the session
+start_session_custom();
+$_SESSION = array();
 session_destroy();
+// # Starting the session
+start_session_custom();
+
 
 
 $argument_string = "";
@@ -32,7 +38,7 @@ if (isset($_GET["logout"])) {
 }
 
 # Reset expired session timer
-unset($_SESSION['timeout_since_login']);
+// unset($_SESSION['timeout_since_login']);
 
 # Redirecting the user back to login page
 redirect("/".$argument_string);

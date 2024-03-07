@@ -13,7 +13,7 @@ if ($_GET["data"]["source"] !== "uw" || !isset($_GET["data"]["timestamp"])) {
     die("This request is missing required parameters.");
 };
 
-session_start();
+start_session_custom();
 $cloudinary_timer_duration = 300;
 if (!isset($_SESSION['cloudinary_timer_start']) 
     || (time() - $_SESSION['cloudinary_timer_start'] > $cloudinary_timer_duration)

@@ -1,7 +1,7 @@
 <?php
 
 if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();
+    start_session_custom();
 };
 
 require_once dirname(__DIR__, 1) . "/config.php";

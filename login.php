@@ -21,19 +21,30 @@
 // ini_set('display_errors', 1);
 
 # Including all the required scripts for demo
-require __DIR__ . "/includes/discord.php";
 require __DIR__ . "/includes/functions.php";
+require __DIR__ . "/includes/discord.php";
 require "config.php";
 
 # Initializing all the required values for the script to work
-init($redirect_url, $client_id, $secret_id, $bot_token);
-
 # Fetching user details | (identify scope) (optionally email scope too if you want user's email) [Add identify AND email scope for the email!]
-if (!get_user()) {
-    if ($_SESSION['signin-attempted'] === 0 || !isset($_SESSION['signin-attempted'])) {
+if (!isset($_SESSION['signin-attempted']) || $_SESSION['signin-attempted'] === 0){
+    if (session_status() != PHP_SESSION_ACTIVE) {
+        start_session_custom();
+    }
+    $session_redirect = $_SESSION["redirect"];
+    $_SESSION["redirect"] = $session_redirect;
+}
+
+if (
+    (isset($_GET["error"]) && $_GET["error"]==="access_denied") ||
+    (!isset($_SESSION['signin-attempted']) || $_SESSION['signin-attempted'] === 0) || 
+    !(init($redirect_url, $client_id, $secret_id, $bot_token)) || (!get_user())
+    ) {
+    if (!isset($_SESSION['signin-attempted']) || $_SESSION['signin-attempted'] === 0) {
         $_SESSION['signin-attempted'] = 1;
         $auth_url = url($client_id, $redirect_url, $scopes);
         // echo json_encode($_SESSION['user']);
+        // die;
         redirect($auth_url);
         die;
     } else {
