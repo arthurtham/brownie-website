@@ -21,14 +21,29 @@ echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 
 <?php
 $directories = array();
-array_push($directories, array("donate", "Support Browntul", "Check out these sub perks to support Browntul!"));
-array_push($directories, array("shoutcasting", "Get Browntul on Broadcast", "Want Browntul to shoutcast/broadcast your games? Check out the services you can request below!<br/>All prices listed below are starting rates."));
-array_push($directories, array("merch", "Buy Cool Things", "Check out these featured store items that you can purchase!"));
+$sql = "SELECT shop_type, name, description FROM shop_types WHERE visible = 1";
+$result = $conn->query($sql);
+$_is_get_tab_valid = false;
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        array_push($directories, array($row["shop_type"],$row["name"],$row["description"]));
+        if (isset($_GET["tab"]) && $_GET["tab"] === $row["shop_type"]) {
+            $_is_get_tab_valid = true;
+        }
+    }
+}
 
 echo '<ul class="nav nav-tabs" id="storedirectory" role="tablist">';
-$show_active_toggle = "true";
-$show_active_text = "active";
+$_first = true;
 foreach ($directories as $directory) {
+    if (($_first && !$_is_get_tab_valid) || ($_is_get_tab_valid && $_GET["tab"] === $directory[0])) {
+        $show_active_toggle = "true";
+        $show_active_text = "active";
+    } else {
+        $show_active_toggle = "false";
+        $show_active_text = "";
+    }
+    $_first = false;
     echo <<<ITEM
     <li class="nav-item" role="presentation">
         <button 
@@ -42,36 +57,31 @@ foreach ($directories as $directory) {
         aria-selected="$show_active_toggle">$directory[1]</button>
     </li>
 ITEM;
-$show_active_toggle = "false";
-$show_active_text = "";
 }
 echo "</ul>";
 echo '<div class="tab-content bg-dark" id="storedirectorycontent" style="padding:20px;color:white">';
-$show_active_toggle = true;
+$_first = true;
 foreach ($directories as $directory) {	
     echo '<div class="tab-pane fade';
-    if ($show_active_toggle) {
+    if (($_first && !$_is_get_tab_valid) || ($_is_get_tab_valid && $_GET["tab"] === $directory[0])) {
         echo ' show active';
-        $show_active_toggle = false;
     }
+    $_first = false;
     echo '" id="'.$directory[0].'-tab-content" role="tabpanel" aria-labelledby="'.$directory[0].'-tab-content">';
     echo "<h3>" . $directory[1] . "</h3>";
     echo "<small>" . $directory[2] . "</small><br><br>";
 
     // Select listings
     switch ($directory[0]) {
-        case "shoutcasting":
-            queryShopItems($conn, "shoutcasting"); 
-            break;
+        //Special case for donate, otherwise just query
         case "donate":
             echo "<hr style='margin-top: 0 !important; margin-bottom: 10px !important'>";
             require $dir . "/templates/sub-perks-description.php";
             echo "<hr style='margin-top: 0 !important; margin-bottom: 10px !important'><h4>All Options</h4>";
             queryShopItems($conn, "donate");
             break;
-        case "merch":
-            queryShopItems($conn, "merch");
         default:
+            queryShopItems($conn, $directory[0]);
             break;
     }
     echo "</div>";
