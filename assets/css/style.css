@@ -87,3 +87,40 @@ body.home {
     background: radial-gradient(circle, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 30%, rgba(58,103,62,1) 75%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d3ae86",endColorstr="#3a673e",GradientType=1);
 }
+
+
+
+.nav-tabs .nav-item a, .nav-tabs .nav-link {
+    color: black !important;
+    text-decoration: none !important;
+    border-color:#00000010 !important;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: rgba(211,174,134,0.5) !important;
+    border-color:#00000060 !important;
+}
+
+
+.nav-tabs .nav-link.active {
+    background-color: rgb(211,174,134) !important;
+    border-color: black !important;
+    color: black !important;
+    font-weight:bold;
+    margin-bottom:-4;
+}
+
+.pagination .page-item > .page-link {
+    color: black !important;
+}
+
+.pagination .page-item:not(.active) > .page-link:hover:not([disabled]){
+    background-color: lightgray !important;
+}
+
+.pagination .page-item.active > .page-link {
+    background-color: rgb(211,174,134) !important;
+    border-color: rgb(211,174,134) !important;
+    z-index: inherit;
+    font-weight: bold;
+}
