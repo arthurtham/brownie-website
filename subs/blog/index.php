@@ -112,7 +112,7 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 		<center>Take a look at Browntul's blogs by clicking on the tabs below!</center><br/>
 ABOUT;
 	//Set up tabs
-	echo '<ul class="nav nav-tabs" id="blogdirectory" role="tablist">';
+	echo '<div class="nav-tabs-div"><ul class="nav nav-tabs" id="blogdirectory" role="tablist">';
 	$show_active_toggle = "true";
 	$show_active_text = "active";
 	$show_active_href = "";
@@ -153,7 +153,7 @@ ITEM;
 		$show_active_toggle = "false";
 		$show_active_text = "";
 	}
-	echo '</ul>';
+	echo '</ul></div>';
 	echo '<div class="tab-content bg-dark" id="blogdirectorycontent" style="padding:20px;color:white">';
 	// $show_active_toggle = true;
 	foreach ($directory_to_browse as $directory) {	

@@ -33,7 +33,7 @@ if ($result->num_rows > 0) {
     }
 }
 
-echo '<ul class="nav nav-tabs" id="storedirectory" role="tablist">';
+echo '<div class="nav-tabs-div"><ul class="nav nav-tabs" id="storedirectory" role="tablist">';
 $_first = true;
 foreach ($directories as $directory) {
     if (($_first && !$_is_get_tab_valid) || ($_is_get_tab_valid && $_GET["tab"] === $directory[0])) {
@@ -58,7 +58,7 @@ foreach ($directories as $directory) {
     </li>
 ITEM;
 }
-echo "</ul>";
+echo "</ul></div>";
 echo '<div class="tab-content bg-dark" id="storedirectorycontent" style="padding:20px;color:white">';
 $_first = true;
 foreach ($directories as $directory) {	

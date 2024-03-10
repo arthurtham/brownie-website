@@ -1,6 +1,7 @@
 <?php 
 
 require_once "cloudinary.env.php";
+require_once "functions.php";
 use Cloudinary\Api\ApiUtils;
 
 if (!isset($_GET)) {

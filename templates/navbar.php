@@ -12,7 +12,7 @@ require_once __DIR__ . "/navbar-contents.php";
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-lg-0">
 <?php
 
 function create_navbar_items($navbar_items, $depth=0) {
@@ -54,17 +54,19 @@ function _helper_create_nav_item_dropdown($item, $depth=0) {
 create_navbar_items($navbar_contents);
 ?>
         </ul>
-        <li class="d-flex">
+        <ul class="navbar-nav mt-auto">
+            <li style="padding-right:4px">
 <?php
 // Auth_URL now handled in login file
 // $auth_url = url($client_id, $redirect_url, $scopes);\
 if (isset($_SESSION['user'])) {
-    echo '<a href="/profile"><button class="btn text-white" style="background-color: #6f42c1"><i class="fa-brands fa-discord"></i> ' . $_SESSION['username'] . '</button></a></li>&nbsp;<li class="d-flex"><a href="/logout.php"><button class="btn btn-danger">Logout</button></a>';
+    echo '<a href="/profile"><button class="btn text-black" style="background-color: rgb(211,174,134)"><img style="height:24px;border-color:gray;border:1px solid" class="rounded" src="'.get_discord_avatar_url().'" /></button></a></li><li><a href="/logout.php"><button class="btn btn-danger">Logout</button></a>';
 } else {
     echo "<a href='" . "/login.php" ."'><button class='btn btn-success'><i class='fa-brands fa-discord'></i> Login</button></a>";
 }
 ?>
             </li>
+            </ul>
         </div>
     </div>
 </header>

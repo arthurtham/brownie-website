@@ -38,20 +38,6 @@ function client_ip()
 	}
 }
 
-# Check user's avatar type
-function is_animated($avatar)
-{
-	$ext = substr($avatar, 0, 2);
-	if ($ext == "a_")
-	{
-		return ".gif";
-	}
-	else
-	{
-		return ".png";
-	}
-}
-
 function start_session_custom() {
 	session_start();
     // Do not allow to use too old session ID

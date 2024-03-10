@@ -2,13 +2,7 @@
 echo '<div class="d-flex align-items-center justify-content-center flex-direction: column" style="padding-bottom:50px">';
 echo '<div class="box bg-light bg-gradient shadow" style="padding: 40px; border-radius: 10%">';
 echo '<center><div class="card" style="width:auto;max-width:400px;padding-top:20px"><center>';
-if (isset($_SESSION['user_avatar'])) {
-    echo '<img class="rounded border" src="https://cdn.discordapp.com/avatars/';
-    $extention = is_animated($_SESSION['user_avatar']);
-    echo $_SESSION['user_id'] . "/" . $_SESSION['user_avatar'] . $extention;
-} else {
-    echo '<img class="rounded border" src="https://cdn.discordapp.com/embed/avatars/0.png"';
-}
+echo "<img class='rounded border' src='".get_discord_avatar_url()."'";
 echo '" class="card-img-top" alt="..."/ style="width:auto;max-width:100px;"></center>';
 echo '<div class="card-body"><h5 class="card-title">' . $_SESSION["username"] . '</h5>';
 if (!check_roles($sub_perk_roles)) {

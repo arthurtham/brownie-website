@@ -107,7 +107,22 @@ body.home {
     border-color: black !important;
     color: black !important;
     font-weight:bold;
-    margin-bottom:-4;
+}
+
+.nav-tabs-div {
+    @media (max-width:575px) {
+        max-width: 95vw;
+    }
+    display: inline-block;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.nav-tabs-div > .nav-tabs {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;
 }
 
 .pagination .page-item > .page-link {
@@ -123,4 +138,12 @@ body.home {
     border-color: rgb(211,174,134) !important;
     z-index: inherit;
     font-weight: bold;
+}
+
+@media (max-width:991px) {
+    #navbarSupportedContent {
+        max-height: 400px;
+        height:70vh;
+        overflow-y: auto;
+    }
 }

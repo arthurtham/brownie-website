@@ -170,3 +170,26 @@ function check_state($state)
         return false;
     }
 }
+
+function is_animated($avatar) {
+    $ext = substr($avatar, 0, 2);
+    if ($ext == "a_")
+    {
+        return ".gif";
+    }
+    else
+    {
+        return ".png";
+    }
+}
+
+# Get user's avatar URL
+function get_discord_avatar_url() {
+    # Check user's avatar type
+    if (isset($_SESSION['user_avatar'])) {
+        $extention = is_animated($_SESSION['user_avatar']);
+        return "https://cdn.discordapp.com/avatars/".$_SESSION["user_id"]."/".$_SESSION['user_avatar'].$extention;
+    } else {
+        return "https://cdn.discordapp.com/embed/avatars/0.png";
+    }
+}
