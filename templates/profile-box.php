@@ -16,7 +16,7 @@ else {
         echo '<h5><span class="badge bg-danger" style="width:100%">RED SHELLS (Discord Subs)</span></h5>';
     }
     if (check_roles([$kofi_role_id])) {
-        echo '<h5><span class="badge bg-danger" style="width:100%">RED SHELLS (Ko-fi)</span></h5>';
+        echo '<h5><span class="badge bg-danger" style="width:100%">RED SHELLS (Ko-fi Subs)</span></h5>';
     }
     if (check_roles([$vip_role_id])) {
         echo '<h5><span class="badge bg-warning" style="width:100%">STARS (VIP Access)</span></h5>';

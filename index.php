@@ -41,7 +41,7 @@ EXPIRED;
 		<center><img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_400/com.browntulstar/img/browntulstar-logo-v2-large.webp" style="width:100%;max-width:500px" />
 		<div class="box bg-gradient shadow rounded" style="background-color: rgba(255,255,255,0.2); padding: 20px; width:100%; max-width:370px">
 			<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
-				<a class="btn btn-success w-100" href="/stream">
+				<a class="btn btn-primary w-100" href="/stream">
 					<i class="fa-brands fa-twitch"></i>
 					Stream
 				</a>

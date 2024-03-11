@@ -43,8 +43,6 @@ if (
     if (!isset($_SESSION['signin-attempted']) || $_SESSION['signin-attempted'] === 0) {
         $_SESSION['signin-attempted'] = 1;
         $auth_url = url($client_id, $redirect_url, $scopes);
-        // echo json_encode($_SESSION['user']);
-        // die;
         redirect($auth_url);
         die;
     } else {
@@ -66,6 +64,7 @@ $_SESSION['guilds'] = get_guilds();
 # Fetching user connections | (connections scope)
 $_SESSION['user_connections'] = get_connections();
 
+
 $_SESSION['user_guild_info'] = get_user_guild_info($guild_id);
 $_SESSION['user_guild_info_brownieval'] = get_user_guild_info($brownieval_guild_id);
 $_SESSION['roles'] = array_merge(
@@ -73,4 +72,11 @@ $_SESSION['roles'] = array_merge(
     is_null($_SESSION['user_guild_info_brownieval']['roles']) ? array() : $_SESSION['user_guild_info_brownieval']['roles']);
 # Redirecting to home page once all data has been fetched
 //redirect("/subs");
-redirect(str_replace(array("?logout", "?badauth", "?expired"), array("",""), $_SESSION['redirect']));
+# Is user in the guild?
+if (check_guild_membership($guild_id)) {
+    redirect(str_replace(array("?logout", "?badauth", "?expired"), array("",""), $_SESSION['redirect']));
+} else {
+    // user is not in the guild, so none of the features can actually be used.
+    // but we can let them know that they should join the guild to activate these rewards.
+    redirect("/subs?joinserver");
+}

@@ -125,6 +125,14 @@ body.home {
     white-space: nowrap !important;
 }
 
+@media (max-width:991px) {
+    #navbarSupportedContent {
+        max-height: 400px;
+        height:70vh;
+        overflow-y: auto;
+    }
+}
+
 .pagination .page-item > .page-link {
     color: black !important;
 }
@@ -140,10 +148,41 @@ body.home {
     font-weight: bold;
 }
 
-@media (max-width:991px) {
-    #navbarSupportedContent {
-        max-height: 400px;
-        height:70vh;
-        overflow-y: auto;
-    }
+.accordion {
+	--bs-accordion-btn-color: black !important;
+	--bs-accordion-btn-bg: #d3ae86 !important;
+	--bs-accordion-active-color: black !important;
+	--bs-accordion-active-bg: #f9cd9e !important;
+}
+
+.btn-primary {
+    background-color: #d3ae86 !important;
+    border-color: #d3ae86 !important;
+    color: black !important;
+    font-weight: bold !important;
+}
+
+.btn-primary:hover {
+    background-color: #f9cd9e !important;
+    border-color: #caa05e !important;
+}
+
+.btn-success {
+    background-color: #477b3d !important;
+    border-color: #477b3d !important
+}
+
+.btn-success:hover {
+    background-color: #2eb73c !important;
+    border-color: #259130 !important
+}
+
+.btn-danger {
+    background-color: #b73232 !important;
+    border-color: #b73232 !important;
+}
+
+.btn-danger:hover {
+    background-color: #ff4545 !important;
+    border-color: #ff4545 !important;
 }

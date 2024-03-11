@@ -116,6 +116,7 @@ ABOUT;
 	$show_active_toggle = "true";
 	$show_active_text = "active";
 	$show_active_href = "";
+	$nav_tabs_html = "";
 	foreach ($directories as $directory) {
 		if (isset($_GET["category"])) {
 			if (strcmp($_GET["category"], $directory[0] . "-tab") === 0) {
@@ -130,7 +131,7 @@ ABOUT;
 		} else {
 			$show_active_href = "?category=$directory[0]";
 		}
-		echo <<<ITEM
+		$nav_tabs_html_helper = <<<ITEM
 		<li class="nav-item" role="presentation">
 			<a href="$show_active_href">
 			<button 
@@ -150,9 +151,15 @@ ITEM;
 		// **********************
 		// data-bs-toggle="tab" 
 		// data-bs-target="#$directory[0]-tab-content" 
+		if ($show_active_toggle === "true") {
+			$nav_tabs_html = $nav_tabs_html_helper . $nav_tabs_html;
+		} else {
+			$nav_tabs_html .= $nav_tabs_html_helper;
+		}
 		$show_active_toggle = "false";
 		$show_active_text = "";
 	}
+	echo $nav_tabs_html;
 	echo '</ul></div>';
 	echo '<div class="tab-content bg-dark" id="blogdirectorycontent" style="padding:20px;color:white">';
 	// $show_active_toggle = true;
@@ -279,7 +286,7 @@ ITEM;
 							<div class="container">
 								<div class="row">
 									<div class="col-lg-4" oncontextmenu='return false;' ondragstart='return false;'>
-										<center><img class="rounded" src="$blog_image_url" style="max-height: 200px; max-width: 225px;" /></center>
+										<center><img class="rounded shadow" src="$blog_image_url" style="max-height: 200px; max-width: min(100%,225px);" /></center>
 										<br />
 									</div>
 									<div class="col-lg-8">

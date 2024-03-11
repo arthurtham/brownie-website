@@ -60,7 +60,7 @@ create_navbar_items($navbar_contents);
 // Auth_URL now handled in login file
 // $auth_url = url($client_id, $redirect_url, $scopes);\
 if (isset($_SESSION['user'])) {
-    echo '<a href="/profile"><button class="btn text-black" style="background-color: rgb(211,174,134)"><img style="height:24px;border-color:gray;border:1px solid" class="rounded" src="'.get_discord_avatar_url().'" /></button></a></li><li><a href="/logout.php"><button class="btn btn-danger">Logout</button></a>';
+    echo '<a href="/profile"><button class="btn btn-primary"><img style="height:24px;border-color:gray;border:1px solid" class="rounded" src="'.get_discord_avatar_url().'" /></button></a></li><li><a href="/logout.php"><button class="btn btn-danger">Logout</button></a>';
 } else {
     echo "<a href='" . "/login.php" ."'><button class='btn btn-success'><i class='fa-brands fa-discord'></i> Login</button></a>";
 }
