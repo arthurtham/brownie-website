@@ -121,7 +121,7 @@ echo <<<SUBPERKSHEADER2
 			<div class="col-lg-12">
 				<hr/>
 				<h1 class="text-center">Sub Perks FAQ</h1>
-					<div class="accordion" id="accordionFAQ">'
+					<div class="accordion" id="accordionFAQ">
 SUBPERKSHEADER2;
 for ($_i = 0; $_i < count($faqitems); ++$_i) {
 	$title = $faqitems[$_i]["title"];

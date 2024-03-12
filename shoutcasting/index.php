@@ -2,12 +2,16 @@
 $dir = dirname(__DIR__, 1);
 $title = "BrowntulStar - Esports Portfolio";
 
-$find_md_file_name = function($v) { 
-	return strpos($v, ".md");
+$find_md_file_name = function ($v) {
+    return strpos($v, ".md");
 };
 
 require $dir . "/templates/header.php";
 ?>
+
+<link href="https://unpkg.com/cloudinary-video-player@1.10.6/dist/cld-video-player.min.css" rel="stylesheet">
+<script src="https://unpkg.com/cloudinary-video-player@1.10.6/dist/cld-video-player.min.js"
+    type="text/javascript"></script>
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
     <h1 class="text-center">Esports Portfolio</h1>
@@ -15,166 +19,106 @@ require $dir . "/templates/header.php";
 
     <ul class="nav nav-tabs" id="portfolioContentTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="shoutcasting-tab" data-bs-toggle="tab" data-bs-target="#shoutcasting" type="button" role="tab" aria-controls="home" aria-selected="true">Shoutcasting</button>
+            <button class="nav-link active" id="shoutcasting-tab" data-bs-toggle="tab" data-bs-target="#shoutcasting"
+                type="button" role="tab" aria-controls="home" aria-selected="true">Shoutcasting</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="producer-tab" data-bs-toggle="tab" data-bs-target="#producer" type="button" role="tab" aria-controls="profile" aria-selected="false">Broadcast Production</button>
+            <button class="nav-link" id="producer-tab" data-bs-toggle="tab" data-bs-target="#producer" type="button"
+                role="tab" aria-controls="profile" aria-selected="false">Broadcast Production</button>
         </li>
     </ul>
     <div class="tab-content" id="portfolioContent">
         <div class="tab-pane fade show active" id="shoutcasting" role="tabpanel" aria-labelledby="shoutcasting-tab">
-            
-    <h2 class="text-center">Shoutcasting / Commentary</h2>
-    <p>I am an play-by-play shoutcaster, with a recurring casting role for Wilson Chang's Chang Gang Tournaments, Rooyemi's VALORANT tournaments, and Change Thru Games' VALORANT and Tetris tournaments.</p>
-    <p>I offer <strong>play-by-play shoutcasting</strong> with puns, hype, and laughter for VALORANT, with flexibility for variety games like Mario Kart and Tetris.</p>
-    <p>On occasion, I host the Brownie-Toaster VALORANT events on my Twitch channel to give newer shoutcasters and observers a shot at these great roles, while providing new tournament players a chance to play in a tournament environment.
-        <p>Below are some of my favorite highlights throughout my shoutcasting career, followed by a list of tournaments I've shoutcasted.</p>
-        <p>
-            <center>
-            <h2>2022 Shoutcasting Highlights</h2>
-            <iframe width="100%" height="315" style="max-width:516px"
-            src="https://www.youtube.com/embed/mM0aQ0V4EjI" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
-            </center>
-        </p>
-        <hr>
-        <p>Here's a list of tournaments I've shoutcasted:</p>
-        <p>
-            <div style="overflow-y:auto;height:400px;border-style:solid;border-size:1px;border-color:black">
-                <ul>
-                    <?php
-                    try {
-                        if ($myfile = fopen("shoutcasting.md", "r")) {
-                            echo Parsedown::instance()->text(fread($myfile, filesize("shoutcasting.md")));
-                            fclose($myfile);
-                            } else {
-                                echo "There was a problem loading the list of activities.";
-                            }
-                        } catch (Exception $e) {
-                            echo "There was a problem loading the list of activities.";
-                    }
-                    ?>
-                </ul>
+            <h2 class="text-center">Shoutcasting</h2>
+            <p>
+            <div style="border-style:solid;border-size:1px;border-color:black">
+                <iframe width=100% height=400px
+                    src="https://docs.google.com/document/d/e/2PACX-1vQrfP_CiPjcTAWXJGm2Wzj5nVXXHTI2bZLF6oeCigXTVrNeizRJZTQ_g6ftcG6NV4pUtypJv20VI87u/pub?embedded=true"></iframe>
             </div>
-        </p>
-        <hr>
-    <hr>
-    <p><center>
-    <h2>Shoutcasting Event Highlights</h2>
-    <h5>Click the bars on the bottom to scroll</h5>
-    <div id="carouselVideos" class="carousel carousel-dark" data-bs-ride="carousel" data-bs-interval="false" style="min-height:600px">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="3" aria-label="Slide 4"></button>
-            <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="4" aria-label="Slide 5"></button>
-            <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="5" aria-label="Slide 6"></button>
-            <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="6" aria-label="Slide 7"></button>
-            <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="7" aria-label="Slide 8"></button>
-            <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="8" aria-label="Slide 9"></button>
-            <button type="button" data-bs-target="#carouselVideos" data-bs-slide-to="9" aria-label="Slide 10"></button>
+            </p>
+            <hr>
+            <p>
+                <center>
+                    <h2>2022 Shoutcasting Highlights</h2>
+                    <p>On YouTube</p>
+                    <iframe width="100%" height="315" style="max-width:516px" src="https://www.youtube.com/embed/mM0aQ0V4EjI"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </center>
+            </p>
+            <hr>
+            <h2 class="text-center">Event Highlights</h2>
+            <p class="text-center">Powered by Cloudinary</p>
+            <div class="row">
+                <div class="col-lg-12 text-center" style="padding-bottom:12px">
+                    <button id="shoutcasting-player-play-prev" class="btn btn-success w-100"
+                        style="max-width:200px">Previous Video</button>
+                    <button id="shoutcasting-player-play-next" class="btn btn-success w-100"
+                        style="max-width:200px">Next Video</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="video-container" style="max-width:80wv">
+                        <center>
+                            <video id="shoutcasting-player" controls
+                                class="cld-video-player cld-video-player-skin-dark w-100" style="height:500px">
+                            </video>
+                        </center>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">We had a fun time casting collegiate <a href="https://twitter.com/hashtag/VALORANT?src=hash&amp;ref_src=twsrc%5Etfw">#VALORANT</a> games together! <br><br>Thanks to <a href="https://twitter.com/UltEsport?ref_src=twsrc%5Etfw">@UltEsport</a> for extending the invite to me and my co-caster <a href="https://twitter.com/tyjustinty?ref_src=twsrc%5Etfw">@tyjustinty</a>! It makes me want to check out <a href="https://twitter.com/hashtag/CVAL?src=hash&amp;ref_src=twsrc%5Etfw">#CVAL</a> even more!<br><br>🧵A play from each game ⬇️ <a href="https://t.co/d4iWSkC23K">https://t.co/d4iWSkC23K</a> <a href="https://t.co/crlpkR0uAq">pic.twitter.com/crlpkR0uAq</a></p>&mdash; KZO_Browntul | Commentator (@browntulstar) <a href="https://twitter.com/browntulstar/status/1647820041470222337?ref_src=twsrc%5Etfw">April 17, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                <a target="_blank" href="https://twitter.com/browntulstar/status/1647820041470222337">Click here to watch all clips from this tournament</a>
-                <br/><br/><br/>
-            </div>
-            <div class="carousel-item">
-                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">It was a fun time shoutcasting in Summer Splash 3 VALORANT Sponsored by HyperX on <a href="https://twitter.com/HLG_UCR?ref_src=twsrc%5Etfw">@HLG_UCR</a> Twitch. Thanks to our SoCal university organizers for their support.<br><br>I&#39;ve attached a subset of clips that feature me as pbp with <a href="https://twitter.com/hiyahappiness?ref_src=twsrc%5Etfw">@hiyahappiness</a> , and analyst with <a href="https://twitter.com/Caster_Admiral?ref_src=twsrc%5Etfw">@Caster_Admiral</a> . <a href="https://t.co/iSxXFmotXv">https://t.co/iSxXFmotXv</a></p>&mdash; Browntul | Shoutcaster &amp; Game Designer (@browntulstar) <a href="https://twitter.com/browntulstar/status/1564785683452944386?ref_src=twsrc%5Etfw">August 31, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>                <br/><br/>
-                <a target="_blank" href="https://twitter.com/browntulstar/status/1564785683452944386">Click here to watch all clips from this tournament</a>
-                <br/><br/><br/>
-            </div>
-            <div class="carousel-item">
-                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">It was a great time shoutcasting <a href="https://twitter.com/shygori?ref_src=twsrc%5Etfw">@shygori</a> &#39;s VALADIES tournament earlier this month! This clip, between Waku Waku and KIMBAO, is one of my favorites. <br><br>🎙️ <a href="https://twitter.com/browntulstar?ref_src=twsrc%5Etfw">@browntulstar</a> (pbp), <a href="https://twitter.com/AwesomeLioness1?ref_src=twsrc%5Etfw">@AwesomeLioness1</a> (analyst)<br>📷 <a href="https://twitter.com/shygori?ref_src=twsrc%5Etfw">@shygori</a> <br>🎮 <a href="https://twitter.com/PlayVALORANT?ref_src=twsrc%5Etfw">@PlayVALORANT</a> <a href="https://twitter.com/hashtag/VALORANT?src=hash&amp;ref_src=twsrc%5Etfw">#VALORANT</a><br>📺 <a href="https://t.co/wPIjswjh94">https://t.co/wPIjswjh94</a> <a href="https://t.co/G9004rSVi7">pic.twitter.com/G9004rSVi7</a></p>&mdash; Browntul (@browntulstar) <a href="https://twitter.com/browntulstar/status/1552196396442271744?ref_src=twsrc%5Etfw">July 27, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>            
-                <br/><br/>
-            </div>
-            <div class="carousel-item">
-                <p>Shoutcaster Showcase: Games 1 and 3</p>
-                <iframe style="max-width: 100% !important;width: auto !important;height: 315;" src="https://www.youtube-nocookie.com/embed/T09ec4OrCBg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <br><br><a target="_blank" href="https://www.youtube.com/watch?v=4rRH1gWFBB0">Click here to watch the full vod</a>
-            </div>
-            <div class="carousel-item">
-                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I had a great time shoutcasting the Grand Finals of the CGT: Battle of the Streamers hosted by <a href="https://twitter.com/_WilsonChang?ref_src=twsrc%5Etfw">@_WilsonChang</a> and <a href="https://twitter.com/achauie?ref_src=twsrc%5Etfw">@achauie</a> . In this thread are a subset of my favorite clips from the final series.<br><br>PBP: <a href="https://twitter.com/browntulstar?ref_src=twsrc%5Etfw">@browntulstar</a> <br>Analysts: <a href="https://twitter.com/AwesomeLioness1?ref_src=twsrc%5Etfw">@AwesomeLioness1</a> and itsJustin<br>Observer: <a href="https://twitter.com/MrGeeelz?ref_src=twsrc%5Etfw">@MrGeeelz</a> <a href="https://t.co/pjz6EMHZZJ">https://t.co/pjz6EMHZZJ</a></p>&mdash; Browntul (@browntulstar) <a href="https://twitter.com/browntulstar/status/1542777571720302595?ref_src=twsrc%5Etfw">July 1, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                <a target="_blank" href="https://twitter.com/browntulstar/status/1542777571720302595">Click here to watch all clips from this tournament</a>
-                <br/><br/><br/>
-            </div>
-            <div class="carousel-item">
-                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I had fun shoutcasting <a href="https://twitter.com/_WilsonChang?ref_src=twsrc%5Etfw">@_WilsonChang</a> CGT again. Lucky to be paired up with analyst <a href="https://twitter.com/AwesomeLioness1?ref_src=twsrc%5Etfw">@AwesomeLioness1</a> and the legendary <a href="https://twitter.com/Zaeter_?ref_src=twsrc%5Etfw">@Zaeter_</a>. <a href="https://twitter.com/heine1004?ref_src=twsrc%5Etfw">@heine1004</a> &#39;s shoutcasting debut was spectacular! Hope we can do this again.<br><br>Thread: a sample of casting clips with me paired with each caster. <a href="https://t.co/OHYB33izbs">https://t.co/OHYB33izbs</a></p>&mdash; Browntul (@browntulstar) <a href="https://twitter.com/browntulstar/status/1526335377287413761?ref_src=twsrc%5Etfw">May 16, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                <a target="_blank" href="https://twitter.com/browntulstar/status/1526335377287413761">Click here to watch all clips from this tournament</a>
-                <br/><br/><br/>
-            </div>
-            <div class="carousel-item">
-                <blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Watch the Instigators take on TLC&#39;s lineups and crossfire on Haven. Who will clutch it out in overtime?<br><br>🎙️ <a href="https://twitter.com/browntulstar?ref_src=twsrc%5Etfw">@browntulstar</a> and <a href="https://twitter.com/AwesomeLioness1?ref_src=twsrc%5Etfw">@AwesomeLioness1</a> <br>📷 <a href="https://twitter.com/Rooyemi_?ref_src=twsrc%5Etfw">@Rooyemi_</a> <br>🎮 <a href="https://twitter.com/PlayVALORANT?ref_src=twsrc%5Etfw">@PlayVALORANT</a> <a href="https://twitter.com/hashtag/VALORANT?src=hash&amp;ref_src=twsrc%5Etfw">#VALORANT</a> <br>📺 <a href="https://t.co/OlwR6TrdPF">https://t.co/OlwR6TrdPF</a><a href="https://twitter.com/hashtag/shoutcasting?src=hash&amp;ref_src=twsrc%5Etfw">#shoutcasting</a> <a href="https://twitter.com/hashtag/tournament?src=hash&amp;ref_src=twsrc%5Etfw">#tournament</a> <a href="https://twitter.com/hashtag/clutch?src=hash&amp;ref_src=twsrc%5Etfw">#clutch</a> <a href="https://t.co/RV0S58htIa">pic.twitter.com/RV0S58htIa</a></p>&mdash; Browntul (@browntulstar) <a href="https://twitter.com/browntulstar/status/1498706260299948036?ref_src=twsrc%5Etfw">March 1, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                <br/><br/>
-            </div>
-            <div class="carousel-item">
-                <blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Nothing like <a href="https://twitter.com/edmvndee?ref_src=twsrc%5Etfw">@edmvndee</a> getting the ace to win <a href="https://twitter.com/_WilsonChang?ref_src=twsrc%5Etfw">@_WilsonChang</a> &#39;s CGT Friendship Games! The Tour de Force and the Headhunter were all he needed.<br><br>🎙️<a href="https://twitter.com/browntulstar?ref_src=twsrc%5Etfw">@browntulstar</a> and <a href="https://twitter.com/Kayvian_koi?ref_src=twsrc%5Etfw">@Kayvian_koi</a> on the call.<a href="https://twitter.com/hashtag/VALORANT?src=hash&amp;ref_src=twsrc%5Etfw">#VALORANT</a> <a href="https://twitter.com/hashtag/chamber?src=hash&amp;ref_src=twsrc%5Etfw">#chamber</a> <a href="https://twitter.com/hashtag/ace?src=hash&amp;ref_src=twsrc%5Etfw">#ace</a> <a href="https://twitter.com/hashtag/tournament?src=hash&amp;ref_src=twsrc%5Etfw">#tournament</a> <br>Stream: <a href="https://t.co/wiaMwfTPZc">https://t.co/wiaMwfTPZc</a><br>Game: <a href="https://twitter.com/PlayVALORANT?ref_src=twsrc%5Etfw">@PlayVALORANT</a> <a href="https://t.co/H5YAIg0KmK">pic.twitter.com/H5YAIg0KmK</a></p>&mdash; Browntul (@browntulstar) <a href="https://twitter.com/browntulstar/status/1495998253237735424?ref_src=twsrc%5Etfw">February 22, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                <br/><br/>
-            </div>
-            <div class="carousel-item">
-                <blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Looking back at the Happy Roolidays! <a href="https://twitter.com/hashtag/VALORANT?src=hash&amp;ref_src=twsrc%5Etfw">#VALORANT</a> Tourney. Shoutcasting it was a fun learning experience and it&#39;s enhanced by the analysis of the one and only <a href="https://twitter.com/AwesomeLioness1?ref_src=twsrc%5Etfw">@AwesomeLioness1</a> . Thanks to <a href="https://twitter.com/Enlightgg?ref_src=twsrc%5Etfw">@Enlightgg</a> for bringing people with similar interests together!<br><br>(From TTV/Rooyemi <a href="https://twitter.com/Rooyemi_?ref_src=twsrc%5Etfw">@Rooyemi_</a> ) <a href="https://t.co/brDb3Bl6u6">pic.twitter.com/brDb3Bl6u6</a></p>&mdash; Browntul (@browntulstar) <a href="https://twitter.com/browntulstar/status/1474640366036930560?ref_src=twsrc%5Etfw">December 25, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                <br/><br/>
-            </div>
-            <div class="carousel-item">
-                <blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">I miss shoutcasting :(<br>Happy 1-year anniversary of shoutcasting Tetris for <a href="https://twitter.com/ChangeThruGames?ref_src=twsrc%5Etfw">@ChangeThruGames</a> 🥳 <a href="https://t.co/mOELNtibxe">pic.twitter.com/mOELNtibxe</a></p>&mdash; Browntul (@browntulstar) <a href="https://twitter.com/browntulstar/status/1400271125620281344?ref_src=twsrc%5Etfw">June 3, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                <br/><br/>
-            </div>
-            
-        </div>
-    </div>
-
-    </center></p>
 
 
-        </div>
         <div class="tab-pane fade" id="producer" role="tabpanel" aria-labelledby="producer-tab">
-          
-
-
-
-    <h2 class="text-center">Producer/Organizer Events List</h2>
-    <p>Since late 2022/early 2023, I started to produce and organize my own esports events for the community to enjoy. I sometimes produce for other events in VALORANT and KartRider as well.</p>
-    <p><center>
-    <h2>Producer Graphics Packages</h2>
-    <iframe width="100%" height="315" style="max-width:516px"
-    src="https://www.youtube.com/embed/ag3RgaXbLoM" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-    </iframe>
-    </center>
-    </p>
-    
-    <p>Here's a list of tournaments I've been a tournament organizer or producer for:</p>
-    <p>
-        <div style="overflow-y:auto;height:400px;border-style:solid;border-size:1px;border-color:black">
-            <ul>
-                <?php
-                try {
-                    if ($myfile = fopen("producing.md", "r")) {
-                        echo Parsedown::instance()->text(fread($myfile, filesize("producing.md")));
-                        fclose($myfile);
-                        } else {
-                            echo "There was a problem loading the list of activities.";
-                        }
-                    } catch (Exception $e) {
-                        echo "There was a problem loading the list of activities.";
-                }
-                ?>
-            </ul>
-        </div>
-
-        
+            <div class="text-center">
+                <h2>Broadcast Production</h2>
+                <div style="border-style:solid;border-size:1px;border-color:black">
+                    <iframe width=100% height=400px
+                        src="https://docs.google.com/document/d/e/2PACX-1vTWgBvPC8yndQcXrJQ4hnQBUlzXxE_tS35NPkpInI9QEp5eQ4lX3Esjto8Qlkz3cn41pyUps1EFSgMj/pub?embedded=true">
+                    </iframe>
+                </div>
+                <div>
+                    <hr />
+                    <iframe width="100%" height="315" style="max-width:516px"
+                        src="https://www.youtube.com/embed/ag3RgaXbLoM" title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
         </div>
     </div>
 
+    <script>
+        var cld = cloudinary.Cloudinary.new({ cloud_name: 'browntulstar', controls: true, fluid: true, hideContextMenu: true });
+        var shoutcastingPlayer = cld.videoPlayer("shoutcasting-player", {
+            transformation: { crop: 'fit', width: 720 }
+        });
+        shoutcastingPlayer.playlist([
+            { publicId: 'com.browntulstar/video/shoutcasting_valrootine_3', sourceTypes: ['webm/vp9'], info: { title: "Happy Valrootines VALORANT Tournament", subtitle: "Play-by-play" } },
+            { publicId: 'com.browntulstar/video/shoutcasting_psychocupgg_22', sourceTypes: ['webm/vp9'], info: { title: "PsychoCup x Gardenia Gauntlet", subtitle: "Play-by-play" } },
+            { publicId: 'com.browntulstar/video/shoutcasting_cgt_2', sourceTypes: ['webm/vp9'], info: { title: "Chang Gang Tournament", subtitle: "Play-by-play" } },
+            { publicId: 'com.browntulstar/video/shoutcasting_ultesport_19', sourceTypes: ['webm/vp9'], info: { title: "Ultimate Esport Collegiate VALORANT Tournament", subtitle: "Play-by-play" } },
+            { publicId: 'com.browntulstar/video/shoutcasting_ultesport_21', sourceTypes: ['webm/vp9'], info: { title: "Ultimate Esport Collegiate VALORANT Tournament", subtitle: "Play-by-play" } },
+            { publicId: 'com.browntulstar/video/shoutcasting_roolidays_1', sourceTypes: ['webm/vp9'], info: { title: "Happy Roolidays VALORANT Tournament", subtitle: "Play-by-play" } },
+            { publicId: 'com.browntulstar/video/shoutcasting_summersplash_14', sourceTypes: ['webm/vp9'], info: { title: "Summer Splash 3 VALORANT Sponsored by HyperX on Highlander Gaming UC Riverside (Collegiate VALORANT)", subtitle: "Play-by-play, Color Analyst" } },
+        ], {
+            autoAdvance: true,
+            repeat: true
+        });
 
+        document.querySelector("button#shoutcasting-player-play-prev").addEventListener("click", function () {
+            shoutcastingPlayer.playPrevious();
+        });
+
+        document.querySelector("button#shoutcasting-player-play-next").addEventListener("click", function () {
+            shoutcastingPlayer.playNext();
+        });
+
+    </script>
 </div>
 <?php require $dir . "/templates/footer.php" ?>

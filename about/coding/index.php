@@ -5,7 +5,7 @@ require $dir . "/templates/header.php";
 ?>
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
     <h1 class="text-center">Coding</h1>
-    <p>I currently make content in collaboration with <strong>My First Game Jam</strong> which is featured on my streams from time to time.
+    <p class="text-center">I currently make content in collaboration with <strong>My First Game Jam</strong> which is featured on my streams from time to time.
     </p>
     <hr>
     <p>
