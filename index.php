@@ -55,7 +55,7 @@ EXPIRED;
 			</span>
 			<span class="d-flex flex-row gap-1" style="text-align: center">
 				<a href="/shoutcasting"  class="btn btn-dark" style="width: 50%; margin-bottom:6px;">Portfolio</a>
-				<a href="/store"  class="btn btn-dark" style="width: 50%; margin-bottom:6px;">Support</a>
+				<a href="/store"  class="btn btn-dark" style="width: 50%; margin-bottom:6px;">Support Me</a>
 			</span>
 			<small>@browntulstar</small>
 			</center>

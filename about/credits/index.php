@@ -12,12 +12,10 @@ require $dir . "/templates/header.php";
     }
 </style>
 
-<div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <h1 style="text-align: center;">Credits</h1>
-    <center>
-        <p>Thank you to these wonderful contributors for their hard work. 
+<div class="container body-container-no-bg" style="padding-top:50px;padding-bottom:100px">
+    <h1 class="text-center text-light" style="text-shadow: #000 1px 0 10px;">Credits</h1>
+    <p class="text-center text-light" style="text-shadow: #000 1px 0 2px;">Thank you to these wonderful contributors for their hard work. 
             You can check out their contributions below, which also includes their social links.</p>
-    </center>
 
 <?php
 $mysql_artists = queryArtEntries($conn);
@@ -87,17 +85,17 @@ function echoCardEntries($result) {
     if (isset($result->num_rows) && $result->num_rows > 0) {
         $count = 0;
         while ($item = $result->fetch_assoc()) {
-            if ($count % 3 == 0) {
+            if ($count % 4 == 0) {
                 if ($count > 0) {
                     echo '</div>';
                 }
                 echo '<div class="row" style="padding-bottom:10px" oncontextmenu="return false;">';
             }
-            echo '<div class="col-md-4 d-flex align-items-stretch"><div class="card" style="width:100% !important;">';
+            echo '<div class="col-md-3 d-flex align-items-stretch"><div class="card shadow" style="width:100% !important;">';
             echo '<a data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'">
             <div style="position:relative;background-color:lightgray"><img src="'.$item["portfolio_image"].'" 
             class="card-img-top" alt="portfolio image: '.$item["name"].'"><img src="'.$item["logo_image"].'" 
-            style="position:absolute;top:0px;left:0px;width:75px;height:75px;background-color:gray;border: 2px solid black;border-width:thick" 
+            class="shadow" style="position:absolute;top:0px;left:0px;width:75px;height:75px;background-color:gray;border: 1px solid black;border-width:thick;border-top-left-radius:5px;border-bottom-right-radius:10px;" 
             alt="logo image: '.$item["name"].'"></div></a>';
             echo '<div class="card-body">';
             echo '<button type="button" class="btn btn-dark" style="width:100%;margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'">Info</button>';

@@ -11,11 +11,51 @@ require $dir . "/templates/header.php"
     }
 </style>
 
+<div class="container body-container-no-bg" style="padding-bottom:0 !important">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <div style="padding-top:48px;padding-bottom:48px">
+    <center><img class="shadow" src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/browntulstar-logo-v1-large.webp" style="border-radius: 100%;width:auto;max-width:200px" /></center>
+    <h1 class="text-center text-white" style="text-shadow: #000 1px 0 10px;">Hi, I'm Browntul!</h1>
+        </div>
+    </div>
+</div>
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <center><img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/browntulstar-logo-v1-large.webp" style="border-radius: 100%;width:auto;max-width:200px" /></center>
-    <h1 style="text-align: center;">Hi, I'm Browntul.</h1>
-    <p style="text-align: center;">My pronouns are he/him/his. It's nice to meet you!</p>
-    <p style="text-align: center;">I hope you all can jump along for the ride!</p>
+<h2 style="text-align: center;">Nice to meet you!</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>I'm a content creator, esports commentator and producer, and software programmer. You might know me from being a community member
+                    in many Twitch streams on the Pacific time zone,
+                    namely those that host VALORANT grassroots tournaments like the Chang Gang Tournament and my very own #BrownieVAL!
+                </p>
+                <p>I first started streaming on Twitch in August of 2019. Since then, I've made many friends through playing Mario Kart, KartRider, VALORANT, 
+                    and Honkai: Star Rail, among other games. On my stream, I enjoy playing chaotic multiplayer games and exploring new ways to play. 
+                    You'll find my Killjoy turtle PNGTuber hanging out in my comfy bedroom, tinkering with new stream widgets and coding up new software for my turtle shells to enjoy.
+                </p>
+                <p>I enjoy helping others achieve their goals and dreams by bringing communities together. That's what I built with #BrownieVAL, a VALORANT 
+                    tournament that brings together small communities in a friendly competition while giving new shoutcasters and admins opportunities to 
+                    help out.
+                </p>
+                <p>I hope you can enjoy my content! Scroll down to read more about me, or go check out my content, events, and sub perks in the navigation bar above.
+                    For business inquiries, please <a href="mailto:browntulstar@browntulstar.com" target="_blank">email me</a> at browntulstar@browntulstar.com. Or, you can hang out with me on my 
+                    <a href="https://browntulstar.carrd.co" target="_blank">socials</a>! I also have a Discord server that you can join, which is required to activate your
+                    sub perks if you subscribe to my content!
+                </p>
+                <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href="/discord" target="_blank" style="max-width:400px">
+                    <i class="fa-brands fa-discord"></i>
+                    Join Turtle Pond Discord Server
+                </a></p>
+                <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href="https://www.twitch.tv/browntulstar" target="_blank" style="max-width:400px">
+					<i class="fa-brands fa-twitch"></i>
+					Follow me on Twitch
+				</a></p>
+				<p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href='https://ko-fi.com/browntulstar' target='_blank' style="max-width:400px">
+					<img height='24' style='border:0px;height:24px;' src='https://storage.ko-fi.com/cdn/kofi4.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+					Join on Ko-fi
+				</a></p>
+            </div>
+        </div>
+    </div>
     <hr>
     <h2 style="text-align: center;">Current Games</h2>
     <div class="container">
@@ -63,6 +103,7 @@ require $dir . "/templates/header.php"
                     <div class="card-body">
                         <h5 class="card-title  text-center">Coding</h5>
                         <p style="text-align:center">I make games for fun, and I create coding content on stream.</p>
+                        <p style="text-align:center"><a class="btn btn-success w-100" style="max-width:300px" href="/about/coding">Learn More</a></p>
                     </div>
                 </div>
             </div>
@@ -70,7 +111,9 @@ require $dir . "/templates/header.php"
                 <div class="card" style="width: 100%; height:100%">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Broadcast and Event Planning</h5>
-                        <p style="text-align:center">I shoutcast and produce VALORANT tournaments year-round! I also help plan streamer tournaments and events hosted on Twitch</p>
+                        <p style="text-align:center">I shoutcast and produce VALORANT streamer tournaments year-round, hosted primarily on Twitch!</p>
+                        <p style="text-align:center"><a class="btn btn-success w-100" style="max-width:300px" href="/about/shoutcasting">Portfolio</a></p>
+                        <p style="text-align:center"><a class="btn btn-success w-100" style="max-width:300px" href="/store?tab=merch">Digital Assets</a></p>
                     </div>
                 </div>
             </div>
@@ -78,7 +121,7 @@ require $dir . "/templates/header.php"
                 <div class="card" style="width: 100%; height:100%">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Community Modding</h5>
-                        <p style="text-align:center">I mod for online communities on Discord, Twitch, and itch.io.</p>
+                        <p style="text-align:center">I mod for online communities on Discord, Twitch, and itch.io. I have modded for esports leagues as well.</p>
                     </div>
                 </div>
             </div>
@@ -93,7 +136,8 @@ require $dir . "/templates/header.php"
                     <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,b_gen_fill,w_430,h_261/com.browntulstar/img/brownieval-logo-v1.webp" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: contain;height:200px">
                     <div class="card-body">
                         <h5 class="card-title  text-center">#BrownieVAL</h5>
-                        <p style="text-align:center"><a href="https://brownieval.browntulstar.com/" target="_blank">Owner</a></p>
+                        <h6 class="text-center">Owner</h6>
+                        <p style="text-align:center"><a class="btn btn-success w-100" style="max-width:300px" href="https://brownieval.browntulstar.com/" target="_blank">Website</a></p>
                         <p style="text-align:center"></p>
                     </div>
                 </div>
@@ -103,7 +147,8 @@ require $dir . "/templates/header.php"
                     <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/team-kazoku.webp" class="card-img-top" alt="kazoku logo" style="padding: 20px;object-fit: contain;height:200px">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Kazoku</h5>
-                        <p style="text-align:center"><a href="https://kazoteam.carrd.co/" target="_blank">Events Coordinator</a></p>
+                        <h6 class="text-center">Events Coordinator</h6>
+                        <p style="text-align:center"><a class="btn btn-success w-100" style="max-width:300px" href="https://kazoteam.carrd.co/" target="_blank">Website</a></p>
                         <p style="text-align:center"></p>
                     </div>
                 </div>
@@ -115,7 +160,8 @@ require $dir . "/templates/header.php"
                     <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/team-comfycafelogo.webp" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: contain;height:200px">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Okimi Cafe</h5>
-                        <p style="text-align:center"><a href="https://okimicafe.crd.co/" target="_blank">Co-founder and Co-manager Emeritus</a></p>
+                        <h6 class="text-center">Co-founder and Co-manager Emeritus</h6>
+                        <p style="text-align:center"><a class="btn btn-success w-100" style="max-width:300px" href="https://okimicafe.crd.co/" target="_blank">Website</a></p>
                         <p style="text-align:center"></p>
                     </div>
                 </div>
@@ -125,7 +171,8 @@ require $dir . "/templates/header.php"
                     <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,b_gen_fill,w_430,h_200/com.browntulstar/img/team-rdv.webp" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: contain;height:200px">
                     <div class="card-body">
                         <h5 class="card-title  text-center">Rendezvous Valorant</h5>
-                        <p style="text-align:center"><a href="https://twitter.com/rendezvousval" target="_blank">Lead Play-by-play Caster</a></p>
+                        <h6 class="text-center">Lead Play-by-play Caster</h6>
+                        <p style="text-align:center"><a class="btn btn-success w-100" style="max-width:300px" href="https://twitter.com/rendezvousval" target="_blank">Website</a></p>
                         <p style="text-align:center"></p>
                     </div>
                 </div>

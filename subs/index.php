@@ -15,7 +15,7 @@ if (!isset($_SESSION['user'])) {
 	if (false) { //(!check_guild_membership($guild_id) || !check_roles([$sub_role_id, $vip_role_id, $mod_role_id])) {
 		//require dirname(__DIR__, 1) . "/templates/login-required.php";
 	} else {
-		echo '<div class="d-flex flex-column align-items-center justify-content-center"';
+		echo '<div class="d-flex flex-column align-items-center justify-content-center">';
 		echo '<p><h1 class="text-center text-white">Turtle Pond - Sub Perks</h1></p>';
 		// Special box appears if the user logs in but is not in the Turtle Pond server
 		if (isset($_GET["joinserver"])) {

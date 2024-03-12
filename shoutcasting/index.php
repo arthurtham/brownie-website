@@ -13,9 +13,9 @@ require $dir . "/templates/header.php";
 <script src="https://unpkg.com/cloudinary-video-player@1.10.6/dist/cld-video-player.min.js"
     type="text/javascript"></script>
 
-<div class="container body-container" style="padding-top:50px;padding-bottom:100px">
+<div class="container body-container">
     <h1 class="text-center">Esports Portfolio</h1>
-    <p>Here you can take a look at my shoutcasting and production highlights.</p>
+    <p class="text-center">Here you can take a look at my shoutcasting and production highlights.</p>
 
     <ul class="nav nav-tabs" id="portfolioContentTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -29,7 +29,7 @@ require $dir . "/templates/header.php";
     </ul>
     <div class="tab-content" id="portfolioContent">
         <div class="tab-pane fade show active" id="shoutcasting" role="tabpanel" aria-labelledby="shoutcasting-tab">
-            <h2 class="text-center">Shoutcasting</h2>
+            <h2 class="text-center" style="padding-top:24px">Shoutcasting</h2>
             <p>
             <div style="border-style:solid;border-size:1px;border-color:black">
                 <iframe width=100% height=400px
@@ -75,7 +75,7 @@ require $dir . "/templates/header.php";
 
         <div class="tab-pane fade" id="producer" role="tabpanel" aria-labelledby="producer-tab">
             <div class="text-center">
-                <h2>Broadcast Production</h2>
+                <h2 style="padding-top:24px">Broadcast Production</h2>
                 <div style="border-style:solid;border-size:1px;border-color:black">
                     <iframe width=100% height=400px
                         src="https://docs.google.com/document/d/e/2PACX-1vTWgBvPC8yndQcXrJQ4hnQBUlzXxE_tS35NPkpInI9QEp5eQ4lX3Esjto8Qlkz3cn41pyUps1EFSgMj/pub?embedded=true">
