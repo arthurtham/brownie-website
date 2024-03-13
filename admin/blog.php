@@ -54,7 +54,7 @@ if ($result->num_rows > 0) {
         "</td><td>".$blog_post['visible'].
         "</td><td>".$blog_post['published'].
         "</td><td><a href='blog_editor.php?blog_id=$blog_id'><button type='button'>Edit</button></a>".
-        "<a target='_blank' href='/subs/blog/?blog-type=$blog_type&blog-id=$blog_id'><button type='button'>View</button></a>".
+        "<a target='_blank' href='/subs/blog/$blog_type/$blog_id/'><button type='button'>View</button></a>".
         "</td></tr>";
     }
 }

@@ -40,8 +40,8 @@ if ($result->num_rows > 0) {
     </style>
 STYLE;
         echo "<div class='row blog-images' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
-        echo "<center><h1>" . $blog_post["blog_name"] . "</h1><a href='/subs/blog/$blog_type'>" . $blog_post["blog_type_name"] . "</a> | " . $blog_date .  "</center>";
-        echo "<center>/ subs / <a href='/subs/blog'>blog</a> / <a href='/subs/blog/$blog_type'>$blog_type</a></center><hr><br/>";
+        echo "<center><h1>" . $blog_post["blog_name"] . "</h1><a href='/subs/blog/$blog_type/'>" . $blog_post["blog_type_name"] . "</a> | " . $blog_date .  "</center>";
+        echo "<center>/ subs / <a href='/subs/blog'>blog</a> / <a href='/subs/blog/$blog_type/'>$blog_type</a></center><hr><br/>";
         /*if (!$blog_post["visible"]) {
             echo "<p>Note: This blog post is not visible in the main directory.</p>";
         }*/

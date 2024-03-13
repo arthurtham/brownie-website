@@ -52,7 +52,7 @@ if ($result->num_rows > 0) {
         "</td><td>".$announcement_post['announcement_date'].
         "</td><td>".$announcement_post['published'].
         "</td><td><a href='announcement_editor.php?announcement_id=$announcement_id'><button type='button'>Edit</button></a>".
-        "<a target='_blank' href='/announcements/?announcement-id=$announcement_id'><button type='button'>View</button></a>".
+        "<a target='_blank' href='/announcements/$announcement_id/'><button type='button'>View</button></a>".
         "</td></tr>";
     }
 }

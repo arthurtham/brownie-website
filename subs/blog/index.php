@@ -128,10 +128,10 @@ ABOUT;
 			} else {
 				$show_active_toggle = "false";
 				$show_active_text = " ";
-				$show_active_href = "/subs/blog/$directory[0]";
+				$show_active_href = "/subs/blog/$directory[0]/";
 			}
 		} else {
-			$show_active_href = "/subs/blog/$directory[0]";
+			$show_active_href = "/subs/blog/$directory[0]/";
 		}
 		$nav_tabs_html_helper = <<<ITEM
 		<li class="nav-item" role="presentation">
