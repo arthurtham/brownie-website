@@ -33,7 +33,8 @@ STYLE;
             echo "<center><h1>Announcements</h1></center><hr/>";
             echo "<p>Note: This announcement is not published or no longer exists!</p>";
         } else {
-            echo "<center><h1>" . $announcement_embed["announcement_name"] . "</h1><a href='/announcements/'>" . "Announcements" . "</a> | " . explode(" ",$announcement_embed["announcement_date"])[0] .  "</center><br/><hr/>";
+            $announcement_date = date_format(date_create_from_format("Y-m-d",explode(" ",$announcement_embed["announcement_date"])[0]),"F d, Y");
+            echo "<center><h1>" . $announcement_embed["announcement_name"] . "</h1><a href='/announcements/'>" . "Announcements" . "</a> | " . $announcement_date .  "</center><br/><hr/>";
             $announcement_embed_contents = $announcement_embed["announcement_embed"];
             echo Parsedown::instance()->text($announcement_embed_contents);
         }

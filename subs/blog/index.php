@@ -24,14 +24,16 @@ if (isset($_GET["category"])) {
 
 // Set page title based on blog id if provided
 if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
-	$sql = "SELECT blog_name FROM blog_posts WHERE blog_id = \"".$_GET['blog-id']."\""; 
+	$sql = "SELECT blog_name FROM blog_posts WHERE blog_id = \"".mysqli_real_escape_string($conn, $_GET['blog-id'])."\" AND blog_type = \"".mysqli_real_escape_string($conn, $_GET['blog-type'])."\";"; 
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while ($blog_post = $result->fetch_assoc()) {
 			$blog_title = $blog_post["blog_name"];
 		}
+		$title = "$blog_title - Turtle Pond - Brown's Blog";
+	} else {
+		$title = "Turtle Pond - Brown's Blog";
 	}
-	$title = "$blog_title - Turtle Pond - Brown's Blog";
 } else {
 	$title = "Turtle Pond - Brown's Blog";
 }
@@ -126,10 +128,10 @@ ABOUT;
 			} else {
 				$show_active_toggle = "false";
 				$show_active_text = " ";
-				$show_active_href = "?category=$directory[0]";
+				$show_active_href = "/subs/blog/$directory[0]";
 			}
 		} else {
-			$show_active_href = "?category=$directory[0]";
+			$show_active_href = "/subs/blog/$directory[0]";
 		}
 		$nav_tabs_html_helper = <<<ITEM
 		<li class="nav-item" role="presentation">
@@ -293,7 +295,7 @@ ITEM;
 										<h4 class="card-title">$blog_name</h4>
 										<p class="card-text">
 											$blog_date - $blog_type_name<br/>
-											<p><a class="btn btn-dark" href="?blog-type=$blog_type&blog-id=$blog_id">$button_read_text</a></p>
+											<p><a class="btn btn-dark" href="/subs/blog/$blog_type/$blog_id">$button_read_text</a></p>
 										</p>
 									</div>
 								</div>

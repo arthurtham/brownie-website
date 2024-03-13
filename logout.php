@@ -11,7 +11,7 @@ require __DIR__ . "/includes/functions.php";
 # Save Redirect in case we need it
 $_REDIRECT_URL = "/";
 if (isset($_SESSION) && isset($_SESSION['redirect'])) {
-    $_REDIRECT_URL = is_null($_SESSION['redirect'], "/");
+    $_REDIRECT_URL = is_null($_SESSION['redirect']) ? "/" : $_SESSION['redirect'];
 }
 
 //regenerate_session();

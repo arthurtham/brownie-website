@@ -48,7 +48,7 @@ $announcement_id = 0;
 $announcement_name = "Announcement Name";
 $announcement_embed = "insert link here";
 $announcement_date = "2022-1-1";
-$can_change_blog_id = "";
+$can_change_blog_id = "readonly=\"readonly\"";
 
 if (isset($_GET["announcement_id"])) {
     $can_change_blog_id = "readonly=\"readonly\"";
@@ -61,6 +61,14 @@ if (isset($_GET["announcement_id"])) {
             $announcement_date = explode(" ",$announcement_post["announcement_date"])[0];
             $announcement_embed = $announcement_post["announcement_embed"];
             $announcement_published = $announcement_post["published"];
+        }
+    }
+} else {
+    $sql = "SELECT announcement_id FROM announcement_embeds ORDER BY id DESC LIMIT 1;";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($announcement_post = $result->fetch_assoc()) {
+            $announcement_id = intval($announcement_post["announcement_id"])+1;
         }
     }
 }

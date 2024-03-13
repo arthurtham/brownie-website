@@ -91,7 +91,7 @@ function echoCardEntries($result) {
                 }
                 echo '<div class="row" style="padding-bottom:10px" oncontextmenu="return false;">';
             }
-            echo '<div class="col-md-3 d-flex align-items-stretch"><div class="card shadow" style="width:100% !important;">';
+            echo '<div class="col-lg-3 mb-2 d-flex align-items-stretch"><div class="card shadow" style="width:100% !important;">';
             echo '<a data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'">
             <div style="position:relative;background-color:lightgray"><img src="'.$item["portfolio_image"].'" 
             class="card-img-top" alt="portfolio image: '.$item["name"].'"><img src="'.$item["logo_image"].'" 

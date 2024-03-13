@@ -123,7 +123,7 @@ ITEM;
 								<h4 class="card-title">$announcement_name</h4>
 								<p class="card-text">
 									$announcement_date<br/>
-									<p><a class="btn btn-dark" href="?announcement-id=$announcement_id">Read</a></p>
+									<p><a class="btn btn-dark" href="/announcements/$announcement_id">Read</a></p>
 								</p>
 							</div>
 						</div>
