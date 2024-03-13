@@ -74,7 +74,7 @@ ITEM;
 	$pagination_html_details = "";
 	
 	$sql = "SELECT * FROM announcement_embeds WHERE published=1 $sql_criteria ORDER BY announcement_date DESC, announcement_id DESC, announcement_name ASC LIMIT $pagestartfrom, $entrylimit;";
-	$sql_count = "SELECT COUNT(*) AS total_entries FROM announcement_embeds WHERE published=1";
+	$sql_count = "SELECT COUNT(*) AS total_entries FROM announcement_embeds WHERE published=1 $sql_criteria";
 
 	$result_count = $conn->query($sql_count);
 	if ($result_count->num_rows > 0) {
@@ -94,7 +94,7 @@ ITEM;
 					<span class="page-link">'.($_i+1).'</span>
 				</li>';
 			} else {
-				$pagination_html .= '"><a class="page-link" href="?'.($directory[0] !== "search" ? ("category=".$pagination_blog_type.'-tab') : ("category=search-tab&search-text=$search_text")).'&page='.($_i+1).'">'.($_i+1).'</a></li>';
+				$pagination_html .= '"><a class="page-link" href="?'.(isset($_GET["search-text"]) ? ("search-text=$search_text&") : "").'page='.($_i+1).'">'.($_i+1).'</a></li>';
 			}
 		}
 		$pagination_html .= '</ul>';

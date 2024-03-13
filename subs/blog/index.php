@@ -256,7 +256,7 @@ ITEM;
 						</li>';
 					} else {
 						//TODO: No, we are not on this page
-						$pagination_html .= '"><a class="page-link" href="?'.($directory[0] !== "search" ? ("category=".$pagination_blog_type.'-tab') : ("category=search-tab&search-text=$search_text")).'&page='.($_i+1).'">'.($_i+1).'</a></li>';
+						$pagination_html .= '"><a class="page-link" href="/subs/blog/'.($directory[0] !== "search" ? $pagination_blog_type : ("search/?search-text=$search_text")).($directory[0] !== "search" ? "?" : "&").'page='.($_i+1).'">'.($_i+1).'</a></li>';
 					}
 				}
 				$pagination_html .= '</ul>';
