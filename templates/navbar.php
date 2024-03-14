@@ -57,6 +57,10 @@ create_navbar_items($navbar_contents);
         <ul class="navbar-nav mt-auto">
             <li style="padding-right:4px">
 <?php
+if (check_roles([$turtle_role_id])) {
+    echo "<a href='" . "/admin" ."'><button class='btn btn-danger'><i class='fa-solid fa-hammer'></i> Admin</button></a></li><li style='padding-right:4px'>";
+}
+
 // Auth_URL now handled in login file
 // $auth_url = url($client_id, $redirect_url, $scopes);\
 if (isset($_SESSION['user'])) {

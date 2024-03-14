@@ -210,7 +210,7 @@ ITEM;
 		//Pagination preparation
 		$pagestartfrom = 0; // A variable to start reading from
 		$page = max(intval($_GET["page"]),1);
-		$entrylimit = 7; // How many results per page?
+		$entrylimit = 10; // How many results per page?
 		if (isset($_GET["page"]) && isset($_GET["category"])) {
 			if ($_GET["category"] == $directory[0]."-tab") {
 				$pagestartfrom = max($page-1,0) * $entrylimit;

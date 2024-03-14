@@ -15,12 +15,12 @@ require $dir . "/templates/header.php"
     <div class="row" style="padding-top:48px;padding-bottom:48px">
         <div class="col-lg-8 offset-lg-2 text-center text-white" style="">
             <img class="shadow mb-4" src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/browntulstar-logo-v1-large.webp" style="border-radius: 100%;width:auto;max-width:200px" />
-            <h1 class="text-center" style="text-shadow: 1px 1px 2px black">Hi, I'm Browntul!</h1>
-            <h3 class="text-center" style="text-shadow: 1px 1px 2px black">Nice to meet you!</h3>
+            <h1 class="text-center">Hi, I'm Browntul!</h1>
+            <h3 class="text-center">Nice to meet you!</h3>
         </div>
     </div>
 </div>
-<div class="container body-container" style="padding-top:50px;padding-bottom:100px">
+<div class="container body-container" style="padding-top:50px !important;padding-bottom:100px">
     <div>
         <h2 style="text-align: center;">About Me</h2>
         <p>I'm a content creator, esports commentator and producer, and software programmer. You might know me from being a community member

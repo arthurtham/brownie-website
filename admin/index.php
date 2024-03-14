@@ -14,6 +14,7 @@ require $dir . "/templates/header.php";
 <a class="btn btn-dark" href="/admin/shortlinks.php">Shortlinks</a><br>
 <a class="btn btn-dark" href="/admin/debug.php">Application Debug</a><br>
 <a class="btn btn-dark" href="/admin/phpinfo.php">PHPDebug</a><br>
+<a class="btn btn-dark" href="/admin/debug.php">Navbar</a><br>
 <a class="btn btn-dark" href="/admin/store.php">Store (obsolete)</a><br>
 </div>
 

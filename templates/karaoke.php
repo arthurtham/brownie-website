@@ -1,10 +1,11 @@
 <!-- Adapted from Mark Hillard's Responsive Audio Player https://codepen.io/markhillard/pen/jOOKxM -->
-<link rel="stylesheet" href="/subs/karaoke/style.css">
+<link rel="stylesheet" href="/subs/karaoke/style.css?v=2024-3-14">
 <link rel="stylesheet" href="https://cdn.plyr.io/3.7.2/plyr.css" />
 <script src="https://cdn.plyr.io/3.7.2/plyr.polyfilled.js"></script>
 <script src="/subs/karaoke/tracks.js"></script>
 <script src="/subs/karaoke/script.js"></script>
-<div class="container-player" style="background-color:brown;border-radius:20px">
+<div style="overflow-x:auto">
+<div class="container-player shadow" style="border-radius:20px;min-width:300px">
     <div class="column add-bottom">
         <div id="mainwrap">
             <div id="nowPlay">
@@ -23,7 +24,8 @@
             </div>
         </div>
     </div>
-    <div class="column add-bottom center">
-        <p>Tank Engine Karaoke</p><br/>
+    <div id="player-footer" class="column add-bottom center">
+        <p><h2>Tank Engine Karaoke</h2></p><br/>
     </div>
+</div>
 </div>

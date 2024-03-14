@@ -40,12 +40,12 @@ jQuery(function ($) {
             npTitle = $('#npTitle'),
             audio = $('#audio1').on('play', function () {
                 playing = true;
-                npAction.text('catJAM');
+                npAction.html('<span class="bounce"><i class="fa-solid fa-train"></i> Choo-choo</span>');
             }).on('pause', function () {
                 playing = false;
-                npAction.text('Pausedge');
+                npAction.html('<span><i class="fa-solid fa-train"></i> Pause</span>');
             }).on('ended', function () {
-                npAction.text('Pausedge');
+                npAction.text('<span><i class="fa-solid fa-train"></i> Pause</span>');
                 if ((index + 1) < trackCount) {
                     index++;
                     loadTrack(index);

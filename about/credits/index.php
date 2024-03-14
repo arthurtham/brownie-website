@@ -13,8 +13,8 @@ require $dir . "/templates/header.php";
 </style>
 
 <div class="container body-container-no-bg" style="padding-top:50px;padding-bottom:100px">
-    <h1 class="text-center text-light" style="text-shadow: #000 1px 0 10px;">Credits</h1>
-    <p class="text-center text-light" style="text-shadow: #000 1px 0 2px;">Thank you to these wonderful contributors for their hard work. 
+    <h1 class="text-center text-light">Credits</h1>
+    <p class="text-center text-light" style="text-shadow: 1px 1px 2px black;">Thank you to these wonderful contributors for their hard work. 
             You can check out their contributions below, which also includes their social links.</p>
 
 <?php
