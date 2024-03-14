@@ -1,21 +1,16 @@
 <?php
 
 $dir = dirname(__DIR__, 1);
-
+$title = "Blog Editor";
 require $dir . "/includes/admin-check.php";
-require $dir . "/includes/default-includes.php";
+require $dir . "/templates/header.php";
 require_once($dir . "/includes/mysql.php");
 
 ?>
-<html>
-<head>
-<!-- Markdown editor support -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.0/markdown-it.min.js" integrity="sha512-A1dmQlsxp9NpT1ON0E7waXFEX7PXtlOlotHtSvdchehjLxBaVO5itVj8Z5e2aCxI0n02hqM1WoDTRRh36c5PuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     function renderMarkdown() {
-        var md = window.markdownit();
+        var md = window.markdownit({html: true});
         var result = md.render(document.getElementById("blog_content").value);
         document.getElementById("blog_content_preview").innerHTML = result;
     }
@@ -40,8 +35,6 @@ require_once($dir . "/includes/mysql.php");
         margin-right: auto;
     }
 </style>
-</head>
-<body>
 <?php
 
 $blog_id = 0;
@@ -92,7 +85,7 @@ foreach ($blog_types as $entry) {
 $html_blog_types .= "</select>";
 
 echo <<<FORM
-<div class="container">
+<div class="container body-container">
 <div class="row"><div class="col"><h1>Blog Editor</h1><a href="blog.php"><button type="button">Back to Blog Posts</button></a></div></div>
 <div class="row">
 <div class="col col-md-6">
@@ -112,7 +105,11 @@ echo <<<FORM
         (Preview)
     </div>
 </div>
+</div>
+</div>
 FORM;
+
+
+$_footer_adminmode = true;
+require $dir . "/templates/footer.php";
 ?>
-</body>
-</html>

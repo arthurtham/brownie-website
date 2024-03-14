@@ -1,14 +1,19 @@
 <?php
 
 $dir = dirname(__DIR__, 1);
-
+$title = "Announcement Editor";
 require $dir . "/includes/admin-check.php";
-require $dir . "/includes/default-includes.php";
+require $dir . "/templates/header.php";
 require_once($dir . "/includes/mysql.php");
 
+?>
+<div class="container body-container">
+
+<?php
+
 if (empty($_POST)) {
-    die("No variables passed");
-}
+    echo ("No variables passed");
+} else {
 
 $sql = "REPLACE INTO announcement_embeds (announcement_id, announcement_name, announcement_embed, announcement_date, published) VALUES (";
 $sql .= "\"" . $_POST["announcement_id"] . "\",";
@@ -21,14 +26,19 @@ $result = $conn->query($sql);
 if ($result === TRUE) {
     echo "<p>Success!</p>";
     echo "<a href='/admin/announcement.php'><button>Main</button></a></p>";
-    echo "<code>$sql</code>";
+    echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
 } else {
     echo "<p>Failure: $conn->error </p>";
-    echo "<code>$sql</code>";
+    echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
 }
 echo "<br/>";
 print_r($_POST);
+}
 
-
+?>
+</div>
+<?php
+$_footer_adminmode = true;
+require $dir . "/templates/footer.php";
 
 ?>

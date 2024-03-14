@@ -1,14 +1,16 @@
 <?php
 
 $dir = dirname(__DIR__, 1);
-
+$title = "Blog Editor";
 require $dir . "/includes/admin-check.php";
-require $dir . "/includes/default-includes.php";
+require $dir . "/templates/header.php";
 require_once($dir . "/includes/mysql.php");
 
+echo "<div class=\"container body-container\">";
+
 if (empty($_POST)) {
-    die("No variables passed");
-}
+    echo ("No variables passed");
+} else {
 
 $sql = "REPLACE INTO blog_posts (blog_id, blog_name, blog_date, blog_type, blog_content, visible, published) VALUES (";
 $sql .= "\"" . $_POST["blog_id"] . "\",";
@@ -23,13 +25,16 @@ $result = $conn->query($sql);
 if ($result === TRUE) {
     echo "<p>Success!</p>";
     echo "<a href='/admin/blog.php'><button>Main</button></a></p>";
-    echo "<code>$sql</code>";
+    echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
 } else {
     echo "<p>Failure: $conn->error </p>";
-    echo "<code>$sql</code>";
+    echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
 }
 //print_r($_POST);
+}
 
-
+echo "</div>";
+$_footer_adminmode = true;
+require $dir . "/templates/footer.php";
 
 ?>

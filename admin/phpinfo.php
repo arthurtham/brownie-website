@@ -1,7 +1,7 @@
 <?php
 
 $dir = dirname(__DIR__, 1);
-
+$title = "PHPInfo";
 require $dir . "/includes/admin-check.php";
 require $dir . "/includes/default-includes.php";
 require $dir . "/templates/header.php";
@@ -47,5 +47,5 @@ require $dir . "/templates/header.php";
 </div>
 
 <?php
-require $dir . "/templates/footer.php";
+$_footer_adminmode = true; require $dir . "/templates/footer.php";
 ?>

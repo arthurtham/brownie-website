@@ -1,7 +1,7 @@
 <?php
 
 $dir = dirname(__DIR__, 1);
-
+$title = "Navbar";
 require $dir . "/includes/admin-check.php";
 require $dir . "/includes/default-includes.php";
 
@@ -20,6 +20,7 @@ require $dir . "/templates/header.php";
     
 </div>
 <?php
+$_footer_adminmode = true;
 require $dir . "/templates/footer.php";
 
 ?>

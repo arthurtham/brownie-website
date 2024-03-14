@@ -1,9 +1,9 @@
 <?php
 
 $dir = dirname(__DIR__, 1);
-
+$title = "Announcement Editor";
 require $dir . "/includes/admin-check.php";
-require $dir . "/includes/default-includes.php";
+require $dir . "/templates/header.php";
 require_once($dir . "/includes/mysql.php");
 
 ?>
@@ -18,7 +18,7 @@ require_once($dir . "/includes/mysql.php");
 </style>
 </head>
 <body>
-    <div class='container'>
+    <div class='container body-container'>
         <div class='row'>
             <div class='col'>
                 <h1>Announcement Editor</h1>
@@ -63,3 +63,8 @@ if ($result->num_rows > 0) {
 </div>
 </body>
 </html>
+
+<?php
+$_footer_adminmode = true;
+require $dir . "/templates/footer.php";
+?>

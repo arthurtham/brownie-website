@@ -19,7 +19,7 @@ require $dir . "/templates/header.php";
 <p> Is In Turtle Pond : <?php echo check_guild_membership($guild_id) ? "true" : "false"; ?></p>
 <p> Is In BrownieVAL : <?php echo check_guild_membership($brownieval_guild_id) ? "true" : "false"; ?></p>
 
-<p> Profile Picture : <?php echo get_discord_avatar_url() ?></p>
+<p> Profile Picture : <?php echo "<a href=\"get_discord_avatar_url()\">Link</a>" ?></p>
 <br>
 <h2>User Response :</h2>
 <div class="response-block">
@@ -61,6 +61,7 @@ require $dir . "/templates/header.php";
 </div>
 
 <?php
+$_footer_adminmode = true;
 require $dir . "/templates/footer.php";
 
 ?>

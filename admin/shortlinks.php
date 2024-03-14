@@ -1,27 +1,21 @@
 <?php
 
 $dir = dirname(__DIR__, 1);
-
+$title = "Shortlinks Editor";
 require $dir . "/includes/admin-check.php";
-require $dir . "/includes/default-includes.php";
+require $dir . "/templates/header.php";
 require_once($dir . "/includes/mysql.php");
 
 ?>
-<html>
-<head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <style>
     .table .tr .th .td {
         border: 1px solid;
     }
 </style>
-</head>
-<body>
-    <div class='container'>
+    <div class='container body-container'>
         <div class='row'>
             <div class='col'>
-                <h1>Shortlink Editor</h1>
+                <h1>Shortlinks Editor</h1>
                 <form action="shortlinks.php" method="get">
                     <input type="text" name="search-text" id="search-text" placeholder="Search..." value="<?php echo $_GET["search-text"] ?>" />
                     <button type="submit">Search Links</button> | 
@@ -31,14 +25,7 @@ require_once($dir . "/includes/mysql.php");
             </div>
         </div>
         <div class='row'>
-            <div class='col'>
-                <div id='editor'>
-                    
-                </div>
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col'>
+            <div class='col-lg-12 border' style='overflow:scroll;max-height:70vh'>
 <?php
 
 $search_criteria = (isset($_GET["search-text"]) ? (
@@ -46,15 +33,15 @@ $search_criteria = (isset($_GET["search-text"]) ? (
     ) : "");
 
 
-$sql = "SELECT * FROM shortlinks $search_criteria ORDER BY available DESC, shortcode ASC, hits DESC, id ASC;";
+$sql = "SELECT * FROM shortlinks $search_criteria ORDER BY available DESC, shortcode ASC;";
 //echo "<p>$sql</p>";
-echo "<table class='table w-100' style='overflow-x:auto;min-width:400px;'><tr><th class='col-1'>ID</th><th class='col-2'>Short Code</th><th class='col-4'>Full Link</th><th class='col-1'>Hits</th><th class='col-1'>Visible</th><th class='col-1'>Date Created</th><th class='col-2'>Actions</th>";
+echo "<table class='table w-100'><tr><th class='col-1'>ID</th><th class='col-2'>Short Code</th><th class='col-4'>Full Link</th><th class='col-1'>Hits</th><th class='col-1'>Visible</th><th class='col-1'>Date Created</th><th class='col-2'>Actions</th>";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($shortlink_entry = $result->fetch_assoc()) {
         echo "<tr><td>".$shortlink_entry['id'].
-        "</td><td><strong>".$shortlink_entry['shortcode']."</strong><br/>browntulstar.com/r/".$shortlink_entry['shortcode'].
-        "</td><td>".$shortlink_entry['fulllink'].
+        "</td><td style='word-wrap: break-word;max-width:300px'><strong>".$shortlink_entry['shortcode']."</strong><br/>browntulstar.com/r/".$shortlink_entry['shortcode'].
+        "</td><td style='word-wrap: break-word;max-width:300px'>".$shortlink_entry['fulllink'].
         "</td><td>".$shortlink_entry['hits'].
         "</td><td>".$shortlink_entry['available'].
         "</td><td>".$shortlink_entry['creationdate'].
@@ -70,5 +57,4 @@ if ($result->num_rows > 0) {
     </div>
 </div>
 
-</body>
-</html>
+<?php $_footer_adminmode = true; require $dir . "/templates/footer.php"; ?>
