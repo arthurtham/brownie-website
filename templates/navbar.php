@@ -34,7 +34,7 @@ function create_navbar_items($navbar_items, $depth=0) {
                 echo '<li><hr class="dropdown-divider" '.$depth_style.' />';
                 break;
             case "dropdown-header":
-                echo '<li><h6 class="dropdown-header" '.$depth_style.'>'.$navbar_item["contents"].'</h6></li>';
+                echo '<li><h2 class="dropdown-header-navbar" '.$depth_style.'>'.$navbar_item["contents"].'</h2></li>';
                 break;
             default:
                 break;

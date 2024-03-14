@@ -13,46 +13,50 @@ require $dir . "/templates/header.php"
 
 <div class="container body-container-no-bg" style="padding-bottom:0 !important">
     <div class="row" style="padding-top:48px;padding-bottom:48px">
-        <div class="col-lg-8 offset-lg-2 text-center text-white" style="text-shadow: 1px 1px 2px black">
-            <img class="shadow" src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/browntulstar-logo-v1-large.webp" style="border-radius: 100%;width:auto;max-width:200px" />
-            <h1 class="text-center">Hi, I'm Browntul!</h1>
-            <h2 class="text-center">Nice to meet you!</h2>
-            <p>I'm a content creator, esports commentator and producer, and software programmer. You might know me from being a community member
-                in many Twitch streams on the Pacific time zone,
-                namely those that host VALORANT grassroots tournaments like the Chang Gang Tournament and my very own #BrownieVAL!
-            </p>
-            <p>I first started streaming on Twitch in August of 2019. Since then, I've made many friends through playing Mario Kart, KartRider, VALORANT, 
-                and Honkai: Star Rail, among other games. On my stream, I enjoy playing chaotic multiplayer games and exploring new ways to play. 
-                You'll find my Killjoy turtle PNGTuber hanging out in my comfy bedroom, tinkering with new stream widgets and coding up new software for my turtle shells to enjoy.
-            </p>
-            <p>I enjoy helping others achieve their goals and dreams by bringing communities together. That's what I built with #BrownieVAL, a VALORANT 
-                tournament that brings together small communities in a friendly competition while giving new shoutcasters and admins opportunities to 
-                help out.
-            </p>
-            <p>I hope you can enjoy my content! Scroll down to read more about me, or go check out my content, events, and sub perks in the navigation bar above.
-                For business inquiries, please email me at browntulstar@browntulstar.com. Or, you can hang out with me on my 
-                socials! I also have a Discord server that you can join, which is required to activate your
-                sub perks if you subscribe to my content!
-            </p>
-            <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href="/discord" target="_blank" style="max-width:400px">
-                <i class="fa-brands fa-discord"></i>
-                Join Turtle Pond Discord Server
-            </a></p>
-            <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href="https://www.twitch.tv/browntulstar" target="_blank" style="max-width:400px">
-                <i class="fa-brands fa-twitch"></i>
-                Follow me on Twitch
-            </a></p>
-            <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href='https://ko-fi.com/browntulstar' target='_blank' style="max-width:400px">
-                <img height='24' style='border:0px;height:24px;' src='https://storage.ko-fi.com/cdn/kofi4.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' />
-                Join on Ko-fi
-            </a></p>
-            <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href='https://browntulstar.com/r/links' target='_blank' style="max-width:400px">
-                More Links and Socials
-            </a></p>
+        <div class="col-lg-8 offset-lg-2 text-center text-white" style="">
+            <img class="shadow mb-4" src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/browntulstar-logo-v1-large.webp" style="border-radius: 100%;width:auto;max-width:200px" />
+            <h1 class="text-center" style="text-shadow: 1px 1px 2px black">Hi, I'm Browntul!</h1>
+            <h3 class="text-center" style="text-shadow: 1px 1px 2px black">Nice to meet you!</h3>
         </div>
     </div>
 </div>
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
+    <div>
+        <h2 style="text-align: center;">About Me</h2>
+        <p>I'm a content creator, esports commentator and producer, and software programmer. You might know me from being a community member
+            in many Twitch streams on the Pacific time zone,
+            namely those that host VALORANT grassroots tournaments like the Chang Gang Tournament and my very own #BrownieVAL!
+        </p>
+        <p>I first started streaming on Twitch in August of 2019. Since then, I've made many friends through playing Mario Kart, KartRider, VALORANT, 
+            and Honkai: Star Rail, among other games. On my stream, I enjoy playing chaotic multiplayer games and exploring new ways to play. 
+            You'll find my Killjoy turtle PNGTuber hanging out in my comfy bedroom, tinkering with new stream widgets and coding up new software for my turtle shells to enjoy.
+        </p>
+        <p>I enjoy helping others achieve their goals and dreams by bringing communities together. That's what I built with #BrownieVAL, a VALORANT 
+            tournament that brings together small communities in a friendly competition while giving new shoutcasters and admins opportunities to 
+            help out.
+        </p>
+        <p>I hope you can enjoy my content! Scroll down to read more about me, or go check out my content, events, and sub perks in the navigation bar above.
+            For business inquiries, please email me at browntulstar@browntulstar.com. Or, you can hang out with me on my 
+            socials! I also have a Discord server that you can join, which is required to activate your
+            sub perks if you subscribe to my content!
+        </p>
+        <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href="/discord" target="_blank" style="max-width:400px">
+            <i class="fa-brands fa-discord"></i>
+            Join Turtle Pond Discord Server
+        </a></p>
+        <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href="https://www.twitch.tv/browntulstar" target="_blank" style="max-width:400px">
+            <i class="fa-brands fa-twitch"></i>
+            Follow me on Twitch
+        </a></p>
+        <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href='https://ko-fi.com/browntulstar' target='_blank' style="max-width:400px">
+            <img height='24' style='border:0px;height:24px;' src='https://storage.ko-fi.com/cdn/kofi4.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+            Join on Ko-fi
+        </a></p>
+        <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href='https://browntulstar.com/r/links' target='_blank' style="max-width:400px">
+            More Links and Socials
+        </a></p>
+    </div>
+    <hr />
     <h2 style="text-align: center;">My Activities</h2>
     <div class="container">
         <div class="row">
@@ -78,7 +82,7 @@ require $dir . "/templates/header.php"
             <div class="col-lg-4 mb-2">
                 <div class="card" style="width: 100%; height:100%">
                     <div class="card-body">
-                        <h5 class="card-title  text-center">Community Modding</h5>
+                        <h5 class="card-title text-center">Community Modding</h5>
                         <p style="text-align:center">I mod for online communities on Discord, Twitch, and itch.io. I have modded for esports leagues as well.</p>
                         <p style="text-align:center"><a class="btn btn-success w-100 disabled" style="max-width:300px" href="#">Ok, take my word for this one</a></p>
                     </div>
@@ -90,7 +94,7 @@ require $dir . "/templates/header.php"
     <h2 style="text-align: center;">Currently Playing</h2>
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 mb-2">
+            <div class="col-md-4 offset-md-2 mb-2">
                 <div class="card" style="width: 100%; height:100%">
                     <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/games-honkaistarrail.webp" class="card-img-top" alt="qingque honkai star rail" style="object-fit: cover;height:200px">
                     <div class="card-body">
@@ -98,7 +102,7 @@ require $dir . "/templates/header.php"
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 mb-2">
+            <div class="col-md-4 mb-2">
                 <div class="card" style="width: 100%; height:100%">
                     <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/games-mk8dx.webp" class="card-img-top" alt="mario kart 8 deluxe" style="object-fit: cover;height:200px">
                     <div class="card-body">
@@ -106,7 +110,9 @@ require $dir . "/templates/header.php"
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 mb-2">
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-2 mb-2">
                 <div class="card" style="width: 100%; height:100%">
                     <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/games-krr.webp" class="card-img-top" alt="KRR" style="object-fit: cover;height:200px">
                     <div class="card-body">
@@ -114,7 +120,7 @@ require $dir . "/templates/header.php"
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 mb-2">
+            <div class="col-md-4 mb-2">
                 <div class="card" style="width: 100%; height:100%">
                     <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/games-valorant-kj.webp" class="card-img-top" alt="valorant killjoy" style="object-fit: cover;height:200px">
                     <div class="card-body">

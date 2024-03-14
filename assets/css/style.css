@@ -9,6 +9,12 @@ div.container.body-container {
     box-shadow: 0px 0px 10px #a58e8e;
 }
 
+@media (max-width:991px) and (min-width:576px) {
+    div.container.body-container-no-bg {
+        padding: 75px 10px 200px 10px !important;
+    }
+}
+
 @media (max-width:991px) {
     div.container.body-container {
         padding: 75px 10px 200px 10px !important;
@@ -58,6 +64,11 @@ body {
     background: linear-gradient(0deg, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 25%, rgba(58,103,62,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d3ae86",endColorstr="#3a673e",GradientType=1);
     background-attachment: fixed;
+    font-family: "Inter", "Helvetica Neue", sans-serif !important;
+    font-optical-sizing: auto !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    font-variation-settings: "slnt" 0 !important;
 }
 
 body.v1 {
@@ -185,4 +196,34 @@ body.home {
 .btn-danger:hover {
     background-color: #ff4545 !important;
     border-color: #ff4545 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "League Spartan", "Helvetica Neue", sans-serif !important;
+    margin-bottom: 0.2rem !important;
+}
+
+h1, h2 {
+    font-weight: 700 !important;
+    text-transform: uppercase;
+}
+
+h3, h4 {
+    font-weight: 600 !important;
+    text-transform: uppercase;
+}
+
+h5, h6 {
+    font-weight: 500 !important;
+}
+
+.dropdown-header-navbar {
+    font-family: "League Spartan", "Helvetica Neue", sans-serif !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    padding-top: 8px !important;
+    padding-left: 16px !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
 }
