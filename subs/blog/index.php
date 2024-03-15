@@ -67,8 +67,21 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 	if (!isset($_SESSION['user']) || !check_guild_membership($guild_id) || !check_roles($sub_perk_roles)) {		
 		// Force login page if user isn't logged in
 		if (!isset($_SESSION['user'])) {
-			redirect("/login.php");
-			die();
+			echo <<<MESSAGE
+			<div class='alert alert-danger' role='alert'>
+			<center><p>Please log in with the Discord account that has your subbed Twitch/Ko-fi account linked to read this content.
+			Remember to join the Turtle Pond Discord before logging in here!</p>
+			<p><a class="btn btn-dark w-100 shadow" href="/r/discord" target="_blank" style="max-width:350px">
+			<i class="fa-brands fa-discord"></i>
+			Join Turtle Pond Discord Server
+			</a> <a class="btn btn-success w-100 shadow" href="/login.php" target="_blank" style="max-width:125px">
+			<i class="fa-brands fa-discord"></i>
+			Login
+			</a></p></center>
+			</div>
+MESSAGE;
+			echo '<h1 style="text-align: center">Brown\'s Blog</h1>';
+			require $dir . "/templates/sub-perks-description.php";
 		} else { // Otherwise they're just not subbed, display the call to action
 			echo "<div class='alert alert-danger' role='alert'>
 			<center>Error: Your Discord roles don't include being a Twitch or Ko-fi subscriber.<br>

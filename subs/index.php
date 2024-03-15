@@ -25,7 +25,7 @@ if (!isset($_SESSION['user'])) {
 			You must join the server in order to sync your Discord roles and activate your
 			sub perks on the website. Please scroll down for more information and for the join links; then,
 			log out and log back in again to check your perks.</p>
-			<p><a class="btn btn-dark w-100 shadow" href="/discord" target="_blank" style="max-width:400px">
+			<p><a class="btn btn-dark w-100 shadow" href="/r/discord" target="_blank" style="max-width:400px">
 			<i class="fa-brands fa-discord"></i>
 			Join Turtle Pond Discord Server
 			</a></p></center>
@@ -87,40 +87,69 @@ $faqitems = array(
 		<p>If you still don't have your sub perks, please ping @Browntul on Discord in the #turtle-party channel or <a href='browntulstar@browntulstar.com' target='_blank'>email Browntul</a> with your Discord username.</p>"
 	),
 );
+$_kofi_logo = "<img height='18' style='border:0px;height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/c_pad,h_48/com.browntulstar/img/platform-kofi.webp' border='0' alt='Buy Me a Coffee at ko-fi.com' />";
 echo <<<SUBPERKSHEADER
 	<div class="container body-container" style="padding-top:48px !important">
 		<div class="row">
-			<div class="col-lg-6 offset-lg-3">
-				<h1 class="text-center">Sub Perks Links</h1>
-				<a class="btn btn-dark w-100 mb-2" href="https://www.twitch.tv/browntulstar" target="_blank">
+			<div class="col-md-6 offset-md-3">
+				<h1 class="text-center">Sub Perks Content</h1>
+				<a class="btn btn-dark w-100 mb-2" href="/subs/blog" target="_blank">
+					<i class="fa-brands fa-twitch"></i>$_kofi_logo
+					Sub Blog
+				</a>
+				<a class="btn btn-dark w-100 mb-2" href='/subs/karaoke' target='_blank'>
+					<i class="fa-brands fa-twitch"></i>$_kofi_logo
+					Tank Engine Karaoke
+				</a>
+				<a class="btn btn-dark w-100 mb-2" href='/brownieval/subonlyvideos' target='_blank'>
+					<i class="fa-brands fa-twitch"></i>$_kofi_logo
+					#BrownieVAL Clip Generator
+				</a>
+				<a class="btn btn-dark w-100 mb-2" href='/brownieval/subonlyvideos' target='_blank'>
 					<i class="fa-brands fa-twitch"></i>
-					Subscribe on Twitch
-				</a>
-				<a class="btn btn-dark w-100 mb-2" href='https://ko-fi.com/browntulstar' target='_blank'>
-					<img height='24' style='border:0px;height:24px;' src='https://storage.ko-fi.com/cdn/kofi4.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' />
-					Join on Ko-fi
-				</a>
-				<a class="btn btn-dark w-100 mb-2" href="/discord" target="_blank">
-					<i class="fa-brands fa-discord"></i>
-					Join Turtle Pond Discord Server
-				</a>
-				<a class="btn btn-dark w-100 mb-2" href="/store/?tab=donate">
-					More Ways to Donate (no perks)
+					#BrownieVAL Sub-only Videos
 				</a>
 			</div>
 		</div>
 		<div class="row">
+			<hr/>
 			<div class="col-lg-12">
-				<hr/>
+			<h1 class="text-center">Sub Perks Info / Setup / FAQ</h1>
 SUBPERKSHEADER;
 			require $dir . "/templates/sub-perks-description.php";
 echo <<<SUBPERKSHEADER2
 			</div>
 		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<h1 class="text-center">Subscribe Links</h1>
+				<div class="row">
+					<div class="col-lg-6">
+						<a class="btn btn-dark w-100 mb-2" href="https://www.twitch.tv/browntulstar" target="_blank">
+							<i class="fa-brands fa-twitch"></i>
+							Sub on Twitch
+						</a>
+					</div>
+					<div class="col-lg-6">
+						<a class="btn btn-dark w-100 mb-2" href='https://ko-fi.com/browntulstar' target='_blank'>
+						$_kofi_logo Join on Ko-fi
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<a class="btn btn-dark w-100 mb-2" href="/r/discord" target="_blank">
+							<i class="fa-brands fa-discord"></i>
+							Join Turtle Pond Discord Server
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-lg-12">
 				<hr/>
-				<h1 class="text-center">Sub Perks FAQ</h1>
 					<div class="accordion" id="accordionFAQ">
 SUBPERKSHEADER2;
 for ($_i = 0; $_i < count($faqitems); ++$_i) {
@@ -128,11 +157,11 @@ for ($_i = 0; $_i < count($faqitems); ++$_i) {
 	$contents = $faqitems[$_i]["contents"];
 	echo <<<SUBPERKSFAQ
 					<div class="accordion-item">
-						<h2 class="accordion-header">
+						<p class="accordion-header">
 						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse$_i" aria-expanded="false" aria-controls="collapse$_i">
 						$title
 						</button>
-						</h2>
+						</p>
 						<div id="collapse$_i" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
 						<div class="accordion-body">
 							$contents

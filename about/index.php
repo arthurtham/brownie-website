@@ -40,7 +40,7 @@ require $dir . "/templates/header.php"
             socials! I also have a Discord server that you can join, which is required to activate your
             sub perks if you subscribe to my content!
         </p>
-        <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href="/discord" target="_blank" style="max-width:400px">
+        <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href="/r/discord" target="_blank" style="max-width:400px">
             <i class="fa-brands fa-discord"></i>
             Join Turtle Pond Discord Server
         </a></p>
@@ -49,7 +49,7 @@ require $dir . "/templates/header.php"
             Follow me on Twitch
         </a></p>
         <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href='https://ko-fi.com/browntulstar' target='_blank' style="max-width:400px">
-            <img height='24' style='border:0px;height:24px;' src='https://storage.ko-fi.com/cdn/kofi4.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+            <img height='18' style='border:0px;height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/c_pad,h_48/com.browntulstar/img/platform-kofi.webp' border='0' alt='Buy Me a Coffee at ko-fi.com' />
             Join on Ko-fi
         </a></p>
         <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href='https://browntulstar.com/r/links' target='_blank' style="max-width:400px">
