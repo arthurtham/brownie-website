@@ -26,7 +26,7 @@ function gen_state()
 function url($clientid, $redirect, $scope)
 {
     $state = gen_state();
-    return 'https://discordapp.com/oauth2/authorize?response_type=code&client_id=' . $clientid . '&redirect_uri=' . $redirect . '&scope=' . $scope . "&state=" . $state;
+    return 'https://discord.com/oauth2/authorize?response_type=code&client_id=' . $clientid . '&redirect_uri=' . $redirect . '&scope=' . $scope . "&state=" . $state;
 }
 
 # A function to initialize and store access token in SESSION to be used for other requests

@@ -31,12 +31,14 @@ if (!isset($_SESSION['signin-attempted']) || $_SESSION['signin-attempted'] === 0
     if (session_status() != PHP_SESSION_ACTIVE) {
         start_session_custom();
     }
-    $session_redirect = $_SESSION["redirect"];
-    $_SESSION["redirect"] = $session_redirect;
+}
+
+if (isset($_GET["error"]) && $_GET["error"]==="access_denied") {
+    $_SESSION['signin-attempted'] = 0;
+    redirect("/logout.php?badauth");
 }
 
 if (
-    (isset($_GET["error"]) && $_GET["error"]==="access_denied") ||
     (!isset($_SESSION['signin-attempted']) || $_SESSION['signin-attempted'] === 0) || 
     !(init($redirect_url, $client_id, $secret_id, $bot_token)) || (!get_user())
     ) {
@@ -74,7 +76,7 @@ $_SESSION['roles'] = array_merge(
 //redirect("/subs");
 # Is user in the guild?
 if (check_guild_membership($guild_id)) {
-    redirect(str_replace(array("?logout", "?badauth", "?expired"), array("",""), $_SESSION['redirect']));
+    redirect(str_replace(array("?logout", "?badauth", "?expired"), array("","",""), $_SESSION['redirect']));
 } else {
     // user is not in the guild, so none of the features can actually be used.
     // but we can let them know that they should join the guild to activate these rewards.
