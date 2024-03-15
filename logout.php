@@ -52,6 +52,6 @@ if (isset($_GET["logout"])) {
 
 # Redirecting the user back to login page
 // redirect("/".$argument_string);
-redirect($_SESSION['redirect'] . $argument_string);
+redirect(str_replace(array("?badauth", "?expired","&badauth", "&expired"), array("","","",""), $_SESSION['redirect']) . $argument_string);
 
 ?>

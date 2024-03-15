@@ -76,7 +76,7 @@ $_SESSION['roles'] = array_merge(
 //redirect("/subs");
 # Is user in the guild?
 if (check_guild_membership($guild_id)) {
-    redirect(str_replace(array("?logout", "?badauth", "?expired"), array("","",""), $_SESSION['redirect']));
+    redirect(str_replace(array("?logout", "?badauth", "?expired","&logout", "&badauth", "&expired"), array("","","","","",""), $_SESSION['redirect']));
 } else {
     // user is not in the guild, so none of the features can actually be used.
     // but we can let them know that they should join the guild to activate these rewards.
