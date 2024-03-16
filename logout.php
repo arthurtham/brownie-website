@@ -23,7 +23,7 @@ session_destroy();
 // # Starting the session
 start_session_custom();
 
-
+$_REDIRECT_URL = str_replace(array("?badauth", "?expired","&badauth", "&expired"), array("","","",""), $_REDIRECT_URL);
 
 $argument_string = "";
 $query_exists = parse_url($_REDIRECT_URL, PHP_URL_QUERY);
@@ -51,7 +51,8 @@ if (isset($_GET["logout"])) {
 // unset($_SESSION['timeout_since_login']);
 
 # Redirecting the user back to login page
+print_r($_SESSION["redirect"] . $argument_string);
 // redirect("/".$argument_string);
-redirect(str_replace(array("?badauth", "?expired","&badauth", "&expired"), array("","","",""), $_SESSION['redirect']) . $argument_string);
+redirect($_SESSION['redirect'] . $argument_string);
 
 ?>
