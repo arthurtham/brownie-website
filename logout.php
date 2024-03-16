@@ -30,7 +30,7 @@ $query_exists = parse_url($_REDIRECT_URL, PHP_URL_QUERY);
 // Returns a string if the URL has parameters or NULL if not
 
 if (isset($_GET["logout"])) {
-    $argument_string .= $query_exists ? '&' : '?';
+    $argument_string .= '?';
     $argument_string .= "logout";
     $_SESSION['redirect'] = "/";
 } else if (isset($_GET["badauth"])) {
@@ -42,7 +42,7 @@ if (isset($_GET["logout"])) {
     // $argument_string .= "expired";
     $_SESSION['redirect'] = $_REDIRECT_URL;
 } else {
-    $argument_string .= $query_exists ? '&' : '?';
+    $argument_string .= '?';
     $argument_string .= "logout";
     $_SESSION['redirect'] = "/";
 }
@@ -51,7 +51,7 @@ if (isset($_GET["logout"])) {
 // unset($_SESSION['timeout_since_login']);
 
 # Redirecting the user back to login page
-print_r($_SESSION["redirect"] . $argument_string);
+// print_r($_SESSION["redirect"] . $argument_string);
 // redirect("/".$argument_string);
 redirect($_SESSION['redirect'] . $argument_string);
 
