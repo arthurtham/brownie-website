@@ -51,7 +51,11 @@ function _helper_create_nav_item_dropdown($item, $depth=0) {
     echo '</ul></li>';
 }
 
-create_navbar_items($navbar_contents);
+if (isset($_layout_brownievalmode) && $_layout_brownievalmode == true) {
+    create_navbar_items($navbar_contents_brownieval);
+} else {
+    create_navbar_items($navbar_contents);
+}
 ?>
         </ul>
         <ul class="navbar-nav mt-auto">

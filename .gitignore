@@ -1,9 +1,12 @@
+# Important files
 .DS_Store
 .vscode/settings.json
 config.php
 .htaccess
 compose-dev.yaml
 includes/.env.php
+
+# Sub Perks Content
 subs/giveaway/giveaway-links.md
 subs/blog/techblog
 subs/blog/gamedevlogs
@@ -11,11 +14,22 @@ subs/blog/travelblog
 subs/karaoke/media/
 subs/karaoke/tracks.js
 subs/karaoke/karaoke copy.php
+
+# Shoutcasting: legacy Markdown files
 shoutcasting/shoutcasting.md
 shoutcasting/producing.md
+
+# Privacy Policy
 privacy/privacy-policy.md
+
+# Composer, Cloudinary, and Google Analytics
 composer.phar
 vendor/
 includes/cloudinary.env.php
 includes/ganalytics.php
+
+# Navbar
 templates/navbar-contents.php
+
+# BrownieVAL Submodules
+/brownieval/lab/dv

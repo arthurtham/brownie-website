@@ -45,7 +45,7 @@ jQuery(function ($) {
                 playing = false;
                 npAction.html('<span><i class="fa-solid fa-train"></i> Pause</span>');
             }).on('ended', function () {
-                npAction.text('<span><i class="fa-solid fa-train"></i> Pause</span>');
+                npAction.html('<span><i class="fa-solid fa-train"></i> Pause</span>');
                 if ((index + 1) < trackCount) {
                     index++;
                     loadTrack(index);
