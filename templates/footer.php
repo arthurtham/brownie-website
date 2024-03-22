@@ -124,6 +124,17 @@ FOOTER;
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
 <?php
+    if (isset($_layout_brownievalmode) && $_layout_brownievalmode == true) {
+        echo <<<SCRIPT
+        <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+        </script>
+SCRIPT;
+    }
+
 	if (isset($_GET['logout']) || isset($_GET['badauth'])) {
         $message = "";
         if (isset($_GET['logout'])) {
