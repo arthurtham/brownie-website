@@ -6,8 +6,11 @@ if (isset($_footer_adminmode) && $_footer_adminmode == true) {
     echo <<<FOOTER
     <footer class="d-flex flex-column w-100 justify-content-center align-items-center border-top bg-danger text-white shadow" style="position:fixed;bottom:0;padding-top:4px;padding-bottom:0px;z-index:2">
         <div class="row w-100">
-            <div class="col-lg-10">
-                <h3>Admin Mode</h3>
+            <div class="col-lg-2">
+                
+            </div>
+            <div class="col-lg-8">
+                <h3 class="text-center">Admin Mode</h3>
             </div>
             <div class="col-lg-2">
                 <ul class="nav justify-content-center list-unstyled d-flex" style="margin-top:4px">
@@ -20,8 +23,11 @@ FOOTER;
     echo <<<FOOTER
     <footer class="d-flex flex-column w-100 justify-content-center align-items-center border-top bg-success text-white shadow" style="position:fixed;bottom:0;padding-top:8px;padding-bottom:0px;z-index:2">
         <div class="row w-100">
-            <div class="col-lg-10">
-            <h3><img class="rounded" style="height:32px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/c_pad,w_48,h_48,ar_1:1/v1705971391/com.browntulstar/img/brownieval-logo-v1.webp">
+            <div class="col-lg-2">
+
+            </div>
+            <div class="col-lg-8">
+            <h3 class="text-center"><img class="rounded" style="height:32px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/c_pad,w_48,h_48,ar_1:1/v1705971391/com.browntulstar/img/brownieval-logo-v1.webp">
             #BrownieVAL Draft Deluxe</h3>
             </div>
             <div class="col-lg-2">

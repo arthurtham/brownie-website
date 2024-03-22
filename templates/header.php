@@ -28,7 +28,8 @@ require $dir . "/includes/default-includes.php";
 	echo '<body class="home">';
 } else if (isset($title) && in_array($title, array(
 	"Turtle Pond - Sub Perks",
-	"Turtle Pond - Profile"
+	"Turtle Pond - Profile",
+	"Players List - #BrownieVAL Draft Deluxe"
 ))
 ) {
 	echo '<body class="profile">';

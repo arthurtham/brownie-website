@@ -17,11 +17,17 @@ div.container.body-container-no-bg {
     div.container.body-container-no-bg {
         padding: 75px 40px 200px 40px !important;
     }
-}
-
-@media (max-width:991px) {
     div.container.body-container {
         padding: 75px 10px 200px 10px !important;
+    }
+}
+
+@media (max-width:575px) {
+    div.container.body-container {
+        padding: 75px 10px 200px 10px !important;
+        width: -webkit-calc(100vw - 10px) !important;
+        width:    -moz-calc(100vw - 10px) !important;
+        width:         calc(100vw - 10px) !important;
     }
 }
 
@@ -123,9 +129,9 @@ body.home {
 }
 
 .nav-tabs-div {
-    @media (max-width:575px) {
+    /* @media (max-width:575px) {
         max-width: 95vw;
-    }
+    } */
     display: inline-block;
     max-width: 100%;
     overflow-x: auto;
