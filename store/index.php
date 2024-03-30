@@ -111,9 +111,9 @@ function queryShopItems($conn, $queryString) {
                 '<a href="'.$item_url.'?subject=Inquiry for '.$item_name.'&body=(Describe your event and include dates 
     and times as well as information flyers)"><button class="btn btn-primary">Request</button></a> via email!
                 <br><small>If the email conversation leads to a booking, PayPal will be used for invoicing.</small>' 
-                : ($item_service === "Ko-fi" || $item_service === "Etsy" || $item_service === "Fiverr") ? 
+                : (($item_service === "Ko-fi" || $item_service === "Etsy" || $item_service === "Fiverr") ? 
                 '<a href="'.$item_url.'" target="_blank"><button class="btn btn-primary">Get</button></a> on '.$item_service.'' 
-                : '<a href="'.$item_url.'" target="_blank"><button class="btn btn-primary">Support</button></a> via '.$item_service.'' 
+                : '<a href="'.$item_url.'" target="_blank"><button class="btn btn-primary">Support</button></a> via '.$item_service.'') 
             : '<button class="btn btn-primary" disabled>Unavailable</button>'; 
             echo <<<LISTINGS
             <div class="card" style="width: 100%;color:black">
