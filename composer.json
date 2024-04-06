@@ -1,6 +1,7 @@
 {
     "require": {
       "cloudinary/cloudinary_php": "^2",
-      "erusev/parsedown": "^1.7"
+      "erusev/parsedown": "^1.7",
+        "phpfastcache/phpfastcache": "^8.1"
     }
 }

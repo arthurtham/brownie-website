@@ -27,6 +27,7 @@ composer.phar
 vendor/
 includes/cloudinary.env.php
 includes/ganalytics.php
+/cache
 
 # Navbar
 templates/navbar-contents.php

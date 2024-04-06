@@ -7,6 +7,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 require_once dirname(__DIR__, 1) . "/config.php";
 $GLOBALS['twitch_id_url'] = "https://id.twitch.tv";
 $GLOBALS['twitch_api_url'] = "https://api.twitch.tv";
+require_once dirname(__DIR__, 1) . "/vendor/autoload.php";
+use Phpfastcache\CacheManager;
+use Phpfastcache\Config\ConfigurationOption;
 
 function twitch_get_access_token() {
     global $twitch_client_id;
@@ -35,44 +38,56 @@ function twitch_get_access_token() {
 }
 
 function _helper_twitch_get_videos($url) {
-    global $twitch_client_id;
-    if (!isset($_SESSION['twitch_access_token']) || $_SESSION['twitch_access_token'] == -1) {
-        if (twitch_get_access_token() === -1) {
-            return array("error" => "unauthorized");
-        }
-    }
-    $_retry = 1;
-    while ($_retry-- > 0) {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        $headers = array('Authorization: Bearer ' . $_SESSION['twitch_access_token'], 'Client-Id: ' . $twitch_client_id);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        $response = curl_exec($curl);
-        curl_close($curl);
-        $results = json_decode($response, true);
-        if (isset($results['data'])) { //Success
-            $resulting_data = array();
-            foreach ($results['data'] as $result) {
-                $entry = array_filter($result, function($key) {
-                    return in_array($key, array("id", "title", "published_at", "url", "thumbnail_url", "description", "viewable", "duration"));
-                }, ARRAY_FILTER_USE_KEY);
-                $entry["thumbnail_url"] = str_replace("%{width}x%{height}", "320x180", $entry["thumbnail_url"]);
-                array_push($resulting_data, $entry);
-            }
-            usort($resulting_data, function($a, $b) {
-                return intval(strtotime($a["published_at"]) < intval(strtotime($b["published_at"])));
-            });
-            return $resulting_data;
-        } else if (isset($results['error']) && (isset($results['status']) && ($results['status'] == "401"))) {
+    CacheManager::setDefaultConfig(new ConfigurationOption([
+        "path" => dirname(__DIR__, 1) . "/cache"
+    ]));
+    $instanceCache = CacheManager::getInstance("files");
+    $key = "twitch_".urlencode($url);
+    $cache = $instanceCache->getItem($key);
+    if (!$cache->isHit()) {
+        global $twitch_client_id;
+        if (!isset($_SESSION['twitch_access_token']) || $_SESSION['twitch_access_token'] == -1) {
             if (twitch_get_access_token() === -1) {
                 return array("error" => "unauthorized");
-            } else {
-                $_retry += 1;
             }
         }
+        $_retry = 1;
+        while ($_retry-- > 0) {
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            $headers = array('Authorization: Bearer ' . $_SESSION['twitch_access_token'], 'Client-Id: ' . $twitch_client_id);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            $response = curl_exec($curl);
+            curl_close($curl);
+            $results = json_decode($response, true);
+            if (isset($results['data'])) { //Success
+                $resulting_data = array();
+                foreach ($results['data'] as $result) {
+                    $entry = array_filter($result, function($key) {
+                        return in_array($key, array("id", "title", "published_at", "url", "thumbnail_url", "description", "viewable", "duration"));
+                    }, ARRAY_FILTER_USE_KEY);
+                    $entry["thumbnail_url"] = str_replace("%{width}x%{height}", "320x180", $entry["thumbnail_url"]);
+                    array_push($resulting_data, $entry);
+                }
+                usort($resulting_data, function($a, $b) {
+                    return intval(strtotime($a["published_at"]) < intval(strtotime($b["published_at"])));
+                });
+                $cache->set($resulting_data)->expiresAfter(43200);
+                $instanceCache->save($cache);
+                return $resulting_data;
+            } else if (isset($results['error']) && (isset($results['status']) && ($results['status'] == "401"))) {
+                if (twitch_get_access_token() === -1) {
+                    return array("error" => "unauthorized");
+                } else {
+                    $_retry += 1;
+                }
+            }
+        }
+        return array("error" => "invalid response");
+    } else {
+        return $cache->get();
     }
-    return array("error" => "invalid response");
 }
 
 function twitch_get_recent_videos($count = 9, $type = "archive") {
