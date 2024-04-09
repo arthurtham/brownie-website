@@ -3,12 +3,6 @@
 if (!isset($dir)) {
     $dir = dirname(__DIR__, 1);
 }
-# Enabling error display
-error_reporting(0);
-ini_set('display_errors', 0);
-# PHP strict mode for sessions
-ini_set('session.use_strict_mode', 1);
-
 
 # Including all the required scripts
 require $dir . "/includes/default-includes.php";
@@ -17,7 +11,7 @@ require $dir . "/includes/default-includes.php";
 <html>
 
 <head>
-	<?php include $dir . "/includes/ganalytics.php" ?>
+	<?php include_once $dir . "/includes/ganalytics.php" ?>
 	<?php require $dir . "/templates/header-includes.php" ?>
 </head>
 
