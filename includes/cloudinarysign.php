@@ -24,8 +24,10 @@ if (!isset($_SESSION['cloudinary_timer_start'])
     die("This session has expired. Please refresh the page and try again.");
 }
 
-//Hijack GET request to always use this prefix
-$_GET["uploadPreset"] = $CLOUDINARY_BROWNIEVAL_PREFIX;
+//Hijack GET request if prefix is not in the list of approved prefixes
+if (!in_array($_GET["uploadPreset"], $CLOUDINARY_BROWNIEVAL_PREFIX_ARRAY)) {
+    $_GET["uploadPreset"] = -1;
+}
 
  ApiUtils::signRequest($_GET["data"], (object) array(
     "apiSecret" => $CLOUDINARY_API_SECRET,

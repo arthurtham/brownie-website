@@ -1,6 +1,7 @@
 <?php
+// Do not auto-purge
 
-require_once "cloudinary.env.php";
+/*require_once "cloudinary.env.php";
 use Cloudinary\Api\Search\SearchApi;
 use Cloudinary\Api\Admin\AdminApi;
 
@@ -38,7 +39,7 @@ foreach (array_chunk($public_ids_to_delete, 100) as $public_ids_to_delete_chunk)
 
 echo "List of deleted assets on ".date_format(date_create(),"c").": \n";
 print_r($uploaded_at);
-echo "\n";
+echo "\n";*/
 
 
 ?>

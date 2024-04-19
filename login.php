@@ -75,7 +75,7 @@ $_SESSION['roles'] = array_merge(
 # Redirecting to home page once all data has been fetched
 //redirect("/subs");
 # Is user in the guild?
-if (check_guild_membership($guild_id) || (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_admin_access_id]))) {
+if (check_guild_membership($guild_id) || (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_admin_access_id, $brownieval_player_access_id]))) {
     redirect(str_replace(array("?logout", "?badauth", "?expired","&logout", "&badauth", "&expired"), array("","","","","",""), $_SESSION['redirect']));
 } else {
     // user is not in the guild, so none of the features can actually be used.
