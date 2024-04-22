@@ -6,8 +6,8 @@ if (isset($_SESSION['user']) && isset($_SESSION['user']['message']) && $_SESSION
 if (!isset($_SESSION['timeout']) || !isset($_SESSION['user'])) {
     $_SESSION['timeout']=time();
 } else {
-    $inactive = 1800;
-    $inactive_since_login = 21600; 
+    $inactive = 3600;
+    $inactive_since_login = 43200; 
     $session_life = time() - $_SESSION['timeout'];
     if (!isset($_SESSION['timeout_since_login'])) {
         $_SESSION['timeout_since_login']=time();

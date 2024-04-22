@@ -14,7 +14,7 @@ require_once $dir . "/includes/functions.php";
 require_once $dir . "/includes/discord.php";
 
 # Set redirect URL
-if (mb_strpos($_SERVER['REQUEST_URI'], "admin") !== false) {
+if (str_contains($_SERVER['REQUEST_URI'], "admin")) {
     // Redirect all admin pages to home
     $_SESSION['redirect'] = "/";
 } else {

@@ -61,22 +61,23 @@ $_SESSION['timeout']=time();
 # join_guild('SERVER_ID_HERE');
 
 # Fetching user guild details | (guilds scope)
-$_SESSION['guilds'] = get_guilds();
-
+$_SESSION['guilds'] = rate_limit_wrapper("get_guilds");
+usleep(1.0);
 # Fetching user connections | (connections scope)
-$_SESSION['user_connections'] = get_connections();
-
-
-$_SESSION['user_guild_info'] = get_user_guild_info($guild_id);
-$_SESSION['user_guild_info_brownieval'] = get_user_guild_info($brownieval_guild_id);
+$_SESSION['user_connections'] = rate_limit_wrapper("get_connections");
+usleep(1.0);
+$_SESSION['user_guild_info'] = rate_limit_wrapper("get_user_guild_info", $guild_id);
+usleep(1.0);
+$_SESSION['user_guild_info_brownieval'] = rate_limit_wrapper("get_user_guild_info", $brownieval_guild_id);
+usleep(1.0);
 $_SESSION['roles'] = array_merge(
-    is_null($_SESSION['user_guild_info']['roles']) ? array() : $_SESSION['user_guild_info']['roles'],
-    is_null($_SESSION['user_guild_info_brownieval']['roles']) ? array() : $_SESSION['user_guild_info_brownieval']['roles']);
+    (!isset($_SESSION['user_guild_info']['roles'])) ? array() : $_SESSION['user_guild_info']['roles'],
+    (!isset($_SESSION['user_guild_info_brownieval']['roles'])) ? array() : $_SESSION['user_guild_info_brownieval']['roles']);
 # Redirecting to home page once all data has been fetched
 //redirect("/subs");
 # Is user in the guild?
-if (check_guild_membership($guild_id) || (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_admin_access_id, $brownieval_player_access_id]))) {
-    redirect(str_replace(array("?logout", "?badauth", "?expired","&logout", "&badauth", "&expired"), array("","","","","",""), $_SESSION['redirect']));
+if (check_guild_membership($guild_id) || (check_guild_membership($brownieval_guild_id) && str_contains($_SESSION['redirect'], "brownieval"))) {
+    redirect(str_replace(array("?logout", "?badauth", "?expired","?ratelimit", "&logout", "&badauth", "&expired", "&ratelimit"), array("","","","","","","",""), $_SESSION['redirect']));
 } else {
     // user is not in the guild, so none of the features can actually be used.
     // but we can let them know that they should join the guild to activate these rewards.

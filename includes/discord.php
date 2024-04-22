@@ -193,3 +193,15 @@ function get_discord_avatar_url() {
         return "https://cdn.discordapp.com/embed/avatars/0.png";
     }
 }
+
+# Wrapper to force a retry
+function rate_limit_wrapper($function, $param=null) {
+    // There is only one param in use for any function that uses this,
+    // so we can use the param directly
+    $result = is_null($param) ? call_user_func($function) : call_user_func($function, $param);
+    if (isset($result["retry_after"])) {
+        redirect("/logout.php?ratelimit");
+    } else {
+        return $result;
+    }
+}

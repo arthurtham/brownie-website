@@ -130,12 +130,15 @@ FOOTER;
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
 <?php
-	if (isset($_GET['logout']) || isset($_GET['badauth'])) {
+	if (isset($_GET['logout']) || isset($_GET['badauth']) || isset($_GET['ratelimit'])) {
         $message = "";
         if (isset($_GET['logout'])) {
             $message = "See you later!";
         } else if (isset($_GET['badauth'])) {
             $message = 'The login was unsuccessful. Please try again.';
+        } else if (isset($_GET['ratelimit'])) {
+            $message = 'You are logging in and out too frequently in a short amount of time, or you recently used Discord to log into
+            another app too recently. Please wait 5-10 minutes, then try to log in again.';
         }
 		echo <<<LOGGEDOUT
 		<div class="toast show fade position-absolute start-50 translate-middle-x" role="alert" aria-live="assertive" aria-atomic="true" style="margin-top:100px">
