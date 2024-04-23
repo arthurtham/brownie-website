@@ -43,45 +43,69 @@ $_SESSION['cloudinary_timer_start']=time();
 <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <h1 class="text-center">#BrownieVAL Draft Deluxe Clip Uploader</h1>
-    <p class="text-center">Upload your clip for the promotional video here.</p>
-    <div class="alert alert-dark">
-      <p><strong>Upload your best VALORANT clip here for the promotional video!</strong></p>
-      <ul>
-        <li>You must upload a clip- you can't submit links to clips.</li>
-        <ul>
-            <li>Here's a Twitch clip downloader: -link-</li>
-        </ul>
-        <li>Upload your best VALORANT clip:</li>
-        <ul>
-          <li>Max length: 60 sec. (longer clips will be trimmed)</li>
-          <li>Max file size: 100 MB.</li>
-          <li>Aspect Ratio: any</li>
-        </ul>
-        <li>Once the video is uploaded, wait for it to process successfully.</li>
-        <li>If there is an error, please refresh the page and try again.</li>
-      </ul>
-    </div>
-    <div class="alert alert-danger">
-      <p><strong>Privacy</strong>: This tool uploads your video to Cloudinary, which will additionally store information about your Discord account (specifically your Discord username).</p>
-    </div>
+  <h1 class="text-center">#BrownieVAL Draft Deluxe Clip Uploader</h1>
+  <p class="text-center">Upload your clip for the promotional video here.</p>
+  <div class="alert alert-danger">
+    <p><strong>Privacy</strong>: This tool uploads your video to Cloudinary, which will additionally store information
+    about your Discord account. Specifically, it will save your Discord username and user ID in the video's metadata,
+    and it will rename the video to your Discord username.</p>
+  </div>
+  
+  <p>The upload widget should appear below. Please upload your video below.</p>
+  <p>Your Discord Username: <strong><?=$_SESSION['username'] ?></strong></p>
+  <p>Upload requirements and FAQ: <a data-bs-toggle="modal" data-bs-target="#modal-faq">
+      <button class="btn btn-success">Help</button>
+  </a></p>
+  
+  <div id="cloudinary-upload-widget-span" style="display: span;">
+      
+  </div>
 
-    <p>The upload widget should appear below. Please upload your video below.</p>
-    <p>Your Discord Username: <strong><?=$_SESSION['username'] ?></strong></p>
-
-    <div id="cloudinary-upload-widget-span" style="display: span;">
-        
-    </div>
-
-    <div id="results-div" class="alert alert-dark" style="display: none">
-      <h3> Thank you! </h3>
-      <p>If submitted on time, this clip will be used in the promotional video.</p>
-      <div id="video-player-div">
-        <video id="video-player-media"></video>
-      </div> 
-    </div>
+  <div id="results-div" class="alert alert-dark" style="display: none">
+    <h3> Thank you! </h3>
+    <p>If submitted on time, this clip will be used in the promotional video.</p>
+    <div id="video-player-div">
+      <video id="video-player-media"></video>
+    </div> 
+  </div>
 
     
+</div>
+
+
+<div class="modal fade" style="overflow: hidden !important" id="modal-faq" tabindex="-1" aria-labelledby="modal-faq-label" aria-hidden="true">
+    <div class="modal-dialog" style="overflow: hidden !important">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modal-faq-label"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="height:60vh;overflow-y:auto">
+                <center><h3>FAQ</h3></center>
+                <p><strong>Upload your best VALORANT clip here for the promotional video!</strong></p>
+                <ul>
+                  <li>You must upload a clip- you can't submit links to clips.</li>
+                  <ul>
+                    <li>Twitch: If you are the channel owner of the clip, then you can download it in your Clips Manager.</li>
+                    <li>Outplayed: You can clip your video from your Outplayed clipping software,
+                      or download it from the uploaded clip's webpage by clicking on the triple dots on the bottom right of the video.</li>
+                    <li>Medal: You can download your clip from the uploaded clip's webpage by clicking on the triple dots on the top right of the video.</li>
+                  </ul>
+                  <li>Upload parameters:</li>
+                  <ul>
+                    <li>Max length: 60 sec. (longer clips will be trimmed)</li>
+                    <li>Max file size: 100 MB.</li>
+                    <li>Aspect Ratio: any</li>
+                  </ul>
+                  <li>Once the video is uploaded, wait for it to process successfully.</li>
+                  <li>If there is an error, please refresh the page and try again.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript"> 

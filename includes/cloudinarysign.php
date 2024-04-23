@@ -25,7 +25,7 @@ if (!isset($_SESSION['cloudinary_timer_start'])
 }
 
 //Hijack GET request if prefix is not in the list of approved prefixes
-if (!in_array($_GET["uploadPreset"], $CLOUDINARY_BROWNIEVAL_PREFIX_ARRAY)) {
+if (isset($_GET["uploadPreset"]) && !in_array($_GET["uploadPreset"], $CLOUDINARY_BROWNIEVAL_PREFIX_ARRAY)) {
     $_GET["uploadPreset"] = -1;
 }
 
