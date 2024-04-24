@@ -1,7 +1,6 @@
 <?php
-// Do not auto-purge
 
-/*require_once "cloudinary.env.php";
+require_once "cloudinary.env.php";
 use Cloudinary\Api\Search\SearchApi;
 use Cloudinary\Api\Admin\AdminApi;
 
@@ -27,19 +26,20 @@ $admin_api = new AdminApi();
 
 foreach (array_chunk($public_ids_to_delete, 100) as $public_ids_to_delete_chunk) {
     // echo "<pre>";
-    // print_r($public_ids_to_delete_chunk);
+    echo "===DRY RUN===";
+    print_r($public_ids_to_delete_chunk);
     // echo "</pre>";
     // echo "<pre>";
-    print_r($admin_api -> deleteAssets($public_ids_to_delete_chunk, array(
-        "invalidate" => true,
-        "resource_type" => "video"
-    )));
+    // print_r($admin_api -> deleteAssets($public_ids_to_delete_chunk, array(
+    //     "invalidate" => true,
+    //     "resource_type" => "video"
+    // )));
     // echo "</pre>";
 }
 
 echo "List of deleted assets on ".date_format(date_create(),"c").": \n";
 print_r($uploaded_at);
-echo "\n";*/
+echo "\n=======================================\n";
 
 
 ?>
