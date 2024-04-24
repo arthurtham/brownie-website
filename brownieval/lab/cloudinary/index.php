@@ -21,8 +21,8 @@ if (!isset($_SESSION['user'])) {
 // Check user perms
 else if (!(check_guild_membership($cloudinary_guild_id) || 
   (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_admin_access_id])) || 
-  (check_guild_membership($guild_id) && check_roles($sub_perk_roles) )) 
-  ) {
+  (check_guild_membership($guild_id) && check_roles($sub_perk_roles) ) 
+  )) {
 		echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
     echo "<div class='alert alert-danger' role='alert'>
     <center>You need to have the necessary roles (ie. subscriber role) in order to access this page.</center>
@@ -102,8 +102,7 @@ $_SESSION['cloudinary_timer_start']=time();
       accent: '#af0303'
     },
     hideContextMenu: true,
-    autoplay: true,
-    posterOptions: { publicId: "brownieval/generator/BrownieVALCloudinaryIntroV2"}
+    autoplay: true
   });
   
   var generateSignature = function(callback, params_to_sign){
