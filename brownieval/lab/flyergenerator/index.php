@@ -51,6 +51,9 @@ function getSignedFlyerFromDiscord() {
 }
 
 function getSignedFlyer($username) {
+  if ($username === null) {
+    return null;
+  }
   global $CLOUDINARY_CONFIG;
   $cld = new Cloudinary($CLOUDINARY_CONFIG);
   $image = $cld->imageTag('brownieval/img/brownievalddflyerbase.png')
@@ -68,8 +71,8 @@ function getSignedFlyer($username) {
     ->overlay(
       Overlay::source(
         Source::text(
-          $username,
-          (new TextStyle("arial", 102))
+          strlen($username) > 16 ? (substr($username,0,16) . "\n" . substr($username,16)) : $username,
+          (new TextStyle("arial", strlen($username) > 12 ? 86 : 102))
             ->fontWeight(
               FontWeight::bold()
             )
@@ -94,7 +97,68 @@ function getSignedFlyer($username) {
   return str_replace(array("<img src=\"", "\">"), array("",""), $image);
 }
 
-$flyer = getSignedFlyerFromDiscord();
+$riot_id = null;
+if (isset($_SESSION["user_connections"])) {
+  $riot_id_array = array_filter(
+    $_SESSION["user_connections"],
+    function ($item) {
+      return array_key_exists("type", $item) && $item["type"] === "riotgames";
+    });
+  foreach ($riot_id_array as $riot_id_listing) {
+    $riot_id = explode("#",$riot_id_listing["name"])[0];
+    break;
+  }
+}
+
+$flyers = array(
+  array(
+    "name" => "Discord Server Nickname (Registered Preferred Name)",
+    "type" => "discord_nickname",
+    "username" => $_SESSION["user_guild_info_brownieval"]["nick"],
+    "image" => getSignedFlyer($_SESSION["user_guild_info_brownieval"]["nick"])
+  ),
+  array(
+    "name" => "Discord Account Username",
+    "type" => "discord_username",
+    "username" => $_SESSION["username"],
+    "image" => getSignedFlyer($_SESSION["username"])
+  ),
+  array(
+    "name" => "Riot ID Name",
+    "type" => "riot_id",
+    "username" => $riot_id,
+    "image" => getSignedFlyer($riot_id)
+  ),
+);
+
+function echoCardEntries($entries) {
+  $count = 0;
+  foreach ($entries as $item) {
+      if ($item["username"] === null) {
+        continue;
+      }
+      if ($count % 3 == 0) {
+          if ($count > 0) {
+              echo '</div>';
+          }
+          echo '<div class="row" style="padding-bottom:10px" oncontextmenu="return false;">';
+      }
+      echo '<div class="col-md-4 d-flex align-items-stretch"><div class="card" style="width:100% !important;">';
+      echo '
+      <div style="position:relative;background-color:lightgray"><img src="'.$item["image"].'" 
+      class="card-img-top" alt="flyer image: '.$item["name"].'"></div>';
+      echo '<div class="card-body">';
+      echo '<h5 class="card-title">'.$item["name"].'</h5>';
+      echo '<p class="card-text">'.$item["username"].'</p><p class="card-text"><button id="upload-box" class="btn btn-success"
+      onclick=\'downloadSignedVideo("'.$item["image"].'", "brownievaldd-flyer-'.$item["username"].'")\'>
+      Download Image</button></p>';
+      echo '</div>';
+      echo '</div></div>';
+      $count += 1;
+  }
+  echo '</div>';
+}
+
 ?>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -102,17 +166,19 @@ $flyer = getSignedFlyerFromDiscord();
   <h1 class="text-center">#BrownieVAL Draft Deluxe Flyer Generator</h1>
   <p class="text-center">Promote yourself in #BrownieVAL Draft Deluxe!</p>
   <div class="alert alert-secondary">
-    Below is your personalized flyer for #BrownieVAL Draft Deluxe, based off your preferred name set on Discord.<br/>
-    You can download the image and share it with your friends on social media! <strong>So inspirational!</strong>
+    <p>Below is your personalized flyer for #BrownieVAL Draft Deluxe!<br/>
+    You can choose between your Discord username, server nickname, and Riot ID.<br/>
+    You can download the image and share it with your friends on social media! <strong>So inspirational!</strong><br/>
+    Make sure to use the hashtag <strong>#BrownieVAL</strong> and link to the website: https://draft.brownieval.browntulstar.com</p>
+    <p>If you prefer a different text, please contact #BrownieVAL ModMail. This custom request must be approved by staff.</p>
   </div>
   <div class="alert alert-danger">
-    <strong>Privacy</strong>: This tool sends your Discord display name or server nickname to Cloudinary,
+    <strong>Privacy</strong>: This tool sends your names to Cloudinary,
     which has generated this image for you using that name.
   </div>
-  <center><p><a><button id="upload-box" class="btn btn-success" \
-          onclick='downloadSignedVideo("<?=$flyer?>", "brownievaldd-flyer-<?php echo $_SESSION["username"] ?>")'>
-          Download Image</button></a></p>
-  <img src="<?php echo $flyer ?>" style="width:300px"></center>
+  <div class="container">
+    <?php echoCardEntries($flyers); ?>
+  </div>
 </div>
 
 <script>
