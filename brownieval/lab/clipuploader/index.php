@@ -44,11 +44,13 @@ $_SESSION['cloudinary_timer_start']=time();
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
   <h1 class="text-center">#BrownieVAL Draft Deluxe Clip Uploader</h1>
-  <p class="text-center">Upload your clip for the promotional video here.</p>
+  <p class="text-center">Upload your clip for the promotional video here! It will be used in the event hype video, 
+    and potentially in a smaller-scale team video.</p>
   <div class="alert alert-danger">
     <p><strong>Privacy</strong>: This tool uploads your video to Cloudinary, which will additionally store information
     about your Discord account. Specifically, it will save your Discord username and user ID in the video's metadata,
     and it will rename the video to your Discord username.</p>
+    <p><strong>YOU ONLY GET TO UPLOAD ONE CLIP, AND IT WILL REJECT SUBSEQUENT UPLOADS; SO CHOOSE WISELY!</strong></p>
   </div>
   
   <p>The upload widget should appear below. Please upload your video below.</p>
@@ -83,6 +85,7 @@ $_SESSION['cloudinary_timer_start']=time();
             <div class="modal-body" style="height:60vh;overflow-y:auto">
                 <center><h3>FAQ</h3></center>
                 <p><strong>Upload your best VALORANT clip here for the promotional video!</strong></p>
+                <p><strong>YOU ONLY GET TO UPLOAD ONE CLIP, AND IT WILL REJECT SUBSEQUENT UPLOADS; SO CHOOSE WISELY!</strong></p>
                 <ul>
                   <li>You must upload a clip- you can't submit links to clips.</li>
                   <ul>
@@ -202,6 +205,11 @@ $_SESSION['cloudinary_timer_start']=time();
     }, 
     (error, result) => { 
       if (!error && result && result.event === "success") { 
+        if (result.info.existing === true) {
+          alert("You've already uploaded a clip before. It will play below for your reference.\n\n\
+It's possible that the video editor has already started editing the promotional video. \
+If you want to replace your clip, please contact #BrownieVAL ModMail.");
+        }
         player.source(result.info.secure_url);
         console.log(result.info.secure_url);
         document.getElementById("cloudinary-upload-widget-span").style.display = "none";
