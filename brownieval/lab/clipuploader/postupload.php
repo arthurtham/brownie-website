@@ -1,14 +1,29 @@
 <?php
 
 $dir = dirname(__DIR__, 3);
+require_once $dir . "/includes/mysql.php";
+require_once $dir . "/includes/cloudinary.env.php";
+require_once $dir . "/vendor/autoload.php";
+use Cloudinary\Utils\SignatureVerifier;
 
-require_once($dir . "/includes/mysql.php");
 
 $json_string = file_get_contents("php://input");
 $json = json_decode($json_string, $associative = true);
-
 if (is_null($json)) {
     die("Error: no json");
+}
+
+$HEADERS = getallheaders();
+
+if (!(
+    isset($HEADERS["X-Cld-Timestamp"]) && isset($HEADERS["X-Cld-Signature"])
+    && strlen($json_string) > 0
+)) {
+    die("Error: missing headers or body");
+}
+
+if (!(SignatureVerifier::verifyNotificationSignature($json_string, $HEADERS["X-Cld-Timestamp"], $HEADERS["X-Cld-Signature"]))) {
+    die("Error: webhook is unverified");
 }
 
 if (!(
@@ -23,8 +38,6 @@ if (!(
 if (isset($json["existing"]) && $json["existing"] === true) {
     die("Error: asset already exists");
 }
-
-var_dump($json);
 
 $sql = "INSERT INTO `cloudinary_uploads`
 (

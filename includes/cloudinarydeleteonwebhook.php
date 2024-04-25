@@ -3,15 +3,28 @@
 $dir = dirname(__DIR__, 1);
 
 require_once($dir . "/includes/mysql.php");
+require_once $dir . "/includes/cloudinary.env.php";
+require_once $dir . "/vendor/autoload.php";
+use Cloudinary\Utils\SignatureVerifier;
 
 $json_string = file_get_contents("php://input");
 $json = json_decode($json_string, $associative = true);
-
 if (is_null($json)) {
     die("Error: no json");
 }
 
-var_dump($json);
+$HEADERS = getallheaders();
+
+if (!(
+    isset($HEADERS["X-Cld-Timestamp"]) && isset($HEADERS["X-Cld-Signature"])
+    && strlen($json_string) > 0
+)) {
+    die("Error: missing headers or body");
+}
+
+if (!(SignatureVerifier::verifyNotificationSignature($json_string, $HEADERS["X-Cld-Timestamp"], $HEADERS["X-Cld-Signature"]))) {
+    die("Error: webhook is unverified");
+}
 
 if (!(
     isset($json["notification_type"]) && $json["notification_type"] === "delete" &&
