@@ -5,7 +5,7 @@ $title = "Clip Uploader - #BrownieVAL Draft Deluxe";
 $_layout_brownievalmode = false;
 require $dir . "/templates/header.php";
 require $dir . "/includes/cloudinary.env.php";
-
+require_once($dir . "/includes/mysql.php");
 
 // Check login
 if (!isset($_SESSION['user'])) { 
@@ -65,7 +65,9 @@ $_SESSION['cloudinary_timer_start']=time();
 
   <div id="results-div" class="alert alert-dark" style="display: none">
     <h3> Thank you! </h3>
-    <p>If submitted on time, this clip will be used in the promotional video.</p>
+    <p>If submitted on time, this clip will be used in the promotional video.<br/>
+    If you change your mind after-the-fact, please contact #BrownieVAL ModMail.
+    If the video is already being edited, then there's no turning back.</p>
     <div id="video-player-div">
       <video id="video-player-media"></video>
     </div> 
@@ -211,7 +213,7 @@ It's possible that the video editor has already started editing the promotional 
 If you want to replace your clip, please contact #BrownieVAL ModMail.");
         }
         player.source(result.info.secure_url);
-        console.log(result.info.secure_url);
+        // console.log(result.info.secure_url);
         document.getElementById("cloudinary-upload-widget-span").style.display = "none";
         document.getElementById("results-div").style.display = "block";
         myWidget.close({quiet: true});
@@ -223,7 +225,23 @@ If you want to replace your clip, please contact #BrownieVAL ModMail.");
       }
     });
 
-    myWidget.open();
+<?php
+$sql = "SELECT secure_url FROM cloudinary_uploads WHERE discord_username=\"" . mysqli_real_escape_string($conn, $_SESSION['username']) . "\" LIMIT 1";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    echo <<<SHOWVIDEO
+    player.source("{$row["secure_url"]}");
+    document.getElementById("cloudinary-upload-widget-span").style.display = "none";
+    document.getElementById("results-div").style.display = "block";
+SHOWVIDEO;
+    }				
+  }
+else {
+  echo "myWidget.open();";
+}
+
+?>
 </script>
 
 
