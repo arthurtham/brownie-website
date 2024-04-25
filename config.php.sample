@@ -38,6 +38,7 @@ $turtle_role_id = "";
 $turtle_id = "";
 $brownieval_admin_access_id = "";
 $brownieval_player_access_id = "";
+$brownieval_talent_access_id = "";
 $override_role_id = "";
 
 $sub_perk_roles = array($discord_sub_role_id, $sub_role_id, $vip_role_id, $mod_role_id, $kofi_role_id);

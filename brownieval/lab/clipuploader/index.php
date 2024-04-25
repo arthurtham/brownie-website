@@ -13,7 +13,7 @@ if (!isset($_SESSION['user'])) {
   echo '<h1 class="text-center">#BrownieVAL Draft Deluxe Clip Uploader</h1>';
   echo "<div class='alert alert-danger' role='alert'>
   <center>Players, please log in with Discord to access this page.</center>
-  </div>";
+  </div></div>";
   require $dir . "/templates/footer.php"; 
   die();
 } 
@@ -26,7 +26,7 @@ else if (!(check_guild_membership($cloudinary_guild_id) ||
     echo "<div class='alert alert-danger' role='alert'>
     <center>We can't determine if you're a #BrownieVAL Draft Deluxe player. We use your Discord roles in the #BrownieVAL server to check this.
     Please contact #BrownieVAL ModMail for support.</center>
-    </div>";
+    </div></div>";
     require $dir . "/templates/footer.php"; 
     die();
 }

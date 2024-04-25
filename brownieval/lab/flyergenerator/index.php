@@ -6,19 +6,14 @@ $_layout_brownievalmode = false;
 require $dir . "/templates/header.php";
 require $dir . "/includes/cloudinary.env.php";
 use Cloudinary\Cloudinary;
-use Cloudinary\Tag\ImageTag;
 use Cloudinary\Transformation\{
   Resize, AspectRatio, Gravity, Compass,
   Overlay, Source, TextStyle, Position,
   Argument\Text\FontWeight,
   Argument\Text\FontStyle,
-  Argument\Text\TextDecoration,
   Argument\Text\TextAlignment,
   Argument\Color
 };
-
-
-
 
 
 // Check login
@@ -27,36 +22,34 @@ if (!isset($_SESSION['user'])) {
   echo '<h1 class="text-center">#BrownieVAL Draft Deluxe Flyer Generator</h1>';
   echo "<div class='alert alert-danger' role='alert'>
   <center>Players, please log in with Discord to access this page.</center>
-  </div>";
+  </div></div>";
   require $dir . "/templates/footer.php"; 
   die();
 } 
 // Check user perms 
 else if (! ( check_guild_membership($cloudinary_guild_id) || 
-  (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_player_access_id, $brownieval_admin_access_id])) 
+  (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_player_access_id, $brownieval_admin_access_id, $brownieval_talent_access_id])) 
   )) {
     echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
     echo '<h1 class="text-center">#BrownieVAL Draft Deluxe Flyer Generator</h1>';
     echo "<div class='alert alert-danger' role='alert'>
     <center>We can't determine if you're a #BrownieVAL Draft Deluxe player. We use your Discord roles in the #BrownieVAL server to check this.
     Please contact #BrownieVAL ModMail for support.</center>
-    </div>";
+    </div></div>";
     require $dir . "/templates/footer.php"; 
     die();
 }
 
-function getSignedFlyerFromDiscord() {
-  $username = is_null($_SESSION["user_guild_info_brownieval"]["nick"]) ? $_SESSION["username"] : $_SESSION["user_guild_info_brownieval"]["nick"];
-  return getSignedFlyer($username);
-}
-
-function getSignedFlyer($username) {
+function getSignedFlyer($username, $type=0) {
   if ($username === null) {
     return null;
   }
+  $type_string = ($type===0) 
+    ? 'brownieval/img/brownievalddflyerbase.png' 
+    : 'brownieval/img/brownievalddflyerbasetalent.png';
   global $CLOUDINARY_CONFIG;
   $cld = new Cloudinary($CLOUDINARY_CONFIG);
-  $image = $cld->imageTag('brownieval/img/brownievalddflyerbase.png')
+  $image = $cld->imageTag($type_string)
     ->resize(
       Resize::crop()
         ->aspectRatio(
@@ -112,22 +105,39 @@ if (isset($_SESSION["user_connections"])) {
 
 $flyers = array(
   array(
-    "name" => "Discord Server Nickname (Registered Preferred Name)",
+    "name" => "\"Come watch me play!\" - Discord Server Nickname (Registered Preferred Name)",
     "type" => "discord_nickname",
     "username" => $_SESSION["user_guild_info_brownieval"]["nick"],
+    "image_type" => "play",
     "image" => getSignedFlyer($_SESSION["user_guild_info_brownieval"]["nick"])
   ),
   array(
-    "name" => "Discord Account Username",
+    "name" => "\"Come watch me play!\" - Discord Account Username",
     "type" => "discord_username",
     "username" => $_SESSION["username"],
+    "image_type" => "play",
     "image" => getSignedFlyer($_SESSION["username"])
   ),
   array(
-    "name" => "Riot ID Name",
+    "name" => "\"Come watch me play!\" - Riot ID Name",
     "type" => "riot_id",
     "username" => $riot_id,
+    "image_type" => "play",
     "image" => getSignedFlyer($riot_id)
+  ),
+  array(
+    "name" => "\"Come support me!\" - Discord Server Nickname (Registered Preferred Name)",
+    "type" => "discord_nickname",
+    "username" => $_SESSION["user_guild_info_brownieval"]["nick"],
+    "image_type" => "support",
+    "image" => getSignedFlyer($_SESSION["user_guild_info_brownieval"]["nick"], 1)
+  ),
+  array(
+    "name" => "\"Come support me!\" - Discord Account Username",
+    "type" => "discord_username",
+    "username" => $_SESSION["username"],
+    "image_type" => "support",
+    "image" => getSignedFlyer($_SESSION["username"], 1)
   ),
 );
 
@@ -150,7 +160,7 @@ function echoCardEntries($entries) {
       echo '<div class="card-body">';
       echo '<h5 class="card-title">'.$item["name"].'</h5>';
       echo '<p class="card-text">'.$item["username"].'</p><p class="card-text"><button id="upload-box" class="btn btn-success"
-      onclick=\'downloadSignedVideo("'.$item["image"].'", "brownievaldd-flyer-'.$item["username"].'")\'>
+      onclick=\'downloadSignedVideo("'.$item["image"].'", "brownievaldd-flyer-'.$item["image_type"]."-".$item["username"].'")\'>
       Download Image</button></p>';
       echo '</div>';
       echo '</div></div>';
