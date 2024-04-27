@@ -7,12 +7,8 @@ require $dir . "/templates/header.php";
 require $dir . "/includes/cloudinary.env.php";
 use Cloudinary\Cloudinary;
 use Cloudinary\Transformation\{
-  Resize, AspectRatio, Gravity, Compass,
-  Overlay, Source, TextStyle, Position,
-  Argument\Text\FontWeight,
-  Argument\Text\FontStyle,
-  Argument\Text\TextAlignment,
-  Argument\Color
+  Variable\Variable,
+  NamedTransformation
 };
 
 
@@ -50,43 +46,13 @@ function getSignedFlyer($username, $type=0) {
   global $CLOUDINARY_CONFIG;
   $cld = new Cloudinary($CLOUDINARY_CONFIG);
   $image = $cld->imageTag($type_string)
-    ->resize(
-      Resize::crop()
-        ->aspectRatio(
-          AspectRatio::ar1X1()
-        )
-        ->gravity(
-          Gravity::compass(
-            Compass::center()
-          )
-        )
-    )
-    ->overlay(
-      Overlay::source(
-        Source::text(
-          strlen($username) > 16 ? (substr($username,0,16) . "\n" . substr($username,16)) : $username,
-          (new TextStyle("arial", strlen($username) > 12 ? 86 : 102))
-            ->fontWeight(
-              FontWeight::bold()
-            )
-            ->fontStyle(
-              FontStyle::italic()
-            )
-            ->textAlignment(
-              TextAlignment::left()
-            )
-        )
-          ->textColor(Color::rgb("ffffff"))
-      )
-        ->position(
-          (new Position())
-            ->gravity(
-              Gravity::compass(
-                Compass::center()
-              )
-            )
-        )
-    )->signUrl();
+    ->addVariable(Variable::set("style", "fonts:bsfbr.ttf_" . 
+      (strlen($username) > 12 ? "86" : "102")))
+    ->addVariable(Variable::set("username", 
+      (strlen($username) > 16 ? (substr($username,0,16) . "%0A" . substr($username,16)) : $username)
+      ))
+    ->namedTransformation(NamedTransformation::name("BrownieVALDDFlyerGeneratorTemplate"))
+    ->signUrl();
   return str_replace(array("<img src=\"", "\">"), array("",""), $image);
 }
 
@@ -160,7 +126,7 @@ function echoCardEntries($entries) {
       echo '<div class="card-body">';
       echo '<h5 class="card-title">'.$item["name"].'</h5>';
       echo '<p class="card-text">'.$item["username"].'</p><p class="card-text"><button id="upload-box" class="btn btn-success"
-      onclick=\'downloadSignedVideo("'.$item["image"].'", "brownievaldd-flyer-'.$item["image_type"]."-".$item["username"].'")\'>
+      onclick=\'downloadSignedImage("'.$item["image"].'", "brownievaldd-flyer-'.$item["image_type"]."-".$item["username"].'")\'>
       Download Image</button></p>';
       echo '</div>';
       echo '</div></div>';
@@ -192,7 +158,7 @@ function echoCardEntries($entries) {
 </div>
 
 <script>
-  var downloadSignedVideo = function(link, filename) {
+  var downloadSignedImage = function(link, filename) {
     axios({
         url: link,
         method: 'GET',
