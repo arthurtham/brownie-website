@@ -2,113 +2,120 @@
 
 $dir = dirname(__DIR__, 3);
 $title = "Flyer Generator - #BrownieVAL Draft Deluxe";
-$_layout_brownievalmode = false;
+$_layout_brownievalmode = true;
 require $dir . "/templates/header.php";
 require $dir . "/includes/cloudinary.env.php";
 use Cloudinary\Cloudinary;
 use Cloudinary\Transformation\{
   Variable\Variable,
-  NamedTransformation
+  NamedTransformation,
+  Delivery
 };
-
-
-// Check login
-if (!isset($_SESSION['user'])) { 
-  echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
-  echo '<h1 class="text-center">#BrownieVAL Draft Deluxe Flyer Generator</h1>';
-  echo "<div class='alert alert-danger' role='alert'>
-  <center>Players, please log in with Discord to access this page.</center>
-  </div></div>";
-  require $dir . "/templates/footer.php"; 
-  die();
-} 
-// Check user perms 
-else if (! ( check_guild_membership($cloudinary_guild_id) || 
-  (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_player_access_id, $brownieval_admin_access_id, $brownieval_talent_access_id])) 
-  )) {
-    echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
-    echo '<h1 class="text-center">#BrownieVAL Draft Deluxe Flyer Generator</h1>';
-    echo "<div class='alert alert-danger' role='alert'>
-    <center>We can't determine if you're a #BrownieVAL Draft Deluxe player. We use your Discord roles in the #BrownieVAL server to check this.
-    Please contact #BrownieVAL ModMail for support.</center>
-    </div></div>";
-    require $dir . "/templates/footer.php"; 
-    die();
-}
 
 function getSignedFlyer($username, $type=0) {
   if ($username === null) {
     return null;
   }
-  $type_string = ($type===0) 
-    ? 'brownieval/img/brownievalddflyerbase.png' 
-    : 'brownieval/img/brownievalddflyerbasetalent.png';
   global $CLOUDINARY_CONFIG;
   $cld = new Cloudinary($CLOUDINARY_CONFIG);
-  $image = $cld->imageTag($type_string)
-    ->addVariable(Variable::set("style", "fonts:bsfbr.ttf_" . 
-      (strlen($username) > 12 ? "86" : "102")))
-    ->addVariable(Variable::set("username", 
-      (strlen($username) > 16 ? (substr($username,0,16) . "%0A" . substr($username,16)) : $username)
-      ))
-    ->namedTransformation(NamedTransformation::name("BrownieVALDDFlyerGeneratorTemplate"))
+  if ($username === "fill-in") {
+    $image = $cld->imageTag('brownieval/img/brownievalddflyerbasewatch.png')
+    ->namedTransformation(NamedTransformation::name("square-center-crop"))
     ->signUrl();
+  } else {
+    $type_string = ($type===0) 
+      ? 'brownieval/img/brownievalddflyerbase.png' 
+      : 'brownieval/img/brownievalddflyerbasetalent.png';
+    $image = $cld->imageTag($type_string)
+      ->addVariable(Variable::set("style", "fonts:LeagueSpartan-Bold.ttf_" . //"fonts:bsfbr.ttf" . 
+        (strlen($username) > 12 ? "86" : "106")))
+      ->addVariable(Variable::set("username", 
+        (strlen($username) > 16 ? (substr($username,0,16) . "%0A" . substr($username,16)) : $username)
+        ))
+      ->namedTransformation(NamedTransformation::name("BrownieVALDDFlyerGeneratorTemplate"))
+      ->namedTransformation(NamedTransformation::name("square-center-crop"))
+      ->delivery(Delivery::quality(100))
+      ->signUrl();
+  }
   return str_replace(array("<img src=\"", "\">"), array("",""), $image);
 }
 
-$riot_id = null;
-if (isset($_SESSION["user_connections"])) {
-  $riot_id_array = array_filter(
-    $_SESSION["user_connections"],
-    function ($item) {
-      return array_key_exists("type", $item) && $item["type"] === "riotgames";
-    });
-  foreach ($riot_id_array as $riot_id_listing) {
-    $riot_id = explode("#",$riot_id_listing["name"])[0];
-    break;
+function getConnectionUsername($connection = null) {
+  if ($connection === null) {
+    return null;
+  }
+  $result_ids = array();
+  if (isset($_SESSION["user_connections"])) {
+    $connection_array = array_filter(
+      $_SESSION["user_connections"],
+      function ($item) use($connection) {
+        return array_key_exists("type", $item) && $item["type"] === $connection;
+      });
+    #var_dump($connection_array);
+    foreach ($connection_array as $connection_listing) {
+      array_push($result_ids, $connection === "riotgames" ? explode("#",$connection_listing["name"])[0] : $connection_listing["name"]);
+    }
+    return $result_ids;
+  }
+  else {
+    return null;
   }
 }
 
+$riot_ids = getConnectionUsername("riotgames");
+
+//TODO: Flyers will appear based on a criteria
 $flyers = array(
-  array(
-    "name" => "\"Come watch me play!\" - Discord Server Nickname (Registered Preferred Name)",
-    "type" => "discord_nickname",
-    "username" => $_SESSION["user_guild_info_brownieval"]["nick"],
-    "image_type" => "play",
-    "image" => getSignedFlyer($_SESSION["user_guild_info_brownieval"]["nick"])
-  ),
-  array(
-    "name" => "\"Come watch me play!\" - Discord Account Username",
-    "type" => "discord_username",
-    "username" => $_SESSION["username"],
-    "image_type" => "play",
-    "image" => getSignedFlyer($_SESSION["username"])
-  ),
-  array(
-    "name" => "\"Come watch me play!\" - Riot ID Name",
-    "type" => "riot_id",
-    "username" => $riot_id,
-    "image_type" => "play",
-    "image" => getSignedFlyer($riot_id)
-  ),
-  array(
-    "name" => "\"Come support me!\" - Discord Server Nickname (Registered Preferred Name)",
-    "type" => "discord_nickname",
-    "username" => $_SESSION["user_guild_info_brownieval"]["nick"],
-    "image_type" => "support",
-    "image" => getSignedFlyer($_SESSION["user_guild_info_brownieval"]["nick"], 1)
-  ),
-  array(
-    "name" => "\"Come support me!\" - Discord Account Username",
-    "type" => "discord_username",
-    "username" => $_SESSION["username"],
-    "image_type" => "support",
-    "image" => getSignedFlyer($_SESSION["username"], 1)
-  ),
+  
 );
+
+if (!(check_roles([$brownieval_player_access_id, $brownieval_talent_access_id, $brownieval_admin_access_id])) || check_roles([$turtle_role_id])) {
+  array_push(
+    $flyers,
+    array(
+      "name" => "Viewers Support DIY Flyer",
+      "type" => "fill-in",
+      "username" => "Fill it in yourself",
+      "image_type" => "watch",
+      "image" => getSignedFlyer("fill-in")
+    )
+  );
+}
+
+if (!is_null($riot_ids) && (check_roles([$turtle_role_id, $brownieval_player_access_id]))) {
+  foreach ($riot_ids as $riot_id) {
+    array_push(
+      $flyers,
+      array(
+        "name" => "Riot ID (without #tag)",
+        "type" => "riot_id",
+        "username" => $riot_id,
+        "image_type" => "support",
+        "image" => getSignedFlyer($riot_id, 1)
+      )
+    );
+    break; //Only take the first Riot ID on the list
+  }
+}
+
+if ((isset($_SESSION["user"]) && check_roles([$turtle_role_id, $brownieval_player_access_id, $brownieval_talent_access_id, $brownieval_admin_access_id]))) {
+  array_push(
+    $flyers,
+    array(
+      "name" => "Discord",
+      "type" => "discord_username",
+      "username" => $_SESSION["user_guild_info_brownieval"]["nick"] !== null ? $_SESSION["user_guild_info_brownieval"]["nick"] : $_SESSION["username"],
+      "image_type" => "support",
+      "image" => getSignedFlyer($_SESSION["user_guild_info_brownieval"]["nick"] !== null ? $_SESSION["user_guild_info_brownieval"]["nick"] : $_SESSION["username"], 1)
+    )
+    );
+}
+
 
 function echoCardEntries($entries) {
   $count = 0;
+  $javascript_lazyload = "<script>$(window).on('load', function() {
+";
   foreach ($entries as $item) {
       if ($item["username"] === null) {
         continue;
@@ -121,7 +128,8 @@ function echoCardEntries($entries) {
       }
       echo '<div class="col-md-4 d-flex align-items-stretch"><div class="card" style="width:100% !important;">';
       echo '
-      <div style="position:relative;background-color:lightgray"><img src="'.$item["image"].'" 
+      <div style="position:relative;background-color:lightgray"><img id="card' . $count . '" 
+      src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/loading-spinner-transparent.gif" 
       class="card-img-top" alt="flyer image: '.$item["name"].'"></div>';
       echo '<div class="card-body">';
       echo '<h5 class="card-title">'.$item["name"].'</h5>';
@@ -130,27 +138,48 @@ function echoCardEntries($entries) {
       Download Image</button></p>';
       echo '</div>';
       echo '</div></div>';
+      $javascript_lazyload .= "$('#card" . $count . "').attr('src','". $item["image"] ."');
+      ";
       $count += 1;
   }
   echo '</div>';
+  $javascript_lazyload .= "});</script>";
+  echo $javascript_lazyload;
 }
 
 ?>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-  <h1 class="text-center">#BrownieVAL Draft Deluxe Flyer Generator</h1>
-  <p class="text-center">Promote yourself in #BrownieVAL Draft Deluxe!</p>
-  <div class="alert alert-secondary">
-    <p>Below is your personalized flyer for #BrownieVAL Draft Deluxe!<br/>
-    You can choose between your Discord username, server nickname, and Riot ID.<br/>
-    You can download the image and share it with your friends on social media! <strong>So inspirational!</strong><br/>
-    Make sure to use the hashtag <strong>#BrownieVAL</strong> and link to the website: https://draft.brownieval.browntulstar.com</p>
-    <p>If you prefer a different text, please contact #BrownieVAL ModMail. This custom request must be approved by staff.</p>
-  </div>
+  <h1 class="text-center">Flyer Generator</h1>
+  <p class="text-center">Promote yourself in #BrownieVAL Draft Deluxe!<br/>
+  Download and share on social media using the hashtag <strong>#BrownieVAL</strong>. So inspirational!</p>
   <div class="alert alert-danger">
-    <strong>Privacy</strong>: This tool sends your names to Cloudinary,
-    which has generated this image for you using that name.
+    <strong>Privacy</strong>: While logged in, this tool will use your Discord account information to 
+    send your Discord name and Riot ID name (players only) to Cloudinary and generate the images below.
+  </div>
+  <div class="alert alert-secondary">
+      <strong>Detected Discord roles: </strong>
+      <?php
+if (check_roles([$turtle_role_id, $brownieval_player_access_id, $brownieval_talent_access_id, $brownieval_admin_access_id])) {
+  if (check_roles([$turtle_role_id, $brownieval_player_access_id])) {
+    echo "<span class='badge bg-success'>Player</span>";
+  }
+  if (check_roles([$turtle_role_id, $brownieval_talent_access_id])) {
+    echo "<span class='badge bg-warning'>On-air Talent</span>";
+  }
+  if (check_roles([$turtle_role_id, $brownieval_admin_access_id])) {
+    echo "<span class='badge bg-danger'>Web Lab Access (Admins, Captains, etc.)</span>";
+  }
+} else {
+    echo "<span class='badge bg-secondary'>None</span><br/>
+    If you're a player/staff and only see \"fill-in-the-blank\" below, first try logging in.<br/>
+    If you still don't see your personalized options, then please contact #BrownieVAL ModMail.";
+}
+
+print_navbar_login_items($expand=true);
+
+?>
   </div>
   <div class="container">
     <?php echoCardEntries($flyers); ?>

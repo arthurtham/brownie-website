@@ -2,7 +2,7 @@
 
 $dir = dirname(__DIR__, 3);
 $title = "Clip Uploader - #BrownieVAL Draft Deluxe";
-$_layout_brownievalmode = false;
+$_layout_brownievalmode = true;
 require $dir . "/templates/header.php";
 require $dir . "/includes/cloudinary.env.php";
 require_once($dir . "/includes/mysql.php");
@@ -10,9 +10,11 @@ require_once($dir . "/includes/mysql.php");
 // Check login
 if (!isset($_SESSION['user'])) { 
   echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
-  echo '<h1 class="text-center">#BrownieVAL Draft Deluxe Clip Uploader</h1>';
+  echo '<h1 class="text-center">Clip Uploader</h1>';
   echo "<div class='alert alert-danger' role='alert'>
-  <center>Players, please log in with Discord to access this page.</center>
+  <center>Players, please log in with Discord to access this page.</center>";
+  print_navbar_login_items($expand=true, $center=true);
+  echo "
   </div></div>";
   require $dir . "/templates/footer.php"; 
   die();
@@ -22,7 +24,7 @@ else if (!(check_guild_membership($cloudinary_guild_id) ||
   (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_player_access_id, $brownieval_admin_access_id])) 
   )) {
     echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
-    echo '<h1 class="text-center">#BrownieVAL Draft Deluxe Clip Uploader</h1>';
+    echo '<h1 class="text-center">Clip Uploader</h1>';
     echo "<div class='alert alert-danger' role='alert'>
     <center>We can't determine if you're a #BrownieVAL Draft Deluxe player. We use your Discord roles in the #BrownieVAL server to check this.
     Please contact #BrownieVAL ModMail for support.</center>
@@ -43,7 +45,7 @@ $_SESSION['cloudinary_timer_start']=time();
 <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-  <h1 class="text-center">#BrownieVAL Draft Deluxe Clip Uploader</h1>
+  <h1 class="text-center">Clip Uploader</h1>
   <p class="text-center">Upload your clip for the promotional video here! It will be used in the event hype video, 
     and potentially in a smaller-scale team video.</p>
   <div class="alert alert-danger">
