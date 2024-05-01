@@ -75,7 +75,7 @@ if (!(check_roles([$brownieval_player_access_id, $brownieval_talent_access_id, $
     array(
       "name" => "Viewers Support DIY Flyer",
       "type" => "fill-in",
-      "username" => "Fill it in yourself",
+      "username" => "DIY",
       "image_type" => "watch",
       "image" => getSignedFlyer("fill-in")
     )
@@ -133,10 +133,13 @@ function echoCardEntries($entries) {
       class="card-img-top" alt="flyer image: '.$item["name"].'"></div>';
       echo '<div class="card-body">';
       echo '<h5 class="card-title">'.$item["name"].'</h5>';
-      echo '<p class="card-text">'.$item["username"].'</p><p class="card-text"><button id="upload-box" class="btn btn-success"
+      echo '<p class="card-text">'.$item["username"].'</p><p class="card-text"><button class="btn btn-success"
       onclick=\'downloadSignedImage("'.$item["image"].'", "brownievaldd-flyer-'.$item["image_type"]."-".$item["username"].'")\'>
-      Download Image</button></p>';
-      echo '</div>';
+      Download Image</button>';
+      if ($item["type"] === "fill-in") {
+        echo '<a href="/r/brownievaldeluxediyflyer/" target="_blank"><button class="btn btn-warning">Edit Online</button></a>';
+      }
+      echo '</p></div>';
       echo '</div></div>';
       $javascript_lazyload .= "$('#card" . $count . "').attr('src','". $item["image"] ."');
       ";
