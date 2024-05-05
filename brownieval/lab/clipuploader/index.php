@@ -54,6 +54,10 @@ $_SESSION['cloudinary_timer_start']=time();
     and it will rename the video to your Discord username.</p>
     <p><strong>YOU ONLY GET TO UPLOAD ONE CLIP, AND IT WILL REJECT SUBSEQUENT UPLOADS; SO CHOOSE WISELY!</strong></p>
   </div>
+  <div class="alert alert-danger">
+    <strong>The clip submission deadline has passed, but you can still upload a clip.</strong> However, we cannot guarantee
+  that your video will be included as the video editor has already started the editing process.
+  </div>
   
   <p>The upload widget should appear below. Please upload your video below.</p>
   <p>Your Discord Username: <strong><?=$_SESSION['username'] ?></strong></p>
