@@ -27,31 +27,49 @@ require "config.php";
 
 # Initializing all the required values for the script to work
 # Fetching user details | (identify scope) (optionally email scope too if you want user's email) [Add identify AND email scope for the email!]
-if (!isset($_SESSION['signin-attempted']) || $_SESSION['signin-attempted'] === 0){
+
+
+# Start session if not active
+// if (!isset($_SESSION['signin-attempted']) || $_SESSION['signin-attempted'] === 0){
     if (session_status() != PHP_SESSION_ACTIVE) {
         start_session_custom();
     }
+// }
+
+
+# Set sign-in attempted variable if not set yet
+if (!isset($_SESSION['signin-attempted'])) {
+    $_SESSION['signin-attempted'] = 0;
 }
 
-if (isset($_GET["error"]) && $_GET["error"]==="access_denied") {
+# If a user is already logged in, ignore login request
+if (get_user()) {
+    redirect("/");
+}
+
+# If an error occured (usually set from Discord), deny login request
+if (isset($_GET["error"])) {// && $_GET["error"]==="access_denied") {
     $_SESSION['signin-attempted'] = 0;
     redirect("/logout.php?badauth");
 }
 
+# If a sign-in is not attempted yet and initialization is not yet performed, attempt to log-in
 if (
-    (!isset($_SESSION['signin-attempted']) || $_SESSION['signin-attempted'] === 0) || 
+    ($_SESSION['signin-attempted'] === 0) || 
     !(init($redirect_url, $client_id, $secret_id, $bot_token)) || (!get_user())
     ) {
-    if (!isset($_SESSION['signin-attempted']) || $_SESSION['signin-attempted'] === 0) {
+    // if (!isset($_SESSION['signin-attempted']) || $_SESSION['signin-attempted'] === 0) {
         $_SESSION['signin-attempted'] = 1;
         $auth_url = url($client_id, $redirect_url, $scopes);
         redirect($auth_url);
         die;
-    } else {
-        $_SESSION['signin-attempted'] = 0;
-        redirect("/logout.php?badauth");
-    }
+    // } else {
+    //     $_SESSION['signin-attempted'] = 0;
+    //     redirect("/logout.php?badauth");
+    // }
 };
+
+# Continue Login flow if all the above conditions have passed
 $_SESSION['timeout']=time();
 
 # Uncomment this for using it WITH email scope and comment line 32.
@@ -62,14 +80,14 @@ $_SESSION['timeout']=time();
 
 # Fetching user guild details | (guilds scope)
 $_SESSION['guilds'] = rate_limit_wrapper("get_guilds");
-usleep(1.0);
+usleep(250000);
 # Fetching user connections | (connections scope)
 $_SESSION['user_connections'] = rate_limit_wrapper("get_connections");
-usleep(1.0);
+usleep(250000);
 $_SESSION['user_guild_info'] = rate_limit_wrapper("get_user_guild_info", $guild_id);
-usleep(1.0);
+usleep(250000);
 $_SESSION['user_guild_info_brownieval'] = rate_limit_wrapper("get_user_guild_info", $brownieval_guild_id);
-usleep(1.0);
+usleep(250000);
 $_SESSION['roles'] = array_merge(
     (!isset($_SESSION['user_guild_info']['roles'])) ? array() : $_SESSION['user_guild_info']['roles'],
     (!isset($_SESSION['user_guild_info_brownieval']['roles'])) ? array() : $_SESSION['user_guild_info_brownieval']['roles']);
