@@ -1,6 +1,6 @@
 <?php
 
-$dir = dirname(__DIR__, 3);
+$dir = dirname(__DIR__, 1);
 require_once $dir . "/includes/mysql.php";
 require_once $dir . "/includes/cloudinary.env.php";
 require_once $dir . "/vendor/autoload.php";
@@ -52,7 +52,7 @@ VALUES
 \"" . mysqli_real_escape_string($conn, $json["context"]["custom"]["discord_username"]) . "\",
 \"" . mysqli_real_escape_string($conn, $json["public_id"]) . "\",
 \"" . mysqli_real_escape_string($conn, $json["secure_url"]) . "\",
-\"clipuploader-dd\");
+\"" . mysqli_real_escape_string($conn, isset($_GET["uploadedfrom"]) ? $_GET["uploadedfrom"] : "default") . "\");
 ";
 
 // ob_start();

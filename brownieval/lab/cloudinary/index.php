@@ -67,13 +67,13 @@ $_SESSION['cloudinary_timer_start']=time();
     </div>
 
     <div class="alert alert-dark">
-      <p><strong>Upload your best VALORANT clip (up to 30 seconds in length) and post it 
-      on Twitter/X with the hashtag <a href="https://twitter.com/hashtag/MyBrownieVALClip" target="_blank">#MyBrownieVALClip!</a></strong> Then, you'll get 
+      <p><strong>Upload your best VALORANT clip (up to 60 seconds in length) and post it 
+      on X (formerly known as Twitter) with the hashtag <a href="https://twitter.com/hashtag/MyBrownieVALClip" target="_blank">#MyBrownieVALClip!</a></strong> Then, you'll get 
       to see how cool it is to be in #BrownieVAL!</p>
       <ul>
         <li>Upload your best VALORANT clip:</li>
         <ul>
-          <li>Max length: 30 sec. (longer clips will be trimmed)</li>
+          <li>Max length: 60 sec. (longer clips will be trimmed)</li>
           <li>Max file size: 100 MB.</li>
           <li>Aspect Ratio: 16:9</li>
         </ul>
@@ -87,7 +87,7 @@ $_SESSION['cloudinary_timer_start']=time();
     <div class="alert alert-danger">
       <p><strong>Abuse of this tool will lead to a irrevocable ban on all social media platforms
         that Browntul and BrownieVAL is on.</strong></p> 
-      <p><strong>Privacy</strong>: This tool uploads your video to Cloudinary, which will additionally store information about your connections on Discord (ie. your linked Twitter/Twitch profiles).</p>
+      <p><strong>Privacy</strong>: This tool uploads your video to Cloudinary, which will additionally store information about your connections on Discord (ie. your linked X and Twitch profiles).</p>
     </div>
 
     

@@ -46,17 +46,12 @@ $_SESSION['cloudinary_timer_start']=time();
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
   <h1 class="text-center">Clip Uploader</h1>
-  <p class="text-center">Upload your clip for the promotional video here! It will be used in the event hype video, 
-    and potentially in a smaller-scale team video.</p>
+  <p class="text-center">Upload your clip for the promotional video here! It will be used in event hype videos.</p>
   <div class="alert alert-danger">
     <p><strong>Privacy</strong>: This tool uploads your video to Cloudinary, which will additionally store information
     about your Discord account. Specifically, it will save your Discord username and user ID in the video's metadata,
     and it will rename the video to your Discord username.</p>
     <p><strong>YOU ONLY GET TO UPLOAD ONE CLIP, AND IT WILL REJECT SUBSEQUENT UPLOADS; SO CHOOSE WISELY!</strong></p>
-  </div>
-  <div class="alert alert-danger">
-    <strong>The clip submission deadline has passed, but you can still upload a clip.</strong> However, we cannot guarantee
-  that your video will be included as the video editor has already started the editing process.
   </div>
   
   <p>The upload widget should appear below. Please upload your video below.</p>
@@ -232,7 +227,7 @@ If you want to replace your clip, please contact #BrownieVAL ModMail.");
     });
 
 <?php
-$sql = "SELECT secure_url FROM cloudinary_uploads WHERE discord_username=\"" . mysqli_real_escape_string($conn, $_SESSION['username']) . "\" LIMIT 1";
+$sql = "SELECT secure_url FROM cloudinary_uploads WHERE discord_username=\"" . mysqli_real_escape_string($conn, $_SESSION['username']) . "\" AND uploaded_from=\"" . $CLOUDINARY_CLIPUPLOADER_CATEGORY . "\" LIMIT 1";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {

@@ -28,7 +28,7 @@ FOOTER;
             </div>
             <div class="col-lg-4">
             <h3 class="text-center"><img class="rounded" style="height:32px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/c_pad,w_48,h_48,ar_1:1/v1705971391/com.browntulstar/img/brownieval-logo-v1.webp">
-            #BrownieVAL Draft Deluxe</h3>
+            #BrownieVAL</h3>
             </div>
             <div class="col-lg-4">
                 <ul class="nav justify-content-center list-unstyled d-flex" style="margin-top:4px">
