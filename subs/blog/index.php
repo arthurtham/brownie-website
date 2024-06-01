@@ -66,7 +66,7 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 	// User unauthorized checks
 	if (!isset($_SESSION['user']) || !check_guild_membership($guild_id) || !check_roles($sub_perk_roles)) {		
 		// Force login page if user isn't logged in
-		if (!isset($_SESSION['user'])) {
+		// if (!isset($_SESSION['user'])) {
 			echo <<<MESSAGE
 			<div class='alert alert-danger' role='alert'>
 			<center><p>Please log in with the Discord account that has your subbed Twitch/Ko-fi account linked to read this content.
@@ -74,24 +74,21 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 			<p><a class="btn btn-dark w-100 shadow" href="/r/discord" target="_blank" style="max-width:350px">
 			<i class="fa-brands fa-discord"></i>
 			Join Turtle Pond Discord Server
-			</a> <a class="btn btn-success w-100 shadow" href="/login.php" target="_blank" style="max-width:125px">
-			<i class="fa-brands fa-discord"></i>
-			Login
-			</a></p></center>
-			</div>
+			</a> 
 MESSAGE;
+			print_navbar_login_items($expand=true, $center=true, $subperks=true);
+			echo "</p></center></div>";
 			echo '<h1 style="text-align: center">Brown\'s Blog</h1>';
 			require $dir . "/templates/sub-perks-description.php";
-		} else { // Otherwise they're just not subbed, display the call to action
-			echo "<div class='alert alert-danger' role='alert'>
-			<center>Error: Your Discord roles don't include being a Twitch or Ko-fi subscriber.<br>
-			Read the sub perks below and pick a platform to subscribe!<br/>
-			Make sure your Twitch is linked to Discord, or Discord is linked to Ko-fi.<br/>
-			Then, log out and log back in again to read the blog posts.</center>
-			</div>";
-			echo '<h1 style="text-align: center">Brown\'s Blog</h1>';
-			require $dir . "/templates/sub-perks-description.php";
-		}
+		// } else { // Otherwise they're just not subbed, display the call to action
+		// 	echo "<div class='alert alert-danger' role='alert'>
+		// 	<center>Error: You need to be a Twitch/Ko-fi subscriber to view this content.
+		// 	Please go to <a href='/subs'>this page</a> to learn how to link your subscribed account to Discord.
+		// 	Then, log out and log back in again!</center>
+		// 	</div>";
+		// 	echo '<h1 style="text-align: center">Brown\'s Blog</h1>';
+		// 	require $dir . "/templates/sub-perks-description.php";
+		// }
 	} else { // User is authorized, load the blog pages
 		$blog_type = $_GET["blog-type"];
 		$blog_id = $_GET["blog-id"];

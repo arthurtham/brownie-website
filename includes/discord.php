@@ -6,6 +6,7 @@
  */
 
 require_once __DIR__ . "/functions.php";
+require_once dirname(__DIR__, 1) . "/config.php";
  # Starting session so we can store all the variables
 start_session_custom();
 
@@ -206,7 +207,8 @@ function rate_limit_wrapper($function, $param=null) {
     }
 }
 
-function print_navbar_login_items($expand=false, $center=false) {
+function print_navbar_login_items($expand=false, $center=false, $subperks=false) {
+    global $sub_perk_roles, $mod_role_id, $vip_role_id;
     // Auth_URL now handled in login file
     // $auth_url = url($client_id, $redirect_url, $scopes);\
 
@@ -218,7 +220,24 @@ function print_navbar_login_items($expand=false, $center=false) {
         echo "'>";
     }
     if (isset($_SESSION['user'])) {
-        echo '<a href="/profile"><button class="btn btn-primary"><img style="height:24px;border-color:gray;border:1px solid" class="rounded" src="'.get_discord_avatar_url().'" /></button></a></li><li><a href="/logout.php"><button class="btn btn-danger">Logout</button></a>';
+        if ($expand) echo "<li>";
+        echo '<a href="/profile"><button class="btn btn-primary" style="border-top-right-radius:0 !important;border-bottom-right-radius:0 !important;font-size:0.9em !important"><img style="height:24px;border-color:gray;border:1px solid;" class="rounded" src="'.get_discord_avatar_url().'" /></button></a>';
+        if ($subperks) {
+            if ($expand) echo "</li><li>";
+            echo "<a href='" . "/subs" ."'>";
+            if (check_roles([$mod_role_id])) {
+                echo "<button class='btn btn-success' style='border-radius:0 !important'><i class=\"fa-solid fa-circle-check\"></i> Discord Mod</button></a>";
+            } else if (check_roles([$vip_role_id])) {
+                echo "<button class='btn btn-success' style='border-radius:0 !important'><i class=\"fa-solid fa-circle-check\"></i> Discord VIP</button></a>";
+            } else if (check_roles($sub_perk_roles)) {
+                echo "<button class='btn btn-success' style='border-radius:0 !important'><i class=\"fa-solid fa-circle-check\"></i> Subscribed</button></a>";
+            } else {
+                echo "<button class='btn btn-light' style='border-radius:0 !important'><i class=\"fa-solid fa-link\"></i> Verify Sub</button></a>";
+            }
+        }
+        if ($expand) echo "</li><li>";
+        echo '<a href="/logout.php"><button class="btn btn-danger" style="border-top-left-radius:0 !important;border-bottom-left-radius:0 !important;"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></a>';
+        if ($expand) echo "</li>";
     } else {
         echo "<a href='" . "/login.php" ."'><button class='btn btn-success'><i class='fa-brands fa-discord'></i> Login</button></a>";
     }
