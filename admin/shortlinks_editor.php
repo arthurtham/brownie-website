@@ -94,7 +94,8 @@ echo <<<FORM
 <div class="row">
     <div class="col col-md-12">
         <form action="shortlinks_editor.php" method="post">
-            <label for ="shortlink_shortcode">Shortcode</label>: <div class="input-group"><span class="input-group-text">https://browntulstar.com/r/</span><input class="form-control" required pattern="^\S+$" type="text" id="shortlink_shortcode" name="shortlink_shortcode" value="$shortlink_shortcode" /></div><br/>
+            <label for ="shortlink_shortcode">Shortcode</label>: <div class="input-group"><span class="input-group-text"></span><input class="form-control" required pattern="^\S+$" type="text" id="shortlink_shortcode" name="shortlink_shortcode" value="$shortlink_shortcode" /></div>
+            Current shortlink: https://browntulstar.com/r/$shortlink_shortcode<br/><br/>
             <label for ="shortlink_fulllink">Leads to</label>: <input class="form-control" required pattern="^\S+$" style="width:100%" type="url" id="shortlink_fulllink" name="shortlink_fulllink" value="$shortlink_fulllink" /><br/>
             <button id="preview-webpage-button" name="preview-webpage-button" type="button">Preview Full Link</button><button id="preview-webpage-external-button" name="preview-webpage-external-button" type="button">Popout Preview Full Link</button><br/>
             <label for ="shortlink_available">Active</label>: <input type="checkbox" id="shortlink_available" name="shortlink_available" value="1" $shortlink_available /><br/>
