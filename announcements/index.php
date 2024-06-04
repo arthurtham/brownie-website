@@ -18,10 +18,12 @@ if (isset($_GET["announcement-id"])) {
 		while ($announcement_embed = $result->fetch_assoc()) {
 			$announcement_name = $announcement_embed["announcement_name"];
 		}
+		$title = "$announcement_name - Turtle Pond - Brown Says";
+	} else {
+		$title = "Turtle Pond - Brown Says";
 	}
-	$title = "$announcement_name - Turtle Pond - Announcements";
 } else {
-	$title = "Turtle Pond - Announcements";
+	$title = "Turtle Pond - Brown Says";
 }
 
 require $dir . "/templates/header.php" ?>
@@ -32,9 +34,9 @@ if (isset($_GET["announcement-id"])) {
 	require $dir . "/templates/announcement.php";
 } else {
 	echo '<script src="/assets/js/bootstrap-tab.js"></script>';
-	echo '<h1 style="text-align: center;">Announcements</h1>';
+	echo '<h1 style="text-align: center;">Brown Says</h1>';
 	echo <<<ABOUT
-		<center>Take a look at the latest announcements straight from Browntul!</center><br/>
+		<center>Take a look at the latest words from Browntul!</center><br/>
 ABOUT;
 	echo <<<ITEM
 	<ul class="nav nav-tabs" id="blogdirectory" role="tablist">
@@ -47,7 +49,7 @@ ABOUT;
 		type="button" 
 		role="tab" 
 		aria-controls="announcements-tab" 
-		aria-selected="true">Announcements</button>
+		aria-selected="true">Brown Says</button>
 	</li>
 ITEM;
 	echo '</ul>';
@@ -68,7 +70,7 @@ ITEM;
 
 	//Pagination preparation
 	$page = max(intval($_GET["page"]),1);
-	$entrylimit = 5; // How many results per page?
+	$entrylimit = 10; // How many results per page?
 	$pagestartfrom = max($page-1,0) * $entrylimit;
 	$pagination_html = "";
 	$pagination_html_details = "";

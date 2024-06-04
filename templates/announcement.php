@@ -30,11 +30,11 @@ if ($result->num_rows > 0) {
 STYLE;
         echo "<div class='row blog-images' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
         if (!$announcement_embed["published"]) {
-            echo "<center><h1>Announcements</h1></center><hr/>";
+            echo "<center><h1>Brown Says</h1></center><hr/>";
             echo "<p>Note: This announcement is not published or no longer exists!</p>";
         } else {
             $announcement_date = date_format(date_create_from_format("Y-m-d",explode(" ",$announcement_embed["announcement_date"])[0]),"F d, Y");
-            echo "<center><h1>" . $announcement_embed["announcement_name"] . "</h1><a href='/announcements/'>" . "Announcements" . "</a> | " . $announcement_date .  "</center><br/><hr/>";
+            echo "<center><h1>" . $announcement_embed["announcement_name"] . "</h1><a href='/announcements/'>" . "Brown Says" . "</a> | " . $announcement_date .  "</center><br/><hr/>";
             $announcement_embed_contents = $announcement_embed["announcement_embed"];
             echo Parsedown::instance()->text($announcement_embed_contents);
         }
@@ -61,7 +61,7 @@ STYLE;
 DISQUS;
     }
 } else {
-    echo "<center><h1>Announcements</h1></center><hr/>";
+    echo "<center><h1>Brown Says</h1></center><hr/>";
     echo "<p>Note: This announcement is not published or no longer exists!</p>";
     //die();
 }

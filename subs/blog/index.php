@@ -1,11 +1,48 @@
 <?php
-
-
 $dir = dirname(__DIR__, 2);
-
 // MYSQL support
+require_once $dir . "/includes/default-includes.php";
 require_once($dir . "/includes/mysql.php");
 
+/**
+ * Prepare blog page rendering
+ */
+// If loading a blog page, check user status
+if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
+	// Set page title based on blog id if provided
+	$sql = "SELECT blog_name FROM blog_posts WHERE blog_id = \"".mysqli_real_escape_string($conn, $_GET['blog-id'])."\" AND blog_type = \"".mysqli_real_escape_string($conn, $_GET['blog-type'])."\";"; 
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) {
+		while ($blog_post = $result->fetch_assoc()) {
+			$blog_title = $blog_post["blog_name"];
+		}
+		$title = "$blog_title - Turtle Pond - Brown's Blog";
+	} else {
+		$title = "Turtle Pond - Brown's Blog";
+	}
+	// User unauthorized checks
+	if (!isset($_SESSION['user']) || !check_guild_membership($guild_id) || !check_roles($sub_perk_roles)) {		
+		// Force 403 page if unauthorized
+		require $dir . "/error/403-sub.php";
+	} else {
+		// The rest of this code is irrelevant, since we can focus on rendering the actual blog page.
+		// Render it and die() in the end.
+		$blog_type = $_GET["blog-type"];
+		$blog_id = $_GET["blog-id"];
+		require_once $dir . "/templates/header.php";
+		echo "<div class='container body-container'>";
+		require $dir . "/templates/blog.php";
+		echo "</div>";
+		require $dir . "/templates/footer.php";
+	}
+	die();
+} else {
+	$title = "Turtle Pond - Brown's Blog";
+}
+
+/**
+ * Prepare search section rendering
+ */
 // Set search text if defined
 if (isset($_GET["search-text"])) {
 	$search_text = $_GET["search-text"];
@@ -22,25 +59,6 @@ if (isset($_GET["category"])) {
 	}
 }
 
-// Set page title based on blog id if provided
-if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
-	$sql = "SELECT blog_name FROM blog_posts WHERE blog_id = \"".mysqli_real_escape_string($conn, $_GET['blog-id'])."\" AND blog_type = \"".mysqli_real_escape_string($conn, $_GET['blog-type'])."\";"; 
-	$result = $conn->query($sql);
-	if ($result->num_rows > 0) {
-		while ($blog_post = $result->fetch_assoc()) {
-			$blog_title = $blog_post["blog_name"];
-		}
-		$title = "$blog_title - Turtle Pond - Brown's Blog";
-	} else {
-		$title = "Turtle Pond - Brown's Blog";
-	}
-} else {
-	$title = "Turtle Pond - Brown's Blog";
-}
-
-require $dir . "/templates/header.php" ?>
-<div class='container body-container'>
-<?php
  // User login status can change the display for call to action
 $button_read_text = "Read";
 if (!isset($_SESSION['user']) || !check_guild_membership($guild_id) || !check_roles($sub_perk_roles)) {
@@ -61,39 +79,14 @@ SUBSCRIBE;
 	}
 }
 
+/**
+ * Start blog page rendering
+ */
+require $dir . "/templates/header.php";
+echo "<div class='container body-container'>";
 // If loading a blog page, check user status
 if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
-	// User unauthorized checks
-	if (!isset($_SESSION['user']) || !check_guild_membership($guild_id) || !check_roles($sub_perk_roles)) {		
-		// Force login page if user isn't logged in
-		// if (!isset($_SESSION['user'])) {
-			echo <<<MESSAGE
-			<div class='alert alert-danger' role='alert'>
-			<center><p>Please log in with the Discord account that has your subbed Twitch/Ko-fi account linked to read this content.
-			Remember to join the Turtle Pond Discord before logging in here!</p>
-			<p><a class="btn btn-dark w-100 shadow" href="/r/discord" target="_blank" style="max-width:350px">
-			<i class="fa-brands fa-discord"></i>
-			Join Turtle Pond Discord Server
-			</a> 
-MESSAGE;
-			print_navbar_login_items($expand=true, $center=true, $subperks=true);
-			echo "</p></center></div>";
-			echo '<h1 style="text-align: center">Brown\'s Blog</h1>';
-			require $dir . "/templates/sub-perks-description.php";
-		// } else { // Otherwise they're just not subbed, display the call to action
-		// 	echo "<div class='alert alert-danger' role='alert'>
-		// 	<center>Error: You need to be a Twitch/Ko-fi subscriber to view this content.
-		// 	Please go to <a href='/subs'>this page</a> to learn how to link your subscribed account to Discord.
-		// 	Then, log out and log back in again!</center>
-		// 	</div>";
-		// 	echo '<h1 style="text-align: center">Brown\'s Blog</h1>';
-		// 	require $dir . "/templates/sub-perks-description.php";
-		// }
-	} else { // User is authorized, load the blog pages
-		$blog_type = $_GET["blog-type"];
-		$blog_id = $_GET["blog-id"];
-		require $dir . "/templates/blog.php";
-	}
+	// code moved to top of page
 } else { // Show the home blog page
 	echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 	// We need to get all directories from the database, plus the search tab

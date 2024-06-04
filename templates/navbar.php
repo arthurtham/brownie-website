@@ -64,7 +64,7 @@ if (isset($_layout_brownievalmode) && $_layout_brownievalmode == true) {
             <li style="padding-right:4px">
 <?php
 if (check_roles([$turtle_role_id])) {
-    echo "<a href='" . "/admin" ."'><button class='btn btn-danger'><i class='fa-solid fa-hammer'></i> Admin</button></a></li><li style='padding-right:4px'>";
+    echo "<a href='" . "/admin" ."'><button class='btn btn-danger'>|<i class='fa-solid fa-hammer'></i>|</button></a></li><li style='padding-right:4px'>";
 }
 print_navbar_login_items($expand=false, $center=false, $subperks=true);
 ?>
