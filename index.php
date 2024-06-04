@@ -15,7 +15,7 @@ require __DIR__ . "/templates/header.php"
 				</a>
 			</span>
 			<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
-				<a href="/subs"  class="btn btn-light w-100">Sub Perks</a>
+				<a id="subs-button" class="btn btn-light w-100">Sub Perks</a>
 			</span>
 			<span class="d-flex flex-row gap-1" style="text-align: center">
 				<a href="/about" class="btn btn-dark" style="width: 50%; margin-bottom:6px;">About</a>
@@ -34,8 +34,9 @@ require __DIR__ . "/templates/header.php"
 <script>
 jQuery(document).ready(function($) {
 	var alterCenterClass = function() {
-		if(document.body.clientHeight < 701){
-			$('#center-block').removeClass("align-items-center");		}
+		if (document.body.clientHeight < 701) {
+			$('#center-block').removeClass("align-items-center");		
+			}
 		else{
 			$('#center-block').addClass("align-items-center");
 		}
@@ -45,6 +46,14 @@ jQuery(document).ready(function($) {
 	});
 	alterCenterClass();
 })
+$("#subs-button").click(function() { 
+	$("#navbarSupportedContent").attr("class", "navbar-collapse collapse show");
+	$("#navbarSubs").trigger("click");
+	$("#navbarSubs").attr("class", "nav-link dropdown-toggle show");
+	$("#navbarSubs-menu").trigger("click");
+	$("#navbarSubs-menu").attr("class", "dropdown-menu show");
+	$("#navbarSubs-menu").attr("data-bs-popper", "static");
+});
 </script>
 
 <?php 
