@@ -95,7 +95,14 @@ $_SESSION['roles'] = array_merge(
 //redirect("/subs");
 # Is user in the guild?
 if (check_guild_membership($guild_id) || (check_guild_membership($brownieval_guild_id) && str_contains($_SESSION['redirect'], "brownieval"))) {
-    redirect(str_replace(array("?logout", "?badauth", "?expired","?ratelimit", "&logout", "&badauth", "&expired", "&ratelimit"), array("","","","","","","",""), $_SESSION['redirect']));
+    if (!isset($_SESSION['redirect']) || (strlen($_SESSION['redirect']) <= 0)) {
+        redirect("/"); // if the redirect URL is not set, just send us back home
+    } else {
+        redirect(str_replace(
+        array("?logout", "?badauth", "?expired","?ratelimit", "&logout", "&badauth", "&expired", "&ratelimit"), 
+        array("","","","","","","",""), $_SESSION['redirect'])
+        );
+    }
 } else {
     // user is not in the guild, so none of the features can actually be used.
     // but we can let them know that they should join the guild to activate these rewards.
