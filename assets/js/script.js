@@ -10,4 +10,5 @@ $('#navbarSubs-button').click(function(e) {
     navbarsubstimeout = setTimeout(function () { 
         $("#navbarSubs").removeClass('navbar-highlight');
     }, 1100);
+    $('#navbarSubs-button').html("<i class=\"fa-solid fa-circle-check\"></i> View Sub Perks in Navbar");
 });

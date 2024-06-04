@@ -15,7 +15,7 @@ require __DIR__ . "/templates/header.php"
 				</a>
 			</span>
 			<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
-				<a href="#" id="navbarSubs-button" class="btn btn-light w-100">Sub Perks (Navbar)</a>
+				<a href="#" id="navbarSubs-button" class="btn btn-success w-100"><i class="fa-solid fa-circle-check"></i> Sub Perks</a>
 			</span>
 			<span class="d-flex flex-row gap-1" style="text-align: center">
 				<a href="/about" class="btn btn-dark" style="width: 50%; margin-bottom:6px;">About</a>
