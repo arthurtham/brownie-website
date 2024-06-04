@@ -141,6 +141,11 @@ echo <<<SUBPERKSHEADER2
 				</div>
 				<div class="row">
 					<div class="col-lg-12">
+						<a href="#" id="navbarSubs-button" class="btn btn-primary w-100 mb-2">View Sub Perks (Navbar)</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
 						<a class="btn btn-dark w-100 mb-2" href="/r/discord" target="_blank">
 							<i class="fa-brands fa-discord"></i>
 							Join Turtle Pond Discord Server

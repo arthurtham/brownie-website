@@ -280,3 +280,12 @@ h5 .badge {
   top:-4px;
   right:-5px;
 }
+
+.navbar-highlight {
+    animation: navbar-highlight 1s ease;
+}
+@keyframes navbar-highlight {
+    0% { background-color: rgba(0, 0, 0, 0); }
+    50% { background-color: yellow; }
+    100% { background-color: rgba(0, 0, 0, 0); }
+}
