@@ -38,14 +38,21 @@ jQuery(function ($) {
             trackCount = tracks.length,
             npAction = $('#npAction'),
             npTitle = $('#npTitle'),
+            npFooter = $('#npFooter'),
             audio = $('#audio1').on('play', function () {
                 playing = true;
-                npAction.html('<span class="bounce"><i class="fa-solid fa-train"></i> Choo-choo</span>');
+                var htmlcontents = "<span class=\"bounce\"><i class=\"fa-solid fa-train\"></i> Choo-choo</span>";
+                npAction.html(htmlcontents);
+                npFooter.html(htmlcontents);
             }).on('pause', function () {
                 playing = false;
-                npAction.html('<span><i class="fa-solid fa-train"></i> Pause</span>');
+                var htmlcontents = "<span><i class=\"fa-solid fa-train\"></i> Pause</span>";
+                npAction.html(htmlcontents);
+                npFooter.html(htmlcontents);
             }).on('ended', function () {
-                npAction.html('<span><i class="fa-solid fa-train"></i> Pause</span>');
+                var htmlcontents = "<span><i class=\"fa-solid fa-train\"></i> Pause</span>";
+                npAction.html(htmlcontents);
+                npFooter.html(htmlcontents);
                 if ((index + 1) < trackCount) {
                     index++;
                     loadTrack(index);
