@@ -44,16 +44,11 @@ require $dir . "/templates/header.php"
             <i class="fa-brands fa-discord"></i>
             Join Turtle Pond Discord Server
         </a></p>
-        <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href="https://www.twitch.tv/browntulstar" target="_blank" style="max-width:400px">
-            <i class="fa-brands fa-twitch"></i>
-            Follow me on Twitch
-        </a></p>
-        <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href='https://ko-fi.com/browntulstar' target='_blank' style="max-width:400px">
-            <img height='18' style='border:0px;height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/c_pad,h_48/com.browntulstar/img/platform-kofi.webp' border='0' alt='Buy Me a Coffee at ko-fi.com' />
-            Join on Ko-fi
-        </a></p>
         <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href='https://browntulstar.com/r/links' target='_blank' style="max-width:400px">
-            More Links and Socials
+            <i class="fa-solid fa-link"></i> Links and Socials
+        </a></p>
+        <p class="text-center"><a class="btn btn-dark w-100 mb-2 shadow" href='mailto:browntulstar@browntulstar.com' target='_blank' style="max-width:400px">
+            <i class="fa-solid fa-envelope"></i> Contact
         </a></p>
     </div>
     <hr />

@@ -1,5 +1,5 @@
 <?php
-$dir = dirname(__DIR__, 2);
+$dir = dirname(__DIR__, 1);
 $title = "BrowntulStar - Credits";
 require_once($dir . "/includes/mysql.php");
 require $dir . "/templates/header.php";

@@ -1,5 +1,5 @@
 <?php
-$dir = dirname(__DIR__, 2);
+$dir = dirname(__DIR__, 1);
 $title = "BrowntulStar - Coding";
 require $dir . "/templates/header.php";
 ?>
