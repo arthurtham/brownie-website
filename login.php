@@ -80,14 +80,13 @@ $_SESSION['timeout']=time();
 
 # Fetching user guild details | (guilds scope)
 $_SESSION['guilds'] = rate_limit_wrapper("get_guilds");
-usleep(250000);
+usleep(100000);
 # Fetching user connections | (connections scope)
 $_SESSION['user_connections'] = rate_limit_wrapper("get_connections");
-usleep(250000);
+usleep(100000);
 $_SESSION['user_guild_info'] = rate_limit_wrapper("get_user_guild_info", $guild_id);
-usleep(250000);
+usleep(100000);
 $_SESSION['user_guild_info_brownieval'] = rate_limit_wrapper("get_user_guild_info", $brownieval_guild_id);
-usleep(250000);
 $_SESSION['roles'] = array_merge(
     (!isset($_SESSION['user_guild_info']['roles'])) ? array() : $_SESSION['user_guild_info']['roles'],
     (!isset($_SESSION['user_guild_info_brownieval']['roles'])) ? array() : $_SESSION['user_guild_info_brownieval']['roles']);

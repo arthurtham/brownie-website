@@ -9,14 +9,12 @@ if (!isset($_SESSION['user'])) {
 	echo "<div class='alert alert-danger' role='alert'>
 	<center>To view which Discord roles that you have that unlock sub perks, you need to log in to Discord first.</center>
 	</div>";
-	echo '<h1 class="text-center text-white">Turtle Pond - Sub Status</h1>';
 	echo "</div>";
 } else { // User is logged in
 	if (false) { //(!check_guild_membership($guild_id) || !check_roles([$sub_role_id, $vip_role_id, $mod_role_id])) {
 		//require dirname(__DIR__, 1) . "/templates/login-required.php";
 	} else {
 		echo '<div class="d-flex flex-column align-items-center justify-content-center">';
-		echo '<h1 class="text-center text-white">Turtle Pond - Sub Status</h1>';
 		// Special box appears if the user logs in but is not in the Turtle Pond server
 		if (!check_guild_membership($guild_id)) {
 			echo <<<JOINSERVERALERT
@@ -93,38 +91,15 @@ $faqitems = array(
 		<p>If you still don't have your sub perks, please ping @Browntul on Discord in the #turtle-party channel or <a href='browntulstar@browntulstar.com' target='_blank'>email Browntul</a> with your Discord username.</p>"
 	),
 );
-// 		<div class="row">
-// 			<div class="col-md-6 offset-md-3">
-// 				<h1 class="text-center">Sub Perks Content</h1>
-// 				<a class="btn btn-dark w-100 mb-2" href="/subs/blog" target="_blank">
-// 					<i class="fa-brands fa-twitch"></i>$_kofi_logo
-// 					Sub Blog
-// 				</a>
-// 				<a class="btn btn-dark w-100 mb-2" href='/subs/karaoke' target='_blank'>
-// 					<i class="fa-brands fa-twitch"></i>$_kofi_logo
-// 					Tank Engine Karaoke
-// 				</a>
-// 				<a class="btn btn-dark w-100 mb-2" href='/brownieval/subonlyvideos' target='_blank'>
-// 					<i class="fa-brands fa-twitch"></i>$_kofi_logo
-// 					#BrownieVAL Clip Generator
-// 				</a>
-// 				<a class="btn btn-dark w-100 mb-2" href='/brownieval/subonlyvideos' target='_blank'>
-// 					<i class="fa-brands fa-twitch"></i>
-// 					#BrownieVAL Sub-only Videos
-// 				</a>
-// 			</div>
-// 		</div>
 echo <<<SUBPERKSHEADER
 	<div class="container body-container" style="padding-top:48px !important">
 		<div class="row">
 			<div class="col-lg-12">
+			<h1 class="text-center">Turtle Pond - Sub Status</h1>
 			<h2 class="text-center">Subscribe, Support, and Benefit!</h2>
 			<p class="text-center">Link your subscribed Twitch/Ko-fi account to Discord, and join the Turtle Pond
 			server below. You can then use your sub perks throughout the website. The power of technology is inspirational!</p>
-			<p class="text-center">Scroll to the bottom for directions on how to link your subscribed accounts to Discord. If you are subscribed,
-			then you will see your <strong>Red Shell</strong> roles in your profile banner above.</p>
 SUBPERKSHEADER;
-			// require $dir . "/templates/sub-perks-description.php";
 echo <<<SUBPERKSHEADER2
 			</div>
 		</div>
@@ -170,7 +145,7 @@ echo <<<SUBPERKSHEADER2
 		<div class="row">
 			<div class="col-lg-12">
 				<hr/>
-					<center><h2>FAQ: Link your Subscribed Twitch/Ko-fi Account to Discord</h2></center>
+					<center><h2>FAQ: Link Subscribed Account</h2></center>
 					<div class="accordion" id="accordionFAQ">
 SUBPERKSHEADER2;
 for ($_i = 0; $_i < count($faqitems); ++$_i) {
