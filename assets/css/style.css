@@ -7,6 +7,7 @@ div.container.body-container {
     background-color: var(--bs-white) !important;
     padding: 75px 100px 200px 100px !important;
     box-shadow: 0px 0px 10px #a58e8e;
+    min-height: 100vh;
 }
 
 div.container.body-container-no-bg {
@@ -34,8 +35,16 @@ div.container.body-container-no-bg {
 
 
 @media (min-height:701px) {
+    div.container-fluid.body-container-home {
+        height:90vh;
+        max-height: 900px;
+    }
     div.container.body-container-home {
         height:100vh;
+    }
+    div.container-fluid.body-container-home #center-block {
+        height:90vh;
+        max-height: inherit;
     }
     div.container.body-container-home #center-block {
         height:90vh;
@@ -43,11 +52,11 @@ div.container.body-container-no-bg {
 }
 
 @media (max-height:700px) {
-    div.container.body-container-home {
+    div.container-fluid.body-container-home, div.container.body-container-home {
         padding: 75px clamp(0px, 10%, 100px) 200px clamp(0px, 10%, 100px) !important;
         min-height:700px;
     }
-    div.container.body-container-home #center-block {
+    div.container-fluid.body-container-home #center-block, div.container.body-container-home #center-block  {
         height:100%;
     }
 }
@@ -91,7 +100,7 @@ body.v1 {
     background-attachment: fixed;
 }
 
-body.profile {
+body.profile, div.brownie-red {
     background: rgb(63,13,27);
     background: -moz-linear-gradient(180deg, rgba(63,13,27,1) 0%, rgba(114,24,49,1) 45%, rgba(190,40,81,1) 100%);
     background: -webkit-linear-gradient(180deg, rgba(63,13,27,1) 0%, rgba(114,24,49,1) 45%, rgba(190,40,81,1) 100%);
@@ -99,12 +108,24 @@ body.profile {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3f0d1b",endColorstr="#be2851",GradientType=1);
 }
 
-body.home {
+body.home, div.container-fluid.body-container-home, div.brownie-green {
     background: rgb(211,174,134);
     background: -moz-radial-gradient(circle, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 30%, rgba(58,103,62,1) 75%);
     background: -webkit-radial-gradient(circle, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 30%, rgba(58,103,62,1) 75%);
     background: radial-gradient(circle, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 30%, rgba(58,103,62,1) 75%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d3ae86",endColorstr="#3a673e",GradientType=1);
+}
+
+div.home-div-row {
+    height: fit-content;
+    min-height: 600px;
+    /* max-height: max(fit-content, 1080px); */
+    background-size: cover;
+    background-position: center;
+}
+
+div.home-div-col {
+    align-self: center;
 }
 
 
@@ -231,7 +252,9 @@ h5 .badge {
     font-size: 12px !important;
 }
 
-.body-container-no-bg h1, .body-container-no-bg h2, .body-container-no-bg h3 {
+.body-container-no-bg h1, .body-container-no-bg h2, .body-container-no-bg h3,
+div.brownie-green h1, div.brownie-green h2, div.brownie-green h3,
+div.brownie-red h1, div.brownie-red h2, div.brownie-red h3 {
     text-shadow: 1px 1px 2px black;
 }
 
