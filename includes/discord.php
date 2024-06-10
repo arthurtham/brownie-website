@@ -221,24 +221,24 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
     }
     if (isset($_SESSION['user'])) {
         if ($expand) echo "<li>";
-        echo '<a href="/profile"><button class="btn btn-light" style="border-top-right-radius:0 !important;border-bottom-right-radius:0 !important;font-size:0.9em !important"><img style="height:24px;border-color:gray;border:1px solid;" class="rounded" src="'.get_discord_avatar_url().'" /></button></a>';
+        echo '<a href="/profile"><button class="btn btn-light" style="border-top-right-radius:0;border-bottom-right-radius:0;font-size:0.9em"><img style="height:24px;border-color:gray;border:1px solid;" class="rounded" src="'.get_discord_avatar_url().'" /></button></a>';
         if ($subperks) {
             if ($expand) echo "</li><li>";
             echo "<a href='" . "/subs" ."'>";
             if (check_roles([$turtle_role_id])) {
-                echo "<button class='btn btn-success' style='border-radius:0 !important'><i class=\"fa-solid fa-circle-check\"></i> Turtle Admin</button></a>";
+                echo "<button class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Turtle Admin</button></a>";
             } else if (check_roles([$mod_role_id])) {
-                echo "<button class='btn btn-success' style='border-radius:0 !important'><i class=\"fa-solid fa-circle-check\"></i> Discord Mod</button></a>";
+                echo "<button class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Discord Mod</button></a>";
             } else if (check_roles([$vip_role_id])) {
-                echo "<button class='btn btn-success' style='border-radius:0 !important'><i class=\"fa-solid fa-circle-check\"></i> Discord VIP</button></a>";
+                echo "<button class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Discord VIP</button></a>";
             } else if (check_roles($sub_perk_roles)) {
-                echo "<button class='btn btn-success' style='border-radius:0 !important'><i class=\"fa-solid fa-circle-check\"></i> Subscribed</button></a>";
+                echo "<button class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Subscribed</button></a>";
             } else {
-                echo "<button class='btn btn-primary' style='border-radius:0 !important'><i class=\"fa-solid fa-link\"></i> Verify Sub</button></a>";
+                echo "<button class='btn btn-primary' style='border-radius:0'><i class=\"fa-solid fa-link\"></i> Verify Sub</button></a>";
             }
         }
         if ($expand) echo "</li><li>";
-        echo '<a href="/logout.php"><button class="btn btn-danger" style="border-top-left-radius:0 !important;border-bottom-left-radius:0 !important;"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></a>';
+        echo '<a href="/logout.php"><button class="btn btn-danger" style="border-top-left-radius:0;border-bottom-left-radius:0;"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></a>';
         if ($expand) echo "</li>";
     } else {
         echo "<a href='" . "/login.php" ."'><button class='btn btn-success'><i class='fa-brands fa-discord'></i> Login</button></a>";

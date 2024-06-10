@@ -31,5 +31,8 @@ require $dir . "/includes/default-includes.php";
 } else {
 	echo '<body>';
 }
+
+require $dir . "/templates/navbar.php";
+
 ?>
-	<?php require $dir . "/templates/navbar.php" ?>
+

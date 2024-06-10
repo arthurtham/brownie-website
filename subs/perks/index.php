@@ -22,16 +22,20 @@ echo <<<SUBPERKSHEADER2
 		<br/>
 		<div class="row">
 			<div class="col-lg-12">
+				<a class="btn btn-danger w-100 mb-2" href="/subs">
+					<i class="fa-solid fa-circle-info"></i>
+					Sub Status and FAQ
+				</a>
+				<a class="btn btn-dark w-100 mb-2" href="/r/discord" target="_blank">
+					<i class="fa-brands fa-discord"></i>
+					Join Turtle Pond Discord Server
+				</a>
 				<a class="btn btn-dark w-100 mb-2" href="https://www.twitch.tv/browntulstar" target="_blank">
 					<i class="fa-brands fa-twitch"></i>
 					Sub on Twitch
 				</a>
 				<a class="btn btn-dark w-100 mb-2" href='https://ko-fi.com/browntulstar' target='_blank'>
 				$_kofi_logo Join on Ko-fi
-				</a>
-				<a class="btn btn-dark w-100 mb-2" href="/r/discord" target="_blank">
-					<i class="fa-brands fa-discord"></i>
-					Join Turtle Pond Discord Server
 				</a>
 			</div>
 		</div>

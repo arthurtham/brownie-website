@@ -1,10 +1,15 @@
 <?php
 
-
+$scroll_to_top_button = <<<SCROLLABLE
+<button id="scroll-to-top-button" class="btn btn-lg btn-dark border-white shadow" style="position:absolute; top: -50; right: 20px; z-index: 3;" onclick="window.scrollTo(0,0)">
+	<i class="fa-solid fa-circle-arrow-up"></i>
+</button>
+SCROLLABLE;
 
 if (isset($_footer_adminmode) && $_footer_adminmode == true) { 
     echo <<<FOOTER
     <footer class="d-flex flex-column w-100 justify-content-center align-items-center border-top bg-danger text-white shadow" style="position:fixed;bottom:0;padding-top:4px;padding-bottom:0px;z-index:2">
+        $scroll_to_top_button
         <div class="row w-100">
             <div class="col-lg-2">
                 
@@ -22,6 +27,7 @@ FOOTER;
 } else if (isset($_layout_brownievalmode) && $_layout_brownievalmode == true) {
     echo <<<FOOTER
     <footer class="d-flex flex-column w-100 justify-content-center align-items-center border-top bg-success text-white shadow" style="position:fixed;bottom:0;padding-top:8px;padding-bottom:0px;z-index:2">
+        $scroll_to_top_button
         <div class="row w-100">
             <div class="col-lg-4">
 
@@ -47,6 +53,7 @@ FOOTER;
     $_footer_style = (!isset($_FOOTER_HOME) || $_FOOTER_HOME == false) ? "position:fixed;bottom:0;padding: 10px;z-index:2" : "position:relative;bottom:0;padding: 10px;z-index:2";
 echo <<<FOOTER
 <footer class="d-flex flex-column w-100 justify-content-center align-items-center border-top bg-light shadow" style="{$_footer_style}">
+    $scroll_to_top_button
     <div class="row w-100">
         <div class="col-lg-5">
             <ul class="nav justify-content-center list-unstyled d-flex" style="font-size:20px">
@@ -137,7 +144,14 @@ FOOTER;
 <script src="/assets/js/script.js?v=2024-6-8" type="text/javascript"></script>
 
 <?php
-	if (isset($_GET['logout']) || isset($_GET['badauth']) || isset($_GET['ratelimit'])) {
+	if (isset($_SESSION['logout-flow-ran'])
+    && ($_SESSION['logout-flow-ran']) 
+    && (
+        isset($_GET['logout']) 
+        || isset($_GET['badauth']) 
+        || isset($_GET['ratelimit']) 
+        || isset($_GET['expired'])
+    )) {
         $message = "";
         if (isset($_GET['logout'])) {
             $message = "See you later!";
@@ -146,6 +160,8 @@ FOOTER;
         } else if (isset($_GET['ratelimit'])) {
             $message = 'You are logging in and out too frequently in a short amount of time, or you recently used Discord to log into
             another app too recently. Please wait 5-10 minutes, then try to log in again.';
+        } else if (isset($_GET['expired'])) {
+            $message = 'Your login session expired. Please log in again to continue your session.';
         }
 		echo <<<LOGGEDOUT
 		<div class="toast show fade position-absolute start-50 translate-middle-x" role="alert" aria-live="assertive" aria-atomic="true" style="margin-top:100px">
@@ -158,6 +174,7 @@ FOOTER;
         </div>
 		</div>
 LOGGEDOUT;
+        $_SESSION['logout-flow-ran'] = false;
     }
 ?>
 

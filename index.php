@@ -70,7 +70,7 @@ require $dir . "/templates/header.php"
 	</div>
 	<div class="row py-5 d-flex align-items-center justify-content-center home-div-row" style="background-image: url('https://res.cloudinary.com/browntulstar/image/upload/f_webp/com.browntulstar/img/brownieval-background-v1.png')">
 		<div class="col-lg-5 col-offset-1 d-flex justify-content-center home-div-col">
-			<img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/private/s--y9zZhHfd--/ar_1:1,c_scale,h_400/f_webp/com.browntulstar/img/brownieval-logo-v1.png" style="border: 3px solid black !important; border-radius: 100%;width:auto;max-width:min(300px, 100vw)" />
+			<img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/private/s--y9zZhHfd--/ar_1:1,c_scale,h_400/f_webp/com.browntulstar/img/brownieval-logo-v1.png" style="border: 3px solid black; border-radius: 100%;width:auto;max-width:min(300px, 100vw)" />
 		</div>
 		<div class="col-lg-5">
 			<div class="card mx-auto">
