@@ -43,7 +43,7 @@ if (!isset($_SESSION['signin-attempted'])) {
 }
 
 # If a user is already logged in, ignore login request
-if (get_user()) {
+if (isset($_SESSION["user"]) && !is_null($_SESSION["user"])) {
     redirect("/");
 }
 
@@ -97,10 +97,7 @@ if (check_guild_membership($guild_id) || (check_guild_membership($brownieval_gui
     if (!isset($_SESSION['redirect']) || (strlen($_SESSION['redirect']) <= 0)) {
         redirect("/"); // if the redirect URL is not set, just send us back home
     } else {
-        redirect(str_replace(
-        array("?logout", "?badauth", "?expired","?ratelimit", "&logout", "&badauth", "&expired", "&ratelimit"), 
-        array("","","","","","","",""), $_SESSION['redirect'])
-        );
+        redirect(preg_replace("((\?|!)(logout|badauth|expired|ratelimit))", "", $_SESSION['redirect']));
     }
 } else {
     // user is not in the guild, so none of the features can actually be used.
