@@ -107,6 +107,14 @@ body.profile, div.brownie-red {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3f0d1b",endColorstr="#be2851",GradientType=1);
 }
 
+div.brownie-gray {
+    background: rgb(0,0,0);
+    background: -moz-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(46,46,46,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(46,46,46,1) 100%);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(46,46,46,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#2e2e2e",GradientType=1);
+}
+
 body.home, div.container-fluid.body-container-home, div.brownie-green {
     background: rgb(211,174,134);
     background: -moz-radial-gradient(circle, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 30%, rgba(58,103,62,1) 75%);
@@ -118,7 +126,6 @@ body.home, div.container-fluid.body-container-home, div.brownie-green {
 div.home-div-row {
     height: fit-content;
     min-height: 600px;
-    /* max-height: max(fit-content, 1080px); */
     background-size: cover;
     background-position: center;
 }
