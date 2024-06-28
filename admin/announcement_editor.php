@@ -58,7 +58,7 @@ if (isset($_GET["announcement_id"])) {
         }
     }
 } else {
-    $sql = "SELECT announcement_id FROM announcement_embeds ORDER BY id DESC LIMIT 1;";
+    $sql = "SELECT announcement_id FROM announcement_embeds ORDER BY announcement_id DESC LIMIT 1;";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($announcement_post = $result->fetch_assoc()) {
