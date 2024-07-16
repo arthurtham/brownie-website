@@ -25,15 +25,20 @@ function getSignedFlyer($username, $type=0) {
   } else {
     $type_string = ($type===0) 
       ? 'brownieval/img/brownievalddflyerbase.png' 
-      : 'brownieval/img/brownievalddflyerbasetalent.png';
+      : (($type===2) ? 'brownieval/img/brownievalddflyerbasewatch.png'
+      : 'brownieval/img/brownievalddflyerbasetalent.png');
     $image = $cld->imageTag($type_string)
       ->addVariable(Variable::set("style", "fonts:LeagueSpartan-Bold.ttf_" . //"fonts:bsfbr.ttf" . 
         (strlen($username) > 12 ? "86" : "106")))
       ->addVariable(Variable::set("username", 
-        (strlen($username) > 16 ? (substr($username,0,16) . "%0A" . substr($username,16)) : $username)
-        ))
-      ->namedTransformation(NamedTransformation::name("BrownieVALDDFlyerGeneratorTemplate"))
-      ->namedTransformation(NamedTransformation::name("square-center-crop"))
+        (strlen($username) > 16 ? (substr($username,0,16) . "-" . substr($username,16)) : $username)
+        ));
+    if ($type===2) {
+      $image = $image->namedTransformation(NamedTransformation::name("BrownieVALFlyerGeneratorTemplate"));
+    } else {
+      $image = $image->namedTransformation(NamedTransformation::name("BrownieVALDDFlyerGeneratorTemplate"));
+    };
+      $image = $image->namedTransformation(NamedTransformation::name("square-center-crop"))
       ->delivery(Delivery::quality(100))
       ->signUrl();
   }
@@ -111,6 +116,18 @@ if ((isset($_SESSION["user"]) && check_roles([$turtle_role_id, $brownieval_playe
     );
 }
 
+if ((isset($_SESSION["user"]))) {
+array_push(
+    $flyers,
+    array(
+      "name" => "Discord Username (Viewers)",
+      "type" => "discord_username",
+      "username" => "Discord Username",
+      "image_type" => "support",
+      "image" => getSignedFlyer($_SESSION["username"], 2)
+    )
+    );
+}
 
 function echoCardEntries($entries) {
   $count = 0;
