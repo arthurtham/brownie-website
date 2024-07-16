@@ -30,12 +30,9 @@ require "config.php";
 
 
 # Start session if not active
-// if (!isset($_SESSION['signin-attempted']) || $_SESSION['signin-attempted'] === 0){
-    if (session_status() != PHP_SESSION_ACTIVE) {
-        start_session_custom();
-    }
-// }
-
+if (session_status() != PHP_SESSION_ACTIVE) {
+    start_session_custom();
+}
 
 # Set sign-in attempted variable if not set yet
 if (!isset($_SESSION['signin-attempted'])) {
@@ -56,17 +53,12 @@ if (isset($_GET["error"])) {// && $_GET["error"]==="access_denied") {
 # If a sign-in is not attempted yet and initialization is not yet performed, attempt to log-in
 if (
     ($_SESSION['signin-attempted'] === 0) || 
-    !(init($redirect_url, $client_id, $secret_id, $bot_token)) || (!get_user())
+        !(init($redirect_url, $client_id, $secret_id, $bot_token)) || (!get_user())
     ) {
-    // if (!isset($_SESSION['signin-attempted']) || $_SESSION['signin-attempted'] === 0) {
-        $_SESSION['signin-attempted'] = 1;
-        $auth_url = url($client_id, $redirect_url, $scopes);
-        redirect($auth_url);
-        die;
-    // } else {
-    //     $_SESSION['signin-attempted'] = 0;
-    //     redirect("/logout.php?badauth");
-    // }
+    $_SESSION['signin-attempted'] = 1;
+    $auth_url = url($client_id, $redirect_url, $scopes);
+    redirect($auth_url);
+    die;
 };
 
 # Continue Login flow if all the above conditions have passed
@@ -80,12 +72,12 @@ $_SESSION['timeout']=time();
 
 # Fetching user guild details | (guilds scope)
 $_SESSION['guilds'] = rate_limit_wrapper("get_guilds");
-usleep(100000);
+usleep(50000);
 # Fetching user connections | (connections scope)
 $_SESSION['user_connections'] = rate_limit_wrapper("get_connections");
-usleep(100000);
+usleep(50000);
 $_SESSION['user_guild_info'] = rate_limit_wrapper("get_user_guild_info", $guild_id);
-usleep(100000);
+usleep(50000);
 $_SESSION['user_guild_info_brownieval'] = rate_limit_wrapper("get_user_guild_info", $brownieval_guild_id);
 $_SESSION['roles'] = array_merge(
     (!isset($_SESSION['user_guild_info']['roles'])) ? array() : $_SESSION['user_guild_info']['roles'],
