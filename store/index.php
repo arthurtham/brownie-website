@@ -3,6 +3,7 @@ $dir = dirname(__DIR__, 1);
 $title = "BrowntulStar - Support";
 require_once($dir . "/includes/mysql.php");
 require $dir . "/templates/header.php";
+require_once $dir . "/includes/CloudinarySigner.php";
 echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 ?>
 
@@ -95,8 +96,9 @@ function queryShopItems($conn, $queryString) {
     $sql = "SELECT * FROM shop_item_types WHERE item_type = '".$queryString."'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
+        $cldSigner = new CloudinarySigner();
         while ($item = $result->fetch_assoc()) {
-            $item_thumbnail = $item["item_thumbnail"];
+            $item_thumbnail = $cldSigner->signUrl($cldSigner->convertLocalUrlsToCloudinaryUrls($item["item_thumbnail"]));
             $item_name = $item["item_name"];
             $item_type = $item["item_type"];
             $item_description = $item["item_description"];

@@ -5,6 +5,7 @@ $title = "Blog Editor";
 require $dir . "/includes/admin-check.php";
 require $dir . "/templates/header.php";
 require_once($dir . "/includes/mysql.php");
+require_once $dir . "/includes/CloudinarySigner.php";
 
 ?>
 <style>
@@ -53,6 +54,8 @@ if (isset($_GET["blog_id"])) {
             $blog_content = $blog_post["blog_content"];
         }
     }
+    $cldSigner = new CloudinarySigner();
+    $blog_content = $cldSigner->convertAllUrls($blog_content);
 } else {
     $can_change_blog_id = "readonly=\"readonly\"";
     $sql = "SELECT blog_id FROM blog_posts ORDER BY blog_id DESC LIMIT 1;";
@@ -120,6 +123,7 @@ echo <<<FORM
     </div>
     <button type="button" onclick="openmarkdown()">Open Blog Editor</button>
     <button type="button" onclick="restoreblogeditorcontents()">Restore Local Autosave</button>
+    <a target="_blank" href="cloudinary.php"><button type="button">Media Signer</button></a>
     <button id="submit" name="submit">Save Blog Post</button> 
     |
     <a href="blog.php"><button type="button">Back to Blog Post Listings</button></a>

@@ -3,6 +3,7 @@ $dir = dirname(__DIR__, 2);
 // MYSQL support
 require_once $dir . "/includes/default-includes.php";
 require_once($dir . "/includes/mysql.php");
+require_once $dir . "/includes/CloudinarySigner.php";
 
 /**
  * Prepare blog page rendering
@@ -270,6 +271,7 @@ ITEM;
 			
 			// Blog post results
 			$result = $conn->query($sql);
+			$cldSigner = new CloudinarySigner();
 			if ($result->num_rows > 0) {
 				while ($blog_entry = $result->fetch_assoc()) {
 					$blog_type = $blog_entry["blog_type"];
@@ -283,7 +285,7 @@ ITEM;
 					
 					//Preg match first image
 					preg_match("/\!\[.*]\((.*)\)/", $blog_entry["blog_content"], $blog_image_url);
-					$blog_image_url = empty($blog_image_url[1]) ? "https://res.cloudinary.com/browntulstar/image/private/c_pad,w_200,h_200,ar_1:1/com.browntulstar/img/turtle-adult.webp" : $blog_image_url[1];
+					$blog_image_url = empty($blog_image_url[1]) ? "https://res.cloudinary.com/browntulstar/image/private/c_pad,w_200,h_200,ar_1:1/com.browntulstar/img/turtle-adult.webp" : ($cldSigner->signUrl($cldSigner->convertLocalUrlsToCloudinaryUrls($blog_image_url[1])));
 					// Echo blog post
 					echo <<<LISTINGS
 					<div class="card" style="width: 100%;color:black">
