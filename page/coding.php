@@ -16,7 +16,7 @@ require $dir . "/templates/header.php";
         <div class="row">
             <div class="col col-md-6">
                 <div class="card" style="width: 100%; height:100%">
-                    <center><img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,w_200/com.browntulstar/img/coding-mfgj.webp" class="img-fluid rounded-start" width=100% style="max-width:200px;padding-top:20px" alt="...">
+                    <center><img src="https://res.cloudinary.com/browntulstar/image/private/s--BbUcdJY2--/c_pad,w_200/f_webp/v1/com.browntulstar/img/coding-mfgj?_a=BAAAUWGX" class="img-fluid rounded-start" width=100% style="max-width:200px;padding-top:20px" alt="...">
                     </center>
                     <div class="card-body">
                         <h4 class="card-title text-center">My First Game Jam: Dev Showcase</h4>
@@ -27,7 +27,7 @@ require $dir . "/templates/header.php";
             </div>
             <div class="col col-md-6">
                 <div class="card" style="width: 100%; height:100%">
-                    <center><img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,w_200/com.browntulstar/img/coding-cloudinary.webp" class="img-fluid rounded-start" width=100% style="max-width:200px;padding-top:20px" alt="...">
+                    <center><img src="https://res.cloudinary.com/browntulstar/image/private/s--bC9s9x1B--/c_pad,w_200/f_webp/v1/com.browntulstar/img/coding-cloudinary?_a=BAAAUWGX" class="img-fluid rounded-start" width=100% style="max-width:200px;padding-top:20px" alt="...">
                     </center>
                     <div class="card-body">
                         <h4 class="card-title text-center">Cloudinary</h4>
@@ -47,7 +47,7 @@ require $dir . "/templates/header.php";
         <div class="row">
             <div class="col col-md-6 offset-md-3">
                 <div class="card" style="width: 100%; height:100%">
-                    <center><img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,w_200/com.browntulstar/img/coding-concentration.webp" class="img-fluid rounded-start" style="object-fit:contain;width:auto;height:200px;padding-top:20px" alt="..."></center>
+                    <center><img src="https://res.cloudinary.com/browntulstar/image/private/s---Dg25dQX--/c_pad,w_200/f_webp/v1/com.browntulstar/img/coding-concentration?_a=BAAAUWGX" class="img-fluid rounded-start" style="object-fit:contain;width:auto;height:200px;padding-top:20px" alt="..."></center>
                     <div class="card-body">
                         <h4 class="card-title text-center">Concentration Training</h4>
                         <p class="card-text text-center"></p>

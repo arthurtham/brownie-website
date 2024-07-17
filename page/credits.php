@@ -3,6 +3,8 @@ $dir = dirname(__DIR__, 1);
 $title = "BrowntulStar - Credits";
 require_once($dir . "/includes/mysql.php");
 require $dir . "/templates/header.php";
+require_once $dir . "/includes/CloudinarySigner.php";
+$cldSigner = new CloudinarySigner();
 ?>
 
 <style>
@@ -61,6 +63,7 @@ function queryArtEntries($conn) {
 }
 
 function echoHighlightedArtEntries($result) {
+    global $cldSigner;
     if (isset($result->num_rows) && $result->num_rows > 0) {
         $show_active_text = " active";
         while ($item = $result->fetch_assoc()) {
@@ -68,7 +71,7 @@ function echoHighlightedArtEntries($result) {
                 continue;
             }
             echo '<div class="carousel-item' . ($show_active_text) . '" style="" oncontextmenu="return false;">';
-            echo '<img loading="lazy" src="'.$item["portfolio_image"].'" class="d-block w-80" style="width:100%;height:500px;object-fit:contain;" alt="portfolio image: '.$item["name"].'" />';
+            echo '<img loading="lazy" src="'.$cldSigner->signUrl($item["portfolio_image"]).'" class="d-block w-80" style="width:100%;height:500px;object-fit:contain;" alt="portfolio image: '.$item["name"].'" />';
             echo '<div class="carousel-caption d-block" style="background-color:rgb(255,255,255,0.7)">';
             echo '<h5>'.$item["name"].'</h5>';
             echo '<p>'.$item["subheader"].'</p>';
@@ -82,6 +85,7 @@ function echoHighlightedArtEntries($result) {
 }
 
 function echoCardEntries($result) {
+    global $cldSigner;
     if (isset($result->num_rows) && $result->num_rows > 0) {
         $count = 0;
         while ($item = $result->fetch_assoc()) {
@@ -93,8 +97,8 @@ function echoCardEntries($result) {
             }
             echo '<div class="col-md-4 mb-2 d-flex align-items-stretch"><div class="card shadow" style="width:100% !important;">';
             echo '<a data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'">
-            <div style="position:relative;background-color:lightgray"><img loading="lazy" src="'.$item["portfolio_image"].'" 
-            class="card-img-top" alt="portfolio image: '.$item["name"].'"><img loading="lazy" src="'.$item["logo_image"].'" 
+            <div style="position:relative;background-color:lightgray"><img loading="lazy" src="'.$cldSigner->signUrl($item["portfolio_image"]).'" 
+            class="card-img-top" alt="portfolio image: '.$item["name"].'"><img loading="lazy" src="'.$cldSigner->signUrl($item["logo_image"]).'" 
             class="shadow" style="position:absolute;top:0px;left:0px;width:75px;height:75px;background-color:gray;border: 1px solid black;border-width:thick;border-top-left-radius:5px;border-bottom-right-radius:10px;" 
             alt="logo image: '.$item["name"].'"></div></a>';
             echo '<div class="card-body">';
@@ -111,6 +115,7 @@ function echoCardEntries($result) {
 }
 
 function echoModalEntries($result) {
+    global $cldSigner;
     if (isset($result->num_rows) && $result->num_rows > 0) {
         while ($item = $result->fetch_assoc()) {
             /* Links */
@@ -143,7 +148,7 @@ function echoModalEntries($result) {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body" style="height:60vh;overflow-y:auto">
-                            <center><img loading="lazy" src="{$item["logo_image"]}" style="max-width:200px;max-height:200px;object-fit:contain;border: 3px solid black;border-radius:20px;" oncontextmenu="return false;" alt="portfolio image: {$item["name"]}" /></center><br />
+                            <center><img loading="lazy" src="{$cldSigner->signUrl($item["logo_image"])}" style="max-width:200px;max-height:200px;object-fit:contain;border: 3px solid black;border-radius:20px;" oncontextmenu="return false;" alt="portfolio image: {$item["name"]}" /></center><br />
                             <center><h5>{$item["name"]}</h5></center>
                             <center><p>{$item["subheader"]}</p></center>
                             <p>{$item["description"]}</p>

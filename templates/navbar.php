@@ -45,7 +45,7 @@ function _helper_create_nav_item_dropdown($item, $depth=0) {
 <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark shadow" style="position:fixed; width:100%; top:0; padding-left:20px; padding-right:20px;">
 <div class="container-fluid">
     <a class="navbar-brand" href="/" style="margin-top:-10px;margin-bottom:-10px;">
-        <img src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_200/com.browntulstar/img/browntulstar-logo-v2-large.webp" height=50px class="d-inline-block align-top" />
+        <img src="https://res.cloudinary.com/browntulstar/image/private/s--4EOtuy1N--/c_pad,h_200/f_webp/v1/com.browntulstar/img/browntulstar-logo-v2-large?_a=BAAAUWGX" height=50px class="d-inline-block align-top" />
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

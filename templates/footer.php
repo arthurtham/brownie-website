@@ -33,7 +33,7 @@ FOOTER;
 
             </div>
             <div class="col-lg-4">
-            <h3 class="text-center"><img class="rounded" style="height:32px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/c_pad,w_48,h_48,ar_1:1/v1705971391/com.browntulstar/img/brownieval-logo-v1.webp">
+            <h3 class="text-center"><img class="rounded" style="height:32px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/s--fcXDbYLp--/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX">
             #BrownieVAL</h3>
             </div>
             <div class="col-lg-4">
@@ -99,7 +99,7 @@ echo <<<FOOTER
                 </li> 
                 <li class="ms-2">
                     <a style="text-decoration: none;" href="https://brownieval.browntulstar.com" target="_blank">
-                        <img class="rounded" style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/c_pad,w_48,h_48,ar_1:1/v1705971391/com.browntulstar/img/brownieval-logo-v1.webp">
+                        <img class="rounded" style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/s--fcXDbYLp--/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX">
                     </a> 
                 </li>
             </ul>
