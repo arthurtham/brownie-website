@@ -4,6 +4,7 @@
 $dir = dirname(__DIR__, 1);
 
 require_once($dir . "/includes/mysql.php");
+require_once($dir . "/includes/CloudinarySigner.php");
 
 if (isset($_GET["search-text"])) {
 	$search_text = $_GET["search-text"];
@@ -107,6 +108,7 @@ ITEM;
 	
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
+		$cldSigner = new CloudinarySigner();
 		while ($announcement_embed = $result->fetch_assoc()) {
 			$announcement_date = date_format(date_create_from_format("Y-m-d",explode(" ",$announcement_embed["announcement_date"])[0]),"F d, Y");
 			$announcement_id = $announcement_embed["announcement_id"];
@@ -114,6 +116,10 @@ ITEM;
 			if ($title[0] === "-") {
 				continue;
 			}
+			//Preg match first image
+			$announcement_image_url;
+			preg_match("/\!\[.*]\((.*)\)/", $announcement_embed["announcement_embed"], $announcement_image_url);
+			$announcement_image_url = empty($announcement_image_url[1]) ? "https://res.cloudinary.com/browntulstar/image/private/c_pad,w_200,h_200,ar_1:1/com.browntulstar/img/turtle-adult.webp" : ($cldSigner->signUrl($cldSigner->convertLocalUrlsToCloudinaryUrls($announcement_image_url[1])));
 			echo "<br/>";
 			// echo explode(" ",$announcement_date) . " - <a href=\"?announcement-id=" . $announcement_id . "\">" . $announcement_name . "</a>";
 			echo <<<ANNOUNCEMENTPOST
@@ -121,7 +127,11 @@ ITEM;
 				<div class="card-body">
 					<div class="container">
 						<div class="row">
-							<div class="col-lg-12">
+							<div class="col-lg-4" oncontextmenu='return false;' ondragstart='return false;'>
+								<center><img class="rounded shadow" src="$announcement_image_url" style="max-height: 200px; max-width: min(100%,225px);" /></center>
+								<br />
+							</div>
+							<div class="col-lg-8">
 								<h4 class="card-title">$announcement_name</h4>
 								<p class="card-text">
 									$announcement_date<br/>
@@ -145,4 +155,11 @@ ANNOUNCEMENTPOST;
 }
 ?>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+   document.querySelectorAll('img').forEach(function(img){
+  	img.onerror = function(){this.style.display='none';};
+   })
+});
+</script>
 <?php require $dir . "/templates/footer.php" ?>	

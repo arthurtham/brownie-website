@@ -8,14 +8,6 @@ require_once($dir . "/includes/mysql.php");
 require_once $dir . "/includes/CloudinarySigner.php";
 
 ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.0/markdown-it.min.js" integrity="sha512-A1dmQlsxp9NpT1ON0E7waXFEX7PXtlOlotHtSvdchehjLxBaVO5itVj8Z5e2aCxI0n02hqM1WoDTRRh36c5PuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-    function renderMarkdown() {
-        var md = window.markdownit({html: true});
-        var result = md.render(document.getElementById("announcement_embed").value);
-        document.getElementById("blog_content_preview").innerHTML = result;
-    }
-</script>
 <style>
     .table .tr .th .td {
         border: 1px solid;
@@ -82,16 +74,55 @@ echo <<<FORM
     <label for ="announcement_id">Announcement ID</label>: <input $can_change_blog_id type="number" id="announcement_id" name="announcement_id" value="$announcement_id" /><br/>
     <label for ="announcement_date">Announcement Date</label>: <input type="date" id="announcement_date" name="announcement_date" value="$announcement_date" /><br/>
     <label for ="announcement_published">Published</label>: <input type="checkbox" id="announcement_published" name="announcement_published" value="1" $announcement_published /><br/>
-    <button type="button" onclick="renderMarkdown()">Preview Markdown</button><button id="submit" name="submit">Post to DB</button><br/>
-    <label for ="announcement_embed">Markdown Contents</label>:<br><textarea style="width:100%;height:100px" id="announcement_embed" name="announcement_embed">$announcement_embed</textarea><br/>
+    <button type="button" onclick="openmarkdown()">Open Blog Editor</button>
+    <button type="button" onclick="restoreblogeditorcontents()">Restore Local Autosave</button>
+    <a target="_blank" href="cloudinary.php"><button type="button">Media Signer</button></a>
+    <button id="submit" name="submit">Post to DB</button><br/>
+    <label for ="announcement_embed">Markdown Contents</label>:
+    <textarea style="display:none;width:100%;height:100px" id="announcement_embed" name="announcement_embed">$announcement_embed</textarea><br/>
 </form>
-<div class="card blog-images" style="padding:10px;min-height:500px;height:auto" id="blog_content_preview" name="blog_content_preview">
-    (Preview)
+<div class="card blog-images" style="padding:10px;min-height:500px;height:auto" id="announcement_content_preview" name="announcement_content_preview">
+    (Loading preview...)
 </div>
 </div></div>
 FORM;
 ?>
 </div>
+<script src="https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js"></script>
+<script>
+const stackedit_editor           = document.querySelector('#announcement_embed');
+const stackedit_preview          = document.querySelector('#announcement_content_preview');
+const stackedit_localstoragetext = localStorage.getItem("announcementeditortext");
+let   stackedit_loaded           = false;
+const stackedit                  = new Stackedit();
+
+stackedit.on('fileChange', (file) => {
+    stackedit_file = file;
+    stackedit_preview.innerHTML = file.content.html;
+    stackedit_editor.value = file.content.text;
+});
+stackedit.on('close', () => {
+    if (stackedit_loaded) {
+        localStorage.setItem("announcementeditortext", stackedit_editor.value);
+    } else {
+        stackedit_loaded = true;
+    }
+});
+
+function openmarkdown(silent=false) {
+    stackedit.openFile({
+        content: {
+            text: stackedit_editor.value
+        }
+    }, silent);
+}
+openmarkdown(silent=true);
+
+function restoreblogeditorcontents() {
+    stackedit_editor.value = stackedit_localstoragetext;
+    openmarkdown();
+}
+</script>
 
 <?php
 $_footer_adminmode = true;

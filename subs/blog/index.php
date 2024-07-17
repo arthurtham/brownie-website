@@ -34,6 +34,15 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 		echo "<div class='container body-container'>";
 		require $dir . "/templates/blog.php";
 		echo "</div>";
+		?>
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+   document.querySelectorAll('img').forEach(function(img){
+  	img.onerror = function(){this.style.display='none';};
+   })
+});
+</script>
+<?php
 		require $dir . "/templates/footer.php";
 	}
 	die();
