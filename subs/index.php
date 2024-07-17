@@ -35,7 +35,7 @@ JOINSERVERALERT;
 	}
 }
 // FAQ
-$_kofi_logo = "<img height='18' style='border:0px;height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/c_pad,h_48/com.browntulstar/img/platform-kofi.webp' border='0' alt='Buy Me a Coffee at ko-fi.com' />";
+$_kofi_logo = "<img height='18' style='border:0px;height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/s--mOeZPgHn--/c_pad,h_48/f_webp/v1/com.browntulstar/img/platform-kofi?_a=BAAAUWGX' border='0' alt='Buy Me a Coffee at ko-fi.com' />";
 $faqitems = array(
 	array(
 		"title" => "What are in the sub perks?",
@@ -71,7 +71,7 @@ $faqitems = array(
 		</a></p>"
 	),
 	array(
-		"title" => "<img style='border:0px;height:14px;' src='https://res.cloudinary.com/browntulstar/image/private/c_pad,h_48/com.browntulstar/img/platform-kofi.webp' border='0' alt='Buy Me a Coffee at ko-fi.com' /> - How do I link my Discord account to my subscribed Ko-fi account?",
+		"title" => "<img style='border:0px;height:14px;' src='https://res.cloudinary.com/browntulstar/image/private/s--mOeZPgHn--/c_pad,h_48/f_webp/v1/com.browntulstar/img/platform-kofi?_a=BAAAUWGX' border='0' alt='Buy Me a Coffee at ko-fi.com' /> - How do I link my Discord account to my subscribed Ko-fi account?",
 		"contents" => "<p>Please go to <a target='_blank' href='https://help.ko-fi.com/hc/en-us/articles/8664701197073-How-do-I-join-a-Creator-s-Discord#h_01H9FYE7RQD1RF4D4CN4S5JVE3'>this link</a> to learn how to connect your Ko-fi account to Discord. After connecting your accounts, your role will be granted immediately.</p>
 		<p>Here is the link to the Ko-fi for your convenience. The option to link your Discord to Ko-fi should appear on the top left for Desktop users.</p>
 		<p><a class='btn btn-dark w-100' href='https://ko-fi.com/browntulstar' target='_blank' style='max-width:400px'>

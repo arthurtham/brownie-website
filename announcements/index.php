@@ -119,7 +119,7 @@ ITEM;
 			//Preg match first image
 			$announcement_image_url;
 			preg_match("/\!\[.*]\((.*)\)/", $announcement_embed["announcement_embed"], $announcement_image_url);
-			$announcement_image_url = empty($announcement_image_url[1]) ? "https://res.cloudinary.com/browntulstar/image/private/c_pad,w_200,h_200,ar_1:1/com.browntulstar/img/turtle-adult.webp" : ($cldSigner->signUrl($cldSigner->convertLocalUrlsToCloudinaryUrls($announcement_image_url[1])));
+			$announcement_image_url = empty($announcement_image_url[1]) ? "https://res.cloudinary.com/browntulstar/image/private/s--ZPURbd45--/c_pad,w_200,h_200,ar_1:1/f_webp/v1/com.browntulstar/img/turtle-adult?_a=BAAAUWGX" : ($cldSigner->signUrl($cldSigner->convertLocalUrlsToCloudinaryUrls($announcement_image_url[1])));
 			echo "<br/>";
 			// echo explode(" ",$announcement_date) . " - <a href=\"?announcement-id=" . $announcement_id . "\">" . $announcement_name . "</a>";
 			echo <<<ANNOUNCEMENTPOST

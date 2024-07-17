@@ -89,12 +89,12 @@ echo <<<FOOTER
                 </li>
                 <li class="ms-2">
                     <a style="text-decoration: none;" href="https://throne.me/browntulstar" target="_blank">
-                        <img class="rounded" style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/c_pad,w_48,h_48,ar_1:1/com.browntulstar/img/platform-throne.webp">
+                        <img class="rounded" style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/s--FxYtxGGV--/c_pad,w_48,h_48,ar_1:1/f_webp/v1/com.browntulstar/img/platform-throne?_a=BAAAUWGX">
                     </a> 
                 </li> 
                 <li class="ms-2">
                     <a style="text-decoration: none;" href="https://ko-fi.com/browntulstar" target="_blank">
-                        <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/c_pad,h_48/com.browntulstar/img/platform-kofi.webp">
+                        <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/s--mOeZPgHn--/c_pad,h_48/f_webp/v1/com.browntulstar/img/platform-kofi?_a=BAAAUWGX">
                     </a> 
                 </li> 
                 <li class="ms-2">

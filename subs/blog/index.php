@@ -77,13 +77,13 @@ if (!isset($_SESSION['user']) || !check_guild_membership($guild_id) || !check_ro
 		$button_read_text = <<<SUBSCRIBE
 		<i class='fa-brands fa-discord'></i>
 		<i class="fa-brands fa-twitch"></i>
-		<img style='border:0px;height:18px;margin-top:-4px;' src='https://res.cloudinary.com/browntulstar/image/private/c_pad,h_48/com.browntulstar/img/platform-kofi.webp' border='0' alt='ko-fi.com' />
+		<img style='border:0px;height:18px;margin-top:-4px;' src='https://res.cloudinary.com/browntulstar/image/private/s--mOeZPgHn--/c_pad,h_48/f_webp/v1/com.browntulstar/img/platform-kofi?_a=BAAAUWGX' border='0' alt='ko-fi.com' />
 		Login as sub to read
 SUBSCRIBE;
 	} else { // If user isn't subscribed
 		$button_read_text = <<<SUBSCRIBE
 		<i class="fa-brands fa-twitch"></i>
-		<img style='border:0px;height:18px;margin-top:-4px;' src='https://res.cloudinary.com/browntulstar/image/private/c_pad,h_48/com.browntulstar/img/platform-kofi.webp' border='0' alt='ko-fi.com' />
+		<img style='border:0px;height:18px;margin-top:-4px;' src='https://res.cloudinary.com/browntulstar/image/private/s--mOeZPgHn--/c_pad,h_48/f_webp/v1/com.browntulstar/img/platform-kofi?_a=BAAAUWGX' border='0' alt='ko-fi.com' />
 		Sub on Twitch/Ko-fi to read
 SUBSCRIBE;
 	}
@@ -294,7 +294,7 @@ ITEM;
 					
 					//Preg match first image
 					preg_match("/\!\[.*]\((.*)\)/", $blog_entry["blog_content"], $blog_image_url);
-					$blog_image_url = empty($blog_image_url[1]) ? "https://res.cloudinary.com/browntulstar/image/private/c_pad,w_200,h_200,ar_1:1/com.browntulstar/img/turtle-adult.webp" : ($cldSigner->signUrl($cldSigner->convertLocalUrlsToCloudinaryUrls($blog_image_url[1])));
+					$blog_image_url = empty($blog_image_url[1]) ? "https://res.cloudinary.com/browntulstar/image/private/s--ZPURbd45--/c_pad,w_200,h_200,ar_1:1/f_webp/v1/com.browntulstar/img/turtle-adult?_a=BAAAUWGX" : ($cldSigner->signUrl($cldSigner->convertLocalUrlsToCloudinaryUrls($blog_image_url[1])));
 					// Echo blog post
 					echo <<<LISTINGS
 					<div class="card" style="width: 100%;color:black">
