@@ -14,9 +14,9 @@ $cldSigner = new CloudinarySigner();
     }
 </style>
 
-<div class="container body-container-no-bg" style="padding-top:50px;padding-bottom:100px">
-    <h1 class="text-center text-light">Credits</h1>
-    <p class="text-center text-light" style="text-shadow: 1px 1px 2px black;">Thank you to these wonderful contributors for their hard work. 
+<div class="container body-container" style="padding-top:50px;padding-bottom:100px">
+    <h1 class="text-center">Credits</h1>
+    <p class="text-center">Thank you to these wonderful contributors for their hard work. 
             You can check out their contributions below, which also includes their social links.</p>
 
 <?php
@@ -89,27 +89,48 @@ function echoCardEntries($result) {
     if (isset($result->num_rows) && $result->num_rows > 0) {
         $count = 0;
         while ($item = $result->fetch_assoc()) {
-            if ($count % 3 == 0) {
+            if ($count % 2 == 0) {
                 if ($count > 0) {
                     echo '</div>';
                 }
                 echo '<div class="row" style="padding-bottom:10px" oncontextmenu="return false;">';
             }
-            echo '<div class="col-md-4 mb-2 d-flex align-items-stretch"><div class="card shadow" style="width:100% !important;">';
-            echo '<a data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'">
-            <div style="position:relative;background-color:lightgray"><img loading="lazy" src="'.$cldSigner->signUrl($item["portfolio_image"]).'" 
-            class="card-img-top" alt="portfolio image: '.$item["name"].'"><img loading="lazy" src="'.$cldSigner->signUrl($item["logo_image"]).'" 
+            echo '<div class="col-md-6 mb-2 d-flex align-items-stretch">';
+            $signed_portfolio_image = $cldSigner->signUrl($item["portfolio_image"]);
+            $portfolio_name = $item["name"];
+            $portfolio_id = $item["id"];
+            $portfolio_subheader = $item["subheader"];
+            $logo_image = $cldSigner->signUrl($item["logo_image"]);
+            $links_string = generateLinksString($item, false, -1);
+
+            echo <<<CREDITSPOST
+                <div class="card" style="width: 100%;color:black">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-5" oncontextmenu='return false;' ondragstart='return false;'>
+                                    <center><div><img loading="lazy" class="rounded shadow" src="$signed_portfolio_image" style="max-height: 200px; max-width: min(100%,225px);" /><img loading="lazy" src="$logo_image" 
             class="shadow" style="position:absolute;top:0px;left:0px;width:75px;height:75px;background-color:gray;border: 1px solid black;border-width:thick;border-top-left-radius:5px;border-bottom-right-radius:10px;" 
-            alt="logo image: '.$item["name"].'"></div></a>';
-            echo '<div class="card-body">';
-            echo '<button type="button" class="btn btn-dark" style="width:100%;margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'">Info</button>';
-            echo '<h5 class="card-title">'.$item["name"].'</h5>';
-            echo '<p class="card-text">'.$item["subheader"].'</p>';
-            echo '</div>';
-            echo '</div></div>';
+            alt="logo image: $portfolio_name"></div></center>
+                                    <br />
+                                </div>
+                                <div class="col-lg-7">
+                                    <h4 class="card-title">$portfolio_name</h4>
+                                    <p class="card-text">
+                                        <p>$portfolio_subheader</p>
+                                        <p><button type="button" class="btn btn-success" margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-$portfolio_id">Learn More</button></p>
+                                        <p>$links_string</p>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+CREDITSPOST;
+            echo "</div>";
             $count += 1;
-        }
-        echo '</div>';
+            }
+        echo "</div>";
         mysqli_data_seek($result,0);
     }
 }
@@ -118,25 +139,7 @@ function echoModalEntries($result) {
     global $cldSigner;
     if (isset($result->num_rows) && $result->num_rows > 0) {
         while ($item = $result->fetch_assoc()) {
-            /* Links */
-            $links = array();
-            foreach ([
-                "website"   => [$item["links_website"],"fa-solid fa-globe","","Website"],
-                "vgen"      => [$item["links_vgen"],"fa-solid fa-v","https://vgen.co/","VGen"],
-                "ko-fi"     => [$item["links_kofi"],"fa-solid fa-mug-hot","https://ko-fi.com/","Ko-fi"],
-                "etsy"      => [$item["links_etsy"],"fa-brands fa-etsy","https://etsy.com/shop/","Etsy"],
-                "twitch"    => [$item["links_twitch"],"fa-brands fa-twitch","https://twitch.tv/","Twitch"],
-                "twitter"   => [$item["links_twitter"],"fa-brands fa-x-twitter","https://twitter.com/","X (Twitter)"],
-                "instagram" => [$item["links_instagram"],"fa-brands fa-instagram","https://instagram.com/","Instagram"],
-            ] as $category => $contents) {
-                if (strlen($contents[0]) <= 0) {
-                    $links[$category] = "";
-                } else {
-                    $links[$category] = '<a href="'.$contents[2].$contents[0].'" target="_blank" class="btn btn-dark" style="width:50px">
-                    <i class="'.$contents[1].'"></i></a> <strong>'.$contents[3].'</strong>: '.$contents[0].'<br />';
-                }
-            }
-            $links_string = join($links);
+            $links_string = generateLinksString($item);
 
             /* Export */
             echo <<<MODALENTRY
@@ -167,5 +170,37 @@ MODALENTRY;
     }
 }
 
+function generateLinksString($item, $textLabels=true, $countLimit=-1) {
+    /* Links */
+    $counter = 0;
+    $links = array();
+    foreach ([
+        "website"   => [$item["links_website"],"fa-solid fa-globe","","Website"],
+        "vgen"      => [$item["links_vgen"],"fa-solid fa-v","https://vgen.co/","VGen"],
+        "ko-fi"     => [$item["links_kofi"],"fa-solid fa-mug-hot","https://ko-fi.com/","Ko-fi"],
+        "etsy"      => [$item["links_etsy"],"fa-brands fa-etsy","https://etsy.com/shop/","Etsy"],
+        "twitch"    => [$item["links_twitch"],"fa-brands fa-twitch","https://twitch.tv/","Twitch"],
+        "twitter"   => [$item["links_twitter"],"fa-brands fa-x-twitter","https://twitter.com/","X (Twitter)"],
+        "instagram" => [$item["links_instagram"],"fa-brands fa-instagram","https://instagram.com/","Instagram"],
+    ] as $category => $contents) {
+        if (strlen($contents[0]) <= 0) {
+            $links[$category] = "";
+        } else {
+            $links[$category] = '<a href="'.$contents[2].$contents[0].'" target="_blank" class="btn btn-dark mb-2" style="width:50px">
+            <i class="'.$contents[1].'"></i></a>';
+            if ($textLabels) {
+                $links[$category] .= '<strong>'.$contents[3].'</strong> : '.$contents[0].'<br />';
+            } else {
+                $links[$category] .= ' ';
+            }
+            $counter += 1;
+            if ($countLimit != -1 && $counter >= $countLimit) {
+                break;
+            }
+        }
+    }
+    $links_string = join($links);
+    return $links_string;
+}
 
 ?>

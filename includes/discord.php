@@ -226,7 +226,7 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
             if ($expand) echo "</li><li>";
             echo "<a href='" . "/subs" ."'>";
             if (check_roles([$turtle_role_id])) {
-                echo "<button class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Turtle Admin</button></a>";
+                echo "<button class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-hammer\"></i> Admin</button></a>";
             } else if (check_roles([$mod_role_id])) {
                 echo "<button class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Discord Mod</button></a>";
             } else if (check_roles([$vip_role_id])) {
