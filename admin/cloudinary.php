@@ -21,7 +21,8 @@ if (isset($_GET["cldurl"])) {
 <p>Use this to manually validate Cloudinary media.</p>
 
 <form action="" method="get">
-    <label for ="cldurl">Unsigned Cloudinary URL</label>: <input style="width:100%" type="text" id="cldurl" name="cldurl" value="<?=(isset($_GET["cldurl"]) ? $_GET["cldurl"] : "") ?>" />
+    <label for ="cldurl">Unsigned Cloudinary URL</label>: <input style="width:100%" type="text" id="cldurl" name="cldurl" value="<?=(isset($_GET["cldurl"]) ? $_GET["cldurl"] : "") ?>" /><br/>
+    Make sure this URL has a file extension (accepted: png, jpg, mov, mp4, webp) <br/>
     <button type="submit">Submit</button>
 </form>
 

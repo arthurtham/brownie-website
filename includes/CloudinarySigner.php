@@ -17,7 +17,7 @@ class CloudinarySigner {
     public function __construct() {
         global $CLOUDINARY_CONFIG;
         $this->cld = new Cloudinary($CLOUDINARY_CONFIG);
-        $this->cldUrlPattern = '/(?:https:\/\/res.cloudinary.com\/browntulstar\/?)(image|video)\/(private|authenticated|upload)\/(.*)\/com\.browntulstar\/(.*)\.(.*)/';
+        $this->cldUrlPattern = '/(?:https:\/\/res.cloudinary.com\/browntulstar\/)(image|video)\/(private|authenticated|upload)\/(.*\/?)com\.browntulstar\/(.\S*\.(webp|mov|mp4|jpg|png|gif)*)/';
     }
 
     public function signUrl($url) {
@@ -36,12 +36,14 @@ class CloudinarySigner {
         4	=>	public id: /com.browntulstar/<input>.<format>
         */
 
-        if (count($cldUrlPatternArray) < 4) {
+        if (count($cldUrlPatternArray) < 5) {
+            var_dump("die");
+            var_dump($cldUrlPatternArray);
             return $original_url;
         }
         
         $urlformat = null;
-        preg_match("/(.*)\.(webp|mp4|mov|jpg|png)/", $url, $urlformat);
+        preg_match("/(.*)\.(webp|mp4|mov|jpg|png|gif)/", $url, $urlformat);
         if (count($urlformat) > 0) {
             $public_id = $cldUrlPatternArray[4];
             $extension = $urlformat[2];
@@ -74,11 +76,18 @@ class CloudinarySigner {
         $url = $url->addTransformation($transformation)->version(intval($version))->deliveryType($cldUrlPatternArray[2]);
         switch ($extension) {
             case "webp": $url = $url->delivery(Delivery::format(Format::webp())); break;
-            case "jpg" : $url = $url->delivery(Delivery::format(Format::jpg())); break;
+            case "jpg" : $url = $url->delivery(Delivery::format(Format::webp())); break;
             case "mp4" : $url = $url->delivery(Delivery::format(Format::MP4)); break;
-            case "mov" : $url = $url->delivery(Delivery::format(Format::MOV)); break;
-            case "png" : $url = $url->delivery(Delivery::format(Format::png())); break;
-            default:     $url = $url->delivery(Delivery::format(Format::auto()));
+            case "mov" : $url = $url->delivery(Delivery::format(Format::MP4)); break;
+            case "png" : $url = $url->delivery(Delivery::format(Format::webp())); break;
+            case "gif" : $url = $url->delivery(Delivery::format(Format::gif())); break;
+            default:     if ($cldUrlPatternArray[1] === "image") {
+                $url = $url->delivery(Delivery::format(Format::webp()));
+            } else if ($cldUrlPatternArray[1] === "image") {
+                $url = $url->delivery(Delivery::format(Format::MP4));
+            } else {
+                $url = $url->delivery(Delivery::format(Format::auto()));
+            }
         }
         $url = $url->signUrl()->toUrl();
         return $url;
