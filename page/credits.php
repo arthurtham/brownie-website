@@ -139,7 +139,7 @@ function echoModalEntries($result) {
     global $cldSigner;
     if (isset($result->num_rows) && $result->num_rows > 0) {
         while ($item = $result->fetch_assoc()) {
-            $links_string = generateLinksString($item);
+            $links_string = generateLinksString($item, false, -1);
 
             /* Export */
             echo <<<MODALENTRY
@@ -186,10 +186,10 @@ function generateLinksString($item, $textLabels=true, $countLimit=-1) {
         if (strlen($contents[0]) <= 0) {
             $links[$category] = "";
         } else {
-            $links[$category] = '<a href="'.$contents[2].$contents[0].'" target="_blank" class="btn btn-dark mb-2" style="width:50px">
+            $links[$category] = '<a href="'.$contents[2].$contents[0].'" target="_blank" class="btn btn-dark mb-2" style="width:40px;">
             <i class="'.$contents[1].'"></i></a>';
             if ($textLabels) {
-                $links[$category] .= '<strong>'.$contents[3].'</strong> : '.$contents[0].'<br />';
+                $links[$category] .= ' <span style="display: inline-block !important;margin-top:-10px !important"><strong>'.$contents[3].'</strong>: '.$contents[0].'</span><br />';
             } else {
                 $links[$category] .= ' ';
             }
