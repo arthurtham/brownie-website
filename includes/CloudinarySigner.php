@@ -37,8 +37,8 @@ class CloudinarySigner {
         */
 
         if (count($cldUrlPatternArray) < 5) {
-            var_dump("die");
-            var_dump($cldUrlPatternArray);
+            // var_dump("die");
+            // var_dump($cldUrlPatternArray);
             return $original_url;
         }
         
@@ -52,28 +52,37 @@ class CloudinarySigner {
             $extension = "";
         }
 
-        $versionAndTransformation = null;
-        preg_match("/(.*)\/(v[0-9]*).*/", $cldUrlPatternArray[3], $versionAndTransformation);
-        if (count($versionAndTransformation) > 3) {
-            $version = $versionAndTransformation[2];
-            $transformation = $versionAndTransformation[1];
-        } else {
-            preg_match("(v[0-9]*)", $cldUrlPatternArray[3], $versionAndTransformation);
-            if (count($versionAndTransformation) > 0) {
-                $version = $cldUrlPatternArray[3];
-                $transformation = "";
-            } else {
-                $version = "1";
-                $transformation = $cldUrlPatternArray[3];
-            }
-        }
-
         if ($cldUrlPatternArray[1] === "image") {
             $url = $this->cld->image("com.browntulstar/".$public_id);
         } else if ($cldUrlPatternArray[1] === "video") {
             $url = $this->cld->video("com.browntulstar/".$public_id);
         }
-        $url = $url->addTransformation($transformation)->version(intval($version))->deliveryType($cldUrlPatternArray[2]);
+
+        $versionAndTransformation = null;
+        preg_match("/(.*)\/(v[0-9]*).*/", $cldUrlPatternArray[3], $versionAndTransformation);
+        if (count($versionAndTransformation) > 3) {
+            $version = $versionAndTransformation[2];
+            $transformation = rtrim($versionAndTransformation[1], "/");
+        } else {
+            preg_match("(v[0-9]*)", $cldUrlPatternArray[3], $versionAndTransformation);
+            if (count($versionAndTransformation) > 0) {
+                $version = rtrim($cldUrlPatternArray[3], "/");
+                $transformation = "";
+            } else {
+                $version = "1";
+                $transformation = rtrim($cldUrlPatternArray[3], "/");
+            }
+        }
+
+        if (!empty($transformation)) {
+            // var_dump($transformation);
+            $url = $url->addTransformation($transformation);
+        }
+        if (!empty($version)) {
+            $url = $url->version(intval($version));
+        }
+        
+        $url = $url->deliveryType($cldUrlPatternArray[2]);
         switch ($extension) {
             case "webp": $url = $url->delivery(Delivery::format(Format::webp())); break;
             case "jpg" : $url = $url->delivery(Delivery::format(Format::webp())); break;
