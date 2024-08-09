@@ -84,7 +84,7 @@ if ($result->num_rows > 0) {
 }
 $html_blog_types = "<span class=\"input-group-text\"><label for ='blog_type'>Category</label></span><select class=\"form-control\" name='blog_type' id='blog_type'>";
 foreach ($blog_types as $entry) {
-    $html_blog_types .= "<option value=\"$entry\">$entry</option>";
+    $html_blog_types .= "<option value=\"$entry\" ". ($blog_type === $entry ? "selected" : "") .">$entry</option>";
 }
 $html_blog_types .= "</select>";
 // <button type="button" onclick="renderMarkdown()">Preview Markdown</button><button id="submit" name="submit">Post to DB</button><br/>
