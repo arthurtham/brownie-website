@@ -245,7 +245,7 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
             }
         }
         if ($expand) echo "</li><li>";
-        echo '<a href="/logout.php"><button class="btn btn-danger" style="border-top-left-radius:0;border-bottom-left-radius:0;"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></a>';
+        echo '<a href="/logout.php" class="btn btn-danger" style="border-top-left-radius:0;border-bottom-left-radius:0;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>';
         if ($expand) echo "</li>";
     } else {
         echo <<<LOGINITEMS
