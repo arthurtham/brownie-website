@@ -49,6 +49,8 @@ $sub_perk_roles = array($discord_sub_role_id, $sub_role_id, $vip_role_id, $mod_r
 $twitch_client_id = "";
 $twitch_client_secret = "";
 $twitch_user_id = "";
+$twitch_user_scopes = "channel:read:subscriptions";
+$twitch_redirect_url = "";
 $brownieval_sub_only_videos = array();
 
 ?>

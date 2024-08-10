@@ -2,7 +2,7 @@
 echo '<div class="d-flex align-items-center justify-content-center flex-direction: column" style="padding-bottom:50px">';
 echo '<div class="box bg-light bg-gradient shadow" style="padding: 40px; border-radius: 10%">';
 echo '<center><div class="card" style="width:auto;max-width:400px;padding-top:20px"><center>';
-echo "<img class='rounded border' src='".get_discord_avatar_url()."'";
+echo "<img class='rounded border' src='".get_avatar_url()."'";
 echo '" class="card-img-top" alt="..."/ style="width:auto;max-width:100px;"></center>';
 echo '<div class="card-body"><h5 class="card-title">' . $_SESSION["username"] . '</h5>';
 if (!check_roles($sub_perk_roles)) {
@@ -27,7 +27,11 @@ else {
     
     
 }
-echo check_guild_membership($guild_id) ? '<h5><span class="badge bg-secondary" style="width:100%">Turtle Pond Server Member</span></h5>' : '<h5><span class="badge bg-secondary" style="width:100%">Not in Turtle Pond Server</h5>';
+echo check_guild_membership($guild_id) 
+    ? '<h5><span class="badge bg-secondary" style="width:100%">Turtle Pond Server Member</span></h5>' 
+    : (isset($_SESSION["twitch_user_access_token"])
+    ? '<h5><span class="badge bg-secondary" style="width:100%">Logged In Via Twitch</h5>'
+    : '<h5><span class="badge bg-secondary" style="width:100%">Not in Turtle Pond Server</h5>');
 echo check_guild_membership($brownieval_guild_id) ? '<h5><span class="badge bg-secondary" style="width:100%">BrownieVAL Server Member</span></h5>' : '';
 echo "</div></center>";
 echo "</div>";

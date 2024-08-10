@@ -185,9 +185,16 @@ function is_animated($avatar) {
 }
 
 # Get user's avatar URL
+// Compatibility function
+function get_avatar_url() {
+    return get_discord_avatar_url();
+}
+
 function get_discord_avatar_url() {
     # Check user's avatar type
-    if (isset($_SESSION['user_avatar'])) {
+    if (isset($_SESSION['twitch_user_access_token'])) {
+        return $_SESSION['user_avatar'];
+    } else if (isset($_SESSION['user_avatar'])) {
         $extention = is_animated($_SESSION['user_avatar']);
         return "https://cdn.discordapp.com/avatars/".$_SESSION["user_id"]."/".$_SESSION['user_avatar'].$extention;
     } else {
@@ -221,7 +228,7 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
     }
     if (isset($_SESSION['user'])) {
         if ($expand) echo "<li>";
-        echo '<a href="/profile"><button class="btn btn-light" style="border-top-right-radius:0;border-bottom-right-radius:0;font-size:0.9em"><img style="height:24px;border-color:gray;border:1px solid;" class="rounded" src="'.get_discord_avatar_url().'" /></button></a>';
+        echo '<a href="/profile"><button class="btn btn-light" style="border-top-right-radius:0;border-bottom-right-radius:0;font-size:0.9em"><img style="height:24px;border-color:gray;border:1px solid;" class="rounded" src="'.get_avatar_url().'" /></button></a>';
         if ($subperks) {
             if ($expand) echo "</li><li>";
             echo "<a href='" . "/subs" ."'>";
@@ -241,7 +248,20 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
         echo '<a href="/logout.php"><button class="btn btn-danger" style="border-top-left-radius:0;border-bottom-left-radius:0;"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></a>';
         if ($expand) echo "</li>";
     } else {
-        echo "<a href='" . "/login.php" ."'><button class='btn btn-success'><i class='fa-brands fa-discord'></i> Login</button></a>";
+        echo <<<LOGINITEMS
+        <li class="nav-item dropdown">
+            <a class="btn btn-success dropdown-toggle" style="font-weight:500" href="#" id="accountLogin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Login
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" id="accountLogin-menu" aria-labelledby="accountLogin">
+                <li><h6 class="dropdown-header">Login with Discord for full perks</h6></li>
+                <li><a class="dropdown-item" href="/login.php"><i style="width:26px" class='fa-brands fa-discord'></i> Discord Login</a></li>
+                <li><hr class="dropdown-divider"></hr></li>
+                <li><h6 class="dropdown-header">Login with Twitch for Twitch perks</h6></li>
+                <li><a class="dropdown-item" href="/login-twitch.php"><i style="width:26px" class='fa-brands fa-twitch'></i> Twitch Login</a></li>
+            </ul>
+        </li>
+LOGINITEMS;
     }
     if ($expand) {
         echo "</ul></div>";

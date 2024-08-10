@@ -11,9 +11,72 @@ require_once dirname(__DIR__, 1) . "/vendor/autoload.php";
 use Phpfastcache\CacheManager;
 use Phpfastcache\Config\ConfigurationOption;
 
+function twitch_gen_state()
+{
+    $_SESSION['twitch_state'] = bin2hex(openssl_random_pseudo_bytes(12));
+    return $_SESSION['twitch_state'];
+}
+
+function twitch_check_state($state)
+{
+    return ($state == $_SESSION['twitch_state']);
+}
+
+function twitch_gen_userauth_url($clientid, $redirect, $scope) 
+{
+    $state = twitch_gen_state();
+    return $GLOBALS['twitch_id_url']."/oauth2/authorize?"
+        . "client_id=" . $clientid . "&redirect_uri=" . urlencode($redirect) 
+        . "&scope=" . urlencode($scope) . "&state=" . $state . "&force_verify=true"
+        . "&response_type=code";
+}
+
+function twitch_get_user_access_token($redirect_url) {
+    global $twitch_client_id;
+    global $twitch_client_secret;
+
+    $state = isset($_GET['state']) ? $_GET['state'] : "-1";
+    # Check if $state == $_SESSION['state'] to verify if the login is legit | CHECK THE FUNCTION get_state($state) FOR MORE INFORMATION.
+    if (!twitch_check_state($state)) {
+        // echo "state check failed";
+        return false;
+    }
+    unset($_SESSION['twitch_user_access_token']);
+    $code = $_GET['code'];
+    $url = $GLOBALS['twitch_id_url'] . "/oauth2/token";
+    $data = array(
+        "client_id" => $twitch_client_id,
+        "client_secret" => $twitch_client_secret,
+        "grant_type" => "authorization_code",
+        "code" => $code,
+        "redirect_uri" => $redirect_url
+    );
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($curl);
+    curl_close($curl);
+    if ($response === false) { // Failed response 
+        return false;
+    }
+    $results = json_decode($response, true);
+    if (isset($results["error"])) {
+        return false;
+    }
+    else if (isset($results['access_token'])) {
+        $_SESSION['twitch_user_access_token'] = $results['access_token'];
+        return $_SESSION['twitch_user_access_token'];
+    } else {
+        return false;
+    }
+}
+
 function twitch_get_access_token() {
     global $twitch_client_id;
     global $twitch_client_secret;
+    unset($_SESSION['twitch_access_token']);
     $url = $GLOBALS['twitch_id_url'] . "/oauth2/token";
     $data = array(
         "client_id" => $twitch_client_id,
@@ -27,13 +90,77 @@ function twitch_get_access_token() {
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $response = curl_exec($curl);
     curl_close($curl);
+    if ($response === false) { // Failed response 
+        return false;
+    }
     $results = json_decode($response, true);
-    if (isset($results['access_token'])) {
+    if (isset($results["error"])) {
+        return false;
+    }
+    else if (isset($results['access_token'])) {
         $_SESSION['twitch_access_token'] = $results['access_token'];
         return $_SESSION['twitch_access_token'];
     } else {
-        $_SESSION['twitch_access_token'] = -1;
         return -1;
+    }
+}
+
+function twitch_get_user() {
+    global $twitch_client_id;
+    $url = $GLOBALS['twitch_api_url'] . "/helix/users";
+    $headers = array(
+        'Content-Type: application/x-www-form-urlencoded', 
+        'Authorization: Bearer ' . $_SESSION['twitch_user_access_token'],
+        'Client-Id: ' . $twitch_client_id);
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+    $response = curl_exec($curl);
+    curl_close($curl);
+    if ($response === false) { // Failed response 
+        return false;
+    }
+    $results = json_decode($response, true);
+    if (isset($results["error"])) {
+        return false;
+    }
+    else if (isset($results['data'])) {
+        $_SESSION['user'] = $results['data'][0];
+        $_SESSION['username'] = $results['data'][0]['login'];
+        $_SESSION['discrim'] = "";
+        $_SESSION['user_id'] = $results['data'][0]['id'];
+        $_SESSION['user_avatar'] = $results['data'][0]['profile_image_url'];
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function twitch_get_user_sub_status() {
+    global $twitch_client_id;
+    global $twitch_client_secret;
+    global $twitch_user_id;
+    $url = $GLOBALS['twitch_api_url'] . "/helix/subscriptions/user?broadcaster_id=".urlencode($twitch_user_id)."&user_id=".urlencode($_SESSION["user_id"]);
+    $headers = array(
+        'Authorization: Bearer ' . $_SESSION['twitch_user_access_token'],
+        'Client-Id: ' . $twitch_client_id);
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+    $response = curl_exec($curl);
+    curl_close($curl);
+    if ($response === false) { // Failed response 
+        return false;
+    }
+    $results = json_decode($response, true);
+    if (isset($results["error"])) {
+        return false;
+    } else if (isset($results["data"])) {
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -60,6 +187,9 @@ function _helper_twitch_get_videos($url) {
             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             $response = curl_exec($curl);
             curl_close($curl);
+            if ($response === false) { // Failed response 
+                return false;
+            }
             $results = json_decode($response, true);
             if (isset($results['data'])) { //Success
                 $resulting_data = array();

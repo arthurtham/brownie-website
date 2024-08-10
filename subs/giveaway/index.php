@@ -19,7 +19,7 @@ require $dir . "/templates/header.php";
 <?php
 if (!isset($_SESSION['user'])) { 
 	echo "<div class='alert alert-danger' role='alert'>
-	<center>You need to log in to Discord before viewing this page.</center>
+	<center>You need to log in first before viewing this page.</center>
 	</div>";
 	echo "<h1 class='text-center'>Brown's Giveaways</h1>";
 	require $dir . "/templates/sub-perks-description.php";

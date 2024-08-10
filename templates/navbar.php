@@ -32,7 +32,7 @@ function create_navbar_items($navbar_items, $depth=0) {
 function _helper_create_nav_item_dropdown($item, $depth=0) {
     $depth_style = $depth==0 ? 'style="font-weight:500"' : '';
     echo '<li class="nav-item dropdown">';
-    echo '<a class="nav-link dropdown-toggle" '.$depth_style.'href="'.$item["href"].'" id="navbar'.$item["id"].'" role="button" data-bs-toggle="dropdown" aria-expanded="false">'.$item["contents"].'</a>';
+    echo '<a class="nav-link dropdown-toggle" '.$depth_style.' href="'.$item["href"].'" id="navbar'.$item["id"].'" role="button" data-bs-toggle="dropdown" aria-expanded="false">'.$item["contents"].'</a>';
     echo '<ul class="dropdown-menu" id="navbar'.$item["id"].'-menu" aria-labelledby="navbar'.$item["id"].'">';
     create_navbar_items($item["children"], $depth+1);
     echo '</ul></li>';

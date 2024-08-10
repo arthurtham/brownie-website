@@ -15,7 +15,7 @@ require_once $dir . "/includes/twitch.php";
         </p>
 <?php
         // Check Twitch subscriber status 
-        if (!isset($_SESSION['user']) || !check_guild_membership($guild_id) || !check_roles(array($sub_role_id))) {
+        if (!isset($_SESSION['user']) || !check_roles(array($sub_role_id))) {
             echo "<div class='alert alert-danger' role='alert'>
             <center>To view these videos, you must be a Twitch subscriber.<br>
             Please click <a href='https://twitch.tv/browntulstar/subscribe' target='_blank'>here</a> to subscribe on Twitch.</center>

@@ -15,10 +15,38 @@ if (!isset($_SESSION['user'])) {
 		//require dirname(__DIR__, 1) . "/templates/login-required.php";
 	} else {
 		echo '<div class="d-flex flex-column align-items-center justify-content-center">';
+		// Special box appears if the user logs in with Twitch
+		if (isset($_SESSION["twitch_user_access_token"])) {
+			if (check_roles(array($sub_role_id))) {
+				echo <<<JOINSERVERALERT
+					<div class='alert alert-success' role='alert'>
+					<center><p>Thanks for logging in with Twitch!
+					You can view all the Twitch sub perks. But, if you'd like full sub perks, be sure
+					to join the Discord server and link your Twitch account to your Discord profile.</p>
+					<p><a class="btn btn-dark w-100 shadow" href="/r/discord" target="_blank" style="max-width:400px">
+					<i class="fa-brands fa-discord"></i>
+					Join Turtle Pond Discord Server
+					</a></p></center>
+					</div>
+JOINSERVERALERT;
+			} else {
+				echo <<<JOINSERVERALERT
+					<div class='alert alert-danger' role='alert'>
+					<center><p>Thanks for logging in with Twitch!
+					If you subscribe to me on Twitch, you can get all the sub perks.
+					Read more below to learn how to get sub perks via Twitch.</p>
+					<p><a class="btn btn-dark w-100 shadow" href="/r/discord" target="_blank" style="max-width:400px">
+					<i class="fa-brands fa-discord"></i>
+					Join Turtle Pond Discord Server
+					</a></p></center>
+					</div>
+JOINSERVERALERT;
+			}
+		}
 		// Special box appears if the user logs in but is not in the Turtle Pond server
-		if (!check_guild_membership($guild_id)) {
+		else if (!check_guild_membership($guild_id)) {
 			echo <<<JOINSERVERALERT
-			"<div class='alert alert-danger' role='alert'>
+			<div class='alert alert-danger' role='alert'>
 			<center><p>It looks like you're not in the Turtle Pond Discord server.
 			You must join the server in order to sync your Discord roles and activate your
 			sub perks on the website. Please scroll down for more information and for the join links; then,
@@ -27,7 +55,7 @@ if (!isset($_SESSION['user'])) {
 			<i class="fa-brands fa-discord"></i>
 			Join Turtle Pond Discord Server
 			</a></p></center>
-			</div>"
+			</div>
 JOINSERVERALERT;
 		}
 		require $dir . "/templates/profile-box.php";

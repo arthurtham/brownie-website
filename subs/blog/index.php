@@ -22,7 +22,7 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 		$title = "Turtle Pond - Brown's Blog";
 	}
 	// User unauthorized checks
-	if (!isset($_SESSION['user']) || !check_guild_membership($guild_id) || !check_roles($sub_perk_roles)) {		
+	if (!isset($_SESSION['user']) || !check_roles($sub_perk_roles)) {		
 		// Force 403 page if unauthorized
 		require $dir . "/error/403-sub.php";
 	} else {
@@ -71,7 +71,7 @@ if (isset($_GET["category"])) {
 
  // User login status can change the display for call to action
 $button_read_text = "Read";
-if (!isset($_SESSION['user']) || !check_guild_membership($guild_id) || !check_roles($sub_perk_roles)) {
+if (!isset($_SESSION['user']) || !check_roles($sub_perk_roles)) {
 	// If user isn't logged in
 	if (!isset($_SESSION['user'])) {
 		$button_read_text = <<<SUBSCRIBE
