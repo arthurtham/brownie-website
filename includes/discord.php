@@ -231,17 +231,17 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
         echo '<a href="/profile"><button class="btn btn-light" style="border-top-right-radius:0;border-bottom-right-radius:0;font-size:0.9em"><img style="height:24px;border-color:gray;border:1px solid;" class="rounded" src="'.get_avatar_url().'" /></button></a>';
         if ($subperks) {
             if ($expand) echo "</li><li>";
-            echo "<a href='" . "/subs" ."'>";
+            echo "<a href='/subs' ";
             if (check_roles([$turtle_role_id])) {
-                echo "<button class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-hammer\"></i> Admin</button></a>";
+                echo "class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-hammer\"></i> Admin</a>";
             } else if (check_roles([$mod_role_id])) {
-                echo "<button class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Discord Mod</button></a>";
+                echo "class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Discord Mod</a>";
             } else if (check_roles([$vip_role_id])) {
-                echo "<button class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Discord VIP</button></a>";
+                echo "class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Discord VIP</a>";
             } else if (check_roles($sub_perk_roles)) {
-                echo "<button class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Subscribed</button></a>";
+                echo "class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Subscribed</a>";
             } else {
-                echo "<button class='btn btn-primary' style='border-radius:0'><i class=\"fa-solid fa-link\"></i> Verify Sub</button></a>";
+                echo "class='btn btn-primary' style='border-radius:0'><i class=\"fa-solid fa-link\"></i> Verify Sub</a>";
             }
         }
         if ($expand) echo "</li><li>";
@@ -254,10 +254,10 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
             Login
             </a>
             <ul class="dropdown-menu dropdown-menu-end" id="accountLogin-menu" aria-labelledby="accountLogin">
-                <li><h6 class="dropdown-header">Login with Discord for full perks</h6></li>
+                <li><h6 class="dropdown-header">Twitch/Ko-fi perks and <br>#BrownieVAL locked pages</h6></li>
                 <li><a class="dropdown-item" href="/login.php"><i style="width:26px" class='fa-brands fa-discord'></i> Discord Login</a></li>
                 <li><hr class="dropdown-divider"></hr></li>
-                <li><h6 class="dropdown-header">Login with Twitch for Twitch perks</h6></li>
+                <li><h6 class="dropdown-header">Twitch perks only</h6></li>
                 <li><a class="dropdown-item" href="/login-twitch.php"><i style="width:26px" class='fa-brands fa-twitch'></i> Twitch Login</a></li>
             </ul>
         </li>
