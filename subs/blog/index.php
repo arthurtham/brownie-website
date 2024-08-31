@@ -237,11 +237,11 @@ ITEM;
 		blog_types.name as blog_type_name, blog_posts.blog_content,
 		COUNT(*) OVER() AS total_entries
 		FROM blog_posts LEFT JOIN blog_types ON blog_posts.blog_type = blog_types.blog_type 
-		WHERE ".$sql_criteria." AND visible = 1 
+		WHERE ".$sql_criteria." AND visible = 1 AND published = 1 
 		ORDER BY blog_date DESC, blog_id DESC, blog_name ASC
 		LIMIT ".$pagestartfrom.", ".$entrylimit.";";
 
-		$sql_count = "SELECT COUNT(*) AS total_entries FROM blog_posts WHERE ".$sql_criteria." AND visible = 1;";
+		$sql_count = "SELECT COUNT(*) AS total_entries FROM blog_posts WHERE ".$sql_criteria." AND visible = 1 AND published = 1;";
 		
 		// Pagination widget - supports multiple tabs, but the webpage
 		// now doesn't load all categories at once. Even then, leave the
