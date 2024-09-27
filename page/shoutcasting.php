@@ -26,6 +26,10 @@ require $dir . "/templates/header.php";
             <button class="nav-link" id="producer-tab" data-bs-toggle="tab" data-bs-target="#producer" type="button"
                 role="tab" aria-controls="profile" aria-selected="false">Broadcast Production</button>
         </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="organizer-tab" data-bs-toggle="tab" data-bs-target="#organizer" type="button"
+                role="tab" aria-controls="profile" aria-selected="false">Event Organization</button>
+        </li>
     </ul>
     <div class="tab-content" id="portfolioContent">
         <div class="tab-pane fade show active" id="shoutcasting" role="tabpanel" aria-labelledby="shoutcasting-tab">
@@ -87,6 +91,17 @@ require $dir . "/templates/header.php";
                         src="https://www.youtube.com/embed/ag3RgaXbLoM" title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="organizer" role="tabpanel" aria-labelledby="producer-tab">
+            <div class="text-center">
+                <h2 style="padding-top:24px">Event Organizing and Administration</h2>
+                <div style="border-style:solid;border-size:1px;border-color:black">
+                    <iframe width=100% height=400px
+                        src="https://docs.google.com/document/d/1Ndu5xplrrjMmWjaMOOk8SZffjlxGkwpTMTl2TSJazjc/pub?embedded=true">
                     </iframe>
                 </div>
             </div>
