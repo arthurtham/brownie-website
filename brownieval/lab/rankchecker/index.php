@@ -74,9 +74,9 @@ require $dir . "/templates/header.php";
         resultHtml = "<h1>Result: " + totalRankPoints + "/" + rankPointsLimit + "</h1>\
         <ul>\
         <li>This lineup for the next game has a roster value of " + totalRankPoints + " points.</li>\
-        <li>The lineup must have a roster value of " + rankPointsLimit + " or lower.</li>\
-        <li>The lineup is " + ((!rosterFilled) ? "<strong>NOT</strong>" : "") + " filled with 5 players.</li>\
-        <li>Therefore, the roster is " + (((totalRankPoints > rankPointsLimit) || (!rosterFilled)) ? "<strong>NOT</strong>" : "")+ " allowed to play the next game!</ul>";
+        <li>This lineup must have a roster value of " + rankPointsLimit + " or lower.</li>\
+        <li>This lineup is " + ((!rosterFilled) ? "<strong>NOT</strong>" : "") + " filled with 5 players.</li>\
+        <li>Therefore, this lineup is " + (((totalRankPoints > rankPointsLimit) || (!rosterFilled)) ? "<strong>NOT</strong>" : "")+ " allowed to play the next game!</ul>";
 
         let resultsBox = document.getElementById("resultsBox");
         if ((totalRankPoints > rankPointsLimit) || !rosterFilled) {
