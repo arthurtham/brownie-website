@@ -6,32 +6,30 @@ require $dir . "/templates/header.php";
 ?>
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <h1 class="text-center">Rank Checker for #BrownieVAL Arena</h1>
+    <h1 class="text-center">Rank Checker for #BrownieVAL Impact</h1>
     <div class="alert alert-dark">
         <form>
             <div class="form-group">
-            <p>Please enter the peak ranks of your players that are playing
-                in #BrownieVAL Arena. The ranks listed for each player is the highest
-                rank that a player achieved in either Episode 6 or 7, whichever is higher.
+            <p>Please enter the peak ranks of the starting players that are playing
+                in #BrownieVAL Impact. The ranks listed for each player is the highest
+                rank that a player achieved in either Episode 7 or 8 or 9, whichever is higher.
                 They must have also played at least 10 competitive games for that episode
-                which the rank will be used. </p>
-            <p>The <strong>Wildcard</strong> player can be used to replace any player on the 
-                starting roster as long as the Wildcard player is ranked the same or lower as
-                the replaced player.</p>
-            <p>For the ranked restrictions, please go to
+                which the rank will be used.</p>
+            <p>For the detailed ranked restrictions, please go to
                 the #BrownieVAL Discord server or go to 
-                <a href="https://arena.browntulstar.com/rules" target="_blank">
+                <a href="https://impact.brownieval.browntulstar.com/rules" target="_blank">
                     the rules page</a>.
             </p>
             </div>
+            <h2>Your Next Game's Starting Lineup</h2>
+            <p>Enter the player's peak ranks from Episode 7, 8, OR 9, whichever is higher, in the boxes below</p>
             <div class="form-group" style="line-height:2">
 <?php   
-            $totalPlayers = 8;
+            $totalPlayers = 5;
             $ranks = array("-","Iron","Bronze","Silver","Gold","Platinum","Diamond","Ascendant","Immortal","Radiant");
             for ($_k = 1; $_k <= $totalPlayers; ++$_k) {
-                $_i = $_k === 8 ? "Wildcard" : $_k;
-                echo '<label for="rank'.$_i.'" style="width:150px">Player '.$_i.':  </label>';
-                echo '<select style="width:200px" name="rank'.$_i.'" id="rank'.$_i.'">';
+                echo '<label for="rank'.$_k.'" style="width:150px">Player '.$_k.':  </label>';
+                echo '<select style="width:200px" name="rank'.$_k.'" id="rank'.$_k.'">';
                 for ($_j = 0; $_j < count($ranks); ++$_j) {
                     $rank = $ranks[$_j];
                     echo '<option value="'.$rank.'">'.$rank.'</option>';
@@ -43,97 +41,51 @@ require $dir . "/templates/header.php";
             </div>
         </form>
     </div>
-    <div class="alert alert-success" name="resultsBox" id="resultsBox">
-            <h1>Results</h1>
+    <div class="alert" name="resultsBox" id="resultsBox">
     </div>
 </div>
 
 <script>
-    function checkRank(rankToCheck, totalNumber) {
-        let rankThresholds = {
-            "-": 3,
-            "PlatinumMinus": 8,
-            "DiamondPlus": 3,
-            "AscendantPlus": 2,
-            "ImmortalPlus": 1,
-            "Radiant": 0,
-            "Wildcard": 1
-        };
-        let rankNames = {
-            "-": "roster spots left to fill with",
-            "PlatinumMinus": "Platinum or below",
-            "DiamondPlus": "Diamond or above",
-            "AscendantPlus": "Ascendant or above",
-            "ImmortalPlus": "Immortal or above",
-            "Radiant": "Radiant",
-            "Wildcard": "Wildcard"
-        }
-        let aboveRankRestriction = (totalNumber > rankThresholds[rankToCheck]);
-        return (aboveRankRestriction ? "<strong>" : "") 
-            + "You have "+totalNumber.toString()+" "+rankNames[rankToCheck]+" player"
-            + (totalNumber != 1 ? "s" : "").toString()+", which is <em>"
-            + (aboveRankRestriction ? "above" : "within")
-            + "</em> the roster restriction of "
-            + rankThresholds[rankToCheck] + " player"+ (totalNumber != 1 ? "s" : "").toString()+"."
-            + (aboveRankRestriction ? "</strong>" : "");
-    }
-
     function onSubmitAction() {
         const sumReduce = (a, b) => ((a ? a : 0) + (b ? b : 0));
-        let rankCounts = {};
+        let totalRankPoints = 0;
+        let rankPointsLimit = 31;
+        let rosterFilled = true;
         let rankList = document.querySelectorAll('[id^="rank"');
-        //console.log(rankList);
+        let rankPoints = {
+            "-": 0,
+            "Iron": 4,
+            "Bronze": 4,
+            "Silver": 4,
+            "Gold": 4,
+            "Platinum": 5,
+            "Diamond": 6,
+            "Ascendant": 7,
+            "Immortal": 9,
+            "Radiant": 32
+        };
         rankList.forEach(function(rank) {
-            //console.log(rank.value);
-            if (rank.name.includes("Wildcard")) {
-                rankCounts["Wildcard"] = rank.value === "-" ? 0 : 1;
-            } else {
-                rankCounts[rank.value] = (rankCounts[rank.value] + 1) || 1;
+            if (rank.value === "-") {
+                rosterFilled = false;
             }
+            totalRankPoints += rankPoints[rank.value] || 0;
         });
-        
-        rankCounts["PlatinumMinus"] = [
-            rankCounts["Iron"],
-            rankCounts["Bronze"],
-            rankCounts["Silver"],
-            rankCounts["Gold"],
-            rankCounts["Platinum"]
-        ].reduce(sumReduce);
-        rankCounts["DiamondPlus"] = [
-            rankCounts["Diamond"],
-            rankCounts["Ascendant"],
-            rankCounts["Immortal"],
-            rankCounts["Radiant"]
-        ].reduce(sumReduce);
-        rankCounts["AscendantPlus"] = [
-            rankCounts["Ascendant"],
-            rankCounts["Immortal"],
-            rankCounts["Radiant"]
-        ].reduce(sumReduce);
-        rankCounts["ImmortalPlus"] = [
-            rankCounts["Immortal"],
-            rankCounts["Radiant"]
-        ].reduce(sumReduce);
-        rankCounts["Radiant"] = [
-            rankCounts["Radiant"],
-            0
-        ].reduce(sumReduce);
-        rankCounts["-"] = [
-            rankCounts["-"],
-            (rankCounts["Wildcard"] === 0) ? 1 : 0,
-            0
-        ].reduce(sumReduce);
-        console.log(rankCounts);
 
-        resultHtml = "<h1>Results</h1><p><strong>BOLD</strong> means requirement not met.</p><p>Wildcard players are not calculated for the ranked restrictions.</p><ul>";
-        ["PlatinumMinus","DiamondPlus","AscendantPlus","ImmortalPlus","Radiant","-"].forEach(function (rank) {
-            resultHtml += "<li>" + checkRank(rank,rankCounts[rank]) + "</li>";
-        })
-        resultHtml += "</ul><p>The Wildcard player is not calculated in the results above (except for roster spots to fill). \
-Remember that the Wildcard player can be used to replace any player on the starting roster as long as the Wildcard player is ranked the same or lower as the replaced player.";
-
+        resultHtml = "<h1>Result: " + totalRankPoints + "/" + rankPointsLimit + "</h1>\
+        <ul>\
+        <li>This lineup for the next game has a roster value of " + totalRankPoints + " points.</li>\
+        <li>The lineup must have a roster value of " + rankPointsLimit + " or lower.</li>\
+        <li>The lineup is " + ((!rosterFilled) ? "<strong>NOT</strong>" : "") + " filled with 5 players.</li>\
+        <li>Therefore, the roster is " + (((totalRankPoints > rankPointsLimit) || (!rosterFilled)) ? "<strong>NOT</strong>" : "")+ " allowed to play the next game!</ul>";
 
         let resultsBox = document.getElementById("resultsBox");
+        if ((totalRankPoints > rankPointsLimit) || !rosterFilled) {
+            resultsBox.classList.remove("alert-success");
+            resultsBox.classList.add("alert-danger");
+        } else {
+            resultsBox.classList.add("alert-success");
+            resultsBox.classList.remove("alert-danger");
+        }
         resultsBox.innerHTML = resultHtml;
 
     }

@@ -24,7 +24,7 @@
                     <tbody>
                         <tr>
                         <th scope="row">Starting Cost</th>
-                        <td>US$4.99/mo</td>
+                        <td>US$5.99/mo</td>
                         <td>US$2.00/mo</i></td>
                         <td>Invite Only</td>
                         </tr>
