@@ -1,6 +1,11 @@
 <?php
 $dir = dirname(__DIR__, 2);
 $title = "Turtle Pond - Brown's Giveaways";
+
+// Giveaway page is retired
+require $dir . "/error/403.php";
+die();
+
 $find_md_file_name = function($v) { 
 	return strpos($v, ".md");
 };
@@ -25,7 +30,7 @@ if (!isset($_SESSION['user'])) {
 	require $dir . "/templates/sub-perks-description.php";
 	echo "</div>";
 } else { // User is logged in
-	if (!check_guild_membership($guild_id) || !check_roles($sub_perk_roles)) {
+	if (!check_roles($sub_perk_roles)) {
 		echo "<div class='alert alert-danger' role='alert'>
 		<center>You need to fulfill the sub requirements <a href='/subs'>here</a> before viewing this page.</center>
 		</div>";

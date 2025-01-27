@@ -39,7 +39,7 @@ FOOTER;
             <div class="col-lg-4">
                 <ul class="nav justify-content-center list-unstyled d-flex" style="margin-top:4px">
                 <small>
-                    <span>© 2024 BrowntulStar</span>
+                    <span>© 2025 BrowntulStar</span>
                     - 
                     <a style="color: white" href="/privacy">
                         Privacy Policy
@@ -76,22 +76,12 @@ echo <<<FOOTER
                     <a style="text-decoration: none;color:#000" href="https://youtube.com/@browntulstar" target="_blank">
                         <i class="fa-brands fa-youtube"></i>
                     </a>
-                </li>
-                <li class="ms-2">
-                    <a style="text-decoration: none;color:#000" href="https://tiktok.com/@browntulstar" target="_blank">
-                        <i class="fa-brands fa-tiktok"></i>
-                    </a>
-                </li>     
+                </li>    
                 <li class="ms-2">
                     <a style="text-decoration: none;color:#000" href="https://browntulstar.com/r/discord" target="_blank">
                         <i class="fab fa-discord"></i>
                     </a> 
                 </li>
-                <li class="ms-2">
-                    <a style="text-decoration: none;" href="https://throne.me/browntulstar" target="_blank">
-                        <img class="rounded" style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/s--FxYtxGGV--/c_pad,w_48,h_48,ar_1:1/f_webp/v1/com.browntulstar/img/platform-throne?_a=BAAAUWGX">
-                    </a> 
-                </li> 
                 <li class="ms-2">
                     <a style="text-decoration: none;" href="https://ko-fi.com/browntulstar" target="_blank">
                         <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/s--mOeZPgHn--/c_pad,h_48/f_webp/v1/com.browntulstar/img/platform-kofi?_a=BAAAUWGX">
@@ -102,22 +92,19 @@ echo <<<FOOTER
                         <img class="rounded" style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/s--fcXDbYLp--/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX">
                     </a> 
                 </li>
+                <li class="ms-2">
+                    <a style="text-decoration: none;color:#000" href="https://browntulstar.com/r/links" target="_blank">
+                        <i class="fa-solid fa-link"></i>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="col-lg-2">
             <ul class="nav justify-content-center list-unstyled d-flex" style="margin-top:4px">
-            <small><span class="text-muted">© 2024 BrowntulStar</span></small>
+            <small><span class="text-muted">© 2025 BrowntulStar - @browntulstar</span></small>
         </div>
         <div class="col-lg-5">
             <ul class="nav justify-content-center list-unstyled d-flex" style="margin-top:4px;font-size:14px">
-                <li class="ms-2">
-                    <a style="text-decoration: none;" href="https://browntulstar.com/r/links" target="_blank">
-                        More Links
-                    </a>
-                </li>
-                <li class="ms-2">
-                    |
-                </li>
                 <li class="ms-2">
                     <a style="text-decoration: none;" href="/privacy">
                         Privacy Policy

@@ -6,7 +6,7 @@ require $dir . "/templates/header.php"
 ?>
 <div class="container-fluid body-container-home">
 	<div id="center-block" class="d-flex align-items-center justify-content-center">
-		<center><img src="https://res.cloudinary.com/browntulstar/image/private/s--HzMIPJ9T--/c_pad,h_400/f_webp/v1/com.browntulstar/img/browntulstar-logo-v2-large?_a=BAAAUWGX" style="width:100%;max-width:500px" />
+		<center><img src="https://res.cloudinary.com/browntulstar/image/private/s--gRiI4zsg--/c_pad,h_400/e_shadow/com.browntulstar/img/browntulstar-logo-v2-large.png" style="width:100%;max-width:500px" />
 			<div class="box bg-gradient shadow rounded" style="background-color: rgba(255,255,255,0.2); padding: 20px; width:100%; max-width:370px">
 				<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
 					<a class="btn btn-primary w-100" href="/stream">
@@ -18,7 +18,7 @@ require $dir . "/templates/header.php"
 					<a href="#" id="navbarSubs-button" class="btn btn-success w-100"><i class="fa-solid fa-circle-check"></i> Sub Perks</a>
 				</span>
 				<span class="d-flex flex-row gap-1" style="text-align: center">
-					<a href="#home-section-about" class="btn btn-dark w-100">Learn More</a>
+					<a href="#home-section-about" class="btn btn-dark w-100">About Me</a>
 				</span>
 				<span class="d-flex flex-row gap-1 pt-2" style="text-align: center; padding-bottom:6px">
 					<span class="w-100"><small> 
@@ -78,9 +78,6 @@ require $dir . "/templates/header.php"
 					</a>
 					<a class="btn btn-dark m-2 shadow" href='https://brownieval.browntulstar.com/' target='_blank' style="max-width:400px">
 						<img class='rounded' style='height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/s--fcXDbYLp--/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX'> <i class="fa-solid fa-link"></i> Website
-					</a> 
-					<a class="btn btn-dark m-2 shadow" href='https://brownieval.browntulstar.com/sponsors' target='_blank' style="max-width:400px">
-						<img class='rounded' style='height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/s--fcXDbYLp--/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX'> <i class="fa-solid fa-link"></i> Sponsors
 					</a>
 					</div>
 				</div>
@@ -96,33 +93,25 @@ require $dir . "/templates/header.php"
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-3 mb-2">
+					<div class="col-md-4 mb-2">
 						<div class="card w-100 h-100">
-							<img src="https://res.cloudinary.com/browntulstar/image/private/s--r4mOIusW--/c_pad,h_200/f_webp/v1/com.browntulstar/img/games-mk8dx?_a=BAAAUWGX" class="card-img-top" alt="mario kart 8 deluxe" style="object-fit: cover; object-position: left; height:200px">
-							<div class="card-body">
-								<h4 class="card-title  text-center">Mario Kart 8 Deluxe</h4>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 mb-2">
-						<div class="card w-100 h-100">
-							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--fSgqj1OQ--/c_pad,h_200/f_webp/v1/com.browntulstar/img/games-krr?_a=BAAAUWGX" class="card-img-top" alt="KRR" style="object-fit: cover;height:200px">
-							<div class="card-body">
-								<h4 class="card-title  text-center">KartRider: Drift</h4>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 mb-2">
-						<div class="card w-100 h-100">
-							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--91p79EvI--/c_pad,h_200/f_webp/v1/com.browntulstar/img/games-honkaistarrail?_a=BAAAUWGX" class="card-img-top" alt="qingque honkai star rail" style="object-fit: cover;height:200px">
+							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--NUbAjcLX--/c_pad,h_400/com.browntulstar/img/games-honkaistarrail.jpg" class="card-img-top" alt="qingque honkai star rail" style="object-fit: cover;height:200px">
 							<div class="card-body">
 								<h4 class="card-title  text-center">Honkai: Star Rail</h4>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-3 mb-2">
+					<div class="col-md-4 mb-2">
 						<div class="card w-100 h-100">
-							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--3QubXsnI--/c_pad,h_200/f_webp/v1/com.browntulstar/img/games-valorant-kj?_a=BAAAUWGX" class="card-img-top" alt="valorant killjoy" style="object-fit: cover;height:200px">
+							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--hvYzDb2e--/c_crop,h_0.95,w_0.95/c_pad,h_400/com.browntulstar/img/games-marvelrivals.jpg" class="card-img-top" alt="marvel rivals" style="object-fit: cover;height:200px">
+							<div class="card-body">
+								<h4 class="card-title  text-center">Marvel Rivals</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 mb-2">
+						<div class="card w-100 h-100">
+							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--1WaZm_di--/c_pad,h_400/com.browntulstar/img/games-valorant-kj.jpg" class="card-img-top" alt="valorant killjoy" style="object-fit: cover;height:200px">
 							<div class="card-body">
 								<h4 class="card-title  text-center">VALORANT</h4>
 							</div>
@@ -140,9 +129,9 @@ require $dir . "/templates/header.php"
 					</div>
 				</div>
 				<div class="row mb-2">
-					<div class="col-lg-3 mb-2">
+					<div class="col-lg-4 mb-2">
 						<div class="card w-100 h-100">
-							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--10Ksbhlw--/c_pad,b_gen_fill,w_430,h_261/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: contain;height:200px">
+							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--10Ksbhlw--/c_pad,b_gen_fill,w_430,h_261/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: cover;height:200px">
 							<div class="card-body">
 								<h4 class="card-title  text-center">#BrownieVAL</h4>
 								<h6 class="text-center">Founder and Organizer</h6>
@@ -151,9 +140,9 @@ require $dir . "/templates/header.php"
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-3 mb-2">
+					<div class="col-lg-4 mb-2">
 						<div class="card w-100 h-100">
-							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--k9RUJeuR--/c_pad,h_200/f_webp/v1/com.browntulstar/img/team-kazoku?_a=BAAAUWGX" class="card-img-top" alt="kazoku logo" style="padding: 20px;object-fit: contain;height:200px">
+							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--k9RUJeuR--/c_pad,h_200/f_webp/v1/com.browntulstar/img/team-kazoku?_a=BAAAUWGX" class="card-img-top" alt="kazoku logo" style="padding: 20px;object-fit: cover;height:200px">
 							<div class="card-body">
 								<h4 class="card-title  text-center">Kazoku</h4>
 								<h6 class="text-center">Events Coordinator</h6>
@@ -162,24 +151,13 @@ require $dir . "/templates/header.php"
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-3 mb-2">
+					<div class="col-lg-4 mb-2">
 						<div class="card w-100 h-100">
-							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--zRJGWkmd--/c_pad,h_200/f_webp/v1/com.browntulstar/img/team-comfycafelogo?_a=BAAAUWGX" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: contain;height:200px">
+							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--zRJGWkmd--/c_pad,h_200/f_webp/v1/com.browntulstar/img/team-comfycafelogo?_a=BAAAUWGX" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: cover;height:200px">
 							<div class="card-body">
 								<h4 class="card-title  text-center">Okimi Cafe</h4>
 								<h6 class="text-center">Co-founder and Co-manager Emeritus</h6>
 								<p style="text-align:center"><a class="btn btn-success w-100" style="max-width:300px" href="https://okimicafe.crd.co/" target="_blank">Website</a></p>
-								<p style="text-align:center"></p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 mb-2">
-						<div class="card w-100 h-100">
-							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--3ii956x7--/c_pad,b_gen_fill,w_430,h_200/f_webp/v1/com.browntulstar/img/team-rdv?_a=BAAAUWGX" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: contain;height:200px">
-							<div class="card-body">
-								<h4 class="card-title  text-center">Rendezvous Valorant</h4>
-								<h6 class="text-center">Lead Play-by-play Caster</h6>
-								<p style="text-align:center"><a class="btn btn-success w-100" style="max-width:300px" href="https://twitter.com/rendezvousval" target="_blank">Website</a></p>
 								<p style="text-align:center"></p>
 							</div>
 						</div>
@@ -197,11 +175,13 @@ require $dir . "/templates/header.php"
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-lg-6 offset-lg-3 mb-2 text-center">
+					<div class="col-lg-3 offset-lg-3 mb-2 text-center">
 						<a class="btn btn-dark text-white my-2 shadow w-100" href="https://browntulstar.com/r/links" target="_blank">
 							<i class="fa-solid fa-link"></i>
 							More Links
 						</a>
+					</div>
+					<div class="col-lg-3 mb-2 text-center">
 						<a class="btn btn-dark text-white my-2 shadow w-100" href="nailto:browntulstar@browntulstar.com" target="_blank">
 							<i class="fa-solid fa-envelope"></i>
 							Contact

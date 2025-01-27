@@ -1,2 +1,2 @@
 <?php
-header("/");
+header("Location: /#home-section-about");

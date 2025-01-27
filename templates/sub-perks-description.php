@@ -39,15 +39,7 @@
                     </tbody>
                     <tbody>
                         <tr>
-                        <th scope="row">Website Sub Blog</th>
-                        <td><i class="fa-solid fa-square-check"></i></td>
-                        <td><i class="fa-solid fa-square-check"></i></td>
-                        <td><i class="fa-solid fa-square-check"></i></td>
-                        </tr>
-                    </tbody>
-                    <tbody>
-                        <tr>
-                        <th scope="row">Tank Engine Karaoke</th>
+                        <th scope="row">Sub Blog</th>
                         <td><i class="fa-solid fa-square-check"></i></td>
                         <td><i class="fa-solid fa-square-check"></i></td>
                         <td><i class="fa-solid fa-square-check"></i></td>

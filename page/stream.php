@@ -22,7 +22,7 @@ require_once $dir . "/includes/twitch.php";
     </iframe>
     <hr />
 <?php
-    $video_ids = twitch_get_recent_videos();
+    $video_ids = twitch_get_recent_videos(12);
     echoCardEntries($video_ids);
     echoModalEntries($video_ids);
 ?>

@@ -23,21 +23,21 @@ $cldSigner = new CloudinarySigner();
 $mysql_artists = queryArtEntries($conn);
 
 /* Carousel: Highlighting Artists (temporary removal)*/
-// echo '<div id="carouselArt" class="carousel carousel-dark slide">';
-// echo '<div class="carousel-inner">';
-// echoHighlightedArtEntries($mysql_artists);
-// echo '</div>';
-// echo <<<CAROUSELBUTTONS
-// <button class="carousel-control-prev" type="button" data-bs-target="#carouselArt" data-bs-slide="prev">
-// <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-// <span class="visually-hidden">Previous</span>
-// </button>
-// <button class="carousel-control-next" type="button" data-bs-target="#carouselArt" data-bs-slide="next">
-// <span class="carousel-control-next-icon" aria-hidden="true"></span>
-// <span class="visually-hidden">Next</span>
-// </button>
-// CAROUSELBUTTONS;
-// echo "</div><hr />";
+echo '<div id="carouselArt" class="carousel carousel-light slide bg-dark rounded rounded-5">';
+echo '<div class="carousel-inner">';
+echoHighlightedArtEntries($mysql_artists);
+echo '</div>';
+echo <<<CAROUSELBUTTONS
+<button class="carousel-control-prev" type="button" data-bs-target="#carouselArt" data-bs-slide="prev">
+<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carouselArt" data-bs-slide="next">
+<span class="carousel-control-next-icon" aria-hidden="true"></span>
+<span class="visually-hidden">Next</span>
+</button>
+CAROUSELBUTTONS;
+echo "</div><hr />";
 
 
 /* Specific Artists */
@@ -72,10 +72,10 @@ function echoHighlightedArtEntries($result) {
             }
             echo '<div class="carousel-item' . ($show_active_text) . '" style="" oncontextmenu="return false;">';
             echo '<img loading="lazy" src="'.$cldSigner->signUrl($item["portfolio_image"]).'" class="d-block w-80" style="width:100%;height:500px;object-fit:contain;" alt="portfolio image: '.$item["name"].'" />';
-            echo '<div class="carousel-caption d-block" style="background-color:rgb(255,255,255,0.7)">';
+            echo '<div class="carousel-caption d-block rounded rounded-3" style="background-color:rgb(0,0,0,0.7)">';
             echo '<h5>'.$item["name"].'</h5>';
             echo '<p>'.$item["subheader"].'</p>';
-            echo '<button type="button" class="btn btn-secondary" style="width:100%;margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'">Info</button>';
+            echo '<button type="button" class="btn btn-sm btn-success" style="width:100%;max-width:200px;margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'">More Info</button>';
             echo '</div>';
             echo '</div>';
             $show_active_text = "";
@@ -118,7 +118,7 @@ function echoCardEntries($result) {
                                     <h4 class="card-title">$portfolio_name</h4>
                                     <p class="card-text">
                                         <p>$portfolio_subheader</p>
-                                        <p><button type="button" class="btn btn-success" margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-$portfolio_id">Learn More</button></p>
+                                        <p><button type="button" class="btn btn-success" margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-$portfolio_id">More Info</button></p>
                                         <p>$links_string</p>
                                     </p>
                                 </div>
@@ -151,12 +151,14 @@ function echoModalEntries($result) {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body" style="height:60vh;overflow-y:auto">
-                            <center><img loading="lazy" src="{$cldSigner->signUrl($item["logo_image"])}" style="max-width:200px;max-height:200px;object-fit:contain;border: 3px solid black;border-radius:20px;" oncontextmenu="return false;" alt="portfolio image: {$item["name"]}" /></center><br />
-                            <center><h5>{$item["name"]}</h5></center>
-                            <center><p>{$item["subheader"]}</p></center>
+                            <center>
+                            <img loading="lazy" src="{$cldSigner->signUrl($item["logo_image"])}" class="mb-2" style="width:200px;height:200px;object-fit:contain;border: 3px solid black;border-radius:20px;" oncontextmenu="return false;" alt="logo image: {$item["name"]}" />
+                            <img loading="lazy" src="{$cldSigner->signUrl($item["portfolio_image"])}" class="mb-2" style="width:200px;height:200px;object-fit:contain;border: 3px solid black;border-radius:20px;" oncontextmenu="return false;" alt="portfolio image: {$item["name"]}" />
+                            </center><br />
+                            <center><h1 style="word-break: break-word">{$item["name"]}</h1>
+                            <p>{$item["subheader"]}</p>
+                            <span>{$links_string}</span></center>
                             <p>{$item["description"]}</p>
-                            <h5>Links</h5>
-                            <span>{$links_string}</span>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
