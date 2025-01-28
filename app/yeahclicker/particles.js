@@ -42,12 +42,20 @@ const configs = {
 };
 
 loadParticles(configs).then((container) => {
-    //   const rect = yeahbutton.getBoundingClientRect();
+    const rect = yeahbutton.getBoundingClientRect();
 
     yeahbutton.addEventListener("click", (e) => {
         container.particles.addParticle({
             x: e.clientX,
             y: e.clientY
         });
+    });
+    document.body.addEventListener("keyup", (e) => {
+        if (e.key == " ") {
+            container.particles.addParticle({
+                x: (rect.left + rect.right) / 2,
+                y: (rect.top + rect.bottom) / 2
+            });
+        }
     });
 });

@@ -10,15 +10,32 @@ yeahbutton.addEventListener("mouseenter", function(e) {
 yeahbutton.addEventListener("mouseleave", function(e) {
     yeahbutton.classList.remove("yeahbuttonhover");
 }); 
+bodycontainer.addEventListener("keydown", function(e) {
+    if (e.key == " ") {
+        yeahbutton.classList.add("yeahbuttonhover");
+        onButtonDown();
+    }
+});
 yeahbutton.addEventListener("mousedown", function(e) {
-    yeahbutton.classList.add("yeahbuttondown");
+    onButtonDown();
 }); 
+bodycontainer.addEventListener("keyup", function(e) {
+    if (e.key == " ") {
+        onButtonUp();
+    }});
 yeahbutton.addEventListener("mouseup", function(e) {
+    onButtonUp();
+}); 
+
+function onButtonDown() {
+    yeahbutton.classList.add("yeahbuttondown");
+}
+function onButtonUp() {
     yeahbutton.classList.remove("yeahbuttondown");
     yeahbuttoncounter += 1;
     localStorage.setItem("yeahbuttonscore", yeahbuttoncounter.toString());
     updateYeahButtonPresentation();
-}); 
+}
 
 function updateYeahButtonPresentation() {
     yeahbuttoncounterspan.innerText = yeahbuttoncounter.toLocaleString();

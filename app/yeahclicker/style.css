@@ -1,0 +1,55 @@
+#yeahbutton {
+    background-image: url("https://res.cloudinary.com/browntulstar/image/private/s--5vwUdda1--/c_scale,w_400/com.browntulstar/img/turtleyeah.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: #00000000;
+    /* put the height and width of your image here */
+    width:fit-content;
+    height:fit-content;
+    min-width: 350px;
+    min-height: 153px;
+    border: none;
+    animation: yeahButtonZoomOut 0.1s forwards;
+}
+
+#yeahbutton.yeahbuttonhover {
+    animation: yeahButtonZoomIn 0.1s forwards;
+}
+
+#yeahbutton.yeahbuttonhover.yeahbuttondown {
+    animation: yeahButtonZoomOutSmall 0.05s forwards !important;
+}
+
+#yeahbuttoncounter {
+    font-family: monospace, monospace;
+    font-size: 1.0em;
+    color: #000;
+    text-shadow: 1px 1px 1px #000000;
+    margin-top: 10px;
+}
+
+@keyframes yeahButtonZoomIn {
+    from {
+        transform: scale(1.0);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+@keyframes yeahButtonZoomOut{
+    from {
+        transform: scale(1.05);
+    }
+    to {
+        transform: scale(1.0);
+    }
+}
+@keyframes yeahButtonZoomOutSmall{
+    from {
+        transform: scale(1.05);
+    }
+    to {
+        transform: scale(1.01);
+    }
+}

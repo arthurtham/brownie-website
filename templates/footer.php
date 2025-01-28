@@ -55,7 +55,7 @@ echo <<<FOOTER
 <footer class="d-flex flex-column w-100 justify-content-center align-items-center border-top bg-light shadow" style="{$_footer_style}">
     $scroll_to_top_button
     <div class="row w-100">
-        <div class="col-lg-5">
+        <div class="col-lg-4">
             <ul class="nav justify-content-center list-unstyled d-flex" style="font-size:20px">
                 <li class="ms-2">
                     <a style="text-decoration: none;color:#000" href="https://twitch.tv/browntulstar" target="_blank">
@@ -99,11 +99,11 @@ echo <<<FOOTER
                 </li>
             </ul>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-4">
             <ul class="nav justify-content-center list-unstyled d-flex" style="margin-top:4px">
             <small><span class="text-muted">© 2025 BrowntulStar - @browntulstar</span></small>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-4">
             <ul class="nav justify-content-center list-unstyled d-flex" style="margin-top:4px;font-size:14px">
                 <li class="ms-2">
                     <a style="text-decoration: none;" href="/privacy">
