@@ -1,0 +1,3 @@
+/concentration/*
+!/concentration/index.php
+!/concentration/.htaccess
