@@ -1,3 +1,7 @@
 /concentration/*
 !/concentration/index.php
 !/concentration/.htaccess
+
+/cashmountain/*
+!/cashmountain/index.php
+!/cashmountain/.htaccess
