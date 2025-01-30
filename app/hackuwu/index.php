@@ -1,6 +1,6 @@
 <?php
 $dir = dirname(__DIR__, 2);
-$title = "BrowntulStar - Concentration Training";
+$title = "BrowntulStar - HackUWU";
 require $dir . "/templates/header.php";
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 $dir = dirname(__DIR__, 2);
-$title = "Turtle Pond - Cash Mountain";
+$title = "BrowntulStar - Cash Mountain";
 require $dir . "/templates/header.php";
 
 ?>

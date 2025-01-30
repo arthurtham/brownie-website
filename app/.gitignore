@@ -5,3 +5,7 @@
 /cashmountain/*
 !/cashmountain/index.php
 !/cashmountain/.htaccess
+
+/hackuwu/*
+!/hackuwu/index.php
+!/hackuwu/.htaccess
