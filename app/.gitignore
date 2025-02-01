@@ -9,3 +9,7 @@
 /hackuwu/*
 !/hackuwu/index.php
 !/hackuwu/.htaccess
+
+/baseballderby/*
+!/baseballderby/index.php
+!/baseballderby/.htaccess
