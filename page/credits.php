@@ -153,7 +153,6 @@ function echoModalEntries($result) {
                         <div class="modal-body" style="height:60vh;overflow-y:auto">
                             <center>
                             <img loading="lazy" src="{$cldSigner->signUrl($item["logo_image"])}" class="mb-2" style="width:200px;height:200px;object-fit:contain;border: 3px solid black;border-radius:20px;" oncontextmenu="return false;" alt="logo image: {$item["name"]}" />
-                            <img loading="lazy" src="{$cldSigner->signUrl($item["portfolio_image"])}" class="mb-2" style="width:200px;height:200px;object-fit:contain;border: 3px solid black;border-radius:20px;" oncontextmenu="return false;" alt="portfolio image: {$item["name"]}" />
                             </center><br />
                             <center><h1 style="word-break: break-word">{$item["name"]}</h1>
                             <p>{$item["subheader"]}</p>
