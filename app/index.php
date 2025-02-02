@@ -95,10 +95,10 @@ function echoCardEntries($result) {
                 echo <<<CARD
                 <div class="card mb-3" style="width: 100%;color:black">
                     <div class="row g-0">
-                        <div class="col-md-4" style="align-items: middle;">
-                            <img loading="lazy" src="{$cldSigner->signUrl($item["thumbnail"])}" style="width: 100%; height: 100%; object-fit: cover;" />
+                        <div class="col-sm-4" style="align-items: middle;">
+                            <img loading="lazy" src="{$cldSigner->signUrl($item["thumbnail"])}" style="max-height: 200px; max-width: min(100%,225px);" />
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-sm-8">
                             <div class="card-body">
                                 <h5 class="card-title">{$item['name']}</h5>
                                 <p class="card-text">{$item['short_description']}</p>
