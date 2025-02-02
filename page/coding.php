@@ -42,20 +42,8 @@ require $dir . "/templates/header.php";
         <p>
         <div class="row">
             <center><h2>Featured Games</h2></center>
+            <p class="text-center">Please visit the <a href="/app">Apps and Games</a> page for more information about the games I have developed.</p>
         </div>
-        <br>
-        <div class="row">
-            <div class="col col-md-6 offset-md-3">
-                <div class="card" style="width: 100%; height:100%">
-                    <center><img src="https://res.cloudinary.com/browntulstar/image/private/s---Dg25dQX--/c_pad,w_200/f_webp/v1/com.browntulstar/img/coding-concentration?_a=BAAAUWGX" class="img-fluid rounded-start" style="object-fit:contain;width:auto;height:200px;padding-top:20px" alt="..."></center>
-                    <div class="card-body">
-                        <h4 class="card-title text-center">Concentration Training</h4>
-                        <p class="card-text text-center"></p>
-                        <p class="card-text text-center"><small class="text-muted">Play this game at <br><a href="https://browntulstar.itch.io/concentration" target="_blank">https://browntulstar.itch.io/concentration</a></small></p>
-                    </div>
-                </div>
-            </div>
-        </p>
     </div>
 </div>
 <?php require $dir . "/templates/footer.php" ?>

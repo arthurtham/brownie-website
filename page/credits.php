@@ -23,26 +23,9 @@ $cldSigner = new CloudinarySigner();
 $mysql_artists = queryArtEntries($conn);
 
 /* Carousel: Highlighting Artists (temporary removal)*/
-echo '<div id="carouselArt" class="carousel carousel-light slide bg-dark rounded rounded-5">';
-echo '<div class="carousel-inner">';
 echoHighlightedArtEntries($mysql_artists);
-echo '</div>';
-echo <<<CAROUSELBUTTONS
-<button class="carousel-control-prev" type="button" data-bs-target="#carouselArt" data-bs-slide="prev">
-<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-<span class="visually-hidden">Previous</span>
-</button>
-<button class="carousel-control-next" type="button" data-bs-target="#carouselArt" data-bs-slide="next">
-<span class="carousel-control-next-icon" aria-hidden="true"></span>
-<span class="visually-hidden">Next</span>
-</button>
-CAROUSELBUTTONS;
-echo "</div><hr />";
-
-
 /* Specific Artists */
 echoCardEntries($mysql_artists);
-
 echoModalEntries($mysql_artists);
 
 ?>
@@ -63,6 +46,8 @@ function queryArtEntries($conn) {
 }
 
 function echoHighlightedArtEntries($result) {
+    echo '<div id="carouselArt" class="carousel carousel-light slide bg-dark rounded rounded-5">';
+    echo '<div class="carousel-inner">';
     global $cldSigner;
     if (isset($result->num_rows) && $result->num_rows > 0) {
         $show_active_text = " active";
@@ -82,6 +67,18 @@ function echoHighlightedArtEntries($result) {
         }
         mysqli_data_seek($result,0);
     }
+    echo '</div>';
+    echo <<<CAROUSELBUTTONS
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselArt" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselArt" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+    </button>
+CAROUSELBUTTONS;
+    echo "</div><hr />";
 }
 
 function echoCardEntries($result) {
@@ -95,13 +92,13 @@ function echoCardEntries($result) {
                 }
                 echo '<div class="row" style="padding-bottom:10px" oncontextmenu="return false;">';
             }
-            echo '<div class="col-md-6 mb-2 d-flex align-items-stretch">';
+            echo '<div class="col-lg-6 mb-2 d-flex align-items-stretch">';
             $signed_portfolio_image = $cldSigner->signUrl($item["portfolio_image"]);
             $portfolio_name = $item["name"];
             $portfolio_id = $item["id"];
             $portfolio_subheader = $item["subheader"];
             $logo_image = $cldSigner->signUrl($item["logo_image"]);
-            $links_string = generateLinksString($item, false, -1);
+            // $links_string = generateLinksString($item, false, -1);
 
             echo <<<CREDITSPOST
                 <div class="card" style="width: 100%;color:black">
@@ -119,7 +116,6 @@ function echoCardEntries($result) {
                                     <p class="card-text">
                                         <p>$portfolio_subheader</p>
                                         <p><button type="button" class="btn btn-success" margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-$portfolio_id">More Info</button></p>
-                                        <p>$links_string</p>
                                     </p>
                                 </div>
                             </div>

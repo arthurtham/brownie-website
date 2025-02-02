@@ -15,7 +15,7 @@ echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 </style>
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <h1 style="text-align: center;">Shop</h1>
+    <h1 style="text-align: center;">Support & Donate</h1>
     <center>
         <p>Thank you for supporting me! Please take a look at ways you can support me.</p>
     </center>
