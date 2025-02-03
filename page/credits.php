@@ -46,7 +46,7 @@ function queryArtEntries($conn) {
 }
 
 function echoHighlightedArtEntries($result) {
-    echo '<div id="carouselArt" class="carousel carousel-light slide bg-dark rounded rounded-5">';
+    echo '<div id="carouselArt" class="carousel carousel-light slide bg-dark" data-bs-ride="carousel">';
     echo '<div class="carousel-inner">';
     global $cldSigner;
     if (isset($result->num_rows) && $result->num_rows > 0) {

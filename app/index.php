@@ -17,15 +17,15 @@ $cldSigner = new CloudinarySigner();
     <h1 class="text-center">Apps and Games</h1>
     <p class="text-center">
         Here are some of the apps and games that I have developed. 
-        You can check out the links below to download and play them.
+        You can check out the links below to play them.
     </p>
+    
 
 <?php 
 $mysql_applications = queryAppEntries($conn);
 
 /* Carousel: Highlighting Artists (temporary removal)*/
-
-echoHighlightedAppEntries($mysql_applications);
+// echoHighlightedAppEntries($mysql_applications);
 echoCardEntries($mysql_applications);
 echoModalEntries($mysql_applications);
 
@@ -85,28 +85,28 @@ function echoCardEntries($result) {
     if (isset($result->num_rows) && $result->num_rows > 0) {
         $count = 0;
         while ($item = $result->fetch_assoc()) {
-            if ($count % 2 == 0) {
+            if ($count % 3 == 0) {
                 if ($count > 0) {
                     echo '</div>';
                 }
-                echo '<div class="row" style="padding-bottom:10px" oncontextmenu="return false;">';
+                echo '<div class="row" style="padding-bottom:10px">';
             }
-            echo '<div class="col-lg-6 mb-2 d-flex align-items-stretch">';
+            echo '<div class="col-md-4 mb-2 d-flex align-items-stretch">';
                 echo <<<CARD
-                <div class="card mb-3" style="width: 100%;color:black">
-                    <div class="row g-0">
-                        <div class="col-sm-4" style="align-items: middle;">
-                            <img loading="lazy" src="{$cldSigner->signUrl($item["thumbnail"])}" style="max-height: 200px; max-width: min(100%,225px);" />
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{$item['name']}</h5>
-                                <p class="card-text">{$item['short_description']}</p>
-                                <p>
-                                    <a class="btn btn-primary" href="{$item['game_link']}" role="button">Play</a>
-                                    <button type="button" class="btn btn-success" margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-{$item['id']}">Info</button>
-                                </p>
-                            </div>
+                <div class="card mb-2 text-center" style="width: 100%;color:black">
+                    <div class="row g-0 p-4">
+                        <center>
+                            <a data-bs-toggle="modal" data-bs-target="#modal-{$item['id']}">
+                            <img loading="lazy" src="{$cldSigner->signUrl($item["thumbnail"])}" class="shadow rounded" style="max-height: 200px; width: auto; max-width: 100%; aspect-ratio: 1 / 1;" />
+                            </a>
+                        </center>
+                        <div class="card-body">
+                            <h4 class="card-title">{$item['name']}</h4>
+                            <p class="card-text">{$item['short_description']}</p>
+                            <p>
+                                <a class="btn btn-primary" href="{$item['game_link']}" role="button">Play</a>
+                                <button type="button" class="btn btn-success" margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-{$item['id']}">Info</button>
+                            </p>
                         </div>
                     </div>
                 </div>

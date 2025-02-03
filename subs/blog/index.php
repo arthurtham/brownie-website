@@ -17,9 +17,9 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 		while ($blog_post = $result->fetch_assoc()) {
 			$blog_title = $blog_post["blog_name"];
 		}
-		$title = "$blog_title - Turtle Pond - Brown's Blog";
+		$title = "$blog_title - BrowntulStar - Browntul's Sub Blog";
 	} else {
-		$title = "Turtle Pond - Brown's Blog";
+		$title = "BrowntulStar - Browntul's Sub Blog";
 	}
 	// User unauthorized checks
 	if (!isset($_SESSION['user']) || !check_roles($sub_perk_roles)) {		
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	}
 	die();
 } else {
-	$title = "Turtle Pond - Brown's Blog";
+	$title = "BrowntulStar - Browntul's Sub Blog";
 }
 
 /**
@@ -122,9 +122,9 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 	}
 
 	// Title text
-	echo '<h1 style="text-align: center;">Brown\'s Sub Blog</h1>';
+	echo '<h1 style="text-align: center;">Browntul\'s Sub Blog</h1>';
 	echo <<<ABOUT
-		<center>Take a look at Browntul's blogs by clicking on the tabs below!</center><br/>
+		<center>Read about Browntul's adventures below! Exclusive to active subscribers.</center><br/>
 ABOUT;
 	//Set up tabs
 	echo '<div class="nav-tabs-div"><ul class="nav nav-tabs" id="blogdirectory" role="tablist">';

@@ -1,6 +1,6 @@
 <?php
 $dir = dirname(__DIR__, 1);
-$title = "BrowntulStar - Shop";
+$title = "BrowntulStar - Store and Services";
 require_once($dir . "/includes/mysql.php");
 require $dir . "/templates/header.php";
 require_once $dir . "/includes/CloudinarySigner.php";
@@ -15,9 +15,9 @@ echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 </style>
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <h1 style="text-align: center;">Support & Donate</h1>
+    <h1 style="text-align: center;">Store and Services</h1>
     <center>
-        <p>Thank you for supporting me! Please take a look at ways you can support me.</p>
+        <p>Please check out the services that I offer, downloadable digital assets from my store, and other ways to support me.</p>
     </center>
 
 <?php

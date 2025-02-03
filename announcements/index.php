@@ -19,12 +19,12 @@ if (isset($_GET["announcement-id"])) {
 		while ($announcement_embed = $result->fetch_assoc()) {
 			$announcement_name = $announcement_embed["announcement_name"];
 		}
-		$title = "$announcement_name - Turtle Pond - Brown Says";
+		$title = "$announcement_name - BrowntulStar - Browntul Says";
 	} else {
-		$title = "Turtle Pond - Brown Says";
+		$title = "BrowntulStar - Browntul Says";
 	}
 } else {
-	$title = "Turtle Pond - Brown Says";
+	$title = "BrowntulStar - Browntul Says";
 }
 
 require $dir . "/templates/header.php" ?>
@@ -35,9 +35,9 @@ if (isset($_GET["announcement-id"])) {
 	require $dir . "/templates/announcement.php";
 } else {
 	echo '<script src="/assets/js/bootstrap-tab.js"></script>';
-	echo '<h1 style="text-align: center;">Brown Says</h1>';
+	echo '<h1 style="text-align: center;">Browntul Says</h1>';
 	echo <<<ABOUT
-		<center>Take a look at the latest words from Browntul!</center><br/>
+		<center>Take a look at what Browntul has to say!</center><br/>
 ABOUT;
 	echo <<<ITEM
 	<ul class="nav nav-tabs" id="blogdirectory" role="tablist">
