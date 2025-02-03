@@ -50,7 +50,7 @@ ABOUT;
 		type="button" 
 		role="tab" 
 		aria-controls="announcements-tab" 
-		aria-selected="true">Brown Says</button>
+		aria-selected="true">Browntul Says</button>
 	</li>
 ITEM;
 	echo '</ul>';
