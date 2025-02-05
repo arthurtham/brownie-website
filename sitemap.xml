@@ -1,71 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
 <url>
-  <loc>https://browntulstar.com/</loc>
-  <lastmod>2024-02-27T09:45:40+00:00</lastmod>
-  <priority>1.00</priority>
+<loc>https://browntulstar.com/</loc>
+<lastmod>2025-02-05T07:23:47+00:00</lastmod>
+<priority>1.00</priority>
 </url>
 <url>
-  <loc>https://browntulstar.com/about/</loc>
-  <lastmod>2024-02-27T09:45:40+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://browntulstar.com/coding</loc>
+<lastmod>2025-02-05T07:23:47+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://browntulstar.com/about/credits/</loc>
-  <lastmod>2024-02-27T09:45:40+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://browntulstar.com/shoutcasting/</loc>
+<lastmod>2025-02-05T07:23:47+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://browntulstar.com/about/coding/</loc>
-  <lastmod>2024-02-27T09:45:40+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://browntulstar.com/credits</loc>
+<lastmod>2025-02-05T07:23:47+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://browntulstar.com/shoutcasting/</loc>
-  <lastmod>2024-02-27T09:45:40+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://browntulstar.com/app/</loc>
+<lastmod>2025-02-05T07:23:47+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://browntulstar.com/stream/</loc>
-  <lastmod>2024-02-27T09:45:40+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://browntulstar.com/announcements/</loc>
+<lastmod>2025-02-05T07:23:47+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://browntulstar.com/store/</loc>
-  <lastmod>2024-02-27T09:45:40+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://browntulstar.com/stream</loc>
+<lastmod>2025-02-05T07:23:47+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://browntulstar.com/profile/</loc>
-  <lastmod>2024-02-27T09:45:40+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://browntulstar.com/store/</loc>
+<lastmod>2025-02-05T07:23:47+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://browntulstar.com/subs/</loc>
-  <lastmod>2024-02-27T09:45:40+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://browntulstar.com/subs/</loc>
+<lastmod>2025-02-05T07:23:47+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://browntulstar.com/subs/blog/</loc>
-  <lastmod>2024-02-27T09:45:40+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://browntulstar.com/brownieval/subonlyvideos/</loc>
+<lastmod>2025-02-05T07:23:47+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://browntulstar.com/brownieval/subonlyvideos/</loc>
-  <lastmod>2024-02-27T09:45:40+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://browntulstar.com/privacy/</loc>
+<lastmod>2025-02-05T07:23:47+00:00</lastmod>
+<priority>0.80</priority>
 </url>
-<url>
-  <loc>https://browntulstar.com/privacy/</loc>
-  <lastmod>2024-02-27T09:45:40+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
 </urlset>

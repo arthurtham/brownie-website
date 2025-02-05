@@ -129,9 +129,9 @@ require $dir . "/templates/header.php"
 					</div>
 				</div>
 				<div class="row mb-2">
-					<div class="col-lg-4 mb-2">
+					<div class="col-md-4 mb-2">
 						<div class="card w-100 h-100">
-							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--10Ksbhlw--/c_pad,b_gen_fill,w_430,h_261/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: cover;height:200px">
+							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--10Ksbhlw--/c_pad,b_gen_fill,w_430,h_261/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX" class="card-img-top" alt="okimi logo" style="object-fit: cover;height:200px">
 							<div class="card-body">
 								<h4 class="card-title  text-center">#BrownieVAL</h4>
 								<h6 class="text-center">Founder and Organizer</h6>
@@ -140,9 +140,9 @@ require $dir . "/templates/header.php"
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-4 mb-2">
+					<div class="col-md-4 mb-2">
 						<div class="card w-100 h-100">
-							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--k9RUJeuR--/c_pad,h_200/f_webp/v1/com.browntulstar/img/team-kazoku?_a=BAAAUWGX" class="card-img-top" alt="kazoku logo" style="padding: 20px;object-fit: cover;height:200px">
+							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--k9RUJeuR--/c_pad,h_200/f_webp/v1/com.browntulstar/img/team-kazoku?_a=BAAAUWGX" class="card-img-top" alt="kazoku logo" style="object-fit: cover;height:200px">
 							<div class="card-body">
 								<h4 class="card-title  text-center">Kazoku</h4>
 								<h6 class="text-center">Events Coordinator</h6>
@@ -151,9 +151,9 @@ require $dir . "/templates/header.php"
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-4 mb-2">
+					<div class="col-md-4 mb-2">
 						<div class="card w-100 h-100">
-							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--zRJGWkmd--/c_pad,h_200/f_webp/v1/com.browntulstar/img/team-comfycafelogo?_a=BAAAUWGX" class="card-img-top" alt="okimi logo" style="padding: 20px;object-fit: cover;height:200px">
+							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--zRJGWkmd--/c_pad,h_200/f_webp/v1/com.browntulstar/img/team-comfycafelogo?_a=BAAAUWGX" class="card-img-top" alt="okimi logo" style="object-fit: cover;height:200px">
 							<div class="card-body">
 								<h4 class="card-title  text-center">Okimi Cafe</h4>
 								<h6 class="text-center">Co-founder and Co-manager Emeritus</h6>
