@@ -22,7 +22,7 @@ require $dir . "/templates/header.php"
 				</span>
 				<span class="d-flex flex-row gap-1 pt-2" style="text-align: center; padding-bottom:6px">
 					<span class="w-100"><small> 
-					<a href="https://browntulstar.com/r/links" class="text-black" style="text-decoration: none" target="_blank">Socials @browntulstar</a>
+					<a href="https://browntulstar.com/r/links" class="text-black" style="text-decoration: none" target="_blank">Socials: @browntulstar</a>
 					</small></span>
 				</span>
 		</center>
@@ -190,11 +190,11 @@ require $dir . "/templates/header.php"
 					<div class="col-lg-3 offset-lg-3 mb-2 text-center">
 						<a class="btn btn-dark text-white my-2 shadow w-100" href="https://browntulstar.com/r/links" target="_blank">
 							<i class="fa-solid fa-link"></i>
-							More Links
+							Social Links
 						</a>
 					</div>
 					<div class="col-lg-3 mb-2 text-center">
-						<a class="btn btn-dark text-white my-2 shadow w-100" href="nailto:browntulstar@browntulstar.com" target="_blank">
+						<a class="btn btn-dark text-white my-2 shadow w-100" href="/contact" target="_blank">
 							<i class="fa-solid fa-envelope"></i>
 							Contact
 						</a>
