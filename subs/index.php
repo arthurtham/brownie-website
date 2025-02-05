@@ -133,7 +133,7 @@ $faqitems = array(
 		"title" => "I did everything above, but I'm not getting my perks!",
 		"contents" => "<p>Please wait for up to 24 hours for all the Discord connections to sync on Twitch and Ko-fi.</p>
 		<p>Please also try to log out and log back in again.</p>
-		<p>If you still don't have your sub perks, please ping @Browntul on Discord in the #turtle-party channel or <a href='browntulstar@browntulstar.com' target='_blank'>email Browntul</a> with your Discord username.</p>"
+		<p>If you still don't have your sub perks, please ping @Browntul on Discord in the #turtle-party channel or <a href='/contact' target='_blank'>email Browntul</a> with your Discord username.</p>"
 	),
 );
 echo <<<SUBPERKSHEADER

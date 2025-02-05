@@ -18,8 +18,8 @@ div.container.body-container-no-bg {
         padding: 75px 40px 200px 40px !important;
     }
     div.container.body-container {
-        padding: 75px 10px 200px 10px !important;
-        max-width: 95% !important;
+        padding: 75px 40px 200px 40px !important;
+        max-width: 90% !important;
     }
 }
 
