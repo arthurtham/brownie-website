@@ -101,7 +101,7 @@ echo <<<FOOTER
         </div>
         <div class="col-lg-4">
             <ul class="nav justify-content-center list-unstyled d-flex" style="margin-top:4px">
-            <small><span class="text-muted">© 2025 BrowntulStar - @browntulstar</span></small>
+            <small><span class="text-muted">© 2025 BrowntulStar - <a style="text-decoration: none" href="https://browntulstar.com/r/links" target="_blank">@browntulstar</a></span></small>
         </div>
         <div class="col-lg-4">
             <ul class="nav justify-content-center list-unstyled d-flex" style="margin-top:4px;font-size:14px">
@@ -114,7 +114,7 @@ echo <<<FOOTER
                     |
                 </li>
                 <li class="ms-2">
-                    <a style="text-decoration: none;" href="mailto:browntulstar@browntulstar.com">
+                    <a style="text-decoration: none;" href="/contact">
                         Contact
                     </a> 
                 </li>

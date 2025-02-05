@@ -30,55 +30,67 @@ require $dir . "/templates/header.php"
 </div>
 <div class="container-fluid">
 	<div id="home-section-about" class="row py-5 home-div-row" style="background-image: url('https://res.cloudinary.com/browntulstar/image/private/s--zCA0sKlO--/e_blur:300/c_scale,h_1080/f_webp/com.browntulstar/img/credits-portfolio-nary.png')">
-		<div class="col-lg-6 offset-lg-3 home-div-col">
-			<center><img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/private/s--tnUWgV2B--/ar_1:1,c_scale,w_400/f_webp/com.browntulstar/img/browntulstar-avatar-v1-1.png" style="border-radius: 100%;width:auto;max-width:min(300px, 100vw)" /></center>
-			<div class="card mx-auto">
-				<div class="card-body">
-					<h1 class="card-title text-center">About Me</h1>
-					<p class="text-center">I'm a content creator, esports commentator and producer, and software programmer. You might know me from being a community member
-						in many Twitch streams on the Pacific time zone and the host of a VALORANT tournament called #BrownieVAL!
-					</p>
-					<p class="text-center">I first started streaming on Twitch in August of 2019. On my stream, I enjoy playing chaotic multiplayer games and exploring new ways to play.
-						You'll find my Killjoy turtle PNGTuber hanging out in my comfy bedroom, tinkering with new stream widgets and coding up new software for my turtle shells to enjoy.
-						I hope you can enjoy my content!
-					</p>
-					<div class="text-center">
-					<a class="btn btn-dark m-2 shadow" href="/r/discord" target="_blank" style="max-width:400px">
-						<i class="fa-brands fa-discord"></i>
-						Discord Server
-					</a> 
-					<a class="btn btn-dark m-2 shadow" href="/shoutcasting" style="max-width:400px">
-						<i class="fa-solid fa-video"></i>
-						Portfolio
-					</a> 
-					<a class="btn btn-dark m-2 shadow" href='#home-section-watch' style="max-width:400px">
-						<i class="fa-solid fa-link"></i> More Links and Socials
-					</a>
+		<div class="col-md-12 home-div-col">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 offset-lg-2">	
+						<center><img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/private/s--Gq5rx5qg--/c_mpad,h_300,w_300/com.browntulstar/img/turtleyear-sm.png" style="border-radius: 100%;width:auto;max-width:min(300px, 100vw)" /></center>
+						<div class="card mx-auto">
+							<div class="card-body">
+								<h1 class="card-title text-center">About Me</h1>
+								<p class="text-center">I'm a content creator, esports commentator and producer, and software programmer. You might know me from being a community member
+									in many Twitch streams on the Pacific time zone and the host of a VALORANT tournament called #BrownieVAL!
+								</p>
+								<p class="text-center">I first started streaming on Twitch in August of 2019. On my stream, I enjoy playing chaotic multiplayer games and exploring new ways to play.
+									You'll find my Killjoy turtle PNGTuber hanging out in my comfy bedroom, tinkering with new stream widgets and coding up new software for my turtle shells to enjoy.
+									I hope you can enjoy my content!
+								</p>
+								<div class="text-center">
+								<a class="btn btn-dark m-2 shadow" href="/r/discord" target="_blank" style="max-width:400px">
+									<i class="fa-brands fa-discord"></i>
+									Discord Server
+								</a> 
+								<a class="btn btn-dark m-2 shadow" href="/shoutcasting" style="max-width:400px">
+									<i class="fa-solid fa-video"></i>
+									Portfolio
+								</a> 
+								<a class="btn btn-dark m-2 shadow" href='#home-section-watch' style="max-width:400px">
+									<i class="fa-solid fa-link"></i> More Links and Socials
+								</a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row py-5 home-div-row" style="background-image: url('https://res.cloudinary.com/browntulstar/image/upload/s--SD3W6uDR--/f_webp/f_png/v1/com.browntulstar/img/brownieval-background-v1?_a=BAAAUWGX')">
-		<div class="col-lg-6 offset-lg-3 home-div-col">
-			<center><img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/private/s--y9zZhHfd--/ar_1:1,c_scale,h_400/f_webp/com.browntulstar/img/brownieval-logo-v1.png" style="border: 3px solid black; border-radius: 100%;width:auto;max-width:min(300px, 100vw)" /></center>
-			<div class="card mx-auto">
-				<div class="card-body">
-					<h1 class="card-title text-center">#BrownieVAL</h1>
-					<p class="text-center">#BrownieVAL is a series of cross-community events hosted by Browntul featuring
-						small communities bonding together in a tournament-like environment. Players come
-						together in a cross-rank, for-fun experience where they can represent their community
-						leaders and foster friends with their sister communities, all while working their way
-						towards championship glory.
-					</p>
-					<div class="text-center">
-					<a class="btn btn-dark m-2 shadow" href="/r/brownievaldiscord" target="_blank" style="max-width:400px">
-						<img class='rounded' style='height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/s--fcXDbYLp--/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX'> <i class="fa-brands fa-discord"></i>
-						Tournament Server
-					</a>
-					<a class="btn btn-dark m-2 shadow" href='https://brownieval.browntulstar.com/' target='_blank' style="max-width:400px">
-						<img class='rounded' style='height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/s--fcXDbYLp--/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX'> <i class="fa-solid fa-link"></i> Website
-					</a>
+		<div class="col-md-12 home-div-col">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 offset-lg-2">	
+						<center><img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/private/s--y9zZhHfd--/ar_1:1,c_scale,h_400/f_webp/com.browntulstar/img/brownieval-logo-v1.png" style="border: 3px solid black; border-radius: 100%;width:auto;max-width:min(300px, 100vw)" /></center>
+						<div class="card mx-auto">
+							<div class="card-body">
+								<h1 class="card-title text-center">#BrownieVAL</h1>
+								<p class="text-center">#BrownieVAL is a series of cross-community events hosted by Browntul featuring
+									small communities bonding together in a tournament-like environment. Players come
+									together in a cross-rank, for-fun experience where they can represent their community
+									leaders and foster friends with their sister communities, all while working their way
+									towards championship glory.
+								</p>
+								<div class="text-center">
+								<a class="btn btn-dark m-2 shadow" href="/r/brownievaldiscord" target="_blank" style="max-width:400px">
+									<img class='rounded' style='height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/s--fcXDbYLp--/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX'> <i class="fa-brands fa-discord"></i>
+									Tournament Server
+								</a>
+								<a class="btn btn-dark m-2 shadow" href='https://brownieval.browntulstar.com/' target='_blank' style="max-width:400px">
+									<img class='rounded' style='height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/s--fcXDbYLp--/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX'> <i class="fa-solid fa-link"></i> Website
+								</a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

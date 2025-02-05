@@ -60,11 +60,11 @@ if (isset($_layout_brownievalmode) && $_layout_brownievalmode == true) {
 }
 ?>
         </ul>
-        <ul class="navbar-nav mt-auto ms-0">
+        <ul class="navbar-nav mt-auto ms-0 d-flex">
             <li style="padding-right:0px">
 <?php
 if (check_roles([$turtle_role_id])) {
-    echo "<a href='" . "/admin" ."'><button class='btn btn-danger h-100'><i class='fa-solid fa-cog'></i></button></a></li><li style='padding-right:4px'>";
+    echo "<a href='" . "/admin" ."'><button class='btn btn-danger h-100'><i class='fa-solid fa-cog'></i></button></a></li><li style='padding-right:0px'>";
 }
 print_navbar_login_items($expand=false, $center=false, $subperks=true);
 ?>

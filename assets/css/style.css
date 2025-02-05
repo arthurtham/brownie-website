@@ -19,6 +19,7 @@ div.container.body-container-no-bg {
     }
     div.container.body-container {
         padding: 75px 10px 200px 10px !important;
+        max-width: 95% !important;
     }
 }
 
@@ -317,4 +318,14 @@ div.brownie-red h1, div.brownie-red h2, div.brownie-red h3 {
     0% { background-color: rgba(0, 0, 0, 0); }
     50% { background-color: yellow; }
     100% { background-color: rgba(0, 0, 0, 0); }
+}
+
+@media (min-width:1400px) {
+    nav.navbar > div.container-fluid {
+        max-width: 1400px;
+    }
+
+    footer > div.row {
+        max-width: 1400px;
+    }
 }
