@@ -70,6 +70,20 @@ div.container.body-container-no-bg {
     100% { opacity: 1; }
 }
 
+div.modal.modal-description div.modal-body {
+    height: 100%;
+    max-height: min(600px, 60vh);
+    overflow-y:auto;
+}
+
+div.card div.card-content-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 body {
     background-color: var(--bs-gray) !important;
     display: grid;

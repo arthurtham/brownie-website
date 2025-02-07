@@ -100,7 +100,7 @@ function echoCardEntries($result) {
                             <img loading="lazy" src="{$cldSigner->signUrl($item["thumbnail"])}" class="shadow rounded" style="max-height: 200px; width: auto; max-width: 100%; aspect-ratio: 1 / 1;" />
                             </a>
                         </center>
-                        <div class="card-body">
+                        <div class="card-body card-content-center">
                             <h4 class="card-title">{$item['name']}</h4>
                             <p class="card-text">{$item['short_description']}</p>
                             <p>
@@ -130,14 +130,14 @@ function echoModalEntries($result) {
             // );
             /* Export */
             echo <<<MODALENTRY
-            <div class="modal fade" style="overflow: hidden !important" id="modal-{$item["id"]}" tabindex="-1" aria-labelledby="modal-{$item["id"]}-label" aria-hidden="true">
+            <div class="modal modal-description fade" style="overflow: hidden !important" id="modal-{$item["id"]}" tabindex="-1" aria-labelledby="modal-{$item["id"]}-label" aria-hidden="true">
                 <div class="modal-dialog" style="overflow: hidden !important">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="modal-{$item["id"]}-label"></h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" style="height:60vh;overflow-y:auto">
+                        <div class="modal-body">
                             <center>
                             $media
                             </center><br />

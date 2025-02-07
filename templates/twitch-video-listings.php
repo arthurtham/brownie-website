@@ -17,7 +17,7 @@ function echoCardEntries($result) {
             }
             echo '<div class="row" style="padding-bottom:10px" oncontextmenu="return false;">';
         }
-        echo '<div class="col-md-4 d-flex align-items-stretch"><div class="card" style="width:100% !important;">';
+        echo '<div class="col-md-4 mb-2 d-flex align-items-stretch"><div class="card" style="width:100% !important;">';
         echo '<a data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'">
         <div style="position:relative;background-color:lightgray"><img src="'.$item["thumbnail_url"].'" 
         class="card-img-top" alt="video thumbnail image: '.$short_title.'"></div></a>';
@@ -60,14 +60,14 @@ function echoModalEntries($result) {
 
         /* Export */
         echo <<<MODALENTRY
-        <div class="modal fade" style="overflow: hidden !important" id="modal-{$item["id"]}" tabindex="-1" aria-labelledby="modal-{$item["id"]}-label" aria-hidden="true">
+        <div class="modal modal-description fade" style="overflow: hidden !important" id="modal-{$item["id"]}" tabindex="-1" aria-labelledby="modal-{$item["id"]}-label" aria-hidden="true">
             <div class="modal-dialog" style="overflow: hidden !important">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="modal-{$item["id"]}-label">{$short_title}</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body" style="height:60vh;overflow-y:auto">
+                    <div class="modal-body">
                         <center><img src="{$item["thumbnail_url"]}" style="max-width:320px;max-height:180px;object-fit:contain;border: 3px solid black;border-radius:20px;" oncontextmenu="return false;" alt="portfolio image: {$item["title"]}" /></center><br />
                         <center><h5>{$item["title"]}</h5></center>
                         <center><p>Published on {$date}</p></center>

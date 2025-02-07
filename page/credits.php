@@ -55,12 +55,12 @@ function echoHighlightedArtEntries($result) {
             if ($item["entry_highlight"] == 0) {
                 continue;
             }
-            echo '<div class="carousel-item' . ($show_active_text) . '" style="" oncontextmenu="return false;">';
-            echo '<img loading="lazy" src="'.$cldSigner->signUrl($item["portfolio_image"]).'" class="d-block w-80" style="width:100%;height:500px;object-fit:contain;" alt="portfolio image: '.$item["name"].'" />';
-            echo '<div class="carousel-caption d-block rounded rounded-3" style="background-color:rgb(0,0,0,0.7)">';
+            echo '<div class="carousel-item' . ($show_active_text) . '" style="padding: 20px;" oncontextmenu="return false;">';
+            echo '<img loading="lazy" src="'.$cldSigner->signUrl($item["portfolio_image"]).'" class="d-block w-100" style="height: 300px;object-fit:contain;" alt="portfolio image: '.$item["name"].'" />';
+            echo '<div class="carousel-caption d-block rounded rounded-3" style="position: relative; left: 0; right: 0; bottom: 0;">';
             echo '<h5>'.$item["name"].'</h5>';
             echo '<p>'.$item["subheader"].'</p>';
-            echo '<button type="button" class="btn btn-sm btn-success" style="width:100%;max-width:200px;margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'">More Info</button>';
+            echo '<button type="button" class="btn btn-sm btn-success" style="width:100%;max-width:200px;" data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'">More Info</button>';
             echo '</div>';
             echo '</div>';
             $show_active_text = "";
@@ -111,12 +111,10 @@ function echoCardEntries($result) {
             alt="logo image: $portfolio_name"></div></center>
                                     <br />
                                 </div>
-                                <div class="col-lg-7">
+                                <div class="col-lg-7 card-content-center">
                                     <h4 class="card-title">$portfolio_name</h4>
-                                    <p class="card-text">
-                                        <p>$portfolio_subheader</p>
-                                        <p><button type="button" class="btn btn-success" margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-$portfolio_id">More Info</button></p>
-                                    </p>
+                                    <p>$portfolio_subheader</p>
+                                    <p><button type="button" class="btn btn-success" margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-$portfolio_id">More Info</button></p>
                                 </div>
                             </div>
                         </div>
@@ -139,14 +137,14 @@ function echoModalEntries($result) {
 
             /* Export */
             echo <<<MODALENTRY
-            <div class="modal fade" style="overflow: hidden !important" id="modal-{$item["id"]}" tabindex="-1" aria-labelledby="modal-{$item["id"]}-label" aria-hidden="true">
+            <div class="modal modal-description fade" style="overflow: hidden !important" id="modal-{$item["id"]}" tabindex="-1" aria-labelledby="modal-{$item["id"]}-label" aria-hidden="true">
                 <div class="modal-dialog" style="overflow: hidden !important">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="modal-{$item["id"]}-label"></h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" style="height:60vh;overflow-y:auto">
+                        <div class="modal-body">
                             <center>
                             <img loading="lazy" src="{$cldSigner->signUrl($item["logo_image"])}" class="mb-2" style="width:200px;height:200px;object-fit:contain;border: 3px solid black;border-radius:20px;" oncontextmenu="return false;" alt="logo image: {$item["name"]}" />
                             </center><br />

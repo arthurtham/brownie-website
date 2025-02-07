@@ -78,14 +78,14 @@ $_SESSION['cloudinary_timer_start']=time();
 </div>
 
 
-<div class="modal fade" style="overflow: hidden !important" id="modal-faq" tabindex="-1" aria-labelledby="modal-faq-label" aria-hidden="true">
+<div class="modal modal-description fade" style="overflow: hidden !important" id="modal-faq" tabindex="-1" aria-labelledby="modal-faq-label" aria-hidden="true">
     <div class="modal-dialog" style="overflow: hidden !important">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="modal-faq-label"></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" style="height:60vh;overflow-y:auto">
+            <div class="modal-body">
                 <center><h3>FAQ</h3></center>
                 <p><strong>Upload your best VALORANT clip here for the promotional video!</strong></p>
                 <p><strong>YOU ONLY GET TO UPLOAD ONE CLIP, AND IT WILL REJECT SUBSEQUENT UPLOADS; SO CHOOSE WISELY!</strong></p>

@@ -5,7 +5,7 @@ $title = "BrowntulStar - Home";
 require $dir . "/templates/header.php"
 ?>
 <div class="container-fluid body-container-home">
-	<div id="center-block" class="d-flex align-items-center justify-content-center">
+	<div id="center-block" class="d-flex align-items-center justify-content-center" style="padding-top:50px">
 		<center><img src="https://res.cloudinary.com/browntulstar/image/private/s--gRiI4zsg--/c_pad,h_400/e_shadow/com.browntulstar/img/browntulstar-logo-v2-large.png" style="width:100%;max-width:500px" />
 			<div class="box bg-gradient shadow rounded" style="background-color: rgba(255,255,255,0.2); padding: 20px; width:100%; max-width:370px">
 				<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
@@ -17,8 +17,11 @@ require $dir . "/templates/header.php"
 				<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
 					<a href="#" id="navbarSubs-button" class="btn btn-success w-100"><i class="fa-solid fa-circle-check"></i> Sub Perks</a>
 				</span>
-				<span class="d-flex flex-row gap-1" style="text-align: center">
-					<a href="#home-section-about" class="btn btn-dark w-100">About Me</a>
+				<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
+					<a href="#home-section-about" class="btn btn-dark w-100">About</a>
+				</span>
+				<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
+					<a href="/credits" class="btn btn-dark w-100">Credits</a>
 				</span>
 				<span class="d-flex flex-row gap-1 pt-2" style="text-align: center; padding-bottom:6px">
 					<span class="w-100"><small> 
