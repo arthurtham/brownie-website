@@ -3,6 +3,7 @@
 .vscode/settings.json
 config.php
 .htaccess
+.htpasswd
 compose-dev.yaml
 includes/.env.php
 
@@ -34,3 +35,6 @@ templates/navbar-contents.php
 
 # BrownieVAL Submodules
 /brownieval/lab/dv
+
+# Github
+/github
