@@ -3,25 +3,35 @@ $dir = dirname(__DIR__, 1);
 $title = "Turtle Pond - Sub Status";
 require $dir . "/templates/header.php";
 ?>
+
+<div class="container body-container-no-bg" style="padding-bottom:0 !important">
+	<div class="row">
+		<div class="col-md-8 offset-md-2 text-white">
+			<h1 class="text-center">Turtle Pond - Sub Perks</h1>
+			<h2 class="text-center">Subscribe and Benefit!</h2>
+			<p class="text-center">The power of technology is inspirational!<br>
+			Log in with your subscribed Twitch account, or connect your Twitch/Ko-fi account
+			to Discord and log in with Discord to access Browntul's many sub perks.</p>
+		</div>
+	</div>
 <?php
-echo '<div class="container body-container-no-bg" style="padding-bottom:0 !important">';
 if (!isset($_SESSION['user'])) {
 	echo "<div class='alert alert-danger' role='alert'>
-	<center>To view which Discord roles that you have that unlock sub perks, you need to log in to Discord first.</center>
+	<center>To access all sub perks, log in with a subscribed Twitch account or a Discord account with a subscribed Twitch/Ko-fi account linked to it.</center>
 	</div>";
 	echo "</div>";
 } else { // User is logged in
 	if (false) { //(!check_guild_membership($guild_id) || !check_roles([$sub_role_id, $vip_role_id, $mod_role_id])) {
 		//require dirname(__DIR__, 1) . "/templates/login-required.php";
 	} else {
+		require $dir . "/templates/profile-box.php";
 		echo '<div class="d-flex flex-column align-items-center justify-content-center">';
 		// Special box appears if the user logs in with Twitch
 		if (isset($_SESSION["twitch_user_access_token"])) {
 			if (check_roles(array($sub_role_id))) {
 				echo <<<JOINSERVERALERT
 					<div class='alert alert-success' role='alert'>
-					<center><p>Thanks for logging in with Twitch!
-					You can view all the Twitch sub perks. But, if you'd like full sub perks, be sure
+					<center><p>Thanks for subscribing! To access all sub perks, be sure
 					to join the Discord server and link your Twitch account to your Discord profile.</p>
 					<p><a class="btn btn-dark w-100 shadow" href="/r/discord" target="_blank" style="max-width:400px">
 					<i class="fa-brands fa-discord"></i>
@@ -32,8 +42,7 @@ JOINSERVERALERT;
 			} else {
 				echo <<<JOINSERVERALERT
 					<div class='alert alert-danger' role='alert'>
-					<center><p>Thanks for logging in with Twitch!
-					If you subscribe to me on Twitch, you can get all the sub perks.
+					<center><p>Subscribe on Twitch to get sub perks!
 					Read more below to learn how to get sub perks via Twitch.</p>
 					<p><a class="btn btn-dark w-100 shadow" href="/r/discord" target="_blank" style="max-width:400px">
 					<i class="fa-brands fa-discord"></i>
@@ -48,9 +57,8 @@ JOINSERVERALERT;
 			echo <<<JOINSERVERALERT
 			<div class='alert alert-danger' role='alert'>
 			<center><p>It looks like you're not in the Turtle Pond Discord server.
-			You must join the server in order to sync your Discord roles and activate your
-			sub perks on the website. Please scroll down for more information and for the join links; then,
-			log out and log back in again to check your perks.</p>
+			To access all sub perks, log in with a subscribed Twitch account or a Discord account with a subscribed Twitch/Ko-fi account linked to it.
+			Please read the FAQ below for assistance.</p>
 			<p><a class="btn btn-dark w-100 shadow" href="/r/discord" target="_blank" style="max-width:400px">
 			<i class="fa-brands fa-discord"></i>
 			Join Turtle Pond Discord Server
@@ -58,7 +66,6 @@ JOINSERVERALERT;
 			</div>
 JOINSERVERALERT;
 		}
-		require $dir . "/templates/profile-box.php";
 		echo "</div></div>";
 	}
 }
@@ -140,10 +147,7 @@ echo <<<SUBPERKSHEADER
 	<div class="container body-container" style="padding-top:48px !important">
 		<div class="row">
 			<div class="col-lg-8 offset-lg-2">
-			<h1 class="text-center">Turtle Pond - Sub Status</h1>
-			<h2 class="text-center">Subscribe, Support, and Benefit!</h2>
-			<p class="text-center">The power of technology is inspirational!<br>
-			Log in with your subscribed Twitch account, or connect your Twitch/Ko-fi account with Discord to access Browntul's many sub perks. Thanks for your great support!</p>
+			<h1 class="text-center">Main Menu</h1>
 SUBPERKSHEADER;
 if (!check_roles($sub_perk_roles)) { print_navbar_login_items($expand=true, $center=true, $subperks=true); }
 echo <<<SUBPERKSHEADER2
