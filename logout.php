@@ -29,6 +29,7 @@ $query_exists = parse_url($_REDIRECT_URL, PHP_URL_QUERY);
 if (isset($_GET["ratelimit"])) {
     $argument_string .= $query_exists ? '&' : '?';
     $argument_string .= "ratelimit";
+    $_SESSION['rate-limit-seconds'] = $_GET["ratelimit"];
     $_SESSION['redirect'] = $_REDIRECT_URL;
 } else if (isset($_GET["badauth"])) {
     $argument_string .= $query_exists ? '&' : '?';

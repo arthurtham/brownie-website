@@ -43,7 +43,14 @@ $_SESSION['timeout']=time();
 // $_SESSION['user_connections'] = rate_limit_wrapper("get_connections");
 if (twitch_get_user_sub_status()) {
     $_SESSION['roles'] = array($sub_role_id);
+} else {
+    $_SESSION['roles'] = array();
 }
+$_SESSION['guilds'] = array();
+$_SESSION['user_connections'] = array();
+
+# Sign in is successful
+$_SESSION['signin-attempted'] = 2;
 if (!isset($_SESSION['redirect']) || (strlen($_SESSION['redirect']) <= 0)) {
     redirect("/"); // if the redirect URL is not set, just send us back home
 } else {

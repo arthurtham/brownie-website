@@ -56,10 +56,18 @@ function init($redirect_url, $client_id, $client_secret, $bot_token = null)
     curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $response = curl_exec($curl);
+    $httpcode = strval(curl_getinfo($curl, CURLINFO_HTTP_CODE));
     curl_close($curl);
     $results = json_decode($response, true);
-    $_SESSION['access_token'] = $results['access_token'];
-    return true;
+    if ($httpcode === "429") {
+        return $results;
+    } else if ($httpcode !== "200") {
+        // echo "init" . $httpcode;
+        // die();
+        return false;
+    }
+    $_SESSION['access_token'] = $results['access_token'] ?? null;
+    return $results;
 }
 
 # A function to get user information | (identify scope)
@@ -72,25 +80,23 @@ function get_user($email = null)
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $response = curl_exec($curl);
+    $httpcode = strval(curl_getinfo($curl, CURLINFO_HTTP_CODE));
     curl_close($curl);
     $results = json_decode($response, true);
+    if ($httpcode === "429") {
+        return $results;
+    } else if ($httpcode !== "200") {
+        return false;
+    } 
     $_SESSION['user'] = $results;
     $_SESSION['username'] = $results['username'];
     $_SESSION['discrim'] = $results['discriminator'];
     $_SESSION['user_id'] = $results['id'];
     $_SESSION['user_avatar'] = $results['avatar'];
-    # Fetching email 
     if ($email == True) {
         $_SESSION['email'] = $results['email'];
     }
-    if (!isset($_SESSION['user']['message'])) {
-        return true;
-    }
-    else if ($_SESSION['user']['message'] !== "401: Unauthorized") {
-        return true;
-    } else {
-        return false;
-    }
+    return true;
 }
 
 # A function to get user guilds | (guilds scope)
@@ -103,8 +109,15 @@ function get_guilds()
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $response = curl_exec($curl);
+    $httpcode = strval(curl_getinfo($curl, CURLINFO_HTTP_CODE));
     curl_close($curl);
+    #TODO: processing codes
     $results = json_decode($response, true);
+    // if ($httpcode === "429") {
+    //     return $results;
+    // } else if ($httpcode !== "200") {
+    //     return false;
+    // }
     return $results;
 }
 
@@ -118,8 +131,15 @@ function get_connections()
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $response = curl_exec($curl);
+    $httpcode = strval(curl_getinfo($curl, CURLINFO_HTTP_CODE));
     curl_close($curl);
+    #TODO: processing codes
     $results = json_decode($response, true);
+    // if ($httpcode === "429") {
+    //     return $results;
+    // } else if ($httpcode !== "200") {
+    //     return false;
+    // }
     return $results;
 }
 
@@ -133,8 +153,15 @@ function get_user_guild_info($guild_id)
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $response = curl_exec($curl);
+    $httpcode = strval(curl_getinfo($curl, CURLINFO_HTTP_CODE));
     curl_close($curl);
     $results = json_decode($response, true);
+    if ($httpcode === "429") {
+        return $results;
+    } else if (!in_array($httpcode, array("404","200"))) {
+        // 404 possible if not in guild
+        return false;
+    }
     return $results;
 }
 
@@ -153,6 +180,9 @@ function check_roles($array_of_roles) {
 
 # A function to check if the user is a member of Turtle Pond
 function check_guild_membership($guild_id) {
+    if (!isset($_SESSION['guilds'])) {
+        return false;
+    }
     for ($i = 0; $i < sizeof($_SESSION['guilds']); $i++) {
         if ($guild_id === $_SESSION['guilds'][$i]['id']) {
             return true;
@@ -203,12 +233,13 @@ function get_discord_avatar_url() {
 }
 
 # Wrapper to force a retry
-function rate_limit_wrapper($function, $param=null) {
+function rate_limit_wrapper($function, array $param=null) {
     // There is only one param in use for any function that uses this,
     // so we can use the param directly
-    $result = is_null($param) ? call_user_func($function) : call_user_func($function, $param);
+    $result = is_null($param) ? call_user_func($function) : call_user_func($function, ...$param);
     if (isset($result["retry_after"])) {
-        redirect("/logout.php?ratelimit");
+        redirect("/logout.php?ratelimit=".urlencode($result["retry_after"]));
+        die;
     } else {
         return $result;
     }

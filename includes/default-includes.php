@@ -22,6 +22,16 @@ if (str_contains($_SERVER['REQUEST_URI'], "admin")) {
     $_SESSION['redirect'] = $_SERVER["REQUEST_URI"];
 }
 
+# A general check if a login was attempted but interrupted.
+# If it was interrupted, log out so we can try again.
+# Successful sign in denoted with Session variable: signin-attempted = 2
+if ($_SESSION['signin-attempted'] === 1) {
+    $_SESSION['signin-attempted'] = 0;
+    redirect("/logout.php?badauth");
+    die();
+}
+
+# Run session timer
 require_once $dir . "/includes/sessiontimer.php";
 
 ?>

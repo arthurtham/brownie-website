@@ -145,8 +145,8 @@ FOOTER;
         } else if (isset($_GET['badauth'])) {
             $message = 'The login was unsuccessful. Please try again.';
         } else if (isset($_GET['ratelimit'])) {
-            $message = 'You are logging in and out too frequently in a short amount of time, or you recently used Discord to log into
-            another app too recently. Please wait 5-10 minutes, then try to log in again.';
+            $message = 'You are logging in and out too frequently in a short amount of time, or the web authenticator is being overwhelmed.
+            Please wait for at least '. gmdate("i", intval($_SESSION['rate-limit-seconds'])+120) .' minutes, then try to log in again.';
         } else if (isset($_GET['expired'])) {
             $message = 'Your login session expired. Please log in again to continue your session.';
         }

@@ -6,24 +6,11 @@
  * @copyright : https://markis.dev
  */
 
-# IMPORTANT READ THIS:
-# - This requires 'guilds.join' scope to be active in url() function in index.php
-# - The below function requries the client to be a BOT application with CREATE_INSTANT_INVITE permissions to be a member in the server.
-# - Set the `$bot_token` to your bot token if you want to use guilds.join scope in the init() function
-# - The below function HAS to be called after get_user() as it adds the user who has logged in
-# - The bot DOES NOT have to be online, just a member in the server.
-# - Uncomment line 35 to enable the function
-
-# FEEL FREE TO JOIN MY SERVER FOR ANY QUERIES - https://join.markis.dev
-
-# Enabling error display
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
 
 # Including all the required scripts for demo
-require __DIR__ . "/includes/functions.php";
-require __DIR__ . "/includes/discord.php";
-require "config.php";
+require_once __DIR__ . "/includes/functions.php";
+require_once __DIR__ . "/includes/discord.php";
+require_once "config.php";
 
 # Initializing all the required values for the script to work
 # Fetching user details | (identify scope) (optionally email scope too if you want user's email) [Add identify AND email scope for the email!]
@@ -34,56 +21,83 @@ if (session_status() != PHP_SESSION_ACTIVE) {
     start_session_custom();
 }
 
-# Set sign-in attempted variable if not set yet
-if (!isset($_SESSION['signin-attempted'])) {
-    $_SESSION['signin-attempted'] = 0;
-}
-
 # If a user is already logged in, ignore login request
 if (isset($_SESSION["user"]) && !is_null($_SESSION["user"])) {
     redirect("/");
+}
+
+# Set sign-in attempted variable if not set yet
+if (!isset($_SESSION['signin-attempted'])) {
+    $_SESSION['signin-attempted'] = 0;
 }
 
 # If an error occured (usually set from Discord), deny login request
 if (isset($_GET["error"])) {// && $_GET["error"]==="access_denied") {
     $_SESSION['signin-attempted'] = 0;
     redirect("/logout.php?badauth");
+    die();
 }
 
 # If a sign-in is not attempted yet and initialization is not yet performed, attempt to log-in
-if (
-    ($_SESSION['signin-attempted'] === 0) || 
-        !(init($redirect_url, $client_id, $secret_id, $bot_token)) || (!get_user())
-    ) {
+if ($_SESSION['signin-attempted'] === 0) {
     $_SESSION['signin-attempted'] = 1;
     $auth_url = url($client_id, $redirect_url, $scopes);
     redirect($auth_url);
-    die;
+    die();
 };
+
+if ((rate_limit_wrapper("init", array($redirect_url, $client_id, $secret_id, $bot_token)) === false) || (rate_limit_wrapper("get_user")) === false) {
+    $_SESSION['signin-attempted'] = 0;
+    redirect("/logout.php?badauth");
+    die();
+}
 
 # Continue Login flow if all the above conditions have passed
 $_SESSION['timeout']=time();
 
-# Uncomment this for using it WITH email scope and comment line 32.
-#get_user($email=True);
-
-# Adding user to guild | (guilds.join scope)
-# join_guild('SERVER_ID_HERE');
 
 # Fetching user guild details | (guilds scope)
-$_SESSION['guilds'] = rate_limit_wrapper("get_guilds");
-usleep(50000);
+// Not necessary right now (see later code below)
+// $_SESSION['guilds'] = rate_limit_wrapper("get_guilds");
+
 # Fetching user connections | (connections scope)
-$_SESSION['user_connections'] = rate_limit_wrapper("get_connections");
-usleep(50000);
-$_SESSION['user_guild_info'] = rate_limit_wrapper("get_user_guild_info", $guild_id);
-usleep(50000);
-$_SESSION['user_guild_info_brownieval'] = rate_limit_wrapper("get_user_guild_info", $brownieval_guild_id);
+// Unneeded, so comment out
+// $_SESSION['user_connections'] = rate_limit_wrapper("get_connections");
+$_SESSION['user_connections'] = array();
+
+# Get user guild info from Browntulstar and Brownieval
+$user_guild_info = rate_limit_wrapper("get_user_guild_info", array($guild_id));
+if ($user_guild_info === false) {
+    $_SESSION['signin-attempted'] = 0;
+    redirect("/logout.php?badauth");
+    die();
+}
+$user_guild_info_brownieval = rate_limit_wrapper("get_user_guild_info", array($brownieval_guild_id));
+if ($user_guild_info_brownieval === false) {
+    $_SESSION['signin-attempted'] = 0;
+    redirect("/logout.php?badauth");
+    die();
+}
+# Merge roles together
 $_SESSION['roles'] = array_merge(
-    (!isset($_SESSION['user_guild_info']['roles'])) ? array() : $_SESSION['user_guild_info']['roles'],
-    (!isset($_SESSION['user_guild_info_brownieval']['roles'])) ? array() : $_SESSION['user_guild_info_brownieval']['roles']);
+    (!isset($user_guild_info['roles'])) ? array() :$user_guild_info['roles'],
+    (!isset($user_guild_info_brownieval['roles'])) ? array() : $user_guild_info_brownieval['roles']);
+
+# If a role exists for a user in a guild (mandatory in both servers), then they are in the guild.
+# Since we don't use any other features of the guild array, just reconstruct it based off this instance to save
+# an api call.
+$_SESSION['guilds'] = array();
+if (isset($user_guild_info['roles']) && sizeof($user_guild_info['roles']) > 0) {
+    array_push($_SESSION['guilds'], array("id" => $guild_id));
+}
+if (isset($user_guild_info_brownieval['roles']) && sizeof($user_guild_info_brownieval['roles']) > 0) {
+    array_push($_SESSION['guilds'], array("id" => $brownieval_guild_id));
+}
+
+# Sign-in is completed
+$_SESSION['signin-attempted'] = 2;
+
 # Redirecting to home page once all data has been fetched
-//redirect("/subs");
 # Is user in the guild?
 if (check_guild_membership($guild_id) || (check_guild_membership($brownieval_guild_id) && str_contains($_SESSION['redirect'], "brownieval"))) {
     if (!isset($_SESSION['redirect']) || (strlen($_SESSION['redirect']) <= 0)) {
