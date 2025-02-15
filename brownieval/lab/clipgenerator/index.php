@@ -5,31 +5,25 @@ $title = "BrownieVAL - Clip Generator";
 require $dir . "/templates/header.php";
 require $dir . "/includes/cloudinary.env.php";
 
+$titleHtml = <<<TITLEHTML
+<h1 class="text-center">#BrownieVAL Clip Generator</h1>
+<p class="text-center"><strong>Upload your best VALORANT clip (up to 60 seconds in length) and post it 
+  on social media with the hashtag <a href="https://x.com/hashtag/MyBrownieVALClip" target="_blank">#MyBrownieVALClip!</a></strong> Then, you'll get 
+  to see how cool it is to be in #BrownieVAL!</p>
+TITLEHTML;
 
-// Check login
-if (!isset($_SESSION['user'])) { 
-  echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
-  echo "<div class='alert alert-danger' role='alert'>
-  <center>You need to log in with Discord and have the necessary roles in order to access this page.</center>";
-  print_navbar_login_items($expand=true, $center=true);
-  echo "</div>";
-  echo '
-  <iframe width="100%" height="400" src="https://www.youtube.com/embed/E_fOq0oxsRM?si=CHW4wgvGX1b5dpap" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  </div>';
-  require $dir . "/templates/footer.php"; 
-  die();
-} 
-// Check user perms
-else if (!(check_guild_membership($cloudinary_guild_id) || 
-  (check_guild_membership($brownieval_guild_id) && check_roles([$brownieval_admin_access_id])) || 
-  (check_guild_membership($guild_id) && check_roles($sub_perk_roles) ) 
-  )) {
+// Check login and check user perms
+if (!(isset($_SESSION['user']) && ( 
+  (check_roles([$brownieval_admin_access_id])) || 
+  (check_guild_membership($brownieval_guild_id) ) 
+))) {
 		echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
+    echo $titleHtml;
     echo "<div class='alert alert-danger' role='alert'>
-    <center>You need to have the necessary roles (ie. subscriber role) in order to access this page.</center>
+    <center>You need to log in with Discord and be in the <a href='https://browntulstar.com/r/brownievaldiscord' target='_blank'>#BrownieVAL server</a> in order to access this page.</center>
     </div>";
     echo '
-    <iframe width="100%" height="400" src="https://www.youtube.com/embed/E_fOq0oxsRM?si=CHW4wgvGX1b5dpap" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" height="500" src="https://www.youtube.com/embed/E_fOq0oxsRM?si=CHW4wgvGX1b5dpap" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>';
     require $dir . "/templates/footer.php"; 
     die();
@@ -47,8 +41,8 @@ $_SESSION['cloudinary_timer_start']=time();
 <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <h1 class="text-center">#BrownieVAL Clip Generator</h1>
-
+    
+    <?=$titleHtml;?>
     <div style="display: span">
       <span id="upload-box-span" style="display: none"><button id="upload-box" class="cloudinary-button"> ... </button></span>
       <span id="download-button-span"></span>
@@ -67,9 +61,7 @@ $_SESSION['cloudinary_timer_start']=time();
     </div>
 
     <div class="alert alert-dark">
-      <p><strong>Upload your best VALORANT clip (up to 60 seconds in length) and post it 
-      on X (formerly known as Twitter) with the hashtag <a href="https://twitter.com/hashtag/MyBrownieVALClip" target="_blank">#MyBrownieVALClip!</a></strong> Then, you'll get 
-      to see how cool it is to be in #BrownieVAL!</p>
+      <p>Details
       <ul>
         <li>Upload your best VALORANT clip:</li>
         <ul>
@@ -85,8 +77,6 @@ $_SESSION['cloudinary_timer_start']=time();
       </ul>
     </div>
     <div class="alert alert-danger">
-      <p><strong>Abuse of this tool will lead to a irrevocable ban on all social media platforms
-        that Browntul and BrownieVAL is on.</strong></p> 
       <p><strong>Privacy</strong>: This tool uploads your video to Cloudinary, which will additionally store information about your connections on Discord (ie. your linked X and Twitch profiles).</p>
     </div>
 

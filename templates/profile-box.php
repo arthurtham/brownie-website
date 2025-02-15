@@ -32,7 +32,11 @@ echo check_guild_membership($guild_id)
     : (isset($_SESSION["twitch_user_access_token"])
     ? '<h5><span class="badge bg-secondary" style="width:100%">Logged In Via Twitch</h5>'
     : '<h5><span class="badge bg-secondary" style="width:100%">Not in Turtle Pond Server</h5>');
-echo check_guild_membership($brownieval_guild_id) ? '<h5><span class="badge bg-secondary" style="width:100%">BrownieVAL Server Member</span></h5>' : '';
+echo check_guild_membership($brownieval_guild_id) 
+    ? '<h5><span class="badge bg-secondary" style="width:100%">#BrownieVAL Server Member</span></h5>' 
+    : (isset($_SESSION["twitch_user_access_token"])
+    ? ''
+    : '<h5><span class="badge bg-secondary" style="width:100%">Not in #BrownieVAL Server</span></h5>');
 echo "</div></center>";
 echo "</div>";
 echo "</div>";
