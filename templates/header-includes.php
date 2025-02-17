@@ -7,7 +7,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <meta name="og:title" content="<?php echo $title ?>">
 <meta name="og:type" content="website">
-<meta name="og:image" content="https://res.cloudinary.com/browntulstar/image/private/s--X9YOhMqb--/b_rgb:CAAA79/c_pad,w_1200,h_630/v1708999685/com.browntulstar/img/browntulstar-logo-v2-large.png?v=1">
+<meta name="og:image" content="https://res.cloudinary.com/browntulstar/image/private/s--nGCYMg22--/b_rgb:CAAA79/c_pad,w_1200,h_630/com.browntulstar/img/browntulstar-logo-v2-large.png">
 <meta name="og:description" content="Check out this content on Browntul's official website!">
 
 <!-- Favicon -->
