@@ -26,6 +26,13 @@ if (isset($_SESSION["user"]) && !is_null($_SESSION["user"])) {
     redirect("/");
 }
 
+# If a user is rate limited in this session, prevent login attempt
+if ($_SESSION["rate-limit-timestamp"] > time()) {
+    redirect("/logout.php?ratelimit=-1");
+} else {
+    unset($_SESSION["rate-limit-timestamp"]);
+}
+
 # Set sign-in attempted variable if not set yet
 if (!isset($_SESSION['signin-attempted'])) {
     $_SESSION['signin-attempted'] = 0;

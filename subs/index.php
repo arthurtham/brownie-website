@@ -33,10 +33,6 @@ if (!isset($_SESSION['user'])) {
 					<div class='alert alert-success' role='alert'>
 					<center><p>Thanks for subscribing! To access all sub perks, be sure
 					to join the Discord server and link your Twitch account to your Discord profile.</p>
-					<p><a class="btn btn-dark w-100 shadow" href="/r/discord" target="_blank" style="max-width:400px">
-					<i class="fa-brands fa-discord"></i>
-					Join Turtle Pond Discord Server
-					</a></p></center>
 					</div>
 JOINSERVERALERT;
 			} else {
@@ -44,10 +40,6 @@ JOINSERVERALERT;
 					<div class='alert alert-danger' role='alert'>
 					<center><p>Subscribe on Twitch to get sub perks!
 					Read more below to learn how to get sub perks via Twitch.</p>
-					<p><a class="btn btn-dark w-100 shadow" href="/r/discord" target="_blank" style="max-width:400px">
-					<i class="fa-brands fa-discord"></i>
-					Join Turtle Pond Discord Server
-					</a></p></center>
 					</div>
 JOINSERVERALERT;
 			}
@@ -59,10 +51,6 @@ JOINSERVERALERT;
 			<center><p>It looks like you're not in the Turtle Pond Discord server.
 			To access all sub perks, log in with a subscribed Twitch account or a Discord account with a subscribed Twitch/Ko-fi account linked to it.
 			Please read the FAQ below for assistance.</p>
-			<p><a class="btn btn-dark w-100 shadow" href="/r/discord" target="_blank" style="max-width:400px">
-			<i class="fa-brands fa-discord"></i>
-			Join Turtle Pond Discord Server
-			</a></p></center>
 			</div>
 JOINSERVERALERT;
 		}

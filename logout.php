@@ -14,6 +14,10 @@ $_REDIRECT_URL = "/";
 if (isset($_SESSION) && isset($_SESSION['redirect'])) {
     $_REDIRECT_URL = is_null($_SESSION['redirect']) ? "/" : $_SESSION['redirect'];
 }
+
+# Save rate limit in case we need it
+$_RATE_LIMIT = $_SESSION['rate-limit-timestamp'] ?? 0;
+
 //regenerate_session();
 // # Closing the session and deleting all values associated with the session
 $_SESSION = array();
@@ -29,7 +33,11 @@ $query_exists = parse_url($_REDIRECT_URL, PHP_URL_QUERY);
 if (isset($_GET["ratelimit"])) {
     $argument_string .= $query_exists ? '&' : '?';
     $argument_string .= "ratelimit";
-    $_SESSION['rate-limit-seconds'] = $_GET["ratelimit"];
+    if (intval($_GET["ratelimit"]) !== -1) {
+        $_SESSION['rate-limit-timestamp'] = strval(time() + intval($_GET["ratelimit"] + 120));
+    } else {
+        $_SESSION['rate-limit-timestamp'] = $_RATE_LIMIT;
+    }
     $_SESSION['redirect'] = $_REDIRECT_URL;
 } else if (isset($_GET["badauth"])) {
     $argument_string .= $query_exists ? '&' : '?';

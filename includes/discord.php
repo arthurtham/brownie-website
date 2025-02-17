@@ -259,24 +259,55 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
     }
     if (isset($_SESSION['user'])) {
         if ($expand) echo "<li>";
-        echo '<a href="/profile"><button class="btn btn-light" style="border-top-right-radius:0;border-bottom-right-radius:0;font-size:0.9em"><img style="height:24px;border-color:gray;border:1px solid;" class="rounded" src="'.get_avatar_url().'" /></button></a>';
+        echo '<a href="/profile" style="text-decoration: none !important"><img style="text-decoration: none; border: 1; border-color:black; border-top-left-radius:4px;border-bottom-left-radius:4px;height:38px;border-color:gray;border:1px solid;" src="'.get_avatar_url().'" /></button></a>';
         if ($subperks) {
-            if ($expand) echo "</li><li>";
-            echo "<a href='/subs' ";
+            if ($expand) echo "</li>";
+            echo "<li class='nav-item dropdown' style='width: 175px'>";
+            $dropdown_style = "dropdown-toggle w-100' style='border-radius:0' href='#' id='accountMenu' role='button' data-bs-toggle='dropdown' aria-expanded='false'";
             if (check_roles([$turtle_role_id])) {
-                echo "class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-hammer\"></i> Admin</a>";
+                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-person-shelter\"></i> Head Turtle</a>";
             } else if (check_roles([$mod_role_id])) {
-                echo "class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Discord Mod</a>";
+                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> Discord Mod</a>";
             } else if (check_roles([$vip_role_id])) {
-                echo "class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Discord VIP</a>";
+                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> Discord VIP</a>";
             } else if (check_roles($sub_perk_roles)) {
-                echo "class='btn btn-success' style='border-radius:0'><i class=\"fa-solid fa-circle-check\"></i> Subscribed</a>";
+                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> Subscribed</a>";
             } else {
-                echo "class='btn btn-primary' style='border-radius:0'><i class=\"fa-solid fa-link\"></i> Verify Sub</a>";
+                echo "<a class='btn btn-primary $dropdown_style><i class=\"fa-solid fa-link\"></i> Verify Sub</a>";
             }
+            ?>
+            <ul class="dropdown-menu dropdown-menu-end" id="accountMenu-menu" aria-labelledby="accountMenu" style="width: inherit">
+                <li><h6 class="dropdown-header">
+                    <?=(isset($_SESSION["twitch_user_access_token"]) 
+                    ? '<i class="fa-brands fa-twitch" style="font-size: 12px"></i>' 
+                    : '<i class="fa-brands fa-discord" style="font-size: 12px"></i>') 
+                    ?>
+                Logged In As</h6></li>                
+                <li><a class="dropdown-item text-wrap text-break" href="/profile">
+                    <strong><?=$_SESSION["username"] ?></strong>
+                </a></li>
+                <li class="dropdown-divider"></li>
+                <?php
+                if (check_roles([$turtle_role_id])) {
+                ?>
+                <li><h6 class="dropdown-header">Internal Admin Tools</h6></li>
+                <li><a class="dropdown-item" href="/admin"><i style="width:26px" class='fa-solid fa-cog'></i> Admin</a></li>
+                <li class="dropdown-divider"></li>
+                <?php 
+                }
+                ?>
+                <li><h6 class="dropdown-header">Account</h6></li>
+                <li><a class="dropdown-item" href="/profile"><i style="width:26px" class="fa-solid fa-user"></i> Profile</a></li>
+                <li><a class="dropdown-item" href="/subs"><i style="width:26px" class='
+                    <?=(check_roles($sub_perk_roles) ? "fa-solid fa-circle-check'></i> Sub Perks" : "fa-solid fa-link'></i> Subscribe")?>
+                </a></li>
+                <li><a class="dropdown-item" href="/logout.php"><i style="width:26px" class='fa-solid fa-right-from-bracket'></i> Logout</a></li>
+            </ul>
+            <?php
+            echo "</li>";
         }
-        if ($expand) echo "</li><li>";
-        echo '<a href="/logout.php" class="btn btn-danger" style="border-top-left-radius:0;border-bottom-left-radius:0;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>';
+        if ($expand) echo "<li>";
+        echo '<a href="/logout.php" class="btn btn-danger" style="border-top-left-radius:0;border-bottom-left-radius:0;height:38px;font-size:22px"><i class="fa-solid fa-right-from-bracket"></i></a>';
         if ($expand) echo "</li>";
     } else {
         echo <<<LOGINITEMS

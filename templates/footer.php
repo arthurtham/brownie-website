@@ -19,7 +19,7 @@ if (isset($_footer_adminmode) && $_footer_adminmode == true) {
             </div>
             <div class="col-lg-2">
                 <ul class="nav justify-content-center list-unstyled d-flex" style="margin-top:4px">
-                <small><span>© 2024 BrowntulStar</span></small>
+                <small><span>© 2025 BrowntulStar</span></small>
             </div>
         </div>
     </footer>
@@ -131,6 +131,7 @@ FOOTER;
 <script src="/assets/js/script.js?v=2024-6-8" type="text/javascript"></script>
 
 <?php
+    # A popup after logging out
 	if (isset($_SESSION['logout-flow-ran'])
     && ($_SESSION['logout-flow-ran']) 
     && (
@@ -139,25 +140,31 @@ FOOTER;
         || isset($_GET['ratelimit']) 
         || isset($_GET['expired'])
     )) {
-        $message = "";
+        $logged_out_title = "Logged out";
+        $logged_out_message = "An unknown error occured, and you were logged out. Please log in again.";
         if (isset($_GET['logout'])) {
-            $message = "See you later!";
+            $logged_out_message = "See you later!";
         } else if (isset($_GET['badauth'])) {
-            $message = 'The login was unsuccessful. Please try again.';
+            $logged_out_message = 'The login was unsuccessful. Please try again.';
         } else if (isset($_GET['ratelimit'])) {
-            $message = 'You are logging in and out too frequently in a short amount of time, or the web authenticator is being overwhelmed.
-            Please wait for at least '. gmdate("i", intval($_SESSION['rate-limit-seconds'])+120) .' minutes, then try to log in again.';
+            $logged_out_message = 'You are logging in and out too frequently in a short amount of time, which locked you out.
+            Please wait until the following time:<br><br>'. (
+                (new DateTime())
+                ->setTimestamp($_SESSION['rate-limit-timestamp'])
+                ->setTimezone(new DateTimeZone("America/Los_Angeles"))
+                ->format("F jS, Y g:i:s A T")
+            ) .'<br><br>Afterwards, try to log in again.';
         } else if (isset($_GET['expired'])) {
-            $message = 'Your login session expired. Please log in again to continue your session.';
+            $logged_out_message = 'Your login session expired. Please log in again to continue your session.';
         }
 		echo <<<LOGGEDOUT
 		<div class="toast show fade position-absolute start-50 translate-middle-x" role="alert" aria-live="assertive" aria-atomic="true" style="margin-top:100px">
 		<div class="toast-header">
-			<strong class="me-auto">Logged out</strong>
+			<strong class="me-auto">$logged_out_title</strong>
 			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 		</div>
         <div class="toast-body">
-            $message
+            $logged_out_message
         </div>
 		</div>
 LOGGEDOUT;
