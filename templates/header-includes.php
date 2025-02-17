@@ -5,10 +5,21 @@
 <link rel="stylesheet" href="/assets/css/style.css?v=2025-2-6">
 <script src="https://kit.fontawesome.com/7f5f717705.js" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 <meta name="og:title" content="<?php echo $title ?>">
 <meta name="og:type" content="website">
 <meta name="og:image" content="https://res.cloudinary.com/browntulstar/image/private/s--nGCYMg22--/b_rgb:CAAA79/c_pad,w_1200,h_630/com.browntulstar/img/browntulstar-logo-v2-large.png">
 <meta name="og:description" content="Check out this content on Browntul's official website!">
+
+<meta itemprop="name" content="<?php echo $title ?>">
+<meta itemprop="image" content="https://res.cloudinary.com/browntulstar/image/private/s--nGCYMg22--/b_rgb:CAAA79/c_pad,w_1200,h_630/com.browntulstar/img/browntulstar-logo-v2-large.png">
+<meta itemprop="description" content="Check out this content on Browntul's official website!">
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="<?php echo $title ?>" />
+<meta name="twitter:description" content="Check out this content on Browntul's official website!" />
+<meta name="twitter:image" content="https://res.cloudinary.com/browntulstar/image/private/s--nGCYMg22--/b_rgb:CAAA79/c_pad,w_1200,h_630/com.browntulstar/img/browntulstar-logo-v2-large.png" />
+
 
 <!-- Favicon -->
 <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/browntulstar/image/private/s--4IrEtjpn--/v1709707644/com.browntulstar/favicon/apple-touch-icon.png?v=2">
