@@ -85,14 +85,41 @@ function echoCardEntries($result) {
     global $cldSigner;
     if (isset($result->num_rows) && $result->num_rows > 0) {
         $count = 0;
+        ?>
+        <div class="d-flex flex-column align-items-center justify-contents-center"><div id="prt_items" style="width: 100%; max-width: 600px; min-height:60vh;">
+        <div class="input-group mb-2">
+            <span class="input-group-text"><label for ="search-text"><i class="fa-solid fa-magnifying-glass"></i> Search</label></span>
+            <input class="search form-control" type="text" name="search-text" id="search-text" placeholder="Name / Type" value="" />
+            <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="searchFilterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                Filters
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" id="searchFilterDropdownMenu" aria-labelledby="searchFilterDropdown">
+                <li><a class="dropdown-item" onclick='fillSearchText("")'>Show All</a></li>
+                <li><h6 class="dropdown-divider"></h6></li>
+                <li><a class="dropdown-item" onclick='fillSearchText("logo")'>Logos</a></li>
+                <li><a class="dropdown-item" onclick='fillSearchText("emote")'>Emotes</a></li>
+                <li><a class="dropdown-item" onclick='fillSearchText("badge")'>Badges</a></li>
+                <li><a class="dropdown-item" onclick='fillSearchText("overlay")'>Overlays</a></li>
+                <li><a class="dropdown-item" onclick='fillSearchText("hardware")'>Hardware</a></li>
+                <li><a class="dropdown-item" onclick='fillSearchText("widget")'>Widgets</a></li>
+            </ul>
+        </div>
+        <div>
+            <div class="input-group input-group-sm mb-2">
+                <button class="sort btn btn-success btn-sm" data-sort="prt-name">Sort by Name</button>
+            </div>
+        </div>
+        <ul class="list-unstyled list">
+        <?php
         while ($item = $result->fetch_assoc()) {
-            if ($count % 2 == 0) {
-                if ($count > 0) {
-                    echo '</div>';
-                }
-                echo '<div class="row" style="padding-bottom:10px" oncontextmenu="return false;">';
-            }
-            echo '<div class="col-lg-6 mb-2 d-flex align-items-stretch">';
+            echo "<li>";
+            // if ($count % 2 == 0) {
+            //     if ($count > 0) {
+            //         echo '</div>';
+            //     }
+            //     echo '<div class="row" style="padding-bottom:10px" oncontextmenu="return false;">';
+            // }
+            // echo '<li><div class="col-lg-6 mb-2 d-flex align-items-stretch">';
             $signed_portfolio_image = $cldSigner->signUrl($item["portfolio_image"]);
             $portfolio_name = $item["name"];
             $portfolio_id = $item["id"];
@@ -101,19 +128,19 @@ function echoCardEntries($result) {
             // $links_string = generateLinksString($item, false, -1);
 
             echo <<<CREDITSPOST
-                <div class="card" style="width: 100%;color:black">
+                <div class="card mt-2" style="width: 100%;color:black">
                     <div class="card-body">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-5" oncontextmenu='return false;' ondragstart='return false;'>
+                                <div class="col-lg-4" oncontextmenu='return false;' ondragstart='return false;'>
                                     <center><div><img loading="lazy" class="rounded shadow" src="$signed_portfolio_image" style="max-height: 200px; max-width: min(100%,225px);" /><img loading="lazy" src="$logo_image" 
-            class="shadow" style="position:absolute;top:0px;left:0px;width:75px;height:75px;background-color:gray;border: 1px solid black;border-width:thick;border-top-left-radius:5px;border-bottom-right-radius:10px;" 
+            class="shadow" style="position:absolute;top:0px;left:0px;width:75px;height:75px;background-color:gray;border: 1px solid black;border-width:normal;border-top-left-radius:5px;border-bottom-right-radius:10px;" 
             alt="logo image: $portfolio_name"></div></center>
                                     <br />
                                 </div>
-                                <div class="col-lg-7 card-content-center">
-                                    <h4 class="card-title">$portfolio_name</h4>
-                                    <p>$portfolio_subheader</p>
+                                <div class="col-lg-8 card-content-center">
+                                    <h2 class="card-title prt-name">$portfolio_name</h2>
+                                    <p class="prt-subheader">$portfolio_subheader</p>
                                     <p><button type="button" class="btn btn-success" margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-$portfolio_id">More Info</button></p>
                                 </div>
                             </div>
@@ -121,10 +148,24 @@ function echoCardEntries($result) {
                     </div>
                 </div>
 CREDITSPOST;
-            echo "</div>";
+            // echo "</div></li>";
+            echo "</li>";
             $count += 1;
             }
-        echo "</div>";
+        echo "</ul></div></div>";
+        ?>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+        <script>
+            var options = { valueNames: ['prt-name', 'prt-subheader']};
+            var linkList = new List('prt_items', options);
+
+            function fillSearchText(phrase) {
+                var searchBox = document.getElementById("search-text");
+                searchBox.value=phrase;
+                searchBox.dispatchEvent(new KeyboardEvent('keyup', { keyCode: 13}));
+            }
+        </script>
+        <?php
         mysqli_data_seek($result,0);
     }
 }
