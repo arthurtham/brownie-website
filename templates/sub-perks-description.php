@@ -48,14 +48,6 @@
                     </tbody>
                     <tbody>
                         <tr>
-                        <th scope="row">#BrownieVAL Sub-only VODs</th>
-                        <td><i class="fa-solid fa-square-check"></i></td>
-                        <td><i class="fa-regular fa-square"></i></td>
-                        <td><i class="fa-regular fa-square"></i></td>
-                        </tr>
-                    </tbody>
-                    <tbody>
-                        <tr>
                         <th scope="row">Twitch Emotes</th>
                         <td><i class="fa-solid fa-square-check"></i></td>
                         <td><i class="fa-regular fa-square"></i></td>
