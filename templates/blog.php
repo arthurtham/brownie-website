@@ -13,7 +13,7 @@ if (count($legacy_link) == 5) {
 $sql = "SELECT blog_posts.blog_name, blog_posts.blog_date, blog_posts.blog_content, blog_types.name AS blog_type_name, blog_posts.blog_type AS blog_type_raw, blog_posts.visible, blog_posts.published
  FROM blog_posts 
  INNER JOIN blog_types ON blog_posts.blog_type = blog_types.blog_type 
- WHERE blog_id = \"".$blog_id."\" AND blog_posts.blog_type = \"".$blog_type."\"";
+ WHERE blog_id = \"".mysqli_real_escape_string($conn,$blog_id)."\" AND blog_posts.blog_type = \"".mysqli_real_escape_string($conn,$blog_type)."\"";
 #echo $sql;
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -48,7 +48,7 @@ STYLE;
         if (!$blog_post["published"]) {
             echo "<p>Note: This blog post is not published. Come back again soon!</p>";
         } else {
-            echo Parsedown::instance()->text((new CloudinarySigner())->convertAllUrls($blog_post["blog_content"]));
+            echo Parsedown::instance()->setBreaksEnabled(true)->text((new CloudinarySigner())->convertAllUrls($blog_post["blog_content"]));
         }
         echo "</div></div>";
         echo <<<DISQUS

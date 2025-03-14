@@ -36,7 +36,7 @@ STYLE;
             $announcement_date = date_format(date_create_from_format("Y-m-d",explode(" ",$announcement_embed["announcement_date"])[0]),"F d, Y");
             echo "<center><h1>" . $announcement_embed["announcement_name"] . "</h1><a href='/announcements/'>" . "Browntul Says" . "</a> | " . $announcement_date .  "</center><br/><hr/>";
             $announcement_embed_contents = (new CloudinarySigner())->convertAllUrls($announcement_embed["announcement_embed"]);
-            echo Parsedown::instance()->text($announcement_embed_contents);
+            echo Parsedown::instance()->setBreaksEnabled(true)->text($announcement_embed_contents);
         }
         echo "</div></div>";
 //         echo <<<DISQUS
