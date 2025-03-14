@@ -13,7 +13,7 @@ if (isset($_GET["search-text"])) {
 }
 
 if (isset($_GET["announcement-id"])) {
-	$sql = "SELECT announcement_name FROM announcement_embeds WHERE announcement_id = \"".$_GET['announcement-id']."\""; 
+	$sql = "SELECT announcement_name FROM announcement_embeds WHERE announcement_id = \"". mysqli_real_escape_string($conn, $_GET['announcement-id'])."\""; 
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while ($announcement_embed = $result->fetch_assoc()) {

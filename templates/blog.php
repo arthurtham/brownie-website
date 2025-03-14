@@ -48,7 +48,7 @@ STYLE;
         if (!$blog_post["published"]) {
             echo "<p>Note: This blog post is not published. Come back again soon!</p>";
         } else {
-            echo Parsedown::instance()->text((new CloudinarySigner())->convertAllUrls($blog_post["blog_content"]));
+            echo Parsedown::instance()->setBreaksEnabled(true)->text((new CloudinarySigner())->convertAllUrls($blog_post["blog_content"]));
         }
         echo "</div></div>";
         echo <<<DISQUS
