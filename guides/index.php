@@ -13,11 +13,11 @@ if (isset($_GET["query"])) {
 }
 
 if (isset($_GET["category"]) && isset($_GET["url"])) {
-	$sql = "SELECT title FROM guide_posts WHERE category = \"". mysqli_real_escape_string($conn, $_GET['category']) ."\" AND url = \"" . mysqli_real_escape_string($conn, $_GET['url']) . "\""; 
+	$sql = "SELECT title FROM guide_posts WHERE category = \"". mysqli_real_escape_string($conn, $_GET['category']) ."\" AND url = \"" . mysqli_real_escape_string($conn, $_GET['url']) . "\" AND visible=1"; 
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while ($guide_post = $result->fetch_assoc()) {
-			$guide_title = $announcement_embed["title"];
+			$guide_title = $guide_post["title"];
 		}
 		$title = "$guide_title - BrowntulStar - Guides";
 	} else {
@@ -44,7 +44,7 @@ ABOUT;
 
 	// Directory Setup
 	$directories = array();
-	array_push($directories, array("search", "All Posts", "View the most recent guides below, search for one, or pick a category above."));
+	array_push($directories, array("search", "All Guides", "View the most recent guides below, search for one, or pick a category above."));
 	$sql = "SELECT displayname, category, description FROM guide_types WHERE visible = 1 ORDER BY displayname ASC;";
 	$result = $conn->query($sql);
 	$directory_category_found = false;
@@ -106,7 +106,7 @@ ITEM;
 			<span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
 			<input required class="form-control" type="text" name="query" id="query" aria-label="query" placeholder="" value="'.$search_text.'"></input>
 			<button class="btn btn-success" type="submit">Search</button>
-			<button class="btn btn-light" type="button"><a href="?" class="text-decoration-none" style="color:black">Show All</a></button>
+			<button class="btn btn-light" type="button"><a href="/guides/'.$_category.'/" class="text-decoration-none" style="color:black">Show All</a></button>
 		</div>
 		</form>';
 		$sql_criteria = null;
@@ -171,14 +171,12 @@ ITEM;
 			$pagination_html_details = '</nav><p>Showing '.min($entrylimit,$total_entries,$total_entries-$pagestartfrom).' entries ('.($pagestartfrom+1).'-'.min($pagestartfrom+$entrylimit,$total_entries).' of '.$total_entries.')</p>';
 		}
 
-		echo $pagination_html;
 
 		// Listings
-		// Blog post results
-		// echo $sql;
 		$result = $conn->query($sql);
 		$cldSigner = new CloudinarySigner();
 		if ($result->num_rows > 0) {
+			echo $pagination_html;
 			while ($guide_entry = $result->fetch_assoc()) {
 				$guide_category = $guide_entry["category"];
 				$guide_title = $guide_entry["title"];
@@ -193,7 +191,7 @@ ITEM;
 				//Preg match first image
 				preg_match("/\!\[.*]\((.*)\)/", $guide_entry["content"], $guide_image_url);
 				$guide_image_url = empty($guide_image_url[1]) ? "https://res.cloudinary.com/browntulstar/image/private/s--ZPURbd45--/c_pad,w_200,h_200,ar_1:1/f_webp/v1/com.browntulstar/img/turtle-adult?_a=BAAAUWGX" : ($cldSigner->signUrl($cldSigner->convertLocalUrlsToCloudinaryUrls($guide_image_url[1])));
-				// Echo blog post
+				// Echo guide description
 				echo <<<LISTINGS
 				<div class="card" style="width: 100%;color:black">
 					<div class="card-body">
@@ -221,7 +219,7 @@ LISTINGS;
 			echo $pagination_html;
 			echo $pagination_html_details;
 		} else {
-			echo "<center><h3>No posts found.</h3></center>";
+			echo "<hr><h6>Sorry, no guides found...</h6></center>";
 		}
 		echo "</div>";
 	} 

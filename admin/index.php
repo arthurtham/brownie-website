@@ -12,6 +12,7 @@ require $dir . "/templates/header.php";
 <ul>
     <li><a class="btn btn-dark" href="/admin/announcement.php">Announcement</a></li>
     <li><a class="btn btn-dark" href="/admin/blog.php">Blog</a></li>
+    <li><a class="btn btn-dark" href="/admin/guide.php">Guide</a></li>
     <li><a class="btn btn-dark" href="/admin/cloudinary.php">Cloudinary Media Signer</a></li>
     <li><a class="btn btn-dark" href="/admin/shortlinks.php">Shortlinks</a></li>
     <li><a class="btn btn-dark" href="/admin/debug.php">Application Debug</a></li>
