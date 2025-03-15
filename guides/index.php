@@ -43,7 +43,7 @@ ABOUT;
 
 	// Directory Setup
 	$directories = array();
-	array_push($directories, array("search", "All Guides", "View the most recent guides below, search for one, or pick a category above."));
+	array_push($directories, array("_all", "All Guides", "View the most recent guides below, search for one, or pick a category above."));
 	$sql = "SELECT displayname, category, description FROM guide_types WHERE visible = 1 ORDER BY displayname ASC;";
 	$result = $conn->query($sql);
 	$directory_category_found = false;
@@ -58,7 +58,7 @@ ABOUT;
 	}
 	// If no category was defined, use search tab
 	if (!$directory_category_found) {
-		$_GET["category"] = "search";
+		$_GET["category"] = "_all";
 		$directory_to_browse = array($directories[0]);
 	}
 
@@ -72,7 +72,13 @@ ITEM;
 		$_displayname = $directory[1];
 		$_description = $directory[2];
 		$_active = ($_is_current_category) ? " active" : "";
-		$_href = ($_is_current_category) ? "#" : "/guides/category/".$directory[0]."/";
+		if ($_is_current_category) {
+			$_href = "#";
+		} else if ($_category === "_all") {
+			$_href = "/guides";
+		} else {
+			$_href = "/guides/category/" . $_category . "/";
+		}
 		echo <<<ITEM
 		<li class="nav-item" role="presentation">
 			<a href="$_href">
@@ -99,20 +105,20 @@ ITEM;
 		<p>$_description</p>
 ITEM;
 		echo "<br/>";
-		echo '<form action="/guides/category/' . $_category . '" method="get">';
+		echo '<form action="/guides' . ($_category == "_all" ? "" : ('/category/'.$_category)) . '" method="get">';
 		// Search Bar
 		echo '<div class="input-group mb-3" style="max-width:500px">
 			<span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
 			<input required class="form-control" type="text" name="query" id="query" aria-label="query" placeholder="" value="'.$search_text.'"></input>
+			<button class="btn btn-light" type="button"><a href="/guides'. ($_category == "_all" ? "" : ('/category/'.$_category)) .'/" class="text-decoration-none" style="color:black"><i class="fa-solid fa-circle-xmark"></i></a></button>
 			<button class="btn btn-success" type="submit">Search</button>
-			<button class="btn btn-light" type="button"><a href="/guides/'.$_category.'/" class="text-decoration-none" style="color:black">Show All</a></button>
 		</div>
 		</form>';
 		$sql_criteria = null;
 		if (strlen($search_text) > 0) {
 			$sql_criteria = '(LOCATE("'.mysqli_real_escape_string($conn,$search_text).'",guide_posts.title)>0 OR LOCATE("'.mysqli_real_escape_string($conn,$search_text).'",guide_posts.summary)>0 OR LOCATE("'.mysqli_real_escape_string($conn,$search_text).'",guide_posts.content)>0)';
 		}
-		if ($_category !== "search") {
+		if ($_category !== "_all") {
 			if ($sql_criteria != null) {
 			    $sql_criteria .= " AND ";
 			}
@@ -144,7 +150,6 @@ ITEM;
 		
 		// Pagination
 		$result_count = $conn->query($sql_count);
-		$pagination_guide_type = $_category;
 		if ($result_count->num_rows > 0) {
 			$total_entries = $result_count->fetch_assoc();
 			$total_entries = intval($total_entries["total_entries"]);
@@ -163,7 +168,7 @@ ITEM;
 					</li>';
 				} else {
 					//TODO: No, we are not on this page
-					$pagination_html .= '"><a class="page-link" href="/guides/category/' . $pagination_guide_type . (strlen($search_text) ? ('?query=' . $search_text) : "") .(strlen($search_text) === 0 ? "?" : "&").'page='.($_i+1).'">'.($_i+1).'</a></li>';
+					$pagination_html .= '"><a class="page-link" href="/guides' . ($_category == "_all" ? "" : ('/category/'.$_category)) . (strlen($search_text) ? ('?query=' . $search_text) : "") .(strlen($search_text) === 0 ? "?" : "&").'page='.($_i+1).'">'.($_i+1).'</a></li>';
 				}
 			}
 			$pagination_html .= '</ul>';
