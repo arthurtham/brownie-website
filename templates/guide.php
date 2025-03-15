@@ -13,7 +13,7 @@ $_error_message = <<<ERROR
 ERROR;
 
 //MYSQL is already imported
-$sql = "SELECT guide_posts.title, guide_posts.summary, guide_posts.category, guide_types.displayname as category_displayname, guide_posts.published, guide_posts.visible, guide_posts.publish_date, guide_posts.modified_date, guide_posts.url, guide_posts.content FROM guide_posts LEFT JOIN guide_types on guide_posts.category=guide_types.category WHERE guide_posts.category = \"". mysqli_real_escape_string($conn, $category) ."\" AND url = \"" . mysqli_real_escape_string($conn, $guide_url) . "\""; 
+$sql = "SELECT guide_posts.title, guide_posts.summary, guide_posts.category, guide_types.displayname as category_displayname, guide_posts.published, guide_posts.visible, guide_posts.publish_date, guide_posts.modified_date, guide_posts.url, guide_posts.content FROM guide_posts LEFT JOIN guide_types on guide_posts.category=guide_types.category WHERE url = \"" . mysqli_real_escape_string($conn, $guide_url) . "\""; 
 // echo $sql;
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -45,7 +45,7 @@ STYLE;
             echo "<div class='row guide-images' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
             $publish_date = date_format(date_create_from_format("Y-m-d",explode(" ",$embed["publish_date"])[0]),"F d, Y");
             $modified_date = date_format(date_create_from_format("Y-m-d",explode(" ",$embed["modified_date"])[0]),"F d, Y");
-            echo "<center><h1>" . $embed["title"] . "</h1><i>".$embed["summary"]."</i><br>Category: <strong>" . $embed["category_displayname"]. "</strong><br><a href='/guides/'>" . "guides" . "</a> / <a href='/guides/$category'>" . $category . "</a> / <a href='/guides/$category/$url'>" . $url . "</a> <br>Published: " . $publish_date .  "<br>Last modified: " . $modified_date . "</center><br/><hr/>";
+            echo "<center><h1>" . $embed["title"] . "</h1><i>".$embed["summary"]."</i><br><a href='/guides/'>Guides</a> / <a href='/guides/category/".$embed["category"]."'>" . $embed["category_displayname"]. "</a><br>Published: " . $publish_date .  "<br>Last modified: " . $modified_date . "</center><br/><hr/>";
             $embed_contents = (new CloudinarySigner())->convertAllUrls($embed["content"]);
             echo Parsedown::instance()->text($embed_contents);
             echo "</div></div>";

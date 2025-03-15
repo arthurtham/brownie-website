@@ -12,8 +12,8 @@ if (isset($_GET["query"])) {
 	$search_text = "";
 }
 
-if (isset($_GET["category"]) && isset($_GET["url"])) {
-	$sql = "SELECT title FROM guide_posts WHERE category = \"". mysqli_real_escape_string($conn, $_GET['category']) ."\" AND url = \"" . mysqli_real_escape_string($conn, $_GET['url']) . "\" AND visible=1"; 
+if (isset($_GET["url"])) {
+	$sql = "SELECT title FROM guide_posts WHERE url = \"" . mysqli_real_escape_string($conn, $_GET['url']) . "\" AND visible=1"; 
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while ($guide_post = $result->fetch_assoc()) {
@@ -30,8 +30,7 @@ if (isset($_GET["category"]) && isset($_GET["url"])) {
 require $dir . "/templates/header.php" ?>
 <div class='container body-container'>
 <?php
-if (isset($_GET["category"]) && isset($_GET["url"])) {
-	$category = $_GET["category"];
+if (isset($_GET["url"])) {
 	$guide_url = $_GET["url"];
 	require $dir . "/templates/guide.php";
 } else {
@@ -73,7 +72,7 @@ ITEM;
 		$_displayname = $directory[1];
 		$_description = $directory[2];
 		$_active = ($_is_current_category) ? " active" : "";
-		$_href = ($_is_current_category) ? "#" : "/guides/".$directory[0]."/";
+		$_href = ($_is_current_category) ? "#" : "/guides/category/".$directory[0]."/";
 		echo <<<ITEM
 		<li class="nav-item" role="presentation">
 			<a href="$_href">
@@ -100,7 +99,7 @@ ITEM;
 		<p>$_description</p>
 ITEM;
 		echo "<br/>";
-		echo '<form action="/guides/' . $_category . '" method="get">';
+		echo '<form action="/guides/category/' . $_category . '" method="get">';
 		// Search Bar
 		echo '<div class="input-group mb-3" style="max-width:500px">
 			<span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
@@ -164,7 +163,7 @@ ITEM;
 					</li>';
 				} else {
 					//TODO: No, we are not on this page
-					$pagination_html .= '"><a class="page-link" href="/guides/' . $pagination_guide_type . (strlen($search_text) ? ('?query=' . $search_text) : "") .(strlen($search_text) === 0 ? "?" : "&").'page='.($_i+1).'">'.($_i+1).'</a></li>';
+					$pagination_html .= '"><a class="page-link" href="/guides/category/' . $pagination_guide_type . (strlen($search_text) ? ('?query=' . $search_text) : "") .(strlen($search_text) === 0 ? "?" : "&").'page='.($_i+1).'">'.($_i+1).'</a></li>';
 				}
 			}
 			$pagination_html .= '</ul>';
@@ -206,7 +205,7 @@ ITEM;
 									<p class="card-text">
 										$guide_publish_date - $guide_type_displayname<br/>
 										<i>$guide_summary</i>
-										<p><a class="btn btn-dark" href="/guides/$guide_category/$guide_url">View</a></p>
+										<p><a class="btn btn-dark" href="/guides/post/$guide_url">View</a></p>
 									</p>
 								</div>
 							</div>

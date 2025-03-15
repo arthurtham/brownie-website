@@ -63,7 +63,7 @@ if ($result->num_rows > 0) {
         // "</td><td class='gl_date_modified_readable'>".$guide_post['modified_date'].
         // "</td><td class='gl_date_modified' style='display:none'>".strtotime($guide_post['modified_date']).
         "</td><td class='gl_type'>".$guide_type.
-        "</td><td class='gl_url'><a target='_blank' href='/guides/$guide_type/$guide_url/'>".$guide_url."</a>".
+        "</td><td class='gl_url'><a target='_blank' href='/guides/post/$guide_url/'>".$guide_url."</a>".
         "</td><td class='gl_visible'>".$guide_post['visible'].
         "</td><td class='gl_published'>".$guide_post['published'].
         "</td><td><a href='guide_editor.php?guide-id=$guide_id'><button class='btn btn-dark' type='button'>Edit</button></a>".
