@@ -19,27 +19,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($blog_post = $result->fetch_assoc()) {
         $blog_date = date_format(date_create_from_format("Y-m-d",explode(" ",$blog_post["blog_date"])[0]),"F d, Y");
-        echo <<<STYLE
-        <style>
-        .blog-images img {
-            width: 100%;
-            max-width: 400px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 10px;
-        }
-        video {
-            width: 100%;
-            max-width: 400px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            padding-bottom: 20px;
-        }
-    </style>
-STYLE;
-        echo "<div class='row blog-images' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
+        echo "<div class='row post-contents' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
         echo "<center><h1>" . $blog_post["blog_name"] . "</h1><a href='/subs/blog/$blog_type/'>" . $blog_post["blog_type_name"] . "</a> | " . $blog_date .  "</center>";
         echo "<center>/ subs / <a href='/subs/blog'>blog</a> / <a href='/subs/blog/$blog_type/'>$blog_type</a></center><hr><br/>";
         /*if (!$blog_post["visible"]) {
@@ -48,7 +28,8 @@ STYLE;
         if (!$blog_post["published"]) {
             echo "<p>Note: This blog post is not published. Come back again soon!</p>";
         } else {
-            echo Parsedown::instance()->setBreaksEnabled(true)->text((new CloudinarySigner())->convertAllUrls($blog_post["blog_content"]));
+            $embed_contents = (new CloudinarySigner())->convertAllUrls($blog_post["blog_content"]);
+            include_once $dir . "/templates/markdown-render.php";
         }
         echo "</div></div>";
         echo <<<DISQUS

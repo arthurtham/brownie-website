@@ -22,32 +22,12 @@ if ($result->num_rows > 0) {
             echo $_error_message;
         } else {
             $url = $embed["url"];
-            echo <<<STYLE
-            <style>
-            .guide-images img {
-                width: 100%;
-                max-width: 600px;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                padding: 10px;
-            }
-            video {
-                width: 100%;
-                max-width: 400px;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                padding-bottom: 20px;
-            }
-        </style>
-STYLE;
-            echo "<div class='row guide-images' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
+            echo "<div class='row post-contents' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
             $publish_date = date_format(date_create_from_format("Y-m-d",explode(" ",$embed["publish_date"])[0]),"F d, Y");
             $modified_date = date_format(date_create_from_format("Y-m-d",explode(" ",$embed["modified_date"])[0]),"F d, Y");
             echo "<center><h1>" . $embed["title"] . "</h1><i>".$embed["summary"]."</i><br><a href='/guides/'>Guides</a> / <a href='/guides/category/".$embed["category"]."'>" . $embed["category_displayname"]. "</a><br>Published: " . $publish_date .  "<br>Last modified: " . $modified_date . "</center><br/><hr/>";
             $embed_contents = (new CloudinarySigner())->convertAllUrls($embed["content"]);
-            echo Parsedown::instance()->text($embed_contents);
+            include_once $dir . "/templates/markdown-render.php";
             echo "</div></div>";
             echo <<<FOOTER
             <hr>

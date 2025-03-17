@@ -279,6 +279,43 @@ div.brownie-red h1, div.brownie-red h2, div.brownie-red h3 {
     text-shadow: 1px 1px 2px black;
 }
 
+div.post-contents {
+    blockquote {
+        margin: 0;
+        padding-left: 30px;
+        padding-bottom: 15px;
+
+        p {
+            border-left: 5px solid rgb(211,174,134);
+            margin: 0;
+            padding: 0 0 0 20px;
+        }
+    }
+    
+    iframe {
+        padding-bottom: 30px;
+    }
+
+    .table .tr .th .td {
+        border: 1px solid;
+    }
+    img {
+        width: auto;
+        max-width: 600px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+    }
+    video {
+        width: auto;
+        max-width: 300px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 .dropdown-header-navbar {
     font-family: "League Spartan", "Helvetica Neue", sans-serif !important;
     font-size: 22px !important;

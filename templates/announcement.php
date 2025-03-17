@@ -8,35 +8,15 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($announcement_embed = $result->fetch_assoc()) {
         $announcement_id = $announcement_embed["announcement_id"];
-        echo <<<STYLE
-        <style>
-        .blog-images img {
-            width: 100%;
-            max-width: 400px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 10px;
-        }
-        video {
-            width: 100%;
-            max-width: 400px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            padding-bottom: 20px;
-        }
-    </style>
-STYLE;
-        echo "<div class='row blog-images' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
+        echo "<div class='row post-contents' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
         if (!$announcement_embed["published"]) {
             echo "<center><h1>Browntul Says</h1></center><hr/>";
             echo "<p>Note: This announcement is not published or no longer exists!</p>";
         } else {
             $announcement_date = date_format(date_create_from_format("Y-m-d",explode(" ",$announcement_embed["announcement_date"])[0]),"F d, Y");
             echo "<center><h1>" . $announcement_embed["announcement_name"] . "</h1><a href='/announcements/'>" . "Browntul Says" . "</a> | " . $announcement_date .  "</center><br/><hr/>";
-            $announcement_embed_contents = (new CloudinarySigner())->convertAllUrls($announcement_embed["announcement_embed"]);
-            echo Parsedown::instance()->setBreaksEnabled(true)->text($announcement_embed_contents);
+            $embed_contents = (new CloudinarySigner())->convertAllUrls($announcement_embed["announcement_embed"]);
+            include_once $dir . "/templates/markdown-render.php";
         }
         echo "</div></div>";
 //         echo <<<DISQUS

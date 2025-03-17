@@ -8,26 +8,7 @@ require_once($dir . "/includes/mysql.php");
 require_once $dir . "/includes/CloudinarySigner.php";
 
 ?>
-<style>
-    .table .tr .th .td {
-        border: 1px solid;
-    }
-    .blog-images img {
-        width: auto;
-        max-width: 200px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 10px;
-    }
-    video {
-        width: auto;
-        max-width: 200px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-</style>
+
 <div class="container body-container">
 <?php
 
@@ -81,7 +62,7 @@ echo <<<FORM
     <label for ="announcement_embed">Markdown Contents</label>:
     <textarea style="display:none;width:100%;height:100px" id="announcement_embed" name="announcement_embed">$announcement_embed</textarea><br/>
 </form>
-<div class="card blog-images" style="padding:10px;min-height:500px;height:auto" id="announcement_content_preview" name="announcement_content_preview">
+<div class="card post-contents" style="padding:10px;min-height:500px;height:auto" id="announcement_content_preview" name="announcement_content_preview">
     (Loading preview...)
 </div>
 </div></div>
@@ -89,6 +70,8 @@ FORM;
 ?>
 </div>
 <script src="https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.3/purify.min.js" integrity="sha512-Ll+TuDvrWDNNRnFFIM8dOiw7Go7dsHyxRp4RutiIFW/wm3DgDmCnRZow6AqbXnCbpWu93yM1O34q+4ggzGeXVA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.6/marked.min.js" integrity="sha512-rvRITpPeEKe4hV9M8XntuXX6nuohzqdR5O3W6nhjTLwkrx0ZgBQuaK4fv5DdOWzs2IaXsGt5h0+nyp9pEuoTXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 const stackedit_editor           = document.querySelector('#announcement_embed');
 const stackedit_preview          = document.querySelector('#announcement_content_preview');
@@ -98,7 +81,7 @@ const stackedit                  = new Stackedit();
 
 stackedit.on('fileChange', (file) => {
     stackedit_file = file;
-    stackedit_preview.innerHTML = file.content.html;
+    stackedit_preview.innerHTML = DOMPurify.sanitize(marked.parse(file.content.text), {ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] });
     stackedit_editor.value = file.content.text;
 });
 stackedit.on('close', () => {
