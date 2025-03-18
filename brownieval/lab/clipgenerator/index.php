@@ -8,19 +8,21 @@ require $dir . "/includes/cloudinary.env.php";
 $titleHtml = <<<TITLEHTML
 <h1 class="text-center">#BrownieVAL Clip Generator</h1>
 <p class="text-center"><strong>Upload your best VALORANT clip (up to 60 seconds in length) and post it 
-  on social media with the hashtag <a href="https://x.com/hashtag/MyBrownieVALClip" target="_blank">#MyBrownieVALClip!</a></strong> Then, you'll get 
+  on social media with the hashtag <a href="https://x.com/hashtag/MyBrownieVALClip" target="_blank">#MyBrownieVALClip!</a></strong><br>Then, you'll get 
   to see how cool it is to be in #BrownieVAL!</p>
 TITLEHTML;
 
 // Check login and check user perms
-if (!(isset($_SESSION['user']) && ( 
-  (check_roles([$brownieval_admin_access_id])) || 
-  (check_guild_membership($brownieval_guild_id) ) 
-))) {
+// if (!(isset($_SESSION['user']) && ( 
+//   (check_roles([$brownieval_admin_access_id])) || 
+//   (check_guild_membership($brownieval_guild_id) ) 
+// ))) {
+if (!(isset($_SESSION['user'])) || isset($_SESSION["twitch_user_access_token"])) {
 		echo '<div class="container body-container" style="padding-top:50px;padding-bottom:100px">';
     echo $titleHtml;
     echo "<div class='alert alert-danger' role='alert'>
-    <center>You need to log in with Discord and be in the <a href='https://browntulstar.com/r/brownievaldiscord' target='_blank'>#BrownieVAL server</a> in order to access this page.</center>
+    <center>You need to log in with a Discord account to access this page.</center>
+    <center>If you are logged in with Twitch, please log out and log in with a Discord account instead.</center>
     </div>";
     echo '
     <iframe width="100%" height="500" src="https://www.youtube.com/embed/E_fOq0oxsRM?si=CHW4wgvGX1b5dpap" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -77,7 +79,7 @@ $_SESSION['cloudinary_timer_start']=time();
       </ul>
     </div>
     <div class="alert alert-danger">
-      <p><strong>Privacy</strong>: This tool uploads your video to Cloudinary, which will additionally store information about your connections on Discord (ie. your linked X and Twitch profiles).</p>
+      <p><strong>Privacy</strong>: This tool uploads your video to Cloudinary, which will store information about your Discord account.</p>
     </div>
 
     
@@ -136,8 +138,8 @@ $_SESSION['cloudinary_timer_start']=time();
       buttonCaption: "Upload Video",
       uploadPreset: "<?=$CLOUDINARY_BROWNIEVAL_PREFIX ?>",
       context: {
-        discord_username: "<?=$_SESSION["username"] ?>",
-        discord_id: "<?=$_SESSION["user"]["id"] ?>",
+        <?php if (isset($_SESSION["username"])) { ?>discord_username: "<?=$_SESSION["username"] ?>", <?php } ?>
+        <?php if (isset($_SESSION["user"]["id"])){?>discord_id: "<?=$_SESSION["user"]["id"] ?>", <?php } ?>
         twitch_connections: "<?php 
         $twitch_connections = array_filter(
             $_SESSION["user_connections"],
