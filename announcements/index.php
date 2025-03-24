@@ -61,8 +61,8 @@ ITEM;
 	<div class="input-group mb-3" style="max-width:500px">
 		<span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
 		<input required class="form-control" type="text" name="search-text" id="search-text" aria-label="search-text" placeholder="" value="'.$search_text.'"></input>
+		<button class="btn btn-light" type="button"><a href="/announcements" class="text-decoration-none" style="color:black"><i class="fa-solid fa-circle-xmark"></i></a></button>
 		<button class="btn btn-success" type="submit">Search</button>
-		<button class="btn btn-light" type="button"><a href="?" class="text-decoration-none" style="color:black">Show All</a></button>
 	</div>
 	</form>';
 	if (isset($_GET["search-text"])) {
