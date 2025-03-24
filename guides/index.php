@@ -13,7 +13,7 @@ if (isset($_GET["query"])) {
 }
 
 if (isset($_GET["url"])) {
-	$sql = "SELECT title FROM guide_posts WHERE url = \"" . mysqli_real_escape_string($conn, $_GET['url']) . "\" AND visible=1"; 
+	$sql = "SELECT title FROM guide_posts WHERE url = \"" . mysqli_real_escape_string($conn, $_GET['url']) . "\" AND published=1"; 
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while ($guide_post = $result->fetch_assoc()) {
