@@ -1,49 +1,63 @@
 <?php
 require_once $dir . "/includes/CloudinarySigner.php";
 
+$_contact_button = '<a href="/contact"><button class="btn btn-primary">Contact</button></a>';
+$_return_to_announcements_button = '<a href="/announcements/"><button class="btn btn-success">Return to Browntul Says</button></a>';
+$_error_message = <<<ERROR
+
+<h1 class="text-center">Browntul Says</h1>
+<hr/>
+<p class="text-center">Note: Sorry, it looks like this post is not published or no longer exists.</p>
+<p class="text-center">$_return_to_announcements_button</p>
+
+ERROR;
+
 //MYSQL is already imported
-$sql = "SELECT * FROM announcement_embeds WHERE announcement_id = '".$_GET['announcement-id']."' LIMIT 1";
-#echo $sql;
+$sql = "SELECT announcement_posts.title, announcement_posts.published, announcement_posts.visible, announcement_posts.publish_date, announcement_posts.modified_date, announcement_posts.content FROM announcement_posts WHERE id = \"" . mysqli_real_escape_string($conn, $announcement_id) . "\""; 
+// echo $sql;
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-    while ($announcement_embed = $result->fetch_assoc()) {
-        $announcement_id = $announcement_embed["announcement_id"];
-        echo "<div class='row post-contents' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
-        if (!$announcement_embed["published"]) {
-            echo "<center><h1>Browntul Says</h1></center><hr/>";
-            echo "<p>Note: This announcement is not published or no longer exists!</p>";
+    while ($embed = $result->fetch_assoc()) {
+        if (!$embed["published"]) {
+            echo $_error_message;
         } else {
-            $announcement_date = date_format(date_create_from_format("Y-m-d",explode(" ",$announcement_embed["announcement_date"])[0]),"F d, Y");
-            echo "<center><h1>" . $announcement_embed["announcement_name"] . "</h1><a href='/announcements/'>" . "Browntul Says" . "</a> | " . $announcement_date .  "</center><br/><hr/>";
-            $embed_contents = (new CloudinarySigner())->convertAllUrls($announcement_embed["announcement_embed"]);
+            $url = $embed["url"];
+            echo "<div class='row post-contents' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
+            $publish_date = DateTime::createFromFormat('Y-m-d H:i:s', $embed["publish_date"])->format("F d, Y h:i A");
+            $modified_date = DateTime::createFromFormat('Y-m-d H:i:s', $embed["modified_date"])->format("F d, Y h:i A");
+            echo "<center><h1>" . $embed["title"] . "</h1><a href='/announcements/'>Browntul Says</a><br>Published: " . $publish_date .  "<br>Last modified: " . $modified_date . "</center><br/><hr/>";
+            $embed_contents = (new CloudinarySigner())->convertAllUrls($embed["content"]);
             include_once $dir . "/templates/markdown-render.php";
+            echo "</div></div>";
+            echo <<<FOOTER
+            <hr>
+            <div class="alert alert-secondary">
+                <h3>Like this announcement?</h3>
+                <p>Please consider subscribing or donating to support more content.</p>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a class="btn btn-dark mb-2" href="https://www.twitch.tv/browntulstar/subscribe" target="_blank">
+                            <i class="fa-brands fa-twitch"></i>
+                            Sub on Twitch
+                        </a>
+                    </div>
+                    <div class="col-lg-12">
+                        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#66001d', 'R6R02XQSW');kofiwidget2.draw();</script> 
+                    </div>
+                </div>
+                <hr>
+                <h3>Have questions?</h3>
+                $_contact_button
+                <hr>
+                <h3>More of Browntul Says</h3>
+                $_return_to_announcements_button
+            </div>
+            
+FOOTER;
         }
-        echo "</div></div>";
-//         echo <<<DISQUS
-// 			<div id="disqus_thread"></div>
-// 			<script>
-// 				/**
-// 				*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-// 				*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-// 				var disqus_config = function () {
-// 				this.page.url = "https://{$_SERVER['HTTP_HOST']}/announcements/$announcement_id"  // Replace PAGE_URL with your page's canonical URL variable
-// 				this.page.identifier = "brownannouncement_$announcement_id"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-// 				};
-// 				(function() { // DON'T EDIT BELOW THIS LINE
-// 				var d = document, s = d.createElement('script');
-// 				s.src = 'https://browntulstar-com.disqus.com/embed.js';
-// 				s.setAttribute('data-timestamp', +new Date());
-// 				(d.head || d.body).appendChild(s);
-// 				})();
-// 			</script>
-// 			<noscript>Please enable JavaScript to view the <a href='https://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
-// 			<script id="dsq-count-scr" src='//browntulstar-com.disqus.com/count.js' async></script>
-// DISQUS;
     }
 } else {
-    echo "<center><h1>Browntul Says</h1></center><hr/>";
-    echo "<p>Note: This announcement is not published or no longer exists!</p>";
-    //die();
+    echo $_error_message;
 }
 ?>
 

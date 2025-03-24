@@ -13,11 +13,11 @@ if (isset($_GET["search-text"])) {
 }
 
 if (isset($_GET["announcement-id"])) {
-	$sql = "SELECT announcement_name FROM announcement_embeds WHERE announcement_id = \"". mysqli_real_escape_string($conn, $_GET['announcement-id'])."\""; 
+	$sql = "SELECT title FROM announcement_posts WHERE id = \"". mysqli_real_escape_string($conn, $_GET['announcement-id'])."\" AND published=1 LIMIT 1;"; 
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while ($announcement_embed = $result->fetch_assoc()) {
-			$announcement_name = $announcement_embed["announcement_name"];
+			$announcement_name = $announcement_embed["title"];
 		}
 		$title = "$announcement_name - BrowntulStar - Browntul Says";
 	} else {
@@ -66,7 +66,7 @@ ITEM;
 	</div>
 	</form>';
 	if (isset($_GET["search-text"])) {
-		$sql_criteria = ' AND (LOCATE("'.mysqli_real_escape_string($conn,$search_text).'",announcement_name)>0 OR LOCATE("'.mysqli_real_escape_string($conn,$search_text).'",announcement_embed)>0) ';
+		$sql_criteria = ' AND (LOCATE("'.mysqli_real_escape_string($conn,$search_text).'",title)>0 OR LOCATE("'.mysqli_real_escape_string($conn,$search_text).'",content)>0) ';
 	} 
 
 	//Pagination preparation
@@ -76,8 +76,8 @@ ITEM;
 	$pagination_html = "";
 	$pagination_html_details = "";
 	
-	$sql = "SELECT * FROM announcement_embeds WHERE published=1 $sql_criteria ORDER BY announcement_date DESC, announcement_id DESC, announcement_name ASC LIMIT $pagestartfrom, $entrylimit;";
-	$sql_count = "SELECT COUNT(*) AS total_entries FROM announcement_embeds WHERE published=1 $sql_criteria";
+	$sql = "SELECT * FROM announcement_posts WHERE published=1 $sql_criteria ORDER BY publish_date DESC, id DESC, title ASC LIMIT $pagestartfrom, $entrylimit;";
+	$sql_count = "SELECT COUNT(*) AS total_entries FROM announcement_posts WHERE published=1 $sql_criteria";
 
 	$result_count = $conn->query($sql_count);
 	if ($result_count->num_rows > 0) {
@@ -110,15 +110,15 @@ ITEM;
 	if ($result->num_rows > 0) {
 		$cldSigner = new CloudinarySigner();
 		while ($announcement_embed = $result->fetch_assoc()) {
-			$announcement_date = date_format(date_create_from_format("Y-m-d",explode(" ",$announcement_embed["announcement_date"])[0]),"F d, Y");
-			$announcement_id = $announcement_embed["announcement_id"];
-			$announcement_name = $announcement_embed["announcement_name"];
+			$announcement_date = date_format(date_create_from_format("Y-m-d",explode(" ",$announcement_embed["publish_date"])[0]),"F d, Y");
+			$announcement_id = $announcement_embed["id"];
+			$announcement_name = $announcement_embed["title"];
 			if ($title[0] === "-") {
 				continue;
 			}
 			//Preg match first image
 			$announcement_image_url;
-			preg_match("/\!\[.*]\((.*)\)/", $announcement_embed["announcement_embed"], $announcement_image_url);
+			preg_match("/\!\[.*]\((.*)\)/", $announcement_embed["content"], $announcement_image_url);
 			$announcement_image_url = empty($announcement_image_url[1]) ? "https://res.cloudinary.com/browntulstar/image/private/s--ZPURbd45--/c_pad,w_200,h_200,ar_1:1/f_webp/v1/com.browntulstar/img/turtle-adult?_a=BAAAUWGX" : ($cldSigner->signUrl($cldSigner->convertLocalUrlsToCloudinaryUrls($announcement_image_url[1])));
 			echo "<br/>";
 			// echo explode(" ",$announcement_date) . " - <a href=\"?announcement-id=" . $announcement_id . "\">" . $announcement_name . "</a>";

@@ -38,16 +38,18 @@ require_once($dir . "/includes/mysql.php");
 $sql = "SELECT * FROM guide_posts ORDER BY publish_date DESC, id ASC, title ASC;";
 //echo "<p>$sql</p>";
 
-// <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_published\">Published Date</button></th>
-// <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_modified\">Modified Date</button></th>
+
 // <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_id\">ID</button></th>
+// <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_published\">Published</button></th>
+
 
 echo "<table class='table'><tr>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_name\">Name</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_type\">Category</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_url\">URL</button></th>
-<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_visible\">Visible</button></th>
-<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_published\">Published</button></th>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_published\">Published Date</button></th>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_modified\">Modified Date</button></th>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_visible\">List in Dir</button></th>
 <th>Actions</th></tr><tbody class='list'>";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -58,14 +60,14 @@ if ($result->num_rows > 0) {
         echo "<tr>" . 
         // "<td class='gl_id'>".$guide_id.
         "</td><td class='gl_name' style='min-width:200px'>".$guide_post['title'].
-        // "</td><td class='gl_date_published_readable'>".$guide_post['publish_date'].
-        // "</td><td class='gl_date_published' style='display:none'>".strtotime($guide_post['publish_date']).
-        // "</td><td class='gl_date_modified_readable'>".$guide_post['modified_date'].
-        // "</td><td class='gl_date_modified' style='display:none'>".strtotime($guide_post['modified_date']).
         "</td><td class='gl_type'>".$guide_type.
         "</td><td class='gl_url'><a target='_blank' href='/guides/post/$guide_url/'>".$guide_url."</a>".
+        "</td><td class='gl_date_published_readable'>".$guide_post['publish_date'].
+        "</td><td class='gl_date_published' style='display:none'>".strtotime($guide_post['publish_date']).
+        "</td><td class='gl_date_modified_readable'>".$guide_post['modified_date'].
+        "</td><td class='gl_date_modified' style='display:none'>".strtotime($guide_post['modified_date']).
         "</td><td class='gl_visible'>".$guide_post['visible'].
-        "</td><td class='gl_published'>".$guide_post['published'].
+        // "</td><td class='gl_published'>".$guide_post['published'].
         "</td><td><a href='guide_editor.php?guide-id=$guide_id'><button class='btn btn-dark' type='button'>Edit</button></a>".
         "</td></tr>";
     }
@@ -79,7 +81,7 @@ if ($result->num_rows > 0) {
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
 <script>
-    var options = { valueNames: ['gl_id', 'gl_name', 'gl_date', 'gl_date_published_readable', 'gl_date_modified_readable', 'gl_type', 'gl_visible', 'gl_published', 'gl_url']};
+    var options = { valueNames: ['gl_id', 'gl_name', 'gl_date_published_readable', 'gl_date_modified_readable', 'gl_type', 'gl_visible', 'gl_published', 'gl_url']};
     var linkList = new List('guide_links', options);
 </script>
 

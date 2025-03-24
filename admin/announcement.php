@@ -19,52 +19,66 @@ require_once($dir . "/includes/mysql.php");
 </head>
 <body>
     <div class='container body-container'>
-        <div class='row'>
+        <div id="announcement_links">
+        <div class='row mb-2'>
             <div class='col'>
                 <h1>Announcement Editor</h1>
-                <form action="announcement.php" method="get">
-                    <input type="text" name="search-text" id="search-text" placeholder="Search..." value="<?php echo $_GET["search-text"] ?>" />
-                    <button type="submit">Search</button> | 
-                    <a href="announcement.php"><button type="button">All Posts</button></a>
-                    <a href="announcement_editor.php"><button type="button">Create New Post</button></a>
-                </form>
+                <div class="input-group mb-3">
+                    <a href="announcement_editor.php"><button class="btn btn-success" type="button">Create New Post</button></a>
+                    <label for="search-text" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i> Search: </label>
+                    <input class="search form-control" type="text" name="search-text" id="search-text" placeholder="Search..." value="<?php echo $_GET["search-text"] ?>" />
+                </div>
             </div>
         </div>
         <div class='row'>
-            <div class='col'>
+            <div class='col-lg-12 border' style='overflow:scroll;max-height:70vh'>
 <?php
 
-$search_criteria = (isset($_GET["search-text"]) ? (
-    'WHERE LOCATE("'.mysqli_real_escape_string($conn,$_GET["search-text"]).'",announcement_name)>0 OR LOCATE("'.mysqli_real_escape_string($conn,$_GET["search-text"]).'",announcement_embed)>0'
-    ) : "");
 
-
-$sql = "SELECT * FROM announcement_embeds $search_criteria ORDER BY id DESC, announcement_id DESC, announcement_name ASC;";
+$sql = "SELECT * FROM announcement_posts ORDER BY publish_date DESC, id ASC, title ASC;";
 //echo "<p>$sql</p>";
-echo "<table class='table'><tr><th>Announcement ID</th><th>Announcement Name</th><th>Announcement Date</th><th>Published</th><th>Actions</th>";
+
+echo "<table class='table'><tr>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_name\">Name</button></th>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_id\">ID</button></th>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_url\">URL</button></th>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_published\">Published Date</button></th>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_modified\">Modified Date</button></th>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_visible\">List in Dir</button></th>
+<th>Actions</th></tr><tbody class='list'>";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($announcement_post = $result->fetch_assoc()) {
-        $announcement_id = $announcement_post['announcement_id'];
-        $announcement_embed = $announcement_post['announcement_embed'];
-        echo "<tr><td>".$announcement_id.
-        "</td><td>".$announcement_post['announcement_name'].
-        "</td><td>".$announcement_post['announcement_date'].
-        "</td><td>".$announcement_post['published'].
-        "</td><td><a href='announcement_editor.php?announcement_id=$announcement_id'><button type='button'>Edit</button></a>".
-        "<a target='_blank' href='/announcements/$announcement_id/'><button type='button'>View</button></a>".
+        $announcement_id = $announcement_post['id'];
+        $announcement_type = $announcement_post['category'];
+        echo "<tr>" . 
+        "<td class='gl_name' style='min-width:200px'>".$announcement_post['title'].
+        "</td><td class='gl_id'>".$announcement_post['id'].
+        "</td><td class='gl_url'><a target='_blank' href='/announcements/$announcement_id/'>/announcements/$announcement_id</a>".
+        "</td><td class='gl_date_published_readable'>".$announcement_post['publish_date'].
+        "</td><td class='gl_date_published' style='display:none'>".strtotime($announcement_post['publish_date']).
+        "</td><td class='gl_date_modified_readable'>".$announcement_post['modified_date'].
+        "</td><td class='gl_date_modified' style='display:none'>".strtotime($announcement_post['modified_date']).
+        "</td><td class='gl_visible'>".$announcement_post['visible'].
+        "</td><td><a href='announcement_editor.php?announcement-id=$announcement_id'><button class='btn btn-dark' type='button'>Edit</button></a>".
         "</td></tr>";
     }
 }
 ?>
+                </tbody>
             </table>
         </div>
     </div>
+    </div>
 </div>
-</body>
-</html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+<script>
+    var options = { valueNames: ['gl_id', 'gl_name', 'gl_date_published_readable', 'gl_date_modified_readable', 'gl_type', 'gl_visible', 'gl_published', 'gl_url']};
+    var linkList = new List('announcement_links', options);
+</script>
 
 <?php
 $_footer_adminmode = true;
 require $dir . "/templates/footer.php";
+
 ?>
