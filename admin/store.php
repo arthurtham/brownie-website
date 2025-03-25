@@ -24,7 +24,7 @@ require_once($dir . "/includes/mysql.php");
 if (!isset($_GET["request-id"])) {
     echo '<h1>Request Manager</h1>';
     echo '<p>Enter the request ID of the service you are looking for.</p>';
-    echo '<form action="." method="get">
+    echo '<form action="/admin/store.php" method="get">
 			<input type="text" name="search-text" id="search-text" placeholder="Search..." value=""></input>
 			<button type="submit">Search</button>
 			</form>';

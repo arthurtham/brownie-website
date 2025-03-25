@@ -12,7 +12,7 @@ require $dir . "/templates/header.php";
 #phpinfo pre {}
 #phpinfo a:link {}
 #phpinfo a:hover {}
-#phpinfo table {border: 1px solid; }
+#phpinfo table {border: 0px solid; }
 #phpinfo .center {}
 #phpinfo .center table {}
 #phpinfo .center th {font-weight:bold}
@@ -29,6 +29,13 @@ require $dir . "/templates/header.php";
 </style>
 
 <div class="container body-container">
+    <div class="row mb-2">
+        <div class="col">
+            <h1>PHP Info</h1>
+            <a href="/admin" class="btn btn-danger">Return to Main Menu</a>
+        </div>
+    </div>
+    <hr>
     <div class="row">
         <div class="col">
             <div id="phpinfo">

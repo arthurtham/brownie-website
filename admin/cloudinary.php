@@ -23,17 +23,20 @@ if (isset($_GET["cldurl"])) {
 <form action="" method="get">
     <label for ="cldurl">Unsigned Cloudinary URL</label>: <input style="width:100%" type="text" id="cldurl" name="cldurl" value="<?=(isset($_GET["cldurl"]) ? $_GET["cldurl"] : "") ?>" /><br/>
     Make sure this URL has a file extension (accepted: png, jpg, mov, mp4, webp, gif) <br/>
-    <button type="submit">Submit</button>
+    <button class="btn btn-success" type="submit">Sign</button>
+    <a href="/admin" class="btn btn-danger">Return to Main Menu</a>
 </form>
 
 <?php 
 if (isset($_GET["cldurl"])) {
 ?>
-<p>Original URL: <br/> 
-<pre> <?=$_GET["cldurl"]?> </pre></p>
-<p>Signed: <br/>
-<pre><?=$image ?> </pre><br/>
-<img src="<?=$image ?>" style="width:200px !important" /></p>
+<div class="alert alert-dark">
+    <p>Original URL: <br/> 
+    <pre> <?=$_GET["cldurl"]?> </pre></p>
+    <p>Signed URL: <br/>
+    <pre><?=$image ?> </pre><hr>
+    <img src="<?=$image ?>" style="width:200px !important" /></p>
+</div>
 <?php 
 }
 ?>

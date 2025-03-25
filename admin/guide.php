@@ -25,7 +25,10 @@ require_once($dir . "/includes/mysql.php");
                 <h1>Guide Editor</h1>
                 <div class="input-group mb-3">
                     <a href="guide_editor.php"><button class="btn btn-success" type="button">Create New Post</button></a>
-                    <label for="search-text" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i> Search: </label>
+                    <a href="/admin" class="btn btn-danger">Return to Main Menu</a>
+                </div>
+                <div class="input-group mb-3">
+                    <label for="search-text" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></label>
                     <input class="search form-control" type="text" name="search-text" id="search-text" placeholder="Search..." value="<?php echo $_GET["search-text"] ?>" />
                 </div>
             </div>
@@ -47,8 +50,8 @@ echo "<table class='table'><tr>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_name\">Name</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_type\">Category</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_url\">URL</button></th>
-<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_published\">Published Date</button></th>
-<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_modified\">Modified Date</button></th>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_published_readable\">Published Date</button></th>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_modified_readable\">Modified Date</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_visible\">List in Dir</button></th>
 <th>Actions</th></tr><tbody class='list'>";
 $result = $conn->query($sql);

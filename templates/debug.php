@@ -8,7 +8,8 @@ require $dir . "/templates/header.php";
 <div class="container body-container">
 
 <h1 class="text-center">Debug Page</h1>
-<p>Welcome to the debug page. On this page, you will see the login information for the current user. In reality though, it's the same info that you'd get if you logged in via Discord. It's nice info to have, I guess, but you could just try harder, not look at this GitHub repo, and make your own debug app to get your Discord info.</p>
+<p>Welcome to the debug page. On this page, you will see the login information for the current user.</p>
+<a href="/admin" class="btn btn-danger">Return to Main Menu</a>
 
 <?php require $dir . "/templates/profile-box.php"; ?>
 

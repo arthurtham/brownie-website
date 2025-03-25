@@ -13,6 +13,7 @@ require $dir . "/templates/header.php";
     <p>Whoever reads this on GitHub is probably super excited, but all this does is
         export the <strong>navbar_contents</strong> data structure for the navbar.
     </p>
+    <a href="/admin" class="btn btn-danger">Return to Main Menu</a>
     <xmp style="white-space: pre-wrap"><?php
     $file = file_get_contents($dir . "/templates/navbar-contents.php");
     print_r($file);

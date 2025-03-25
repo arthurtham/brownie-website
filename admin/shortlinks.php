@@ -17,13 +17,14 @@ require_once($dir . "/includes/mysql.php");
         <div class='row'>
             <div class='col'>
                 <h1>Shortlinks Editor</h1>
-                <!-- <form action="shortlinks.php" method="get"> -->
-                    <!-- <input type="text" name="search-text" id="search-text" placeholder="Search..." value="<?php echo $_GET["search-text"] ?>" />
-                    <button type="submit">Search Links</button> | 
-                    <a href="shortlinks.php"><button type="button">All Links</button></a> -->
+                <div class="input-group mb-3">
+                    <a href="shortlinks_editor.php"><button type="button" class="btn btn-success">Create New Shortlink</button></a>
+                    <a href="/admin" class="btn btn-danger">Return to Main Menu</a>
+                </div>
+                <div class="input-group mb-3">
+                    <label for="search-text" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></label>
                     <input class="search form-control" type="text" name="search-text" id="search-text" placeholder="Search..." />
-                    <a href="shortlinks_editor.php"><button type="button">Create New Shortlink</button></a>
-                <!-- </form> -->
+                </div>
             </div>
         </div>
         <div class='row'>
@@ -38,27 +39,24 @@ $search_criteria = (isset($_GET["search-text"]) ? (
 $sql = "SELECT * FROM shortlinks $search_criteria ORDER BY available DESC, shortcode ASC;";
 //echo "<p>$sql</p>";
 echo "<table class='table w-100'><tr>
-<th class='col-1'><button class='sort btn btn-success btn-sm' data-sort=\"sl_id\">ID</button</th>
 <th class='col-2'><button class='sort btn btn-success btn-sm' data-sort=\"sl_shortcode\">Short Code</button</th>
 <th class='col-4'><button class='sort btn btn-success btn-sm' data-sort=\"sl_fulllink\">Full Link</button</th>
 <th class='col-1'><button class='sort btn btn-success btn-sm' data-sort=\"sl_hits\">Hits</button</th>
-<th class='col-1'><button class='sort btn btn-success btn-sm' data-sort=\"sl_available\">Active</button</th>
+<th class='col-1'><button class='sort btn btn-success btn-sm' data-sort=\"sl_available\">Accessible</button</th>
 <th class='col-4'><button class='sort btn btn-success btn-sm' data-sort=\"sl_creationdate\">Date Created</button</th>
 <th class='col-1'>Actions</th>";
 echo "<tbody class='list'>";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($shortlink_entry = $result->fetch_assoc()) {
-        echo "<tr><td class='sl_id'>".$shortlink_entry['id'].
-        "</td><td class='sl_shortcode' style='word-wrap: break-word;max-width:300px'><strong>".$shortlink_entry['shortcode']."</strong><br/>browntulstar.com/r/".$shortlink_entry['shortcode'].
-        "</td><td class='sl_fulllink' style='word-wrap: break-word;max-width:300px'>".$shortlink_entry['fulllink'].
+        echo "<tr>
+        <td class='sl_shortcode' style='word-wrap: break-word;max-width:300px'><strong><a href='/r/".$shortlink_entry['shortcode']."' target='_blank'>".$shortlink_entry['shortcode']."</strong></a>".
+        "</td><td class='sl_fulllink' style='word-wrap: break-word;max-width:300px'><a href='".$shortlink_entry['fulllink']."' target='_blank'>".$shortlink_entry['fulllink']."</strong></a>".
         "</td><td class='sl_hits'>".$shortlink_entry['hits'].
         "</td><td class='sl_available'>".$shortlink_entry['available'].
         "</td><td class='sl_creationdate_readable'>".$shortlink_entry['creationdate'].
         "</td><td style=\"display:none\" class='sl_creationdate'>". strtotime($shortlink_entry['creationdate']) .
-        "</td><td><a href='shortlinks_editor.php?shortcode=".$shortlink_entry['shortcode']."'><button type='button'>Edit</button></a>".
-        "<a target='_blank' href='/r/index.php?shortcode=".$shortlink_entry['shortcode']."'><button type='button'>View</button></a>".
-        "<a target='_blank' href='".$shortlink_entry['fulllink']."'><button type='button'>Raw</button></a>".
+        "</td><td><a href='shortlinks_editor.php?shortcode=".$shortlink_entry['shortcode']."'><button type='button' class='btn btn-success'>Edit</button></a>".
         "</td></tr>";
     }
 }
@@ -72,7 +70,7 @@ if ($result->num_rows > 0) {
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
 <script>
-    var options = { valueNames: ['sl_id', 'sl_shortcode', 'sl_fulllink', 'sl_hits', 'sl_available', 'sl_creationdate', 'sl_creationdate_readable']};
+    var options = { valueNames: ['sl_shortcode', 'sl_fulllink', 'sl_hits', 'sl_available', 'sl_creationdate', 'sl_creationdate_readable']};
     var linkList = new List('sl_links', options);
 </script>
 
