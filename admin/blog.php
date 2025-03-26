@@ -23,12 +23,14 @@ require_once($dir . "/includes/mysql.php");
         <div class='row'>
             <div class='col'>
                 <h1>Blog Editor</h1>
-                <!-- <form action="blog.php" method="get"> -->
+                <div class="input-group mb-3">
+                    <a href="blog_editor.php"><button class="btn btn-success" type="button">Create New Post</button></a>
+                    <a href="/admin" class="btn btn-danger">Return to Main Menu</a>
+                </div>
+                <div class="input-group mb-3">
+                    <label for="search-text" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></label>
                     <input class="search form-control" type="text" name="search-text" id="search-text" placeholder="Search..." value="<?php echo $_GET["search-text"] ?>" />
-                    <!-- <button type="submit">Search</button> | 
-                    <a href="blog.php"><button type="button">All Posts</button></a> -->
-                    <a href="blog_editor.php"><button type="button">Create New Post</button></a>
-                <!-- </form> -->
+                </div>
             </div>
         </div>
         <div class='row'>
@@ -42,13 +44,13 @@ $search_criteria = (isset($_GET["search-text"]) ? (
 
 $sql = "SELECT * FROM blog_posts $search_criteria ORDER BY id DESC, blog_id DESC, blog_name ASC;";
 //echo "<p>$sql</p>";
-echo "<table class='table'><tr>
+echo "<table class='table'><tr class='sticky-top' style='background-color:lightgray'>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"bl_id\">ID</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"bl_name\">Name</button></th>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"bl_type\">Category</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"bl_date\">Post Date</button></th>
-<th><button class='sort btn btn-success btn-sm' data-sort=\"bl_type\">Type</button></th>
-<th><button class='sort btn btn-success btn-sm' data-sort=\"bl_visible\">Visible</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"bl_published\">Published</button></th>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"bl_visible\">List in Dir</button></th>
 <th>Actions</th></tr><tbody class='list'>";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -56,14 +58,14 @@ if ($result->num_rows > 0) {
         $blog_id = $blog_post['blog_id'];
         $blog_type = $blog_post['blog_type'];
         echo "<tr><td class='bl_id'>".$blog_id.
-        "</td><td class='bl_name'>".$blog_post['blog_name'].
-        "</td><td class='bl_date_readable'>".$blog_post['blog_date'].
-        "</td><td class='bl_date' style='display:none'>".strtotime($blog_post['blog_date']).
+        "</td><td class='bl_name'><strong>".$blog_post['blog_name'].
+            '</strong><br><a href="/subs/blog/'.$blog_type.'/'.$blog_id.'/" target="_blank">/subs/blog/'.$blog_type.'/'.$blog_id.'/</a>'.
         "</td><td class='bl_type'>".$blog_type.
-        "</td><td class='bl_visible'>".$blog_post['visible'].
+        "</td><td class='bl_date_readable'>".DateTime::createFromFormat('Y-m-d H:i:s', $blog_post['blog_date'])->format("F d, Y").
+        "</td><td class='bl_date' style='display:none'>".strtotime($blog_post['blog_date']).
         "</td><td class='bl_published'>".$blog_post['published'].
-        "</td><td><a href='blog_editor.php?blog_id=$blog_id'><button type='button'>Edit</button></a>".
-        "<a target='_blank' href='/subs/blog/$blog_type/$blog_id/'><button type='button'>View</button></a>".
+        "</td><td class='bl_visible'>".$blog_post['visible'].
+        "</td><td><a href='blog_editor.php?blog_id=$blog_id'><button type='button' class='btn btn-dark'>Edit</button></a>".
         "</td></tr>";
     }
 }

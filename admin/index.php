@@ -8,7 +8,7 @@ require $dir . "/templates/header.php";
 ?>
 <div class="container body-container">
 <h1>Menu</h1>
-<p>Please use a Desktop computer for optimal viewing</p>
+<p>Please use a Desktop computer for optimal viewing, as it is not designed for mobile devices.</p>
 <ul>
     <li class="mb-2">
         <button disabled style="width:100px" class="btn btn-primary">Content</button>

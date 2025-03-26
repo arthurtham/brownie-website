@@ -1,7 +1,6 @@
 <?php
 require_once $dir . "/includes/CloudinarySigner.php";
 
-$_contact_button = '<a href="/contact"><button class="btn btn-primary">Contact</button></a>';
 $_return_to_guides_button = '<a href="/guides/"><button class="btn btn-success">Return to Guides</button></a>';
 $_error_message = <<<ERROR
 
@@ -31,29 +30,10 @@ if ($result->num_rows > 0) {
             echo "</div></div>";
             echo <<<FOOTER
             <hr>
-            <div class="alert alert-secondary">
-                <h3>Like this guide?</h3>
-                <p>Please consider subscribing or donating to support more content.</p>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <a class="btn btn-dark mb-2" href="https://www.twitch.tv/browntulstar/subscribe" target="_blank">
-                            <i class="fa-brands fa-twitch"></i>
-                            Sub on Twitch
-                        </a>
-                    </div>
-                    <div class="col-lg-12">
-                        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#66001d', 'R6R02XQSW');kofiwidget2.draw();</script> 
-                    </div>
-                </div>
-                <hr>
-                <h3>Have questions?</h3>
-                $_contact_button
-                <hr>
-                <h3>More Guides</h3>
-                $_return_to_guides_button
-            </div>
-            
 FOOTER;
+            $_post_footer_type = "guide";
+            $_post_footer_return_button = $_return_to_guides_button;
+            include $dir . "/templates/post-footer.php";
         }
     }
 } else {

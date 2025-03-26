@@ -68,52 +68,71 @@ $html_blog_types .= "</select>";
 // <button type="button" onclick="renderMarkdown()">Preview Markdown</button><button id="submit" name="submit">Post to DB</button><br/>
 echo <<<FORM
 <div class="container body-container">
-<div class="row"><div class="col"><h1>Blog Editor</h1></div></div>
-<div class="row">
-<div class="col col-md-12">
-<div class="card bg-secondary mb-2">
-<div class="card-body">
-<form action="blog_process.php" method="post">
-    <div class="input-group mb-3" style="max-width:500px">
-        <span class="input-group-text"><label for ="blog_name">Title</label></span>
-        <input class="form-control" type="text" id="blog_name" name="blog_name" value="$blog_name" />
+    <div class="row">
+        <div class="col">
+            <h1>Blog Editor</h1>
+        </div>
     </div>
-    <div class="input-group mb-3" style="max-width:500px">
-        <span class="input-group-text"><label for ="blog_id">ID</label></span>
-        <input $can_change_blog_id class="form-control" type="number" id="blog_id" name="blog_id" value="$blog_id" />
+    <div class="row">
+        <div class="col col-md-12">
+            <div class="card-body">
+                <form action="blog_process.php" method="post">
+                    <div class="card bg-secondary mb-2" style="width: 100%; overflow-x: auto;">
+                        <div class="card-body" style="min-width: 500px">
+                            <div class="input-group mb-3" style="max-width:500px">
+                                <span class="input-group-text"><label for ="blog_name">Title</label></span>
+                                <input class="form-control" type="text" id="blog_name" name="blog_name" value="$blog_name" />
+                            </div>
+                            <div class="input-group mb-3" style="max-width:500px">
+                                <span class="input-group-text"><label for ="blog_id">ID</label></span>
+                                <input $can_change_blog_id class="form-control" type="number" id="blog_id" name="blog_id" value="$blog_id" />
+                            </div>
+                            <div class="input-group mb-3" style="max-width:500px">
+                            $html_blog_types
+                            </div>
+                            <div class="input-group mb-3" style="max-width:500px">
+                                <span class="input-group-text"><label for ="blog_date">Date</label></span>
+                                <input class="form-control" type="date" id="blog_date" name="blog_date" value="$blog_date" />
+                            </div>
+                            <div class="input-group mb-3" style="max-width:500px">
+                                <span class="input-group-text"><label for ="blog_visible">Visible</label></span>
+                                <span class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox" id="blog_visible" name="blog_visible" value="1" $blog_visible />
+                                </span>
+                                <span class="input-group-text"><label for ="blog_published">Published</label></span>
+                                <span class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox" id="blog_published" name="blog_published" value="1" $blog_published />
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card bg-dark mb-2">
+                        <div class="card-body"> 
+                            <div class="mb-2">
+                                <button class="btn btn-success" id="submit" name="submit">Save Blog Post</button> 
+                                <button class="btn btn-primary" type="button" onclick="openmarkdown()">Open Blog Editor</button>
+                                <a href="blog.php"><button class="btn btn-danger" type="button">Cancel (Back to Blog Post Listings)</button></a>
+                            </div>
+                            <div class="mb-2">
+                                <button class="btn btn-light" type="button" onclick="restoreblogeditorcontents()">Restore Local Autosave</button>
+                                <a target="_blank" href="cloudinary.php"><button class="btn btn-light" type="button">Cloudinary Media Signer</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <textarea style="display:none;width:100%;height:500px" id="blog_content" name="blog_content">$blog_content</textarea><br/>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="input-group mb-3" style="max-width:500px">
-    $html_blog_types
+    <div class="row">
+        <div class="col col-md-12">
+            <h1>Blog Preview</h1>
+            <hr>
+            <div class="card post-contents" style="padding:10px" id="blog_content_preview" name="blog_content_preview">
+                (Loading preview...)
+            </div>
+        </div>
     </div>
-    <div class="input-group mb-3" style="max-width:500px">
-        <span class="input-group-text"><label for ="blog_date">Date</label></span>
-        <input class="form-control" type="date" id="blog_date" name="blog_date" value="$blog_date" />
-    </div>
-    <div class="input-group mb-3" style="max-width:500px">
-        <span class="input-group-text"><label for ="blog_visible">Visible</label></span>
-        <span class="input-group-text">
-            <input class="form-check-input mt-0" type="checkbox" id="blog_visible" name="blog_visible" value="1" $blog_visible />
-        </span>
-        <span class="input-group-text"><label for ="blog_published">Published</label></span>
-        <span class="input-group-text">
-            <input class="form-check-input mt-0" type="checkbox" id="blog_published" name="blog_published" value="1" $blog_published />
-        </span>
-    </div>
-    <button type="button" onclick="openmarkdown()">Open Blog Editor</button>
-    <button type="button" onclick="restoreblogeditorcontents()">Restore Local Autosave</button>
-    <a target="_blank" href="cloudinary.php"><button type="button">Media Signer</button></a>
-    <button id="submit" name="submit">Save Blog Post</button> 
-    |
-    <a href="blog.php"><button type="button">Back to Blog Post Listings</button></a>
-    <textarea style="display:none;width:100%;height:500px" id="blog_content" name="blog_content">$blog_content</textarea><br/>
-</form>
-</div>
-</div>
-    <div class="card post-contents" style="padding:10px" id="blog_content_preview" name="blog_content_preview">
-        (Loading preview...)
-    </div>
-</div>
-</div>
 </div>
 FORM;
 ?>

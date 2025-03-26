@@ -42,14 +42,14 @@ $sql = "SELECT * FROM guide_posts ORDER BY publish_date DESC, id ASC, title ASC;
 //echo "<p>$sql</p>";
 
 
-// <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_id\">ID</button></th>
 // <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_published\">Published</button></th>
+// <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_url\">URL</button></th>
 
 
-echo "<table class='table'><tr>
+echo "<table class='table'><tr class='sticky-top' style='background-color:lightgray'>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_id\">ID</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_name\">Name</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_type\">Category</button></th>
-<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_url\">URL</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_published_readable\">Published Date</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_modified_readable\">Modified Date</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_visible\">List in Dir</button></th>
@@ -61,10 +61,10 @@ if ($result->num_rows > 0) {
         $guide_type = $guide_post['category'];
         $guide_url = $guide_post['url'];
         echo "<tr>" . 
-        // "<td class='gl_id'>".$guide_id.
-        "</td><td class='gl_name' style='min-width:200px'>".$guide_post['title'].
+        "<td class='gl_id'>".$guide_id.
+        "</td><td class='gl_name' style='min-width:200px'><strong>".$guide_post['title']."</strong><br>".
+            "<a target='_blank' href='/guides/post/$guide_url/'>/guides/post/".$guide_url."</a>".
         "</td><td class='gl_type'>".$guide_type.
-        "</td><td class='gl_url'><a target='_blank' href='/guides/post/$guide_url/'>".$guide_url."</a>".
         "</td><td class='gl_date_published_readable'>".$guide_post['publish_date'].
         "</td><td class='gl_date_published' style='display:none'>".strtotime($guide_post['publish_date']).
         "</td><td class='gl_date_modified_readable'>".$guide_post['modified_date'].

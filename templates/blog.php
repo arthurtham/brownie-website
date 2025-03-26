@@ -1,6 +1,8 @@
 <?php
 require_once $dir . "/includes/CloudinarySigner.php";
 
+$_return_to_blogs_button = '<a href="/subs/blog/"><button class="btn btn-success">View All Sub Blog Posts</button></a>';
+
 $legacy_link = explode("_",$blog_id);
 if (count($legacy_link) == 5) {
     $blog_id = $legacy_link[4];
@@ -20,8 +22,9 @@ if ($result->num_rows > 0) {
     while ($blog_post = $result->fetch_assoc()) {
         $blog_date = date_format(date_create_from_format("Y-m-d",explode(" ",$blog_post["blog_date"])[0]),"F d, Y");
         echo "<div class='row post-contents' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
-        echo "<center><h1>" . $blog_post["blog_name"] . "</h1><a href='/subs/blog/$blog_type/'>" . $blog_post["blog_type_name"] . "</a> | " . $blog_date .  "</center>";
-        echo "<center>/ subs / <a href='/subs/blog'>blog</a> / <a href='/subs/blog/$blog_type/'>$blog_type</a></center><hr><br/>";
+        echo "<center><h1>" . $blog_post["blog_name"] . "</h1>";
+        echo "<a href='/subs/blog/'>Sub Blog</a> / <a href='/subs/blog/$blog_type/'>" . $blog_post["blog_type_name"] . "</a></center>";
+        echo "<center>Written on: " . $blog_date . "</center><hr><br/>";
         /*if (!$blog_post["visible"]) {
             echo "<p>Note: This blog post is not visible in the main directory.</p>";
         }*/
@@ -31,7 +34,12 @@ if ($result->num_rows > 0) {
             $embed_contents = (new CloudinarySigner())->convertAllUrls($blog_post["blog_content"]);
             include_once $dir . "/templates/markdown-render.php";
         }
-        echo "</div></div>";
+        echo "</div></div><hr>";
+
+        $_post_footer_type = "blog post";
+        $_post_footer_return_button = $_return_to_blogs_button;
+        include $dir . "/templates/post-footer.php";
+
         echo <<<DISQUS
 			<div id="disqus_thread"></div>
 			<script>
