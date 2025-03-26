@@ -294,13 +294,14 @@ div.post-contents {
     
     iframe {
         padding-bottom: 30px;
+        width: 100%;
     }
 
     .table .tr .th .td {
         border: 1px solid;
     }
     img {
-        width: auto;
+        width: 100%;
         max-width: 600px;
         display: block;
         margin-left: auto;
@@ -308,7 +309,7 @@ div.post-contents {
         padding: 10px;
     }
     video {
-        width: auto;
+        width: 100%;
         max-width: 300px;
         display: block;
         margin-left: auto;
