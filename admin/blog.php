@@ -44,7 +44,7 @@ $search_criteria = (isset($_GET["search-text"]) ? (
 
 $sql = "SELECT * FROM blog_posts $search_criteria ORDER BY id DESC, blog_id DESC, blog_name ASC;";
 //echo "<p>$sql</p>";
-echo "<table class='table'><tr class='sticky-top' style='background-color:lightgray'>
+echo "<table class='table'><tr class='sticky-top' style='background-color:lightgray;z-index:1'>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"bl_id\">ID</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"bl_name\">Name</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"bl_type\">Category</button></th>

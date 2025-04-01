@@ -46,7 +46,7 @@ $sql = "SELECT * FROM guide_posts ORDER BY publish_date DESC, id ASC, title ASC;
 // <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_url\">URL</button></th>
 
 
-echo "<table class='table'><tr class='sticky-top' style='background-color:lightgray'>
+echo "<table class='table'><tr class='sticky-top' style='background-color:lightgray;z-index:1'>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_id\">ID</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_name\">Name</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_type\">Category</button></th>
@@ -60,14 +60,16 @@ if ($result->num_rows > 0) {
         $guide_id = $guide_post['id'];
         $guide_type = $guide_post['category'];
         $guide_url = $guide_post['url'];
+        $guide_publish_date = (!is_null($guide_post['publish_date'])) ? DateTime::createFromFormat('Y-m-d H:i:s', $guide_post['publish_date'])->format("F d, Y<\b\\r>h:i A") : "Not Published";
+        $guide_modified_date = DateTime::createFromFormat('Y-m-d H:i:s', $guide_post['modified_date'])->format("F d, Y<\b\\r>h:i A");
         echo "<tr>" . 
         "<td class='gl_id'>".$guide_id.
         "</td><td class='gl_name' style='min-width:200px'><strong>".$guide_post['title']."</strong><br>".
             "<a target='_blank' href='/guides/post/$guide_url/'>/guides/post/".$guide_url."</a>".
         "</td><td class='gl_type'>".$guide_type.
-        "</td><td class='gl_date_published_readable'>".$guide_post['publish_date'].
+        "</td><td class='gl_date_published_readable'>".$guide_publish_date.
         "</td><td class='gl_date_published' style='display:none'>".strtotime($guide_post['publish_date']).
-        "</td><td class='gl_date_modified_readable'>".$guide_post['modified_date'].
+        "</td><td class='gl_date_modified_readable'>".$guide_modified_date.
         "</td><td class='gl_date_modified' style='display:none'>".strtotime($guide_post['modified_date']).
         "</td><td class='gl_visible'>".$guide_post['visible'].
         // "</td><td class='gl_published'>".$guide_post['published'].

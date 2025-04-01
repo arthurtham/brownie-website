@@ -41,7 +41,7 @@ require_once($dir . "/includes/mysql.php");
 $sql = "SELECT * FROM announcement_posts ORDER BY publish_date DESC, id ASC, title ASC;";
 //echo "<p>$sql</p>";
 
-echo "<table class='table'><tr class='sticky-top' style='background-color:lightgray'>
+echo "<table class='table'><tr class='sticky-top' style='background-color:lightgray;z-index:1'>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_id\">ID</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_name\">Name</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_published_readable\">Published Date</button></th>
@@ -53,13 +53,15 @@ if ($result->num_rows > 0) {
     while ($announcement_post = $result->fetch_assoc()) {
         $announcement_id = $announcement_post['id'];
         $announcement_type = $announcement_post['category'];
+        $announcement_publish_date = (!is_null($announcement_post['publish_date'])) ? DateTime::createFromFormat('Y-m-d H:i:s', $announcement_post['publish_date'])->format("F d, Y<\b\\r>h:i A") : "Not Published";
+        $announcement_modified_date = DateTime::createFromFormat('Y-m-d H:i:s', $announcement_post['modified_date'])->format("F d, Y<\b\\r>h:i A");
         echo "<tr>" . 
         "<td class='gl_id'>".$announcement_post['id'].
         "</td><td class='gl_name' style='min-width:200px'><strong>".$announcement_post['title'].
             "</strong><br><a target='_blank' href='/announcements/$announcement_id/'>/announcements/$announcement_id</a>".
-        "</td><td class='gl_date_published_readable'>".$announcement_post['publish_date'].
+        "</td><td class='gl_date_published_readable'>".$announcement_publish_date.
         "</td><td class='gl_date_published' style='display:none'>".strtotime($announcement_post['publish_date']).
-        "</td><td class='gl_date_modified_readable'>".$announcement_post['modified_date'].
+        "</td><td class='gl_date_modified_readable'>".$announcement_modified_date.
         "</td><td class='gl_date_modified' style='display:none'>".strtotime($announcement_post['modified_date']).
         "</td><td class='gl_visible'>".$announcement_post['visible'].
         "</td><td><a href='announcement_editor.php?announcement-id=$announcement_id'><button class='btn btn-dark' type='button'>Edit</button></a>".

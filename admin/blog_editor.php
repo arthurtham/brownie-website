@@ -110,71 +110,26 @@ echo <<<FORM
                         <div class="card-body"> 
                             <div class="mb-2">
                                 <button class="btn btn-success" id="submit" name="submit">Save Blog Post</button> 
-                                <button class="btn btn-primary" type="button" onclick="openmarkdown()">Open Blog Editor</button>
                                 <a href="blog.php"><button class="btn btn-danger" type="button">Cancel (Back to Blog Post Listings)</button></a>
                             </div>
                             <div class="mb-2">
-                                <button class="btn btn-light" type="button" onclick="restoreblogeditorcontents()">Restore Local Autosave</button>
                                 <a target="_blank" href="cloudinary.php"><button class="btn btn-light" type="button">Cloudinary Media Signer</button></a>
                             </div>
                         </div>
                     </div>
-                    <textarea style="display:none;width:100%;height:500px" id="blog_content" name="blog_content">$blog_content</textarea><br/>
+                    <div class="card bg-light mb-2 post-contents" style="z-index:1020; height:200px">
+                        <textarea style="display:none;width:100%;height:500px" id="blog_content" name="blog_content">$blog_content</textarea><br/>
+                    </div>
                 </form>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col col-md-12">
-            <h1>Blog Preview</h1>
-            <hr>
-            <div class="card post-contents" style="padding:10px" id="blog_content_preview" name="blog_content_preview">
-                (Loading preview...)
             </div>
         </div>
     </div>
 </div>
 FORM;
-?>
-<script src="https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.3/purify.min.js" integrity="sha512-Ll+TuDvrWDNNRnFFIM8dOiw7Go7dsHyxRp4RutiIFW/wm3DgDmCnRZow6AqbXnCbpWu93yM1O34q+4ggzGeXVA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.6/marked.min.js" integrity="sha512-rvRITpPeEKe4hV9M8XntuXX6nuohzqdR5O3W6nhjTLwkrx0ZgBQuaK4fv5DdOWzs2IaXsGt5h0+nyp9pEuoTXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-const stackedit_editor           = document.querySelector('#blog_content');
-const stackedit_preview          = document.querySelector('#blog_content_preview');
-const stackedit_localstoragetext = localStorage.getItem("blogeditortext");
-let   stackedit_loaded           = false;
-const stackedit                  = new Stackedit();
 
-stackedit.on('fileChange', (file) => {
-    stackedit_file = file;
-    stackedit_preview.innerHTML = DOMPurify.sanitize(marked.parse(file.content.text), {ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] });
-    stackedit_editor.value = file.content.text;
-});
-stackedit.on('close', () => {
-    if (stackedit_loaded) {
-        localStorage.setItem("blogeditortext", stackedit_editor.value);
-    } else {
-        stackedit_loaded = true;
-    }
-});
+$simplemde_element_name = "blog_content";
+require $dir . "/templates/simplemde.php";
 
-function openmarkdown(silent=false) {
-    stackedit.openFile({
-        content: {
-            text: stackedit_editor.value
-        }
-    }, silent);
-}
-openmarkdown(silent=true);
-
-function restoreblogeditorcontents() {
-    stackedit_editor.value = stackedit_localstoragetext;
-    openmarkdown();
-}
-</script>
-
-<?php
 $_footer_adminmode = true;
 require $dir . "/templates/footer.php";
 ?>

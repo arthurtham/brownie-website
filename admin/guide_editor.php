@@ -119,71 +119,25 @@ echo <<<FORM
                     <div class="card-body">
                         <div class="mb-2">
                             <button class="btn btn-success" id="submit" name="submit">Save Guide</button> 
-                            <button class="btn btn-primary" type="button" onclick="openmarkdown()">Open Guide Editor</button>
                             <a href="guide.php"><button class="btn btn-danger" type="button">Cancel (Back to Guides List)</button></a>
                         </div>
                         <div class="mb-2">
-                            <button class="btn btn-light" type="button" onclick="restoreguideeditorcontents()">Restore Working Copy from Local Autosave</button>
                             <a target="_blank" href="cloudinary.php"><button class="btn btn-light" type="button">Cloudinary Media Signer</button></a>
                         </div>
                     </div>
                 </div>
-                <textarea style="display:none;width:100%;height:500px" id="guide_content" name="guide_content">$guide_content</textarea><br/>
+                <div class="card bg-light mb-2 post-contents" style="z-index:1020; height:200px">
+                    <textarea style="display:none;width:100%;height:500px" id="guide_content" name="guide_content">$guide_content</textarea><br/>
+                </div>
             </form>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col col-md-12">
-            <h1>Guide Preview</h1>
-            <hr>
-            <div class="card post-contents" style="padding:10px" id="guide_content_preview" name="guide_content_preview">
-                (Loading preview...)
-            </div>
         </div>
     </div>
 </div>
 FORM;
-?>
-<script src="https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.3/purify.min.js" integrity="sha512-Ll+TuDvrWDNNRnFFIM8dOiw7Go7dsHyxRp4RutiIFW/wm3DgDmCnRZow6AqbXnCbpWu93yM1O34q+4ggzGeXVA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.6/marked.min.js" integrity="sha512-rvRITpPeEKe4hV9M8XntuXX6nuohzqdR5O3W6nhjTLwkrx0ZgBQuaK4fv5DdOWzs2IaXsGt5h0+nyp9pEuoTXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-const stackedit_editor           = document.querySelector('#guide_content');
-const stackedit_preview          = document.querySelector('#guide_content_preview');
-const stackedit_localstoragetext = localStorage.getItem("guideeditortext");
-let   stackedit_loaded           = false;
-const stackedit                  = new Stackedit();
 
-stackedit.on('fileChange', (file) => {
-    stackedit_file = file;
-    // stackedit_preview.innerHTML = file.content.html;
-    stackedit_preview.innerHTML = DOMPurify.sanitize(marked.parse(file.content.text), {ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] });
-    stackedit_editor.value = file.content.text;
-});
-stackedit.on('close', () => {
-    if (stackedit_loaded) {
-        localStorage.setItem("guideeditortext", stackedit_editor.value);
-    } else {
-        stackedit_loaded = true;
-    }
-});
+$simplemde_element_name = "guide_content";
+require $dir . "/templates/simplemde.php";
 
-function openmarkdown(silent=false) {
-    stackedit.openFile({
-        content: {
-            text: stackedit_editor.value
-        }
-    }, silent);
-}
-openmarkdown(silent=true);
-
-function restoreguideeditorcontents() {
-    stackedit_editor.value = stackedit_localstoragetext;
-    openmarkdown();
-}
-</script>
-
-<?php
 $_footer_adminmode = true;
 require $dir . "/templates/footer.php";
 ?>

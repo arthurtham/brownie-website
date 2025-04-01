@@ -8,7 +8,7 @@ SCROLLABLE;
 
 if (isset($_footer_adminmode) && $_footer_adminmode == true) { 
     echo <<<FOOTER
-    <footer class="d-flex flex-column w-100 justify-content-center align-items-center border-top bg-danger text-white shadow" style="position:fixed;bottom:0;padding-top:4px;padding-bottom:0px;z-index:2">
+    <footer id="admin-mode-footer" class="d-flex flex-column w-100 justify-content-center align-items-center border-top bg-danger text-white shadow" style="position:fixed;bottom:0;padding-top:4px;padding-bottom:0px;z-index:1021">
         $scroll_to_top_button
         <div class="row w-100">
             <div class="col-lg-2">

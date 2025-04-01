@@ -120,6 +120,36 @@ ITEM;
 			$announcement_image_url;
 			preg_match("/\!\[.*]\((.*)\)/", $announcement_embed["content"], $announcement_image_url);
 			$announcement_image_url = empty($announcement_image_url[1]) ? "https://res.cloudinary.com/browntulstar/image/private/s--ZPURbd45--/c_pad,w_200,h_200,ar_1:1/f_webp/v1/com.browntulstar/img/turtle-adult?_a=BAAAUWGX" : ($cldSigner->signUrl($cldSigner->convertLocalUrlsToCloudinaryUrls($announcement_image_url[1])));
+			
+			// Find the first paragraph and then truncate it
+			$announcement_snippet = Parsedown::instance()->setBreaksEnabled(true)->text($announcement_embed["content"]); // Returns HTML
+			$announcement_snippet = strip_tags($announcement_snippet, array("<p>")); // Remove HTML tags except paragraphs
+			// Get the first paragraph only, but make sure the paragraph is not empty. If it is, get the next one.
+			preg_match_all("/<p>(.*?)<\/p>/", $announcement_snippet, $matches);
+			// find a match that has a non-empty string
+			$announcement_snippet_match = false;
+			$announcement_snippet = "";
+			foreach ($matches[1] as $paragraph) {
+				if (trim($paragraph) !== "") {
+					$announcement_snippet = $paragraph;
+					$announcement_snippet_match = true;
+					break;
+				}
+			}
+			if ($announcement_snippet_match === false) {
+				$announcement_snippet = "Check out this post!";
+			} else {
+				// Limit to up to 15 words
+				$announcement_snippet = preg_replace('/\s+/', ' ', $announcement_snippet); // Remove extra spaces
+				$announcement_snippet_limit = 25; // Limit to 15 words
+				$announcement_snippet = explode(" ", $announcement_snippet, $announcement_snippet_limit); // Split into words
+				if (count($announcement_snippet) > $announcement_snippet_limit-1) {
+					$announcement_snippet = implode(" ", array_slice($announcement_snippet, 0, $announcement_snippet_limit-1)) . "..."; // Join the first 15 words
+				} else {
+					$announcement_snippet = implode(" ", $announcement_snippet); // Join all words
+				}
+			}
+			
 			echo "<br/>";
 			// echo explode(" ",$announcement_date) . " - <a href=\"?announcement-id=" . $announcement_id . "\">" . $announcement_name . "</a>";
 			echo <<<ANNOUNCEMENTPOST
@@ -135,6 +165,7 @@ ITEM;
 								<h4 class="card-title">$announcement_name</h4>
 								<p class="card-text">
 									$announcement_date<br/>
+									<em>$announcement_snippet</em>
 									<p><a class="btn btn-dark" href="/announcements/$announcement_id/">Read</a></p>
 								</p>
 							</div>
