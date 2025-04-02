@@ -74,7 +74,7 @@ echo <<<FORM
     </div>
     <div class="row">
         <div class="col col-md-12">
-            <form action="guide_process.php" method="post">
+            <form id="post-editor" action="guide_process.php" method="post">
                 <div class="card bg-secondary mb-2" style="width: 100%; overflow-x: auto;">
                     <div class="card-body" style="min-width: 500px">
                         <div class="input-group mb-3">
@@ -118,7 +118,7 @@ echo <<<FORM
                 <div class="card bg-dark mb-2">
                     <div class="card-body">
                         <div class="mb-2">
-                            <button class="btn btn-success" id="submit" name="submit">Save Guide</button> 
+                            <button class="btn btn-success" id="submitButton" name="submitButton" type="button" style="min-width:200px" onclick="startSubmit()">Save Guide</button> 
                             <a href="guide.php"><button class="btn btn-danger" type="button">Cancel (Back to Guides List)</button></a>
                         </div>
                         <div class="mb-2">
@@ -137,6 +137,8 @@ FORM;
 
 $simplemde_element_name = "guide_content";
 require $dir . "/templates/simplemde.php";
+
+require $dir . "/templates/admin-check-script.php";
 
 $_footer_adminmode = true;
 require $dir . "/templates/footer.php";

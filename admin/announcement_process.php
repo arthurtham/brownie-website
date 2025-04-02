@@ -60,7 +60,7 @@ if (empty($_POST)) {
         if ($result === TRUE) {
             echo "<p>Success!</p>";
             echo "<a href='/admin/announcement.php'><button>Main</button></a></p>";
-            echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
+            // echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
             redirect("/admin/announcement_editor.php?announcement-id=" . (($new_post) ? $conn->insert_id : $_POST["announcement_id"]) );
         } else {
             echo "<p>Failure: $conn->error </p>";

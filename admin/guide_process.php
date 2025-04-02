@@ -66,7 +66,7 @@ if (empty($_POST)) {
         if ($result === TRUE) {
             echo "<p>Success!</p>";
             echo "<a href='/admin/guide.php'><button>Main</button></a></p>";
-            echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
+            // echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
             redirect("/admin/guide_editor.php?guide-id=" . (($new_post) ? $conn->insert_id : $_POST["guide_id"]) );
         } else {
             echo "<p>Failure: $conn->error </p>";

@@ -25,7 +25,7 @@ $result = $conn->query($sql);
 if ($result === TRUE) {
     echo "<p>Success!</p>";
     echo "<a href='/admin/blog.php'><button>Main</button></a></p>";
-    echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
+    // echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
     redirect("/admin/blog_editor.php?blog_id=".$_POST["blog_id"]);
 } else {
     echo "<p>Failure: $conn->error </p>";

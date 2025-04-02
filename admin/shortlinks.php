@@ -38,7 +38,7 @@ $search_criteria = (isset($_GET["search-text"]) ? (
 
 $sql = "SELECT * FROM shortlinks $search_criteria ORDER BY available DESC, shortcode ASC;";
 //echo "<p>$sql</p>";
-echo "<table class='table w-100'><tr>
+echo "<table class='table'><tr class='sticky-top' style='background-color:lightgray;z-index:1'>
 <th class='col-2'><button class='sort btn btn-success btn-sm' data-sort=\"sl_shortcode\">Short Code</button</th>
 <th class='col-4'><button class='sort btn btn-success btn-sm' data-sort=\"sl_fulllink\">Full Link</button</th>
 <th class='col-1'><button class='sort btn btn-success btn-sm' data-sort=\"sl_hits\">Hits</button</th>
@@ -50,13 +50,13 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($shortlink_entry = $result->fetch_assoc()) {
         echo "<tr>
-        <td class='sl_shortcode' style='word-wrap: break-word;max-width:300px'><strong><a href='/r/".$shortlink_entry['shortcode']."' target='_blank'>".$shortlink_entry['shortcode']."</strong></a>".
+        <td class='sl_shortcode' style='word-wrap: break-word;max-width:300px'><strong>".$shortlink_entry['shortcode']."</strong><br><a href='/r/".$shortlink_entry['shortcode']."' target='_blank'>Link</a>".
         "</td><td class='sl_fulllink' style='word-wrap: break-word;max-width:300px'><a href='".$shortlink_entry['fulllink']."' target='_blank'>".$shortlink_entry['fulllink']."</strong></a>".
         "</td><td class='sl_hits'>".$shortlink_entry['hits'].
         "</td><td class='sl_available'>".$shortlink_entry['available'].
-        "</td><td class='sl_creationdate_readable'>".$shortlink_entry['creationdate'].
+        "</td><td class='sl_creationdate_readable'>".DateTime::createFromFormat('Y-m-d H:i:s', $shortlink_entry['creationdate'])->format("F d, Y<\b\\r>h:i A").
         "</td><td style=\"display:none\" class='sl_creationdate'>". strtotime($shortlink_entry['creationdate']) .
-        "</td><td><a href='shortlinks_editor.php?shortcode=".$shortlink_entry['shortcode']."'><button type='button' class='btn btn-success'>Edit</button></a>".
+        "</td><td><a href='shortlinks_editor.php?shortcode=".$shortlink_entry['shortcode']."'><button type='button' class='btn btn-dark'>Edit</button></a>".
         "</td></tr>";
     }
 }

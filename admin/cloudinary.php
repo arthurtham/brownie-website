@@ -20,10 +20,10 @@ if (isset($_GET["cldurl"])) {
 <h1>Validate Cloudinary Media</h1>
 <p>Use this to manually validate Cloudinary media.</p>
 
-<form action="" method="get">
-    <label for ="cldurl">Unsigned Cloudinary URL</label>: <input style="width:100%" type="text" id="cldurl" name="cldurl" value="<?=(isset($_GET["cldurl"]) ? $_GET["cldurl"] : "") ?>" /><br/>
+<form id="post-editor" action="" method="get">
+    <label for ="cldurl">Unsigned Cloudinary URL</label>: <input required style="width:100%" type="text" id="cldurl" name="cldurl" value="<?=(isset($_GET["cldurl"]) ? $_GET["cldurl"] : "") ?>" /><br/>
     Make sure this URL has a file extension (accepted: png, jpg, mov, mp4, webp, gif) <br/>
-    <button class="btn btn-success" type="submit">Sign</button>
+    <button class="btn btn-success" id="submitButton" name="submitButton" type="button" style="min-width:200px" onclick="startSubmit()">Sign</button> 
     <a href="/admin" class="btn btn-danger">Return to Main Menu</a>
 </form>
 
@@ -39,6 +39,8 @@ if (isset($_GET["cldurl"])) {
 </div>
 <?php 
 }
+
+require $dir . "/templates/admin-check-script.php";
 ?>
 
 </div>

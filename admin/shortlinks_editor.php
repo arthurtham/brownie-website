@@ -30,18 +30,22 @@ if (isset($_POST["shortlink_id"])) {
         $sql .= "available=\"" . (isset($_POST["shortlink_available"]) ? 1 : 0) . "\"";
         $sql .= " WHERE id=\"".mysqli_real_escape_string($conn, $_POST["shortlink_id"])."\";";
     }
-    $result = $conn->query($sql);
-    if ($result === TRUE) {
-        $result_message = "Success!";
-        $_GET["shortcode"] = $_POST["shortlink_shortcode"];
-    } else {
-        $result_message = "<p>Failure: $conn->error </p><code>$sql</code>";
+    try {
+        $result = $conn->query($sql);
+        if ($result === TRUE) {
+            $result_message = "Success!";
+            $_GET["shortcode"] = $_POST["shortlink_shortcode"];
+        } else {
+            $result_message = "<p>Failure: $conn->error </p><code>$sql</code>";
+        }
+        $shortlink_id = $_POST['shortlink_id'];
+        $shortlink_shortcode = $_POST['shortlink_shortcode'];
+        $shortlink_fulllink = $_POST['shortlink_fulllink'];
+        $shortlink_available = $_POST['shortlink_available'];
+        $shortlink_creationdate = $_POST['shortlink_creationdate'];
+    } catch (Exception $e) {
+        $result_message = "<p>Failure: $e </p><code>$sql</code>";
     }
-    $shortlink_id = $_POST['shortlink_id'];
-    $shortlink_shortcode = $_POST['shortlink_shortcode'];
-    $shortlink_fulllink = $_POST['shortlink_fulllink'];
-    $shortlink_available = $_POST['shortlink_available'];
-    $shortlink_creationdate = $_POST['shortlink_creationdate'];
 }
 
 if (isset($_GET["shortcode"])) {
@@ -55,6 +59,7 @@ if (isset($_GET["shortcode"])) {
             $shortlink_hits = $shortlink_entry['hits'];
             $shortlink_available = $shortlink_entry['available'];
             $shortlink_creationdate = $shortlink_entry['creationdate'];
+            $shortlink_creationdate_formatted = DateTime::createFromFormat('Y-m-d H:i:s', $shortlink_creationdate)->format("F d, Y h:i A");
         }
     }
 }
@@ -77,7 +82,7 @@ echo <<<FORM
     </div>
     <div class="row">
         <div class="col col-md-12">
-            <form action="shortlinks_editor.php" method="post">
+            <form id="post-editor" action="shortlinks_editor.php" method="post">
                 <div class="card bg-secondary mb-2" style="width: 100%; overflow-x: auto;">
                     <div class="card-body" style="min-width: 500px">
                         <div class="input-group mb-3">
@@ -98,14 +103,14 @@ echo <<<FORM
                         <div class="alert alert-light">
                             <label for ="shortlink_available">Active</label>: <input type="checkbox" id="shortlink_available" name="shortlink_available" value="1" $shortlink_available /><br/>
                             <label for ="shortlink_id">ID</label>: <input requred hidden type="input" type="text" id="shortlink_id" name="shortlink_id" value="$shortlink_id" />$shortlink_id<br/>
-                            <label for ="shortlink_creationdate">Creation Date</label>: <input required hidden type="input" type="text" id="shortlink_creationdate" name="shortlink_creationdate" value="$shortlink_creationdate" />$shortlink_creationdate
+                            <label for ="shortlink_creationdate">Creation Date</label>: <input required hidden type="input" type="text" id="shortlink_creationdate" name="shortlink_creationdate" value="$shortlink_creationdate" />$shortlink_creationdate_formatted
                         </div>
                     </div>
                 </div>
                 <div class="card bg-dark mb-2">
                     <div class="card-body">
                         <div class="mb-2">
-                            <button class="btn btn-success" id="submit" name="submit">Save Shortlink</button>
+                            <button class="btn btn-success" id="submitButton" name="submitButton" type="button" style="min-width:200px" onclick="startSubmit()">Save Shortlink</button> 
                             <button class="btn btn-warning" id="preview-webpage-external-button" name="preview-webpage-external-button" type="button">Popout Preview Full Link</button>
                             <a href="shortlinks.php"><button type="button" class="btn btn-danger">Cancel (Back to Shortlinks List)</button></a>
                         </div>
@@ -121,5 +126,8 @@ FORM;
         window.open(document.getElementById("shortlink_fulllink").value);
     });
 </script>
+<?php
+require $dir . "/templates/admin-check-script.php";
+?>
 </div>
 <?php $_footer_adminmode = true; require $dir . "/templates/footer.php"; ?>
