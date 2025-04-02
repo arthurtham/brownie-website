@@ -102,7 +102,7 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 	// We need to get all directories from the database, plus the search tab
 	$directories = array();
 	array_push($directories, array("search", "All Posts", "View the most recent blog posts below, search for one, or pick a category above."));
-	$sql = "SELECT blog_type, name, description FROM blog_types";
+	$sql = "SELECT blog_type, name, description FROM blog_types WHERE visible=1";
 	$result = $conn->query($sql);
 	// Store all categories in the directories array, but also check if the get parameters set the category already.
 	$directory_category_found = false;
@@ -237,7 +237,7 @@ ITEM;
 		blog_types.name as blog_type_name, blog_posts.blog_content,
 		COUNT(*) OVER() AS total_entries
 		FROM blog_posts LEFT JOIN blog_types ON blog_posts.blog_type = blog_types.blog_type 
-		WHERE ".$sql_criteria." AND visible = 1 AND published = 1 
+		WHERE ".$sql_criteria." AND blog_posts.visible = 1 AND published = 1 
 		ORDER BY blog_date DESC, blog_id DESC, blog_name ASC
 		LIMIT ".$pagestartfrom.", ".$entrylimit.";";
 

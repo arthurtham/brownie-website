@@ -108,15 +108,19 @@ function queryShopItems($conn, $queryString) {
             $item_url = $item["item_url"];
             $item_service = $item["item_service"];
             $available = $item["available"] ? 1 : 0;
-            $book_button = $available ? 
-            $item_service === "email" ? 
-                '<a href="'.$item_url.'?subject=Inquiry for '.$item_name.'&body=(Describe your event and include dates 
+            if ($available) {
+                if ($item_service === "email") {
+                    $book_button = '<a href="'.$item_url.'?subject=Inquiry for '.$item_name.'&body=(Describe your event and include dates 
     and times as well as information flyers)"><button class="btn btn-primary">Request</button></a> via email!
-                <br><small>If the email conversation leads to a booking, PayPal will be used for invoicing.</small>' 
-                : (($item_service === "Ko-fi" || $item_service === "Etsy" || $item_service === "Fiverr") ? 
-                '<a href="'.$item_url.'" target="_blank"><button class="btn btn-primary">Get</button></a> on '.$item_service.'' 
-                : '<a href="'.$item_url.'" target="_blank"><button class="btn btn-primary">Support</button></a> via '.$item_service.'') 
-            : '<button class="btn btn-primary" disabled>Unavailable</button>'; 
+                <br><small>If the email conversation leads to a booking, PayPal will be used for invoicing.</small>';
+                } elseif ($item_service === "Ko-fi" || $item_service === "Etsy" || $item_service === "Fiverr") {
+                    $book_button = '<a href="'.$item_url.'" target="_blank"><button class="btn btn-primary">Get</button></a> on '.$item_service.'';
+                } else {
+                    $book_button = '<a href="'.$item_url.'" target="_blank"><button class="btn btn-primary">Support</button></a> via '.$item_service.'';
+                }
+            } else {
+                $book_button = '<button class="btn btn-primary" disabled>Unavailable</button>';
+            }
             echo <<<LISTINGS
             <div class="card" style="width: 100%;color:black">
                 <div class="card-body">
@@ -141,6 +145,8 @@ function queryShopItems($conn, $queryString) {
             <br />
 LISTINGS;
         }
+    } else {
+        echo "<hr style='margin-top: 0 !important; margin-bottom: 10px !important'><h6>Nothing to see here. Check back soon!</h6>";
     }
 }
 

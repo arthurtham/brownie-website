@@ -223,7 +223,7 @@ LISTINGS;
 			echo $pagination_html;
 			echo $pagination_html_details;
 		} else {
-			echo "<hr><h6>Sorry, no guides found...</h6></center>";
+			echo "<hr><h6>Sorry, no guides found...</h6>";
 		}
 		echo "</div>";
 	} 
