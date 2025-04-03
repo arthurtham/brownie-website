@@ -8,7 +8,7 @@ require $dir . "/templates/header.php";
 ?>
 <div class="container body-container">
 <h1>Menu</h1>
-<p>Please use a Desktop computer for optimal viewing, as it is not designed for mobile devices.</p>
+<p>Please use a Desktop computer for optimal viewing.</p>
 <ul>
     <li class="mb-2">
         <button disabled style="width:100px" class="btn btn-primary">Content</button>
@@ -19,12 +19,11 @@ require $dir . "/templates/header.php";
     <li class="mb-2">
         <button disabled style="width:100px" class="btn btn-primary">Links</button>
         <a class="btn btn-dark" href="/admin/shortlinks.php">Shortlinks</a>
-        <a class="btn btn-dark" href="/admin/navbar.php">Navbar</a>
+        <a class="btn btn-dark" href="/admin/navbar.php">Navbar Contents</a>
     </li>
     <li class="mb-2">
         <button disabled style="width:100px" class="btn btn-primary">Tools</button>
         <a class="btn btn-dark" href="/admin/cloudinary.php">Cloudinary Media Signer</a>
-        <a class="btn btn-dark" href="/admin/store.php">Store (obsolete)</a>
     </li>
     <li class="mb-2">
         <button disabled style="width:100px" class="btn btn-primary">Debug</button>

@@ -18,7 +18,7 @@ require_once($dir . "/includes/mysql.php");
             <div class='col'>
                 <h1>Shortlinks Editor</h1>
                 <div class="input-group mb-3">
-                    <a href="shortlinks_editor.php"><button type="button" class="btn btn-success">Create New Shortlink</button></a>
+                    <a href="shortlinks_editor.php" class="btn btn-success">Create New Shortlink</a>
                     <a href="/admin" class="btn btn-danger">Return to Main Menu</a>
                 </div>
                 <div class="input-group mb-3">
@@ -38,13 +38,13 @@ $search_criteria = (isset($_GET["search-text"]) ? (
 
 $sql = "SELECT * FROM shortlinks $search_criteria ORDER BY available DESC, shortcode ASC;";
 //echo "<p>$sql</p>";
-echo "<table class='table'><tr class='sticky-top' style='background-color:lightgray;z-index:1'>
+echo "<table class='table'><thead class='table-dark sticky-top' style='z-index:1'><tr>
 <th class='col-2'><button class='sort btn btn-success btn-sm' data-sort=\"sl_shortcode\">Short Code</button</th>
 <th class='col-4'><button class='sort btn btn-success btn-sm' data-sort=\"sl_fulllink\">Full Link</button</th>
 <th class='col-1'><button class='sort btn btn-success btn-sm' data-sort=\"sl_hits\">Hits</button</th>
 <th class='col-1'><button class='sort btn btn-success btn-sm' data-sort=\"sl_available\">Accessible</button</th>
 <th class='col-4'><button class='sort btn btn-success btn-sm' data-sort=\"sl_creationdate\">Date Created</button</th>
-<th class='col-1'>Actions</th>";
+<th class='col-1'>Actions</th></tr></thead>";
 echo "<tbody class='list'>";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {

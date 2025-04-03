@@ -38,11 +38,6 @@ if (isset($_POST["shortlink_id"])) {
         } else {
             $result_message = "<p>Failure: $conn->error </p><code>$sql</code>";
         }
-        $shortlink_id = $_POST['shortlink_id'];
-        $shortlink_shortcode = $_POST['shortlink_shortcode'];
-        $shortlink_fulllink = $_POST['shortlink_fulllink'];
-        $shortlink_available = $_POST['shortlink_available'];
-        $shortlink_creationdate = $_POST['shortlink_creationdate'];
     } catch (Exception $e) {
         $result_message = "<p>Failure: $e </p><code>$sql</code>";
     }
@@ -89,7 +84,7 @@ echo <<<FORM
                             <span class="input-group-text">
                                 <label for ="shortlink_shortcode">Shortcode</label>
                             </span>
-                            <input class="form-control" required pattern="^\S+$" type="text" id="shortlink_shortcode" name="shortlink_shortcode" value="$shortlink_shortcode" />
+                            <input class="form-control" required pattern="^\S+$" maxlength="256" type="text" id="shortlink_shortcode" name="shortlink_shortcode" value="$shortlink_shortcode" />
                         </div>
                         <div class="alert alert-info" role="alert">
                             Current shortlink: <a href="/r/$shortlink_shortcode" target="_blank">https://browntulstar.com/r/$shortlink_shortcode</a>
@@ -98,7 +93,7 @@ echo <<<FORM
                             <span class="input-group-text">
                                 <label for ="shortlink_fulllink">Destination Link</label>
                             </span>
-                            <input class="form-control" required pattern="^\S+$" type="url" id="shortlink_fulllink" name="shortlink_fulllink" value="$shortlink_fulllink" />
+                            <input class="form-control" required pattern="^\S+$" maxlength="256" type="url" id="shortlink_fulllink" name="shortlink_fulllink" value="$shortlink_fulllink" />
                         </div>
                         <div class="alert alert-light">
                             <label for ="shortlink_available">Active</label>: <input type="checkbox" id="shortlink_available" name="shortlink_available" value="1" $shortlink_available /><br/>

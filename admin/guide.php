@@ -7,10 +7,6 @@ require $dir . "/templates/header.php";
 require_once($dir . "/includes/mysql.php");
 
 ?>
-<html>
-<head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <style>
     .table .tr .th .td {
         border: 1px solid;
@@ -24,7 +20,8 @@ require_once($dir . "/includes/mysql.php");
             <div class='col'>
                 <h1>Guide Editor</h1>
                 <div class="input-group mb-3">
-                    <a href="guide_editor.php"><button class="btn btn-success" type="button">Create New Post</button></a>
+                    <a href="guide_editor.php" class="btn btn-success">Create New Post</a>
+                    <a href="guide_types.php" class="btn btn-dark">Guide Types</a>
                     <a href="/admin" class="btn btn-danger">Return to Main Menu</a>
                 </div>
                 <div class="input-group mb-3">
@@ -46,14 +43,14 @@ $sql = "SELECT * FROM guide_posts ORDER BY publish_date DESC, id ASC, title ASC;
 // <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_url\">URL</button></th>
 
 
-echo "<table class='table'><tr class='sticky-top' style='background-color:lightgray;z-index:1'>
+echo "<table class='table'><thead class='table-dark sticky-top' style='z-index:1'><tr>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_id\">ID</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_name\">Name</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_type\">Category</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_published_readable\">Published Date</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_modified_readable\">Modified Date</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_visible\">List in Dir</button></th>
-<th>Actions</th></tr><tbody class='list'>";
+<th>Actions</th></tr></thead><tbody class='list'>";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($guide_post = $result->fetch_assoc()) {
