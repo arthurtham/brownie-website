@@ -12,14 +12,15 @@ if (empty($_POST)) {
     echo ("No variables passed");
 } else {
 
-$sql = "REPLACE INTO blog_posts (blog_id, blog_name, blog_date, blog_type, blog_content, visible, published) VALUES (";
+$sql = "REPLACE INTO blog_posts (blog_id, blog_name, blog_date, blog_type, blog_content, visible, published, free) VALUES (";
 $sql .= "\"" . $_POST["blog_id"] . "\",";
 $sql .= "\"" . mysqli_real_escape_string($conn, $_POST["blog_name"]) . "\",";
 $sql .= "\"" . $_POST["blog_date"] . "\",";
 $sql .= "\"" . $_POST["blog_type"] . "\",";
 $sql .= "\"" . mysqli_real_escape_string($conn, $_POST["blog_content"]) . "\",";
 $sql .= "\"" . (isset($_POST["blog_visible"]) ? 1 : 0) . "\",";
-$sql .= "\"" . (isset($_POST["blog_published"]) ? 1 : 0)."\"";
+$sql .= "\"" . (isset($_POST["blog_published"]) ? 1 : 0)."\",";
+$sql .= "\"" . (isset($_POST["blog_free"]) ? 1 : 0)."\"";
 $sql .= ");";
 $result = $conn->query($sql);
 if ($result === TRUE) {

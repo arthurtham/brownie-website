@@ -51,6 +51,7 @@ echo "<table class='table'><tr class='sticky-top' style='background-color:lightg
 <th><button class='sort btn btn-success btn-sm' data-sort=\"bl_date\">Post Date</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"bl_published\">Published</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"bl_visible\">List in Dir</button></th>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"bl_free\">Free</button></th>
 <th>Actions</th></tr><tbody class='list'>";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -65,6 +66,7 @@ if ($result->num_rows > 0) {
         "</td><td class='bl_date' style='display:none'>".strtotime($blog_post['blog_date']).
         "</td><td class='bl_published'>".$blog_post['published'].
         "</td><td class='bl_visible'>".$blog_post['visible'].
+        "</td><td class='bl_free'>".$blog_post['free'].
         "</td><td><a href='blog_editor.php?blog_id=$blog_id'><button type='button' class='btn btn-dark'>Edit</button></a>".
         "</td></tr>";
     }
@@ -78,7 +80,7 @@ if ($result->num_rows > 0) {
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
 <script>
-    var options = { valueNames: ['bl_id', 'bl_name', 'bl_date', 'bl_date_readable', 'bl_type', 'bl_visible', 'bl_published']};
+    var options = { valueNames: ['bl_id', 'bl_name', 'bl_date', 'bl_date_readable', 'bl_type', 'bl_visible', 'bl_published', 'bl_free']};
     var linkList = new List('blog_links', options);
 </script>
 

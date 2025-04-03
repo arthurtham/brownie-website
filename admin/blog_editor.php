@@ -13,6 +13,7 @@ $blog_name = "Blog Name";
 $blog_type = "blogtype";
 $blog_visible = false;
 $blog_published = false;
+$blog_free = false;
 $blog_content = "";
 $blog_date = "2022-1-1";
 $can_change_blog_id = "";
@@ -29,11 +30,15 @@ if (isset($_GET["blog_id"])) {
             $blog_date = explode(" ",$blog_post["blog_date"])[0];
             $blog_visible = $blog_post["visible"];
             $blog_published = $blog_post["published"];
+            $blog_free = $blog_post["free"];
             $blog_content = $blog_post["blog_content"];
         }
     }
     $cldSigner = new CloudinarySigner();
     $blog_content = $cldSigner->convertAllUrls($blog_content);
+    $blog_url_button_if_exists = ($blog_id > 0) ? <<<BLOGURL
+<span class="input-group-text"><a href="/subs/blog/$blog_type/$blog_id" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></span>
+BLOGURL : "";
 } else {
     $can_change_blog_id = "readonly=\"readonly\"";
     $sql = "SELECT blog_id FROM blog_posts ORDER BY blog_id DESC LIMIT 1;";
@@ -43,6 +48,7 @@ if (isset($_GET["blog_id"])) {
             $blog_id = intval($blog_post["blog_id"])+1;
         }
     }
+    $blog_url_button_if_exists = "";
 }
 
 if ($blog_visible == "1") {
@@ -50,6 +56,9 @@ if ($blog_visible == "1") {
 }
 if ($blog_published == "1") {
     $blog_published = "checked";
+}
+if ($blog_free == "1") {
+    $blog_free = "checked";
 }
 
 $blog_types = array();
@@ -85,6 +94,7 @@ echo <<<FORM
                             </div>
                             <div class="input-group mb-3" style="max-width:500px">
                                 <span class="input-group-text"><label for ="blog_id">ID</label></span>
+                                $blog_url_button_if_exists
                                 <input $can_change_blog_id class="form-control" type="number" id="blog_id" name="blog_id" value="$blog_id" />
                             </div>
                             <div class="input-group mb-3" style="max-width:500px">
@@ -95,13 +105,17 @@ echo <<<FORM
                                 <input required class="form-control" type="date" id="blog_date" name="blog_date" value="$blog_date" />
                             </div>
                             <div class="input-group mb-3" style="max-width:500px">
-                                <span class="input-group-text"><label for ="blog_visible">Visible</label></span>
+                                <span class="input-group-text"><label for ="blog_visible">Show on Blog Listings</label></span>
                                 <span class="input-group-text">
                                     <input class="form-check-input mt-0" type="checkbox" id="blog_visible" name="blog_visible" value="1" $blog_visible />
                                 </span>
                                 <span class="input-group-text"><label for ="blog_published">Published</label></span>
                                 <span class="input-group-text">
                                     <input class="form-check-input mt-0" type="checkbox" id="blog_published" name="blog_published" value="1" $blog_published />
+                                </span>
+                                <span class="input-group-text"><label for ="blog_free">Free</label></span>
+                                <span class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox" id="blog_free" name="blog_free" value="1" $blog_free />
                                 </span>
                             </div>
                         </div>

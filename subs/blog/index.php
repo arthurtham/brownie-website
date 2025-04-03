@@ -11,30 +11,45 @@ require_once $dir . "/includes/CloudinarySigner.php";
 // If loading a blog page, check user status
 if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 	// Set page title based on blog id if provided
-	$sql = "SELECT blog_name FROM blog_posts WHERE blog_id = \"".mysqli_real_escape_string($conn, $_GET['blog-id'])."\" AND blog_type = \"".mysqli_real_escape_string($conn, $_GET['blog-type'])."\";"; 
+	$sql = "SELECT blog_name, free FROM blog_posts WHERE blog_id = \"".mysqli_real_escape_string($conn, $_GET['blog-id'])."\" AND blog_type = \"".mysqli_real_escape_string($conn, $_GET['blog-type'])."\" AND published=1;"; 
 	$result = $conn->query($sql);
+	$blog_free = false;
 	if ($result->num_rows > 0) {
 		while ($blog_post = $result->fetch_assoc()) {
+			$blog_free = (intval($blog_post["free"]) === 1);
 			$blog_title = $blog_post["blog_name"];
+			// User unauthorized checks
+			// Force 401 page if not logged in
+			// Force 403 page if unauthorized
+			if (!isset($_SESSION['user'])) {
+				if ($blog_free) {
+					// If the blog is free, we can show it to non-subscribers
+					// but we still need to show the 401 page for non-logged in users
+					require $dir . "/error/401-blog.php";
+					die();
+				} else {
+					// If the blog is not free, we need to show the 403 page
+					require $dir . "/error/403-sub.php";
+					die();
+				}
+			} else if (!$blog_free && !check_roles($sub_perk_roles)) {
+				// If the blog is not free and the user is not a subscriber, we need to show the 403 page		
+				require $dir . "/error/403-sub.php";
+				die();
+			}
 		}
 		$title = "$blog_title - BrowntulStar - Browntul's Sub Blog";
 	} else {
+		// Blog post doesn't exist, but we must load the blog template which handles missing posts.
 		$title = "BrowntulStar - Browntul's Sub Blog";
 	}
-	// User unauthorized checks
-	if (!isset($_SESSION['user']) || !check_roles($sub_perk_roles)) {		
-		// Force 403 page if unauthorized
-		require $dir . "/error/403-sub.php";
-	} else {
-		// The rest of this code is irrelevant, since we can focus on rendering the actual blog page.
-		// Render it and die() in the end.
-		$blog_type = $_GET["blog-type"];
-		$blog_id = $_GET["blog-id"];
-		require_once $dir . "/templates/header.php";
-		echo "<div class='container body-container'>";
-		require $dir . "/templates/blog.php";
-		echo "</div>";
-		?>
+	$blog_type = $_GET["blog-type"];
+	$blog_id = $_GET["blog-id"];
+	require_once $dir . "/templates/header.php";
+	echo "<div class='container body-container'>";
+	require $dir . "/templates/blog.php";
+	echo "</div>";
+	?>
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
    document.querySelectorAll('img').forEach(function(img){
@@ -43,10 +58,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 </script>
 <?php
-		require $dir . "/templates/footer.php";
-	}
+	require $dir . "/templates/footer.php";
 	die();
 } else {
+	// Title for blog directory page
 	$title = "BrowntulStar - Browntul's Sub Blog";
 }
 
@@ -71,6 +86,7 @@ if (isset($_GET["category"])) {
 
  // User login status can change the display for call to action
 $button_read_text = "Read";
+$button_free_read_text = "Read";
 if (!isset($_SESSION['user']) || !check_roles($sub_perk_roles)) {
 	// If user isn't logged in
 	if (!isset($_SESSION['user'])) {
@@ -80,12 +96,19 @@ if (!isset($_SESSION['user']) || !check_roles($sub_perk_roles)) {
 		<img style='border:0px;height:18px;margin-top:-4px;' src='https://res.cloudinary.com/browntulstar/image/private/s--mOeZPgHn--/c_pad,h_48/f_webp/v1/com.browntulstar/img/platform-kofi?_a=BAAAUWGX' border='0' alt='ko-fi.com' />
 		Login as sub to read
 SUBSCRIBE;
+		$button_free_read_text = <<<FREE
+		<i class='fa-brands fa-discord'></i>
+		<i class="fa-brands fa-twitch"></i>
+		Login to read for free
+FREE;
 	} else { // If user isn't subscribed
 		$button_read_text = <<<SUBSCRIBE
+		<i class='fa-brands fa-discord'></i>
 		<i class="fa-brands fa-twitch"></i>
 		<img style='border:0px;height:18px;margin-top:-4px;' src='https://res.cloudinary.com/browntulstar/image/private/s--mOeZPgHn--/c_pad,h_48/f_webp/v1/com.browntulstar/img/platform-kofi?_a=BAAAUWGX' border='0' alt='ko-fi.com' />
-		Sub on Twitch/Ko-fi to read
+		Subscribe to read
 SUBSCRIBE;
+		$button_free_read_text = "Read for free";
 	}
 }
 
@@ -234,7 +257,7 @@ ITEM;
 
 		//Prepare all sql statements
 		$sql = "SELECT blog_posts.blog_id, blog_posts.blog_name, blog_posts.blog_date, blog_posts.blog_type, 
-		blog_types.name as blog_type_name, blog_posts.blog_content,
+		blog_types.name as blog_type_name, blog_posts.blog_content, blog_posts.free, 
 		COUNT(*) OVER() AS total_entries
 		FROM blog_posts LEFT JOIN blog_types ON blog_posts.blog_type = blog_types.blog_type 
 		WHERE ".$sql_criteria." AND blog_posts.visible = 1 AND published = 1 
@@ -288,9 +311,13 @@ ITEM;
 					if ($blog_name[0] === "-") {
 						continue;
 					}
+					$blog_free = (intval($blog_entry["free"]) === 1);
 					$blog_date = date_format(date_create_from_format("Y-m-d",explode(" ",$blog_entry["blog_date"])[0]),"F d, Y");
 					$blog_id = $blog_entry["blog_id"];
 					$blog_type_name = $blog_entry["blog_type_name"];
+					$blog_read_button = (($blog_free)
+						? "<p><a class='btn btn-dark' href='/subs/blog/$blog_type/$blog_id'>$button_free_read_text</a></p>"
+						: "<p><a class='btn btn-dark' href='/subs/blog/$blog_type/$blog_id'>$button_read_text</a></p>");
 					
 					//Preg match first image
 					preg_match("/\!\[.*]\((.*)\)/", $blog_entry["blog_content"], $blog_image_url);
@@ -309,7 +336,7 @@ ITEM;
 										<h4 class="card-title">$blog_name</h4>
 										<p class="card-text">
 											$blog_date - $blog_type_name<br/>
-											<p><a class="btn btn-dark" href="/subs/blog/$blog_type/$blog_id">$button_read_text</a></p>
+											$blog_read_button
 										</p>
 									</div>
 								</div>
