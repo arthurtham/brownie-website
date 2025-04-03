@@ -24,14 +24,14 @@ if (isset($_GET["announcement-id"])) {
     if ($result->num_rows > 0) {
         while ($announcement_post = $result->fetch_assoc()) {
             $announcement_id = $announcement_post["id"];
-            $announcement_name = $announcement_post["title"];
+            $announcement_name = htmlspecialchars($announcement_post["title"]);
             $announcement_type = $announcement_post["category"];
             $announcement_published_date = $announcement_post["publish_date"]; 
             $announcement_modified_date = $announcement_post["modified_date"]; 
             $announcement_visible = $announcement_post["visible"];
             $announcement_published = $announcement_post["published"];
             $announcement_content = $announcement_post["content"];
-            $announcement_summary = $announcement_post["summary"];
+            $announcement_summary = htmlspecialchars($announcement_post["summary"]);
         }
     }
     $cldSigner = new CloudinarySigner();

@@ -54,8 +54,8 @@ if (isset($_GET["type"])) {
         while ($blog_type_entry = $result->fetch_assoc()) {
             $blog_type_id = $blog_type_entry['id'];
             $blog_type_type = $blog_type_entry['blog_type'];
-            $blog_type_name = $blog_type_entry['name'];
-            $blog_type_description = $blog_type_entry['description'];
+            $blog_type_name = htmlspecialchars($blog_type_entry['name']);
+            $blog_type_description = htmlspecialchars($blog_type_entry['description']);
             $blog_type_visible = $blog_type_entry['visible'];
             $can_change_id = "readonly=\"readonly\"";
         }

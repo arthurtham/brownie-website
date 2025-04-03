@@ -25,14 +25,14 @@ if (isset($_GET["guide-id"])) {
     if ($result->num_rows > 0) {
         while ($guide_post = $result->fetch_assoc()) {
             $guide_id = $guide_post["id"];
-            $guide_name = $guide_post["title"];
+            $guide_name = htmlspecialchars($guide_post["title"]);
             $guide_type = $guide_post["category"];
             $guide_published_date = $guide_post["publish_date"]; // explode(" ",$guide_post["publish_date"])[0];
             $guide_modified_date = $guide_post["modified_date"]; //explode(" ",$guide_post["modified_date"])[0];
             $guide_visible = $guide_post["visible"];
             $guide_published = $guide_post["published"];
             $guide_content = $guide_post["content"];
-            $guide_summary = $guide_post["summary"];
+            $guide_summary = htmlspecialchars($guide_post["summary"]);
             $guide_url = $guide_post["url"];
         }
     }

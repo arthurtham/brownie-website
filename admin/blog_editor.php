@@ -25,7 +25,7 @@ if (isset($_GET["blog_id"])) {
     if ($result->num_rows > 0) {
         while ($blog_post = $result->fetch_assoc()) {
             $blog_id = $blog_post["blog_id"];
-            $blog_name = $blog_post["blog_name"];
+            $blog_name = htmlspecialchars($blog_post["blog_name"]);
             $blog_type = $blog_post["blog_type"];
             $blog_date = explode(" ",$blog_post["blog_date"])[0];
             $blog_visible = $blog_post["visible"];
@@ -90,7 +90,7 @@ echo <<<FORM
                         <div class="card-body" style="min-width: 500px">
                             <div class="input-group mb-3" style="max-width:500px">
                                 <span class="input-group-text"><label for ="blog_name">Title</label></span>
-                                <input required class="form-control" type="text" id="blog_name" name="blog_name" value="$blog_name" />
+                                <input required maxlength="255" class="form-control" type="text" id="blog_name" name="blog_name" value="$blog_name" />
                             </div>
                             <div class="input-group mb-3" style="max-width:500px">
                                 <span class="input-group-text"><label for ="blog_id">ID</label></span>

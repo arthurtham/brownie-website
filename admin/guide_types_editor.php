@@ -54,8 +54,8 @@ if (isset($_GET["type"])) {
         while ($guide_type_entry = $result->fetch_assoc()) {
             $guide_type_id = $guide_type_entry['id'];
             $guide_type_type = $guide_type_entry['category'];
-            $guide_type_name = $guide_type_entry['displayname'];
-            $guide_type_description = $guide_type_entry['description'];
+            $guide_type_name = htmlspecialchars($guide_type_entry['displayname']);
+            $guide_type_description = htmlspecialchars($guide_type_entry['description']);
             $guide_type_visible = $guide_type_entry['visible'];
             $can_change_id = "readonly=\"readonly\"";
         }
