@@ -15,6 +15,7 @@ require $dir . "/templates/header.php";
         <a class="btn btn-dark" href="/admin/announcement.php">Announcements Editor</a>
         <a class="btn btn-dark" href="/admin/blog.php">Blog Editor</a>
         <a class="btn btn-dark" href="/admin/guide.php">Guide Editor</a>
+        <a class="btn btn-dark" href="/admin/shop.php">Shop Editor</a>
     </li>
     <li class="mb-2">
         <button disabled style="width:100px" class="btn btn-primary">Links</button>

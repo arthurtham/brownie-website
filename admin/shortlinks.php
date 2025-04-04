@@ -36,7 +36,7 @@ $search_criteria = (isset($_GET["search-text"]) ? (
     ) : "");
 
 
-$sql = "SELECT * FROM shortlinks $search_criteria ORDER BY available DESC, shortcode ASC;";
+$sql = "SELECT * FROM shortlinks $search_criteria ORDER BY creationdate DESC, shortcode ASC;";
 //echo "<p>$sql</p>";
 echo "<table class='table'><thead class='table-dark sticky-top' style='z-index:1'><tr>
 <th class='col-2'><button class='sort btn btn-success btn-sm' data-sort=\"sl_shortcode\">Short Code</button</th>

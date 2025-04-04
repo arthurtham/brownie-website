@@ -84,7 +84,7 @@ echo <<<FORM
                 <div class="card bg-secondary mb-2" style="width: 100%; overflow-x: auto;">
                     <div class="card-body" style="min-width: 500px">
                         <input class="d-none form-control" readonly=readonly required type="text" id="blog_type_id" name="blog_type_id" value="$blog_type_id" />
-                        <small class="text-white">Once set, the category guide cannot be edited.</small>
+                        <small class="text-white">Once set, the category ID cannot be edited.</small>
                         <div class="input-group mb-3">
                             <span class="input-group-text">
                                 <label for ="blog_type_type">Category ID</label>
