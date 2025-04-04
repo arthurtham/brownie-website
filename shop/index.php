@@ -1,6 +1,6 @@
 <?php
 $dir = dirname(__DIR__, 1);
-$title = "BrowntulStar - Store and Services";
+$title = "BrowntulStar - Turtle Shop";
 require_once($dir . "/includes/mysql.php");
 require $dir . "/templates/header.php";
 require_once $dir . "/includes/CloudinarySigner.php";
@@ -15,9 +15,9 @@ echo '<script src="/assets/js/bootstrap-tab.js"></script>';
 </style>
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <h1 style="text-align: center;">Store and Services</h1>
+    <h1 style="text-align: center;">Turtle Shop</h1>
     <center>
-        <p>Please check out the services that I offer, downloadable digital assets from my store, and other ways to support me.</p>
+        <p>Check out ways to support Browntul via a subscription or through merch/digital storefronts!</p>
     </center>
 
 <?php
@@ -83,7 +83,7 @@ echo "</div>";
 
 
 function queryShopItems($conn, $queryString) {
-    $sql = "SELECT * FROM shop_posts WHERE visible=1 AND item_category = '". mysqli_real_escape_string($conn, $queryString) ."'";
+    $sql = "SELECT * FROM shop_posts WHERE visible=1 AND item_category = '". mysqli_real_escape_string($conn, $queryString) ."' ORDER BY item_name ASC;";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $cldSigner = new CloudinarySigner();
@@ -91,7 +91,7 @@ function queryShopItems($conn, $queryString) {
             $item_thumbnail = ($item["item_thumbnail"] != "") ? $cldSigner->signUrl($cldSigner->convertLocalUrlsToCloudinaryUrls($item["item_thumbnail"])) : "https://res.cloudinary.com/browntulstar/image/private/s--OQR6SXc3--/c_pad,w_200,h_200,ar_1:1/f_webp/v1/com.browntulstar/img/turtle-adult.webp?_a=BAAAV6E0";
             $item_name = $item["item_name"];
             $item_summary = $item["item_summary"];
-            $item_description = $item["item_description"];
+            $item_description = (new HTMLPurifier())->purify(Parsedown::instance()->setBreaksEnabled(true)->text($item["item_description"]));
             $item_price = $item["item_price"];
             $item_units = $item["item_unit"];
             $item_url = $item["item_url"];
