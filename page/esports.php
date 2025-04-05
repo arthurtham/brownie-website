@@ -35,7 +35,7 @@ require $dir . "/templates/header.php";
                 role="tab" aria-controls="profile" aria-selected="false">Contact</button>
         </li>
     </ul>
-    <div class="tab-content" id="portfolioContent">
+    <div class="tab-content bg-dark text-white pb-3" id="portfolioContent">
         <div class="tab-pane fade show active" id="shoutcasting" role="tabpanel" aria-labelledby="shoutcasting-tab">
             <h2 class="text-center" style="padding-top:24px">Shoutcasting</h2>
             <div class="text-center">
