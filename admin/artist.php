@@ -39,7 +39,7 @@ $search_criteria = (isset($_GET["search-text"]) ? (
 $sql = "SELECT * FROM artists $search_criteria ORDER BY entry_active DESC, entry_highlight DESC, name ASC;";
 //echo "<p>$sql</p>";
 echo "<table class='table'><thead class='table-dark sticky-top' style='z-index:1'><tr>
-<th class='col-3'><button class='sort btn btn-success btn-sm' data-sort=\"bl_id\">ID</button</th>
+<th class='col-1'><button class='sort btn btn-success btn-sm' data-sort=\"bl_id\">ID</button</th>
 <th class='col-3'><button class='sort btn btn-success btn-sm' data-sort=\"bl_name\">Name</button</th>
 <th class='col-4'><button class='sort btn btn-success btn-sm' data-sort=\"bl_subheader\">Description</button</th>
 <th class='col-1'><button class='sort btn btn-success btn-sm' data-sort=\"bl_highlight\">Highlight</button</th>

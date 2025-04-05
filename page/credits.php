@@ -97,12 +97,15 @@ function echoCardEntries($result) {
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" id="searchFilterDropdownMenu" aria-labelledby="searchFilterDropdown">
                 <li><a class="dropdown-item" onclick='fillSearchText("")'>Show All</a></li>
                 <li><h6 class="dropdown-divider"></h6></li>
-                <li><a class="dropdown-item" onclick='fillSearchText("tuber")'>VTuber/PNGTuber</a></li>
-                <li><a class="dropdown-item" onclick='fillSearchText("logo")'>Logos</a></li>
-                <li><a class="dropdown-item" onclick='fillSearchText("emote")'>Emotes</a></li>
                 <li><a class="dropdown-item" onclick='fillSearchText("badge")'>Badges</a></li>
-                <li><a class="dropdown-item" onclick='fillSearchText("overlay")'>Overlays</a></li>
+                <li><a class="dropdown-item" onclick='fillSearchText("brownieval")'>#BrownieVAL</a></li>
+                <li><a class="dropdown-item" onclick='fillSearchText("emote")'>Emotes</a></li>
+                <li><a class="dropdown-item" onclick='fillSearchText("flyer")'>Flyers</a></li>
                 <li><a class="dropdown-item" onclick='fillSearchText("hardware")'>Hardware</a></li>
+                <li><a class="dropdown-item" onclick='fillSearchText("logo")'>Logos</a></li>
+                <li><a class="dropdown-item" onclick='fillSearchText("overlay")'>Overlays</a></li>
+                <li><a class="dropdown-item" onclick='fillSearchText("tuber")'>VTuber/PNGTuber</a></li>
+                <li><a class="dropdown-item" onclick='fillSearchText("video")'>Videos</a></li>
                 <li><a class="dropdown-item" onclick='fillSearchText("widget")'>Widgets</a></li>
             </ul>
         </div>
