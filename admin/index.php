@@ -20,6 +20,7 @@ require $dir . "/templates/header.php";
     <li class="mb-2">
         <button disabled style="width:100px" class="btn btn-primary">Links</button>
         <a class="btn btn-dark" href="/admin/shortlinks.php">Shortlinks</a>
+        <a class="btn btn-dark" href="/admin/artist.php">Artist (Credits)</a>
         <a class="btn btn-dark" href="/admin/navbar.php">Navbar Contents</a>
     </li>
     <li class="mb-2">

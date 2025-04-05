@@ -40,7 +40,7 @@ require $dir . "/templates/footer.php";
 
 
 function queryArtEntries($conn) {
-    $sql = "SELECT * FROM artists WHERE entry_active = 1 ORDER BY sort_order ASC;";
+    $sql = "SELECT * FROM artists WHERE entry_active = 1 ORDER BY name ASC;";
     $result = $conn->query($sql);
     return $result;
 }
@@ -55,8 +55,9 @@ function echoHighlightedArtEntries($result) {
             if ($item["entry_highlight"] == 0) {
                 continue;
             }
+            $signed_portfolio_image = (strlen($item["portfolio_image"]) > 0) ? $cldSigner->signUrl($item["portfolio_image"]) : "https://res.cloudinary.com/browntulstar/image/private/s--OQR6SXc3--/c_pad,w_200,h_200,ar_1:1/f_webp/v1/com.browntulstar/img/turtle-adult.webp?_a=BAAAV6E0";
             echo '<div class="carousel-item' . ($show_active_text) . '" style="padding: 20px;" oncontextmenu="return false;">';
-            echo '<img loading="lazy" src="'.$cldSigner->signUrl($item["portfolio_image"]).'" class="d-block w-100" style="height: 300px;object-fit:contain;" alt="portfolio image: '.$item["name"].'" />';
+            echo '<img loading="lazy" src="'.$signed_portfolio_image.'" class="d-block w-100" style="height: 300px;object-fit:contain;" alt="portfolio image: '.$item["name"].'" />';
             echo '<div class="carousel-caption d-block rounded rounded-3" style="position: relative; left: 0; right: 0; bottom: 0;">';
             echo '<h5>'.$item["name"].'</h5>';
             echo '<p>'.$item["subheader"].'</p>';
@@ -88,7 +89,7 @@ function echoCardEntries($result) {
         ?>
         <div class="d-flex flex-column align-items-center justify-contents-center"><div id="prt_items" style="width: 100%; max-width: 600px; min-height:60vh;">
         <div class="input-group mb-2">
-            <span class="input-group-text"><label for ="search-text"><i class="fa-solid fa-magnifying-glass"></i> Search</label></span>
+            <span class="input-group-text"><label for ="search-text"><i class="fa-solid fa-magnifying-glass"></i></label></span>
             <input class="search form-control" type="text" name="search-text" id="search-text" placeholder="Name / Type" value="" />
             <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="searchFilterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 Filters
@@ -96,6 +97,7 @@ function echoCardEntries($result) {
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" id="searchFilterDropdownMenu" aria-labelledby="searchFilterDropdown">
                 <li><a class="dropdown-item" onclick='fillSearchText("")'>Show All</a></li>
                 <li><h6 class="dropdown-divider"></h6></li>
+                <li><a class="dropdown-item" onclick='fillSearchText("tuber")'>VTuber/PNGTuber</a></li>
                 <li><a class="dropdown-item" onclick='fillSearchText("logo")'>Logos</a></li>
                 <li><a class="dropdown-item" onclick='fillSearchText("emote")'>Emotes</a></li>
                 <li><a class="dropdown-item" onclick='fillSearchText("badge")'>Badges</a></li>
@@ -106,26 +108,19 @@ function echoCardEntries($result) {
         </div>
         <div>
             <div class="input-group input-group-sm mb-2">
-                <button class="sort btn btn-success btn-sm" data-sort="prt-name">Sort by Name</button>
+                <button disabled class="sort btn btn-success btn-sm" data-sort="prt-name">Sorted by Name (Alphabetical)</button>
             </div>
         </div>
         <ul class="list-unstyled list">
         <?php
         while ($item = $result->fetch_assoc()) {
             echo "<li>";
-            // if ($count % 2 == 0) {
-            //     if ($count > 0) {
-            //         echo '</div>';
-            //     }
-            //     echo '<div class="row" style="padding-bottom:10px" oncontextmenu="return false;">';
-            // }
-            // echo '<li><div class="col-lg-6 mb-2 d-flex align-items-stretch">';
-            $signed_portfolio_image = $cldSigner->signUrl($item["portfolio_image"]);
             $portfolio_name = $item["name"];
             $portfolio_id = $item["id"];
             $portfolio_subheader = $item["subheader"];
-            $logo_image = $cldSigner->signUrl($item["logo_image"]);
-            // $links_string = generateLinksString($item, false, -1);
+            $logo_image = (strlen($item["logo_image"]) > 0) ? $cldSigner->signUrl($item["logo_image"]) : "https://res.cloudinary.com/browntulstar/image/private/s--OQR6SXc3--/c_pad,w_200,h_200,ar_1:1/f_webp/v1/com.browntulstar/img/turtle-adult.webp?_a=BAAAV6E0";
+            $signed_portfolio_image = (strlen($item["portfolio_image"]) > 0) ? $cldSigner->signUrl($item["portfolio_image"]) : "https://res.cloudinary.com/browntulstar/image/private/s--OQR6SXc3--/c_pad,w_200,h_200,ar_1:1/f_webp/v1/com.browntulstar/img/turtle-adult.webp?_a=BAAAV6E0";
+            $links_string = generateLinksString($item, false, -1);
 
             echo <<<CREDITSPOST
                 <div class="card mt-2" style="width: 100%;color:black">
@@ -141,6 +136,7 @@ function echoCardEntries($result) {
                                 <div class="col-lg-8 card-content-center">
                                     <h2 class="card-title prt-name">$portfolio_name</h2>
                                     <p class="prt-subheader">$portfolio_subheader</p>
+                                    <span class="text-center">$links_string</span>
                                     <p><button type="button" class="btn btn-success" margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-$portfolio_id">More Info</button></p>
                                 </div>
                             </div>
@@ -175,7 +171,7 @@ function echoModalEntries($result) {
     if (isset($result->num_rows) && $result->num_rows > 0) {
         while ($item = $result->fetch_assoc()) {
             $links_string = generateLinksString($item, false, -1);
-
+            $logo_image = (strlen($item["logo_image"]) > 0) ? $cldSigner->signUrl($item["logo_image"]) : "https://res.cloudinary.com/browntulstar/image/private/s--OQR6SXc3--/c_pad,w_200,h_200,ar_1:1/f_webp/v1/com.browntulstar/img/turtle-adult.webp?_a=BAAAV6E0";
             /* Export */
             echo <<<MODALENTRY
             <div class="modal modal-description fade" style="overflow: hidden !important" id="modal-{$item["id"]}" tabindex="-1" aria-labelledby="modal-{$item["id"]}-label" aria-hidden="true">
@@ -187,7 +183,7 @@ function echoModalEntries($result) {
                         </div>
                         <div class="modal-body">
                             <center>
-                            <img loading="lazy" src="{$cldSigner->signUrl($item["logo_image"])}" class="mb-2" style="width:200px;height:200px;object-fit:contain;border: 3px solid black;border-radius:20px;" oncontextmenu="return false;" alt="logo image: {$item["name"]}" />
+                            <img loading="lazy" src="{$logo_image}" class="mb-2" style="width:200px;height:200px;object-fit:contain;border: 3px solid black;border-radius:20px;" oncontextmenu="return false;" alt="logo image: {$item["name"]}" />
                             </center><br />
                             <center><h1 style="word-break: break-word">{$item["name"]}</h1>
                             <p>{$item["subheader"]}</p>
