@@ -172,6 +172,7 @@ function echoModalEntries($result) {
         while ($item = $result->fetch_assoc()) {
             $links_string = generateLinksString($item, false, -1);
             $logo_image = (strlen($item["logo_image"]) > 0) ? $cldSigner->signUrl($item["logo_image"]) : "https://res.cloudinary.com/browntulstar/image/private/s--OQR6SXc3--/c_pad,w_200,h_200,ar_1:1/f_webp/v1/com.browntulstar/img/turtle-adult.webp?_a=BAAAV6E0";
+            $markdown_description = (new HTMLPurifier())->purify(Parsedown::instance()->setBreaksEnabled(true)->text($item["description"]));
             /* Export */
             echo <<<MODALENTRY
             <div class="modal modal-description fade" style="overflow: hidden !important" id="modal-{$item["id"]}" tabindex="-1" aria-labelledby="modal-{$item["id"]}-label" aria-hidden="true">
@@ -188,7 +189,7 @@ function echoModalEntries($result) {
                             <center><h1 style="word-break: break-word">{$item["name"]}</h1>
                             <p>{$item["subheader"]}</p>
                             <span>{$links_string}</span></center>
-                            <p>{$item["description"]}</p>
+                            {$markdown_description}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
