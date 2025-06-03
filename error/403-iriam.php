@@ -12,8 +12,8 @@ require $dir . "/templates/header.php";
         <span>
             <h1 class="text-center">403 Insufficient Perks</h1>
             <center>
-            <p>Insufficient perks found. Uninspirational!</p>
-            <p>Subscribe on Twitch, or meet the Star Badge tier on IRIAM for this content and join the Discord server to access perks.</p> 
+            <p>This is an IRIAM Star Badge perk.</p>
+            <p>Meet the Star Badge tier on IRIAM for this content and join the Discord server to access perks.</p> 
             </center>
         </span>
         <div class="alert alert-dark" role="alert">

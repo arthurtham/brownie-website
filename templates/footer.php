@@ -63,6 +63,11 @@ echo <<<FOOTER
                     </a> 
                 </li>
                 <li class="ms-2">
+                    <a style="text-decoration: none;" href="/iriam">
+                        <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
+                    </a>
+                </li>
+                <li class="ms-2">
                     <a style="text-decoration: none;color:#000" href="https://x.com/browntulstar" target="_blank">
                         <i class="fa-brands fa-x-twitter"></i>
                     </a>

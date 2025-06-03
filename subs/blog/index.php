@@ -38,10 +38,10 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 				die();
 			}
 		}
-		$title = "$blog_title - BrowntulStar - Browntul's Sub Blog";
+		$title = "$blog_title - BrowntulStar - Browntul's Blog";
 	} else {
 		// Blog post doesn't exist, but we must load the blog template which handles missing posts.
-		$title = "BrowntulStar - Browntul's Sub Blog";
+		$title = "BrowntulStar - Browntul's Blog";
 	}
 	$blog_type = $_GET["blog-type"];
 	$blog_id = $_GET["blog-id"];
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	die();
 } else {
 	// Title for blog directory page
-	$title = "BrowntulStar - Browntul's Sub Blog";
+	$title = "BrowntulStar - Browntul's Blog";
 }
 
 /**
@@ -93,8 +93,7 @@ if (!isset($_SESSION['user']) || !check_roles($sub_perk_roles)) {
 		$button_read_text = <<<SUBSCRIBE
 		<i class='fa-brands fa-discord'></i>
 		<i class="fa-brands fa-twitch"></i>
-		<img style='border:0px;height:18px;margin-top:-4px;' src='https://res.cloudinary.com/browntulstar/image/private/s--mOeZPgHn--/c_pad,h_48/f_webp/v1/com.browntulstar/img/platform-kofi?_a=BAAAUWGX' border='0' alt='ko-fi.com' />
-		Login as sub to read
+		Login with perks to read
 SUBSCRIBE;
 		$button_free_read_text = <<<FREE
 		<i class='fa-brands fa-discord'></i>
@@ -105,8 +104,7 @@ FREE;
 		$button_read_text = <<<SUBSCRIBE
 		<i class='fa-brands fa-discord'></i>
 		<i class="fa-brands fa-twitch"></i>
-		<img style='border:0px;height:18px;margin-top:-4px;' src='https://res.cloudinary.com/browntulstar/image/private/s--mOeZPgHn--/c_pad,h_48/f_webp/v1/com.browntulstar/img/platform-kofi?_a=BAAAUWGX' border='0' alt='ko-fi.com' />
-		Subscribe to read
+		Sub on Twitch/Get IRIAM 2★ to read
 SUBSCRIBE;
 		$button_free_read_text = "Read for free";
 	}
@@ -145,9 +143,9 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 	}
 
 	// Title text
-	echo '<h1 style="text-align: center;">Browntul\'s Sub Blog</h1>';
+	echo '<h1 style="text-align: center;">Browntul\'s Blog</h1>';
 	echo <<<ABOUT
-		<center>Read about Browntul's adventures below! Exclusive to active subscribers.</center><br/>
+		<center>Read about Browntul's adventures below! Exclusive to active subscribers / IRIAM 2★ members.</center><br/>
 ABOUT;
 	//Set up tabs
 	echo '<div class="nav-tabs-div"><ul class="nav nav-tabs" id="blogdirectory" role="tablist">';

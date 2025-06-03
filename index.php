@@ -8,14 +8,26 @@ require $dir . "/templates/header.php"
 	<div id="center-block" class="d-flex align-items-center justify-content-center" style="padding-top:50px">
 		<center><img src="https://res.cloudinary.com/browntulstar/image/private/s--gRiI4zsg--/c_pad,h_400/e_shadow/com.browntulstar/img/browntulstar-logo-v2-large.png" style="width:100%;max-width:500px" />
 			<div class="box bg-gradient shadow rounded" style="background-color: rgba(255,255,255,0.2); padding: 20px; width:100%; max-width:370px">
+				<div class="row g-2">
+					<div class="col col-md-6">
+						<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
+						<a class="btn btn-primary w-100" href="/stream">
+							<i class="fa-brands fa-twitch"></i>
+							Twitch
+						</a>
+						</span>
+					</div>
+					<div class="col col-md-6">
+						<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
+							<a class="btn btn-primary w-100" href="/iriam">
+								<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
+								IRIAM
+							</a>
+						</span>
+					</div>
+				</div>
 				<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
-					<a class="btn btn-primary w-100" href="/stream">
-						<i class="fa-brands fa-twitch"></i>
-						Watch Live
-					</a>
-				</span>
-				<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
-					<a href="#" id="navbarSubs-button" class="btn btn-success w-100"><i class="fa-solid fa-circle-check"></i> Sub Perks</a>
+					<a href="#" id="navbarSubs-button" class="btn btn-success w-100"><i class="fa-solid fa-circle-check"></i> Perks</a>
 				</span>
 				<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
 					<a href="#home-section-about" class="btn btn-dark w-100">About</a>

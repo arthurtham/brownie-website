@@ -246,7 +246,7 @@ function rate_limit_wrapper($function, array $param=null) {
 }
 
 function print_navbar_login_items($expand=false, $center=false, $subperks=false) {
-    global $sub_perk_roles, $mod_role_id, $vip_role_id, $turtle_role_id;
+    global $sub_perk_roles, $mod_role_id, $vip_role_id, $turtle_role_id, $iriam_1star_role_id, $iriam_2star_role_id, $iriam_3star_role_id, $sub_role_id;
     // Auth_URL now handled in login file
     // $auth_url = url($client_id, $redirect_url, $scopes);\
 
@@ -270,10 +270,16 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
                 echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> Discord Mod</a>";
             } else if (check_roles([$vip_role_id])) {
                 echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> Discord VIP</a>";
-            } else if (check_roles($sub_perk_roles)) {
-                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> Subscribed</a>";
+            } else if (check_roles([$iriam_3star_role_id])) {
+                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> IRIAM 3★</a>";
+            } else if (check_roles([$iriam_2star_role_id])) {
+                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> IRIAM 2★</a>";
+            } else if (check_roles([$sub_role_id])) {
+                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> Twitch Sub</a>";
+            } else if (check_roles([$iriam_1star_role_id])) {
+                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> IRIAM 1★</a>";
             } else {
-                echo "<a class='btn btn-primary $dropdown_style><i class=\"fa-solid fa-link\"></i> Verify Sub</a>";
+                echo "<a class='btn btn-primary $dropdown_style><i class=\"fa-solid fa-link\"></i> Get Perks</a>";
             }
             ?>
             <ul class="dropdown-menu dropdown-menu-end" id="accountMenu-menu" aria-labelledby="accountMenu" style="width: inherit">
@@ -299,7 +305,7 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
                 <li><h6 class="dropdown-header">Account</h6></li>
                 <li><a class="dropdown-item" href="/profile"><i style="width:26px" class="fa-solid fa-user"></i> Profile</a></li>
                 <li><a class="dropdown-item" href="/subs"><i style="width:26px" class='
-                    <?=(check_roles($sub_perk_roles) ? "fa-solid fa-circle-check'></i> Sub Perks" : "fa-solid fa-link'></i> Subscribe")?>
+                    <?=(check_roles($sub_perk_roles) ? "fa-solid fa-circle-check'></i> Perks" : "fa-solid fa-link'></i> Perks")?>
                 </a></li>
                 <li><a class="dropdown-item" href="/logout.php"><i style="width:26px" class='fa-solid fa-right-from-bracket'></i> Logout</a></li>
             </ul>
@@ -316,7 +322,7 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
             Login
             </a>
             <ul class="dropdown-menu dropdown-menu-end" id="accountLogin-menu" aria-labelledby="accountLogin">
-                <li><h6 class="dropdown-header">Twitch/Ko-fi perks and <br>#BrownieVAL locked pages</h6></li>
+                <li><h6 class="dropdown-header">Twitch/IRIAM★ perks and <br>#BrownieVAL locked pages</h6></li>
                 <li><a class="dropdown-item" href="/login.php"><i style="width:26px" class='fa-brands fa-discord'></i> Discord Login</a></li>
                 <li><hr class="dropdown-divider"></hr></li>
                 <li><h6 class="dropdown-header">Twitch perks only</h6></li>

@@ -1,7 +1,7 @@
 <?php
 require_once $dir . "/includes/CloudinarySigner.php";
 
-$_return_to_blogs_button = '<a href="/subs/blog/"><button class="btn btn-success">View All Sub Blog Posts</button></a>';
+$_return_to_blogs_button = '<a href="/subs/blog/"><button class="btn btn-success">View All Blog Posts</button></a>';
 $_error_message = <<<ERROR
 
 <h1 class="text-center">Browntul Says</h1>
@@ -35,13 +35,13 @@ if ($result->num_rows > 0) {
             $blog_date = date_format(date_create_from_format("Y-m-d",explode(" ",$blog_post["blog_date"])[0]),"F d, Y");
             echo "<div class='row post-contents' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
             echo "<center><h1>" . $blog_post["blog_name"] . "</h1>";
-            echo "<a href='/subs/blog/'>Sub Blog</a> / <a href='/subs/blog/$blog_type/'>" . $blog_post["blog_type_name"] . "</a></center>";
+            echo "<a href='/subs/blog/'>Blog</a> / <a href='/subs/blog/$blog_type/'>" . $blog_post["blog_type_name"] . "</a></center>";
             echo "<center>Written on: " . $blog_date . "</center>";
             if ($blog_post["published"]) {
                 if ($blog_post["free"]) {
                     echo '<center><span class="badge text-bg-secondary">Free to Read</span></center>';
                 } else {
-                    echo '<center><span class="badge text-bg-success">Sub-exclusive</span></center>';
+                    echo '<center><span class="badge text-bg-success">Perks Exclusive</span></center>';
                 }
             }
             echo "<hr><br/>";
