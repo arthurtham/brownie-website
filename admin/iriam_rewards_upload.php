@@ -26,7 +26,7 @@ $_SESSION['cloudinary_timer_start']=time();
 
   <div id="results-div" class="alert alert-dark" style="display: none">
     <h3>Upload successful!</h3>
-    <p>Waiting 5 seconds for Cloudinary to process eager transformations...</p>
+    <p>Please wait...</p>
   </div>
 </div>
 
@@ -150,9 +150,8 @@ $_SESSION['cloudinary_timer_start']=time();
           // send the post request
           document.body.appendChild(form);
           setTimeout(() => {
-            // console.log("5 seconds have passed");
             form.submit();
-          }, 5000);
+          }, 1000);
         }
       } else if (!error && result) {
       } else {

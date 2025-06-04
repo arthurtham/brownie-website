@@ -17,6 +17,10 @@ require_once $dir . "/includes/discord.php";
 if (str_contains($_SERVER['REQUEST_URI'], "admin")) {
     // Redirect all admin pages to home
     $_SESSION['redirect'] = "/";
+// Otherwise if the redirect URL has the word "iriam-rewards/" in it
+} else if (str_contains($_SERVER['REQUEST_URI'], "iriam-rewards/")) {
+    // Redirect all download pages to home
+    $_SESSION['redirect'] = "/subs/iriam-rewards";
 } else {
     // Normal behavior
     $_SESSION['redirect'] = $_SERVER["REQUEST_URI"];

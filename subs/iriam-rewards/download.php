@@ -6,6 +6,7 @@ require_once $dir . "/includes/mysql.php";
 require_once $dir . "/includes/functions.php";
 require_once $dir . "/includes/cloudinary.env.php";
 use Cloudinary\Api\Search\SearchApi;
+use Cloudinary\Api\Upload\UploadApi;
 
 // Check if the user is logged in and has the required roles
 if (!isset($_SESSION['user']) || !check_roles($iriam_star_roles)) {
@@ -38,15 +39,28 @@ if ($_GET['type'] === 'cdncloud') {
 
     $secure_url = $resulting_file["resources"][0]["secure_url"];
     $format = $resulting_file["resources"][0]["format"];
+    $resource_type = $resulting_file["resources"][0]["resource_type"];
 
-    header('Content-Description: File Transfer');
-    header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename="'.basename($reward_id).'.'.$format.'"');
-    header('Expires: 0');
-    header('Cache-Control: must-revalidate');
-    header('Pragma: public');
-    header('Content-Length: ' . filesize($secure_url));
-    readfile($secure_url);
+    $url = (new UploadApi())->privateDownloadUrl(
+        $reward_public_id,
+        $format,
+        [
+        'resource_type' => $resource_type,
+        'type' => 'private',
+        'attachment' => true,
+        'expires_at' => time() + 60 * 5// URL expires in 5 minutes
+        ]
+    );
+    // var_dump($url); // Debugging line to see the generated URL
+    redirect($url);
+    // header('Content-Description: File Transfer');
+    // header('Content-Type: application/octet-stream');
+    // header('Content-Disposition: attachment; filename="'.basename($reward_id).'.'.$format.'"');
+    // header('Expires: 0');
+    // header('Cache-Control: must-revalidate');
+    // header('Pragma: public');
+    // header('Content-Length: ' . filesize($secure_url));
+    // readfile($secure_url);
     exit;
 } else {
     // If the reward type is not "cloudinary", return a 403 error because there's no other types supported yet

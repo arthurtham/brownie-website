@@ -12,6 +12,13 @@ if (!isset($_SESSION['user']) || !check_roles($iriam_star_roles)) {
 
 
 require $dir . "/templates/header.php";
+
+$star1_banner = '<h5><span class="badge bg-primary" style="width:100%;max-width: 200px">STARS (IRIAM 1★)</span></h5>';
+$star2_banner = '<h5><span class="badge bg-primary" style="width:100%;max-width: 200px">SUPER STARS (IRIAM 2★)</span></h5>';
+$star3_banner = '<h5><span class="badge bg-primary" style="width:100%;max-width: 200px">SUPER STARS (IRIAM 3★)</span></h5>';
+$star1_small_banner = '<span class="badge bg-primary me-1">1★</span>';
+$star2_small_banner = '<span class="badge bg-primary me-1">2★</span>';
+$star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 ?>
 <div class="container-fluid body-container-iriam">
 	<div id="iriam-section" class="row py-5 home-div-row h-100">
@@ -26,8 +33,9 @@ require $dir . "/templates/header.php";
 										<img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg" style="border-radius: 100%;width:200px" />
 										<h1 class="card-title">IRIAM Star Badge Rewards</h1>
 										<p>
-											<strong>You're a star! A super star!</strong>
-											Thanks to your support, you get to claim these exclusive IRIAM star fan badge rewards.
+											<h2>You're a star! A super star!</h2><br>
+											Thanks to your support, you get to claim these exclusive IRIAM star fan badge rewards.<br>
+											Well, it's not much, but I hope you enjoy them!
 										</p>
 										<p>
 											Inspired by the rewards that IRIAM US's Founding Streamers offer, all rewards are available no matter when you achieved the IRIAM star fan badge reward. All you need to do is be able to access this page by having the corresponding IRIAM star badge Discord role.
@@ -36,13 +44,13 @@ require $dir . "/templates/header.php";
 									<div class="text-center">
 <?php
 											if (check_roles([$iriam_1star_role_id])) {
-												echo '<h5><span class="badge bg-primary" style="width:100%;max-width: 200px">STARS (IRIAM 1★)</span></h5>';
+												echo $star1_banner;
 											}
 											if (check_roles([$iriam_2star_role_id])) {
-												echo '<h5><span class="badge bg-primary" style="width:100%;max-width: 200px">SUPER STARS (IRIAM 2★)</span></h5>';
+												echo $star2_banner;
 											}
 											if (check_roles([$iriam_3star_role_id])) {
-												echo '<h5><span class="badge bg-primary" style="width:100%;max-width: 200px">SUPER STARS (IRIAM 3★)</span></h5>';
+												echo $star3_banner;
 											}
 ?>
 									</div>
@@ -80,7 +88,10 @@ require $dir . "/templates/header.php";
 												'thumbnail' => $row['iriam_reward_thumbnail'],
 												'type' => $row['iriam_reward_type'],
 												'reward_date' => $row['iriam_reward_date'],
-												'download_id' => $row['iriam_reward_download_id']
+												'download_id' => $row['iriam_reward_download_id'],
+												'1star' => $row['1star'],
+												'2star' => $row['2star'],
+												'3star' => $row['3star']
 											);
 										}
 									}
@@ -100,6 +111,7 @@ require $dir . "/templates/header.php";
 									<div class='w-100'>
 										<div class="tab-content" style="min-height: 500px";>
 											<div class="tab-pane active" id="tab-landing">
+												<h3>Ready to claim your rewards?</h3>
 												<p>Select a month from the dropdown above to view the rewards for that month.</p>
 											</div>
 <?php
@@ -109,7 +121,7 @@ require $dir . "/templates/header.php";
 												$rewards = $content['rewards'];
 
 												echo "<div class='tab-pane' id='tab-$content_id'>";
-													echo "<h1>Rewards from $content_label</h1>";
+													echo "<h3>Rewards from $content_label</h3>";
 													if (count($rewards) > 0) {
 														foreach ($rewards as $reward) {
 															$cld_signer = new CloudinarySigner();
@@ -118,7 +130,17 @@ require $dir . "/templates/header.php";
 															$reward_description = $reward['description'];
 															$reward_type = $reward['type'] ?? 'default'; // Default type if not set
 															$download_id = $reward['download_id'];
-
+															$reward_star_banners = "";
+															if (intval($reward['1star']) == 1) {
+																$reward_star_banners .= $star1_small_banner;
+															}
+															if (intval($reward['2star']) == 1) {
+																$reward_star_banners .= $star2_small_banner;
+															}
+															if (intval($reward['3star']) == 1) {
+																$reward_star_banners .= $star3_small_banner;
+															}
+															
 															echo <<<CREDITSPOST
 																<div class="card mt-2" style="width: 100%;color:black">
 																	<div class="card-body">
@@ -130,8 +152,9 @@ require $dir . "/templates/header.php";
 																				</div>
 																				<div class="col-lg-8">
 																					<h2 class="card-title">$reward_name</h2>
+																					<h5>$reward_star_banners</h5>
 																					<p>$reward_description</p>
-																					<p><a class="btn btn-danger" href="/subs/iriam-rewards/download.php?type=$reward_type&id=$download_id"><i class="fa-solid fa-download"></i> Download</a></p>
+																					<p><a class="btn btn-danger" href="/subs/iriam-rewards/download?type=$reward_type&id=$download_id"><i class="fa-solid fa-download"></i> Download</a></p>
 																				</div>
 																			</div>
 																		</div>
