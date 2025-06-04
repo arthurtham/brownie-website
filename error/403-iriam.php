@@ -7,22 +7,36 @@ if (!isset($title)) {
 require $dir . "/templates/header.php";
 ?>
 
-<div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <div class="d-flex flex-column align-items-center justify-content-center" style="height:100%">
-        <span>
-            <h1 class="text-center">403 Insufficient Perks</h1>
-            <center>
-            <p>This is an IRIAM Star Badge perk.</p>
-            <p>Meet the Star Badge tier on IRIAM for this content and join the Discord server to access perks.</p> 
-            </center>
-        </span>
-        <div class="alert alert-dark" role="alert">
-            <p class="text-center">Trying to access perks? Click on
-            "<?php if (isset($_SESSION["user"])) echo "Verify Perks"; else echo "Login"; ?>"
-            below to get set up.<br/>
-            For further help, please contact support.</p>
-        <?php print_navbar_login_items($expand=true, $center=true, $subperks=true); ?>
-        </div>
-    </div>
+<div class="container-fluid body-container-iriam">
+	<div id="iriam-section" class="row py-5 home-div-row h-100">
+		<div class="col-md-12 home-div-col" style="padding-bottom: 100px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 offset-lg-2">	
+						<div class="card bg-dark text-white mx-auto">
+							<div class="card-body">
+                                <div class="d-flex flex-column align-items-center justify-content-center" style="height:100%">
+                                    <span>
+                                        <h1 class="text-center">403 Insufficient Perks</h1>
+                                        <center>
+                                        <p>This is an IRIAM Star Badge perk.</p>
+                                        <p>Meet the Star Badge tier on IRIAM for this content and join the Discord server to access perks.</p> 
+                                        </center>
+                                    </span>
+                                    <div class="alert alert-dark" role="alert">
+                                        <p class="text-center">Trying to access perks? Click on
+                                        "<?php if (isset($_SESSION["user"])) echo "Verify Perks"; else echo "Login"; ?>"
+                                        below to get set up.<br/>
+                                        For further help, please contact support.</p>
+                                    <?php print_navbar_login_items($expand=true, $center=true, $subperks=true); ?>
+                                    </div>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <?php require $dir . "/templates/footer.php" ?>
