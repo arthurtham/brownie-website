@@ -2,6 +2,7 @@
 $dir = dirname(__DIR__, 2);
 require_once $dir . "/includes/default-includes.php";
 require_once $dir . "/includes/mysql.php";
+require_once $dir . "/includes/CloudinarySigner.php";
 $title = "BrowntulStar - IRIAM Star Badge Rewards";
 
 if (!isset($_SESSION['user']) || !check_roles($iriam_star_roles)) {
@@ -53,17 +54,17 @@ require $dir . "/templates/header.php";
 									);
 									$rewards_table_selection_options = '';
 
-									$sql_rewards = "SELECT * FROM `iriam_rewards` WHERE `published`=1 ORDER BY `reward_date` DESC";
+									$sql_rewards = "SELECT * FROM `iriam_rewards` WHERE `published`=1 ORDER BY `iriam_reward_date` DESC";
 									$result_rewards = $conn->query($sql_rewards);
 									unset($sql_rewards);
 
 									if ($result_rewards && $result_rewards->num_rows > 0) {
 										// Fetch all rewards and organize them by month
 										while ($row = $result_rewards->fetch_assoc()) {
-											$content_id = date('Y-m', strtotime($row['reward_date']));
+											$content_id = date('Y-m', strtotime($row['iriam_reward_date']));
 											// If the content id is not in the array, add it
 											if (!isset($rewards_table_selection_contents[$content_id])) {
-												$content_month = date('F Y', strtotime($row['reward_date']));
+												$content_month = date('F Y', strtotime($row['iriam_reward_date']));
 												$rewards_table_selection_contents[$content_id] = array(
 													'id' => $content_id,
 													'label' => $content_month,
@@ -78,7 +79,7 @@ require $dir . "/templates/header.php";
 												'description' => $row['iriam_reward_description'],
 												'thumbnail' => $row['iriam_reward_thumbnail'],
 												'type' => $row['iriam_reward_type'],
-												'reward_date' => $row['reward_date'],
+												'reward_date' => $row['iriam_reward_date'],
 												'download_id' => $row['iriam_reward_download_id']
 											);
 										}
@@ -111,7 +112,8 @@ require $dir . "/templates/header.php";
 													echo "<h1>Rewards from $content_label</h1>";
 													if (count($rewards) > 0) {
 														foreach ($rewards as $reward) {
-															$reward_thumbnail = $reward['thumbnail'];
+															$cld_signer = new CloudinarySigner();
+															$reward_thumbnail = $cld_signer->signUrl($reward['thumbnail']);
 															$reward_name = $reward['name'];
 															$reward_description = $reward['description'];
 															$reward_type = $reward['type'] ?? 'default'; // Default type if not set
@@ -129,7 +131,7 @@ require $dir . "/templates/header.php";
 																				<div class="col-lg-8">
 																					<h2 class="card-title">$reward_name</h2>
 																					<p>$reward_description</p>
-																					<p><a class="btn btn-danger" href="/subs/iriam-rewards/download?type=$reward_type&id=$download_id"><i class="fa-solid fa-download"></i> Download</a></p>
+																					<p><a class="btn btn-danger" href="/subs/iriam-rewards/download.php?type=$reward_type&id=$download_id"><i class="fa-solid fa-download"></i> Download</a></p>
 																				</div>
 																			</div>
 																		</div>
