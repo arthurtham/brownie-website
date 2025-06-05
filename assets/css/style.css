@@ -100,6 +100,7 @@ body {
     font-weight: 400 !important;
     font-style: normal !important;
     font-variation-settings: "slnt" 0 !important;
+    background-attachment: fixed;
 }
 
 body.v1 {
@@ -120,6 +121,7 @@ body.profile, div.brownie-red {
     background: -webkit-linear-gradient(180deg, rgba(63,13,27,1) 0%, rgba(114,24,49,1) 45%, rgba(190,40,81,1) 100%);
     background: linear-gradient(180deg, rgba(63,13,27,1) 0%, rgba(114,24,49,1) 45%, rgba(190,40,81,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3f0d1b",endColorstr="#be2851",GradientType=1);
+    background-attachment: fixed;
 }
 
 div.brownie-gray {
@@ -128,6 +130,7 @@ div.brownie-gray {
     background: -webkit-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(46,46,46,1) 100%);
     background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(46,46,46,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#2e2e2e",GradientType=1);
+    background-attachment: fixed;
 }
 
 body.home, div.container-fluid.body-container-home, div.brownie-green {
@@ -136,12 +139,15 @@ body.home, div.container-fluid.body-container-home, div.brownie-green {
     background: -webkit-radial-gradient(circle, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 30%, rgba(58,103,62,1) 75%);
     background: radial-gradient(circle, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 30%, rgba(58,103,62,1) 75%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d3ae86",endColorstr="#3a673e",GradientType=1);
+    background-attachment: fixed;
 }
 
 div.container-fluid.body-container-iriam {
-    background-image: url('https://res.cloudinary.com/browntulstar/image/upload/v1748902463/com.browntulstar/img/iriam-bg.jpg');
-    background-size: cover;
-    background-repeat: repeat-y;
+    background: #6777FF;
+    background: -webkit-linear-gradient(180deg, rgba(103, 119, 255, 1) 0%, rgba(0, 191, 254, 1) 30%, rgba(47, 255, 255, 1) 100%);
+    background: -moz-linear-gradient(180deg, rgba(103, 119, 255, 1) 0%, rgba(0, 191, 254, 1) 30%, rgba(47, 255, 255, 1) 100%);
+    background: linear-gradient(180deg, rgba(103, 119, 255, 1) 0%, rgba(0, 191, 254, 1) 30%, rgba(47, 255, 255, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6777FF", endColorstr="#2FFFFF", GradientType=0);
     background-attachment: fixed;
 }
 
