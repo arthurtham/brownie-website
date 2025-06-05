@@ -1,6 +1,6 @@
 <?php
 echo '<div class="d-flex align-items-center justify-content-center flex-direction: column" style="padding-bottom:50px">';
-echo '<div class="box bg-light bg-gradient shadow" style="padding: 40px; border-radius: 10%">';
+echo '<div class="box bg-light bg-gradient shadow" style="padding: 10px; border-radius: 5%">';
 echo '<center><div class="card" style="width:auto;max-width:400px;padding-top:20px"><center>';
 echo "<img class='rounded border' src='".get_avatar_url()."'";
 echo '" class="card-img-top" alt="..."/ style="width:auto;max-width:100px;"></center>';

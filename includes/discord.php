@@ -318,8 +318,8 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
     } else {
         echo <<<LOGINITEMS
         <li class="nav-item dropdown">
-            <a class="btn btn-success dropdown-toggle" style="font-weight:500" href="#" id="accountLogin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Login
+            <a class="btn btn-success dropdown-toggle" style="font-weight:500;width:190px;" href="#" id="accountLogin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
             </a>
             <ul class="dropdown-menu dropdown-menu-end" id="accountLogin-menu" aria-labelledby="accountLogin">
                 <li><h6 class="dropdown-header">Twitch/IRIAM★ perks and <br>#BrownieVAL locked pages</h6></li>

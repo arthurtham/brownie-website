@@ -19,7 +19,7 @@ require $dir . "/templates/header.php";
                                     IRIAM is a virtual reality live streaming platform where you can watch and interact with your favorite VTubers in real-time. You can watch them exclusively on your mobile smartphone device or tablet.
                                 </p>
                                 <p>
-                                    IRIAM Star Badges are gained by gifting points during my IRIAM livestreams. A 1★ Star Badge provides access to the private Discord sub-exclusive text channel, and a 2★/3★ Star Badge provides access to Brown's Blog. What a great way to support me in a new, interactive way!
+                                    IRIAM Star Badges are gained by gifting points during my IRIAM livestreams. A 1★ Star Badge provides access to the private Discord sub-exclusive text channel, and a 2★/3★ Star Badge provides access to Browntul's Blog. What a great way to support me in a new, interactive way!
                                 </p>
                                 <p>
                                     Join me on IRIAM to watch my Just Chatting livestreams anytime on the go.<br>
@@ -43,7 +43,7 @@ require $dir . "/templates/header.php";
                                 </p>
                                 <hr>
                                 <p>
-                                <a class="btn btn-light mb-2 w-100 shadow" href='/subs/iriam-rewards' style="max-width:300px">
+                                <a class="btn btn-info mb-2 w-100 shadow" href='/subs/iriam-rewards' style="max-width:300px">
                                     <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
                                     <i class="fa-solid fa-circle-check"></i>
                                     IRIAM Star Badge Rewards
@@ -54,9 +54,9 @@ require $dir . "/templates/header.php";
                                     Join Turtle Pond Server
                                 </a>
                                 <br>
-                                <a class="btn btn-danger mb-2 w-100" href="/subs/details" style="max-width:300px">
-                                    <i class="fa-solid fa-circle-info"></i>
-                                    Perks FAQ
+                                <a class="btn btn-success mb-2 w-100" href="/subs" style="max-width:300px">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    Overall Perks Info
                                 </a>
 
                                 </p>

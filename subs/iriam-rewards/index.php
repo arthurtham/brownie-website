@@ -13,9 +13,6 @@ $title = "BrowntulStar - IRIAM Star Badge Rewards";
 
 require $dir . "/templates/header.php";
 
-$star1_banner = '<h5><span class="badge bg-primary" style="width:100%;max-width: 200px">STARS (IRIAM 1★)</span></h5>';
-$star2_banner = '<h5><span class="badge bg-primary" style="width:100%;max-width: 200px">SUPER STARS (IRIAM 2★)</span></h5>';
-$star3_banner = '<h5><span class="badge bg-primary" style="width:100%;max-width: 200px">SUPER STARS (IRIAM 3★)</span></h5>';
 $star1_small_banner = '<span class="badge bg-primary me-1">1★</span>';
 $star2_small_banner = '<span class="badge bg-primary me-1">2★</span>';
 $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
@@ -25,7 +22,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 		<div class="col-md-12 home-div-col" style="padding-bottom: 100px;">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-12">	
+					<div class="col-lg-8 offset-lg-2">	
 						<div class="card bg-dark text-white mx-auto">
 							<div class="card-body">
                                 <div>
@@ -34,31 +31,30 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 										<h1 class="card-title">IRIAM Star Badge Rewards</h1>
 										<p>
 											<h2>You're a star! A super star!</h2><br>
-											Thanks to the Star Fan Badge supporters on IRIAM, they get to claim these exclusive IRIAM star fan badge rewards.<br>
-											Well, it's not much, but I hope they are enjoyable!
+											Thanks to the Star Fan Badge supporters on IRIAM, they get to claim these exclusive IRIAM star fan badge rewards.
 										</p>
 										<p>
-											Inspired by the rewards that IRIAM US's Founding Streamers offer, all rewards are available no matter 
-											when a user achieved the IRIAM Star Badge reward. 
+											All rewards are available no matter 
+											when a user achieved the IRIAM Star Badge reward.<br>
 											All they need to do is have the corresponding IRIAM star badge Discord role.
 										</p>
 										<p>
 											All IRIAM Discord roles reset on every 5th of the new month.
 										</p>
 									</div>
-									<div class="text-center">
 <?php
-											if (check_roles([$iriam_1star_role_id])) {
-												echo $star1_banner;
-											}
-											if (check_roles([$iriam_2star_role_id])) {
-												echo $star2_banner;
-											}
-											if (check_roles([$iriam_3star_role_id])) {
-												echo $star3_banner;
-											}
+									if (isset($_SESSION['user'])) {
+									echo '<hr>';
+									echo '<div class="text-center">
+									<h3>Confirm your roles</h3>
+									<p>Make sure you have the STARS (IRIAM 1★) or SUPER STARS (IRIAM 2★/3★) role from the Turtle Pond Discord server. 
+									You can view all rewards, but you can only download the rewards that you have access to.
+									The rewards are labeled by their ★ reward level.</p>
+									<p>You can claim the roles by going to the #iriam-★badge-assign Discord text channel.</p>';
+										require $dir . "/templates/profile-box.php";
+									}
+									echo '</div>';
 ?>
-									</div>
 									<hr>
 									<?php 
 
@@ -68,18 +64,23 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 										<div class="tab-content d-flex flex-column align-items-center justify-content-center" style="min-height: 350px";>
 											<div class="text-center w-100" id="tab-landing">
 												<h2>Many IRIAM rewards await you!</h2>
-												<p>Watch on IRIAM and gain a Star Badge.<br>Then, join the Discord and claim your role.<br>Finally, log in to this website with Discord and enjoy!</p>
+												<p>Watch on IRIAM and gain a Star Badge.
+												<br>Then, join the Discord server and claim your role in the #iriam-★badge-assign text channel.
+												<br>Finally, log in to this website with Discord and access the perks!</p>
+												<br>
+												<?= print_navbar_login_items($expand=true, $center=true, $subperks=true) ?>
+												<br>
 												<a class="btn btn-info mb-2 w-100 shadow" href='/iriam' style="max-width:300px">
 													<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
-													IRIAM
-												</a><br>
-												<a class="btn btn-danger mb-2 w-100" href="/subs/details" style="max-width:300px">
-													<i class="fa-solid fa-circle-info"></i>
-													Perks FAQ
+													About IRIAM
 												</a><br>
 												<a class="btn btn-light mb-2 w-100" href="/r/discord" style="max-width:300px" target="_blank">
 													<i class="fa-brands fa-discord"></i>
 													Join Turtle Pond Server
+												</a><br>
+												<a class="btn btn-success mb-2 w-100" href="/subs" style="max-width:300px">
+													<i class="fa-solid fa-circle-check"></i>
+													Overall Perks Info
 												</a><br>
 											</div>
 										</div>
@@ -133,7 +134,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 											<div class="input-group-text">
 												<i class="fa-solid fa-calendar-days"></i>
 											</div>
-											<select class="form-select" id="rewards-table-select" style="width: auto; max-width: 300px">
+											<select class="form-select" id="rewards-table-select" style="width: auto;">
 												<option disabled selected data-target="#tab-landing">Select a month...</option>
 												<?= $rewards_table_selection_options ?>
 											</select>
@@ -149,9 +150,9 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 													<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
 													IRIAM
 												</a><br>
-												<a class="btn btn-danger mb-2 w-100" href="/subs/details" style="max-width:300px">
-													<i class="fa-solid fa-circle-info"></i>
-													Perks FAQ
+												<a class="btn btn-success mb-2 w-100" href="/subs/details" style="max-width:300px">
+													<i class="fa-solid fa-circle-check"></i>
+													Overall Perks Info
 												</a>
 											</div>
 <?php
@@ -161,7 +162,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 												$rewards = $content['rewards'];
 
 												echo "<div class='tab-pane w-100' id='tab-$content_id'>";
-													echo "<h3>Rewards from $content_label</h3>";
+													echo "<h2 class='text-center'>Rewards from $content_label</h2>";
 													if (count($rewards) > 0) {
 														foreach ($rewards as $reward) {
 															$cld_signer = new CloudinarySigner();

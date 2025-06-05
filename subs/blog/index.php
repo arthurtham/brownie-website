@@ -145,7 +145,7 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 	// Title text
 	echo '<h1 style="text-align: center;">Browntul\'s Blog</h1>';
 	echo <<<ABOUT
-		<center>Read about Browntul's adventures below! Exclusive to active subscribers / IRIAM 2★ members.</center><br/>
+		<center>Read about Browntul's adventures below! Exclusive to active Twitch subs and IRIAM 2★/3★ members.</center><br/>
 ABOUT;
 	//Set up tabs
 	echo '<div class="nav-tabs-div"><ul class="nav nav-tabs" id="blogdirectory" role="tablist">';

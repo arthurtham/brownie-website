@@ -3,13 +3,8 @@
     <div class="row">
         <div class="col">
             <center><img src="https://res.cloudinary.com/browntulstar/image/private/s--ZPURbd45--/c_pad,w_200,h_200,ar_1:1/f_webp/v1/com.browntulstar/img/turtle-adult?_a=BAAAUWGX" style="width:100%;max-width:200px" /></center><br/>
-            <h2 class="text-center">Perks</h2>
-            <p class="text-center">Here's all the perks. Each role corresponds to the Discord role in the Turtle Pond Discord Server.
-                To gain a role, you can <strong>subscribe</strong> on Twitch or gain a Star Badge on IRIAM.
-                Log in with Twitch to get the Twitch perks. For IRIAM, join the Turtle Pond Discord Server, claim the role using the instructions, 
-                and then log in with Discord to get the IRIAM perks.</p> 
-                To refresh your roles, log out and log back in.</p>
-            <p class="text-center"><strong>NEW</strong>: Twitch subscribers are assumed to have the RED SHELLS (Twitch Subs) role. Wow, so inspirational!</p>
+            <h2 class="text-center">Perks Chart</h2>
+            <p class="text-center">There's lots of ways you can support Browntul. Pick a path and start earning them!</p>
         </div>
     </div>
     <div class="row">
@@ -35,19 +30,19 @@
                         </tr>
                         <tr>
                         <tr>
-                        <th scope="row">Discord Sub Only Channel</th>
+                        <th scope="row">Supporters Discord Text Channel</th>
                         <td><i class="fa-solid fa-square-check"></i></td>
-                        <td><i class="fa-solid fa-square-check"></i></td>
-                        <td><i class="fa-solid fa-square-check"></i></td>
-                        <td><i class="fa-solid fa-square-check"></i></td>
-                        </tr>
-                        <th scope="row">IRIAM Very-Simple Monthly Art</th>
-                        <td><i class="fa-regular fa-square"></i></td>
                         <td><i class="fa-solid fa-square-check"></i></td>
                         <td><i class="fa-solid fa-square-check"></i></td>
                         <td><i class="fa-solid fa-square-check"></i></td>
                         </tr>
                         <tr>
+                        <th scope="row">IRIAM Star Badge Rewards</th>
+                        <td><i class="fa-regular fa-square"></i></td>
+                        <td><i class="fa-solid fa-square-check"></i></td>
+                        <td><i class="fa-solid fa-square-check"></i></td>
+                        <td><i class="fa-solid fa-square-check"></i></td>
+                        </tr>
                         <th scope="row">Browntul's Blog</th>
                         <td><i class="fa-solid fa-square-check"></i></td>
                         <td><i class="fa-regular fa-square"></i></td>

@@ -9,31 +9,14 @@ $_kofi_logo = "<img height='18' style='border:0px;height:18px;margin-top:-4px' s
 echo '<div class="container body-container">';
 
 echo '<div class="d-flex flex-column align-items-center justify-content-center">';
-echo '<p><h1 class="text-center">Turtle Pond - Perks</h1></p>';
+echo '<p><h1 class="text-center">Turtle Pond - Perks FAQ</h1></p>';
 
-echo <<<SUBPERKSHEADER
-		<div class="row">
-			<div class="col-lg-12">
-SUBPERKSHEADER;
-			require $dir . "/templates/sub-perks-description.php";
-echo <<<SUBPERKSHEADER2
-			</div>
-		</div>
-	</div>
-SUBPERKSHEADER2;
 // FAQ
 $_kofi_logo = "<img height='18' style='border:0px;height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/s--mOeZPgHn--/c_pad,h_48/f_webp/v1/com.browntulstar/img/platform-kofi?_a=BAAAUWGX' border='0' alt='Buy Me a Coffee at ko-fi.com' />";
 $faqitems = array(
 	array(
-		"title" => "What are in the perks?",
-		"contents" => '<p><a class="btn btn-danger w-100 mb-2" style="max-width:300px" href="perks">
-							<i class="fa-solid fa-circle-info"></i>
-							Perks Details
-						</a></p>'
-	),
-	array(
-		"title" => "<i class='fa-brands fa-discord'></i>
-		How do I use my Discord account to access perks?",
+		"title" => "<span style='width:20px'><i class='fa-brands fa-discord'></i></span>
+		&nbsp;How do I use my Discord account to access perks?",
 		"contents" => "Here are the conditions for Discord users:<ul>
 		<li>You must be a member of the Turtle Pond Discord server.</li>
 		<li>You must have one of these criteria satisfied:</li>
@@ -53,8 +36,8 @@ $faqitems = array(
 		"
 	),
 	array(
-		"title" => "<i class='fa-brands fa-twitch'></i>
-		How do I use my subscribed Twitch account to access perks?",
+		"title" => "<span style='width:20px'><i class='fa-brands fa-twitch'></i>
+		</span>&nbsp;How do I use my subscribed Twitch account to access perks?",
 		"contents" => "<p>Please go to <a target='_blank' href='https://support.discord.com/hc/en-us/articles/212112068-Twitch-Integration-FAQ#h_01GBQS0GVMV8ERXGH2QK1VXA4D'>this link</a> to learn how to connect your Twitch account to Discord. Once your account is linked, you will see your Twitch account in the Discord connections page. It may take up to 24 hours for your subscription to be recognized on Discord. Then, log out and log back in to this website to access your perks.</p>
 		<p>Alternatively, simply log in with your Twitch account instead of Discord to access perks. This only applies to users that are actively subscribed on Twitch (no VIPs or other special roles).</p>
 		<p>If you're not subscribed on Twitch, you can do so here:</p>
@@ -66,6 +49,25 @@ $faqitems = array(
 			<i class='fa-brands fa-discord'></i>
 			Join Turtle Pond Discord Server
 			</a></p>"
+	),
+	array(
+		"title" => "<span style='width:20px'><img style=\"height:20px;margin-top:-4px\" src=\"https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg\">
+		</span>&nbsp;How do I access my IRIAM Star Reward Perks?",
+		"contents" => "
+		<p>IRIAM is a virtual reality live streaming platform where you can watch and interact with your favorite VTubers in real-time. You can watch them exclusively on your mobile smartphone device or tablet.</p>
+		<p>You can learn more about IRIAM by clicking on the IRIAM button below. An IRIAM account is required to gain IRIAM Star Badge roles.</p>
+		<p>To access your IRIAM Star Badge rewards, you must have the <strong>STARS</strong> or <strong>SUPER STARS</strong> role in the Turtle Pond Discord server. You can claim these roles by going to the #iriam-★badge-assign text channel and following the instructions. After you are assigned the proper roles, log out and log back in to this website with your Discord account and visit the IRIAM link below.</p>
+		
+		<p><a class=\"btn btn-info mb-2 w-100 shadow\" href='/iriam' style=\"max-width:400px\">
+			<img style=\"height:20px;margin-top:-4px\" src=\"https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg\">
+			Learn more about IRIAM
+		</a></p>
+		<p><a class='btn btn-dark w-100' href='/discord' target='_blank' style='max-width:400px'>
+			<i class='fa-brands fa-discord'></i>
+			Join Turtle Pond Discord Server
+			</a></p>
+		
+		"
 	),
 	array(
 		"title" => "Are there other ways to get perks?",
@@ -81,10 +83,8 @@ $faqitems = array(
 	),
 );
 echo <<<SUBPERKSHEADER2
-	<div class="row">
+	<div class="row w-100">
 		<div class="col-lg-12">
-			<hr/>
-			<center><h2>FAQ: Link Subscribed Account</h2></center>
 			<div class="accordion" id="accordionFAQ">
 SUBPERKSHEADER2;
 for ($_i = 0; $_i < count($faqitems); ++$_i) {
@@ -97,7 +97,7 @@ for ($_i = 0; $_i < count($faqitems); ++$_i) {
 					$title
 					</button>
 					</p>
-					<div id="collapse$_i" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+					<div id="collapse$_i" class="accordion-collapse collapse">
 					<div class="accordion-body">
 						$contents
 					</div>

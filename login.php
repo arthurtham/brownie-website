@@ -106,14 +106,14 @@ $_SESSION['signin-attempted'] = 2;
 
 # Redirecting to home page once all data has been fetched
 # Is user in the guild?
-if (check_guild_membership($guild_id) || (check_guild_membership($brownieval_guild_id) && str_contains($_SESSION['redirect'], "brownieval"))) {
+// if (check_guild_membership($guild_id) || (check_guild_membership($brownieval_guild_id) && str_contains($_SESSION['redirect'], "brownieval"))) {
     if (!isset($_SESSION['redirect']) || (strlen($_SESSION['redirect']) <= 0)) {
         redirect("/"); // if the redirect URL is not set, just send us back home
     } else {
         redirect(preg_replace("((\?|!)(logout|badauth|expired|ratelimit))", "", $_SESSION['redirect']));
     }
-} else {
-    // user is not in the guild, so none of the features can actually be used.
-    // but we can let them know that they should join the guild to activate these rewards.
-    redirect("/subs?joinserver");
-}
+// } else {
+//     // user is not in the guild, so none of the features can actually be used.
+//     // but we can let them know that they should join the guild to activate these rewards.
+//     redirect("/subs?joinserver");
+// }
