@@ -172,14 +172,23 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 															$reward_type = $reward['type'] ?? 'default'; // Default type if not set
 															$download_id = $reward['download_id'];
 															$reward_star_banners = "";
+															$star_roles_to_check = array($vip_role_id, $mod_role_id);
 															if (intval($reward['1star']) == 1) {
 																$reward_star_banners .= $star1_small_banner;
+																$star_roles_to_check[] = $iriam_1star_role_id;
 															}
 															if (intval($reward['2star']) == 1) {
 																$reward_star_banners .= $star2_small_banner;
+																$star_roles_to_check[] = $iriam_2star_role_id;
 															}
 															if (intval($reward['3star']) == 1) {
 																$reward_star_banners .= $star3_small_banner;
+																$star_roles_to_check[] = $iriam_3star_role_id;
+															}
+															if (!check_roles($star_roles_to_check)) {
+																$reward_download_button = "<p><button class=\"btn btn-danger\" disabled><i class=\"fa-solid fa-download\"></i> Download</button></p>";
+															} else {
+																$reward_download_button = "<p><a class=\"btn btn-danger\" href=\"/subs/iriam-rewards/download?type=$reward_type&id=$download_id\"><i class=\"fa-solid fa-download\"></i> Download</a></p>";
 															}
 															
 															echo <<<CREDITSPOST
@@ -195,7 +204,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 																					<h2 class="card-title">$reward_name</h2>
 																					<h5>$reward_star_banners</h5>
 																					<p>$reward_description</p>
-																					<p><a class="btn btn-danger" href="/subs/iriam-rewards/download?type=$reward_type&id=$download_id"><i class="fa-solid fa-download"></i> Download</a></p>
+																					$reward_download_button
 																				</div>
 																			</div>
 																		</div>
