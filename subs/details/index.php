@@ -109,6 +109,7 @@ echo '
 			</div>
 		</div>
 	</div>
+</div>
 </div>';
 ?>
 <?php require $dir . "/templates/footer.php" ?>

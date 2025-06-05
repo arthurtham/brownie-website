@@ -56,38 +56,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 									echo '</div>';
 ?>
 									<hr>
-									<?php 
-
-									if (!isset($_SESSION['user']) || !check_roles($iriam_star_roles)) {
-									?>
-									<div class='w-100'>
-										<div class="tab-content d-flex flex-column align-items-center justify-content-center" style="min-height: 350px";>
-											<div class="text-center w-100" id="tab-landing">
-												<h2>Many IRIAM rewards await you!</h2>
-												<p>Watch on IRIAM and gain a Star Badge.
-												<br>Then, join the Discord server and claim your role in the #iriam-★badge-assign text channel.
-												<br>Finally, log in to this website with Discord and access the perks!</p>
-												<br>
-												<?= print_navbar_login_items($expand=true, $center=true, $subperks=true) ?>
-												<br>
-												<a class="btn btn-info mb-2 w-100 shadow" href='/iriam' style="max-width:300px">
-													<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
-													About IRIAM
-												</a><br>
-												<a class="btn btn-light mb-2 w-100" href="/r/discord" style="max-width:300px" target="_blank">
-													<i class="fa-brands fa-discord"></i>
-													Join Turtle Pond Server
-												</a><br>
-												<a class="btn btn-success mb-2 w-100" href="/subs" style="max-width:300px">
-													<i class="fa-solid fa-circle-check"></i>
-													Overall Perks Info
-												</a><br>
-											</div>
-										</div>
-									</div>
-
 									<?php
-									} else {
 
 									$rewards_table_selection_contents = array(
 										#'id' => array('id' => '2025-06', 'label' => 'June 2025', 'rewards' => array()),
@@ -126,16 +95,16 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 												'3star' => $row['3star']
 											);
 										}
-									}
 									?>
 
 									<div class="mb-2">
 										<div class="input-group mb-3">
 											<div class="input-group-text">
-												<i class="fa-solid fa-calendar-days"></i>
+												<i class="fa-solid fa-calendar-days"></i>&nbsp;
+												Select: 
 											</div>
 											<select class="form-select" id="rewards-table-select" style="width: auto;">
-												<option disabled selected data-target="#tab-landing">Select a month...</option>
+												<option selected data-target="#tab-landing">Rewards Info</option>
 												<?= $rewards_table_selection_options ?>
 											</select>
 										</div>
@@ -143,6 +112,32 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 									<div class='w-100'>
 										<div class="tab-content d-flex flex-column align-items-center justify-content-center" style="min-height: 250px";>
 											<div class="tab-pane active text-center w-100" id="tab-landing">
+												<?php 
+												if (!isset($_SESSION['user']) || !check_roles($iriam_star_roles)) {
+												?>
+												<h2>Many IRIAM rewards await you!</h2>
+												<p>Watch on IRIAM and gain a Star Badge.
+												<br>Then, join the Discord server and claim your role in the #iriam-★badge-assign text channel.
+												<br>Finally, log in to this website with Discord and access the perks!</p>
+												<p>To preview the rewards, select a month above.</p>
+												<br>
+												<?= print_navbar_login_items($expand=true, $center=true, $subperks=true) ?>
+												<br>
+												<a class="btn btn-info mb-2 w-100 shadow" href='/iriam' style="max-width:300px">
+													<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
+													About IRIAM
+												</a><br>
+												<a class="btn btn-light mb-2 w-100" href="/r/discord" style="max-width:300px" target="_blank">
+													<i class="fa-brands fa-discord"></i>
+													Join Turtle Pond Server
+												</a><br>
+												<a class="btn btn-success mb-2 w-100" href="/subs" style="max-width:300px">
+													<i class="fa-solid fa-circle-check"></i>
+													Overall Perks Info
+												</a><br>
+												<?php
+												} else {
+												?>
 												<h2>Ready to claim your rewards?</h2>
 												<p>Select a month from the dropdown above to view the rewards for that month.</p>
 												<br>
@@ -150,10 +145,13 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 													<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
 													IRIAM
 												</a><br>
-												<a class="btn btn-success mb-2 w-100" href="/subs/details" style="max-width:300px">
+												<a class="btn btn-success mb-2 w-100" href="/subs" style="max-width:300px">
 													<i class="fa-solid fa-circle-check"></i>
 													Overall Perks Info
 												</a>
+												<?php 
+												}
+												?>
 											</div>
 <?php
 											foreach ($rewards_table_selection_contents as $content) {
