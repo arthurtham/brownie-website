@@ -26,7 +26,7 @@ $_SESSION['cloudinary_timer_start']=time();
 
   <div id="results-div" class="alert alert-dark" style="display: none">
     <h3>Upload successful!</h3>
-    <p>Please wait...</p>
+    <p>Waiting 10 seconds for Cloudinary processing. Please wait...</p>
   </div>
 </div>
 
@@ -74,7 +74,7 @@ $_SESSION['cloudinary_timer_start']=time();
       cropping: false,
       multiple: false,
       defaultSource: "local",
-      clientAllowedFormats: "mp4,mkv,mov,webp,png,jpg,gif",
+      clientAllowedFormats: "mp4,mkv,mov,webp,png,jpg,jpeg,gif,zip",
       resourceType: "auto",
       maxFileSize: "104857600",
       thumbnails: false,
@@ -116,42 +116,26 @@ $_SESSION['cloudinary_timer_start']=time();
           console.log(result.info);
           // collect relevant data for processing post request
           var public_id = result.info.public_id; // includes the folder path
-          var secure_url = result.info.secure_url;
-          if (result.info.resource_type === "image") {
-            var thumbnail = secure_url.replace("/upload/", "/upload/c_thumb,g_face,h_200,w_200/");
-          } else {
-            var thumbnail = "";
-          }
+          var public_id_name_only = public_id.split("/").pop(); // get the last part of the public_id
           
           myWidget.close({quiet: true});
           document.getElementById("cloudinary-upload-widget-span").style.display = "none";
           document.getElementById("results-div").style.display = "block";
 
-          // create a post request and make the browser submit it
+          // Create a get request using the public id and go to the editor page with it
           var form = document.createElement("form");
-          form.setAttribute("method", "post");
-          form.setAttribute("action", "/admin/iriam_rewards_process.php");
+          form.setAttribute("method", "get");
+          form.setAttribute("action", "/admin/iriam_rewards_editor.php");
           form.setAttribute("style", "display: none;");
           var inputPublicId = document.createElement("input");
           inputPublicId.setAttribute("type", "hidden");
-          inputPublicId.setAttribute("name", "iriam_reward_download_id");
-          inputPublicId.setAttribute("value", public_id);
+          inputPublicId.setAttribute("name", "public-id");
+          inputPublicId.setAttribute("value", public_id_name_only);
           form.appendChild(inputPublicId);
-          var inputThumbnail = document.createElement("input");
-          inputThumbnail.setAttribute("type", "hidden");
-          inputThumbnail.setAttribute("name", "iriam_reward_thumbnail");
-          inputThumbnail.setAttribute("value", thumbnail);
-          form.appendChild(inputThumbnail);
-          var inputNewEntry = document.createElement("input");
-          inputNewEntry.setAttribute("type", "hidden");
-          inputNewEntry.setAttribute("name", "new_entry");
-          inputNewEntry.setAttribute("value", "1");
-          form.appendChild(inputNewEntry);
-          // send the post request
           document.body.appendChild(form);
           setTimeout(() => {
-            form.submit();
-          }, 1000);
+            form.submit()
+          }, 10000);
         }
       } else if (!error && result) {
       } else {

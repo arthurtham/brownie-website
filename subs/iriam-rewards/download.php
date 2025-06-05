@@ -21,7 +21,7 @@ if (!isset($_GET['type']) || !isset($_GET['id'])) {
 }
 
 // If the reward type is "cloudinary / cdncloud", use Cloudinary to download the file
-if ($_GET['type'] === 'cdncloud') {
+if (true) { // Type doesn't matter for now, //($_GET['type'] === 'cdncloud') {
     $reward_id = htmlspecialchars($_GET['id']);
     $reward_public_id = "iriam/rewards/$reward_id";
     // var_dump($reward_id); // Debugging line to see the reward ID

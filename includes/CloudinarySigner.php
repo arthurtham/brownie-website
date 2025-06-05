@@ -17,7 +17,7 @@ class CloudinarySigner {
     public function __construct() {
         global $CLOUDINARY_CONFIG;
         $this->cld = new Cloudinary($CLOUDINARY_CONFIG);
-        $this->cldUrlPattern = '/(?:https:\/\/res.cloudinary.com\/browntulstar\/)(image|video)\/(private|authenticated|upload)\/(.*\/?)com\.browntulstar\/(.\S*\.(webp|mov|mp4|jpg|png|gif)*)/';
+        $this->cldUrlPattern = '/(?:https:\/\/res.cloudinary.com\/browntulstar\/)(image|video)\/(private|authenticated|upload)\/(.*\/?)(com\.browntulstar|iriam\/rewards)\/(.\S*\.(webp|mov|mp4|jpg|png|gif)*)/';
     }
 
     public function signUrl($url) {
@@ -33,9 +33,12 @@ class CloudinarySigner {
         1   =>  "image" or "video" (literal)
         2	=>	Delivery Type
         3	=>	Transformation
-        4	=>	public id: /com.browntulstar/<input>.<format>
+        4   =>  either "com.browntulstar" or "iriam/rewards"
+        5	=>	public id after 4: <input>
+        6   => file extension (webp, mov, mp4, jpg, png, gif)
         */
 
+        // error_log("Signing URL: ".var_export($cldUrlPatternArray, true));
         if (count($cldUrlPatternArray) < 5) {
             // var_dump("die");
             // var_dump($cldUrlPatternArray);
@@ -45,17 +48,19 @@ class CloudinarySigner {
         $urlformat = null;
         preg_match("/(.*)\.(webp|mp4|mov|jpg|png|gif)/", $url, $urlformat);
         if (count($urlformat) > 0) {
-            $public_id = $cldUrlPatternArray[4];
+            $public_id_prefix = $cldUrlPatternArray[4];
+            $public_id = $cldUrlPatternArray[5];
             $extension = $urlformat[2];
         } else {
-            $public_id = $cldUrlPatternArray[4];
+            $public_id_prefix = $cldUrlPatternArray[4];
+            $public_id = $cldUrlPatternArray[5];
             $extension = "";
         }
 
         if ($cldUrlPatternArray[1] === "image") {
-            $url = $this->cld->image("com.browntulstar/".$public_id);
+            $url = $this->cld->image($public_id_prefix."/".$public_id);
         } else if ($cldUrlPatternArray[1] === "video") {
-            $url = $this->cld->video("com.browntulstar/".$public_id);
+            $url = $this->cld->video($public_id_prefix."/".$public_id);
         }
 
         $versionAndTransformation = null;

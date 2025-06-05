@@ -5,10 +5,10 @@ require_once $dir . "/includes/mysql.php";
 require_once $dir . "/includes/CloudinarySigner.php";
 $title = "BrowntulStar - IRIAM Star Badge Rewards";
 
-if (!isset($_SESSION['user']) || !check_roles($iriam_star_roles)) {
-	require $dir . "/error/403-iriam.php";
-	die();
-}
+// if (!isset($_SESSION['user']) || !check_roles($iriam_star_roles)) {
+// 	require $dir . "/error/403-iriam.php";
+// 	die();
+// }
 
 
 require $dir . "/templates/header.php";
@@ -34,11 +34,16 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 										<h1 class="card-title">IRIAM Star Badge Rewards</h1>
 										<p>
 											<h2>You're a star! A super star!</h2><br>
-											Thanks to your support, you get to claim these exclusive IRIAM star fan badge rewards.<br>
-											Well, it's not much, but I hope you enjoy them!
+											Thanks to the Star Fan Badge supporters on IRIAM, they get to claim these exclusive IRIAM star fan badge rewards.<br>
+											Well, it's not much, but I hope they are enjoyable!
 										</p>
 										<p>
-											Inspired by the rewards that IRIAM US's Founding Streamers offer, all rewards are available no matter when you achieved the IRIAM star fan badge reward. All you need to do is be able to access this page by having the corresponding IRIAM star badge Discord role.
+											Inspired by the rewards that IRIAM US's Founding Streamers offer, all rewards are available no matter 
+											when a user achieved the IRIAM Star Badge reward. 
+											All they need to do is have the corresponding IRIAM star badge Discord role.
+										</p>
+										<p>
+											All IRIAM Discord roles reset on every 5th of the new month.
 										</p>
 									</div>
 									<div class="text-center">
@@ -56,6 +61,32 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 									</div>
 									<hr>
 									<?php 
+
+									if (!isset($_SESSION['user']) || !check_roles($iriam_star_roles)) {
+									?>
+									<div class='w-100'>
+										<div class="tab-content d-flex flex-column align-items-center justify-content-center" style="min-height: 500px";>
+											<div class="text-center w-100" id="tab-landing">
+												<h2>Many IRIAM rewards await you!</h2>
+												<p>Watch on IRIAM and gain a Star Badge.<br>Then, join the Discord and claim your role.<br>Finally, log in to this website with Discord and enjoy!</p>
+												<a class="btn btn-info mb-2 w-100 shadow" href='/iriam' style="max-width:300px">
+													<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
+													IRIAM
+												</a><br>
+												<a class="btn btn-danger mb-2 w-100" href="/subs/details" style="max-width:300px">
+													<i class="fa-solid fa-circle-info"></i>
+													Perks FAQ
+												</a><br>
+												<a class="btn btn-light mb-2 w-100" href="/r/discord" style="max-width:300px" target="_blank">
+													<i class="fa-brands fa-discord"></i>
+													Join Turtle Pond Server
+												</a><br>
+											</div>
+										</div>
+									</div>
+
+									<?php
+									} else {
 
 									$rewards_table_selection_contents = array(
 										#'id' => array('id' => '2025-06', 'label' => 'June 2025', 'rewards' => array()),
@@ -109,9 +140,9 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 										</div>
 									</div>
 									<div class='w-100'>
-										<div class="tab-content" style="min-height: 500px";>
-											<div class="tab-pane active" id="tab-landing">
-												<h3>Ready to claim your rewards?</h3>
+										<div class="tab-content d-flex flex-column align-items-center justify-content-center" style="min-height: 500px";>
+											<div class="tab-pane active text-center w-100" id="tab-landing">
+												<h2>Ready to claim your rewards?</h2>
 												<p>Select a month from the dropdown above to view the rewards for that month.</p>
 											</div>
 <?php
@@ -120,7 +151,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 												$content_label = $content['label'];
 												$rewards = $content['rewards'];
 
-												echo "<div class='tab-pane' id='tab-$content_id'>";
+												echo "<div class='tab-pane w-100' id='tab-$content_id'>";
 													echo "<h3>Rewards from $content_label</h3>";
 													if (count($rewards) > 0) {
 														foreach ($rewards as $reward) {
@@ -163,7 +194,11 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 CREDITSPOST;
 															}
 														} else {
-															echo "<p class='text-center'>No rewards available for this month.</p>";
+															echo <<<NOREWARDS
+															<div id="center-block" class="d-flex flex-column align-items-center justify-content-center" style="color:white">
+															<p class='text-center'>No rewards available for this month.</p>
+															</div>
+NOREWARDS;
 														}
 													echo "</div>";
 												}
@@ -171,6 +206,10 @@ CREDITSPOST;
 											</div>
 										</div>
 									</div>
+
+									<?php
+									}
+									?>
 									<hr>
                                     <p class="text-center">
                                         <small>IRIAM and its logo and artwork are copyrighted and trademarked by IRIAM Inc. All rights reserved.</small>                                    

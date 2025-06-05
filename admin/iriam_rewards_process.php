@@ -28,28 +28,13 @@ if (empty($_POST)) {
         WHERE iriam_reward_download_id = \"" . mysqli_real_escape_string($conn, $_POST["iriam_reward_download_id"]) . "\";";
     } else {
         // Special case: we are only creating new entries whenever a file is uploaded from the upload widget.
-        if ((!isset($_POST["iriam_reward_download_id"])) || empty($_POST["iriam_reward_download_id"])) {
-            throw new Exception("NEW ENTRY: No download ID provided for new entry.");
-        }
-        $iriam_reward_download_id = explode("/",mysqli_real_escape_string($conn, $_POST["iriam_reward_download_id"]));
-        $iriam_reward_download_id = end($iriam_reward_download_id);
-        $_POST["iriam_reward_download_id"] = $iriam_reward_download_id;
-        if ((!isset($_POST["iriam_reward_thumbnail"])) || empty($_POST["iriam_reward_thumbnail"])) {
-            $sql = "INSERT INTO iriam_rewards (
-                iriam_reward_download_id
-            ) VALUES (
-                \"$iriam_reward_download_id\"
-        );";
-        } else {
-            $iriam_reward_thumbnail = mysqli_real_escape_string($conn, $_POST["iriam_reward_thumbnail"]);
-            $sql = "INSERT INTO iriam_rewards (
-                iriam_reward_download_id,
-                iriam_reward_thumbnail
-            ) VALUES (
-                \"$iriam_reward_download_id\",
-                \"$iriam_reward_thumbnail\"
-            );";
-        }
+        // This shouldn't be possible here since we're using Cloudinary webhooks, so throw an error instead.
+        // See cloudinarypostupload.php for more details.
+        echo "<p>Failure: Invalid request, cannot make a new reward entry without using the upload widget.</p>";
+        echo "</div>";
+        $_footer_adminmode = true;
+        require $dir . "/templates/footer.php";
+        die();
     }
     #echo $sql;
     try {

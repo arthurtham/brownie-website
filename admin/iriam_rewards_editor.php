@@ -38,7 +38,14 @@ if (isset($_GET["public-id"])) {
             $iriam_reward_date = $iriam_reward_post['iriam_reward_date'];
             $_temp = var_export($iriam_reward_post,true);
         }
+    } else {
+        // If no results, redirect to the rewards list
+        redirect("/admin/iriam_rewards.php");
+        die();
     }
+} else {
+    redirect("/admin/iriam_rewards.php");
+    die();
 }
 
 if ($iriam_reward_published == "1") {
@@ -63,11 +70,14 @@ if ($iriam_reward_download_id !== "") {
     // Check if the file exists under the resources array
     if (isset($_cloudinary_results["resources"]) && count($_cloudinary_results["resources"]) > 0) {
         $iriam_reward_download_id_secure_url = $_cloudinary_results["resources"][0]["secure_url"];
+        $iriam_reward_resource_type = $_cloudinary_results["resources"][0]["resource_type"];
     } else {
         $iriam_reward_download_id_secure_url = "";
+        $iriam_reward_resource_type = "";
     }
 } else {
     $iriam_reward_download_id_secure_url = "";
+    $iriam_reward_resource_type = "";
 }
 
 $cldSigner = new CloudinarySigner();
@@ -110,7 +120,7 @@ echo <<<FORM
                             <input class="form-control" type="datetime-local" id="iriam_reward_date" name="iriam_reward_date" value="$iriam_reward_date" />
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text"><label for ="iriam_reward_name">Category (manual entry)</label></span>
+                            <span class="input-group-text"><label for ="iriam_reward_name">Reward Type (backend)</label></span>
                             <input required minlength="1" maxlength="512" class="form-control" type="text" id="iriam_reward_type" name="iriam_reward_type" value="$iriam_reward_type" /> 
                         </div>
                         <div class="input-group mb-3">
@@ -144,10 +154,45 @@ echo <<<FORM
                         </div>
                     </div>
                 </div>
-                <h1>Thumbnail Preview</h1>
-                <img id="iriam_reward_thumbnail_preview" src="$iriam_reward_thumbnail_signed_url" class="img-fluid rounded shadow" style="max-height: 200px; max-width: min(100%,225px);" />
-                <h1>Cloudinary Public ID</h1>
-                <img id="iriam_reward_thumbnail_preview_full" src="$iriam_reward_download_id_secure_url" class="img-fluid rounded shadow" style="max-height: 500px; max-width: min(100%,600px);" />
+                <div class="card bg-secondary mb-2"><div class="card-body">
+                <h1 class="text-white">Thumbnail Preview</h1>
+                <p><img id="iriam_reward_thumbnail_preview" src="$iriam_reward_thumbnail_signed_url" class="img-fluid rounded shadow" style="max-height: 200px; max-width: min(100%,225px);" /></p>
+                <br>
+                <h1 class="text-white">Cloudinary Asset Preview</h1>
+                <p><a class="btn btn-danger" href="$iriam_reward_download_id_secure_url" target="_blank">Open in New Tab</a></p>
+FORM;
+                // If it an image, show an image. If it's a video, show a video. Variable: 
+                if ($iriam_reward_resource_type === "image") {
+                    echo "<img id=\"iriam_reward_thumbnail_preview_full\" src=\"$iriam_reward_download_id_secure_url\" class=\"img-fluid rounded shadow\" style=\"max-height: 500px; max-width: min(100%,600px);\" />";
+                } else if ($iriam_reward_resource_type === "video") {
+                    echo <<<VIDEOPLAYER
+                    <div id="video-player-div">
+                        <video id="video-player-media"></video>
+                    </div> 
+                    <link href="https://unpkg.com/cloudinary-video-player@1.10.4/dist/cld-video-player.min.css" 
+                        rel="stylesheet">   
+                    <script src="https://unpkg.com/cloudinary-video-player@1.10.4/dist/cld-video-player.min.js" 
+                        type="text/javascript"></script>
+                    <script type="text/javascript"> 
+                    const player = cloudinary.videoPlayer('video-player-media', {
+                        cloudName: 'browntulstar',
+                        source: '$iriam_reward_download_id_secure_url',
+                        fluid: true,
+                        controls: true,
+                        muted: false,
+                        colors: {
+                        accent: '#af0303'
+                        },
+                        hideContextMenu: true,
+                        autoplay: false
+                    });
+                    </script>
+VIDEOPLAYER;
+                } else {
+                    echo "<p class='text-white'><strong>Raw media type: $iriam_reward_resource_type</strong></p>";
+                }
+            echo <<<FORM
+            </div></div>
             </form>
         </div>
     </div>
