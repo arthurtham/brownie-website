@@ -49,7 +49,8 @@ if (true) { // Type doesn't matter for now, //($_GET['type'] === 'cdncloud') {
     $reward = $result_rewards->fetch_assoc();
     unset($result_rewards);
     // Check if the user has the required star badge to download this reward
-    $star_roles_to_check = array();
+    // Includes VIP and Mod roles by default
+    $star_roles_to_check = array($vip_role_id, $mod_role_id);
     if (intval($reward['1star']) === 1) {
         $star_roles_to_check[] = $iriam_1star_role_id;
     }

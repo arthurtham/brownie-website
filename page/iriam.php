@@ -14,6 +14,7 @@ require $dir . "/templates/header.php";
 							<div class="card-body text-center">
                                 <img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg" style="border-radius: 100%;width:200px" />
                                 <h1 class="card-title">Browntul is now on IRIAM US!</h1>
+                                <h3>Early access streamer, here we come!</h3>
                                 <p>
                                     IRIAM is a virtual reality live streaming platform where you can watch and interact with your favorite VTubers in real-time. You can watch them exclusively on your mobile smartphone device or tablet.
                                 </p>
@@ -42,20 +43,20 @@ require $dir . "/templates/header.php";
                                 </p>
                                 <hr>
                                 <p>
-                                <a class="btn btn-light mb-2 w-100 shadow" href='/subs/iriam-rewards' target="_blank" style="max-width:300px">
+                                <a class="btn btn-light mb-2 w-100 shadow" href='/subs/iriam-rewards' style="max-width:300px">
                                     <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
                                     <i class="fa-solid fa-circle-check"></i>
                                     IRIAM Star Badge Rewards
                                 </a>
                                 <br>
-                                <a class="btn btn-danger mb-2 w-100" href="/subs/details" style="max-width:300px">
-                                    <i class="fa-solid fa-circle-info"></i>
-                                    Perks FAQ
-                                </a>
-                                <br>
                                 <a class="btn btn-light mb-2 w-100" href="/r/discord" style="max-width:300px" target="_blank">
                                     <i class="fa-brands fa-discord"></i>
                                     Join Turtle Pond Server
+                                </a>
+                                <br>
+                                <a class="btn btn-danger mb-2 w-100" href="/subs/details" style="max-width:300px">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    Perks FAQ
                                 </a>
 
                                 </p>
