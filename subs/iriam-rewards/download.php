@@ -37,6 +37,37 @@ if (true) { // Type doesn't matter for now, //($_GET['type'] === 'cdncloud') {
         die();
     }
 
+    // The file exists, but now we need to check the star badge permissions from the database
+    $sql_rewards = "SELECT * FROM `iriam_rewards` WHERE `published`=1 AND `iriam_reward_download_id`=\"" . mysqli_real_escape_string($conn, $reward_id) . "\" LIMIT 1;";
+    $result_rewards = $conn->query($sql_rewards);
+    unset($sql_rewards);
+    if ($result_rewards->num_rows === 0) {
+        // If the reward does not exist, return a 404 error
+        require $dir . "/error/404.php";
+        die();
+    }
+    $reward = $result_rewards->fetch_assoc();
+    unset($result_rewards);
+    // Check if the user has the required star badge to download this reward
+    $star_roles_to_check = array();
+    if (intval($reward['1star']) === 1) {
+        $star_roles_to_check[] = $iriam_1star_role_id;
+    }
+    if (intval($reward['2star']) === 1) {
+        $star_roles_to_check[] = $iriam_2star_role_id;
+    }
+    if (intval($reward['3star']) === 1) {
+        $star_roles_to_check[] = $iriam_3star_role_id;
+    }
+
+    if (!check_roles($star_roles_to_check)) {
+        // If the user does not have the required star badge, return a 403 error
+        require $dir . "/error/403-iriam.php";
+        die();
+    }
+
+
+
     $secure_url = $resulting_file["resources"][0]["secure_url"];
     $format = $resulting_file["resources"][0]["format"];
     $resource_type = $resulting_file["resources"][0]["resource_type"];
@@ -51,16 +82,7 @@ if (true) { // Type doesn't matter for now, //($_GET['type'] === 'cdncloud') {
         'expires_at' => time() + 60 * 5// URL expires in 5 minutes
         ]
     );
-    // var_dump($url); // Debugging line to see the generated URL
     redirect($url);
-    // header('Content-Description: File Transfer');
-    // header('Content-Type: application/octet-stream');
-    // header('Content-Disposition: attachment; filename="'.basename($reward_id).'.'.$format.'"');
-    // header('Expires: 0');
-    // header('Cache-Control: must-revalidate');
-    // header('Pragma: public');
-    // header('Content-Length: ' . filesize($secure_url));
-    // readfile($secure_url);
     exit;
 } else {
     // If the reward type is not "cloudinary", return a 403 error because there's no other types supported yet

@@ -65,7 +65,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 									if (!isset($_SESSION['user']) || !check_roles($iriam_star_roles)) {
 									?>
 									<div class='w-100'>
-										<div class="tab-content d-flex flex-column align-items-center justify-content-center" style="min-height: 500px";>
+										<div class="tab-content d-flex flex-column align-items-center justify-content-center" style="min-height: 350px";>
 											<div class="text-center w-100" id="tab-landing">
 												<h2>Many IRIAM rewards await you!</h2>
 												<p>Watch on IRIAM and gain a Star Badge.<br>Then, join the Discord and claim your role.<br>Finally, log in to this website with Discord and enjoy!</p>
@@ -140,10 +140,19 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 										</div>
 									</div>
 									<div class='w-100'>
-										<div class="tab-content d-flex flex-column align-items-center justify-content-center" style="min-height: 500px";>
+										<div class="tab-content d-flex flex-column align-items-center justify-content-center" style="min-height: 250px";>
 											<div class="tab-pane active text-center w-100" id="tab-landing">
 												<h2>Ready to claim your rewards?</h2>
 												<p>Select a month from the dropdown above to view the rewards for that month.</p>
+												<br>
+												<a class="btn btn-info mb-2 w-100 shadow" href='/iriam' style="max-width:300px">
+													<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
+													IRIAM
+												</a><br>
+												<a class="btn btn-danger mb-2 w-100" href="/subs/details" style="max-width:300px">
+													<i class="fa-solid fa-circle-info"></i>
+													Perks FAQ
+												</a>
 											</div>
 <?php
 											foreach ($rewards_table_selection_contents as $content) {

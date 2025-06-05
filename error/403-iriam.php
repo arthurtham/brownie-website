@@ -20,7 +20,9 @@ require $dir . "/templates/header.php";
                                         <h1 class="text-center">403 Insufficient Perks</h1>
                                         <center>
                                         <p>This is an IRIAM Star Badge perk.</p>
-                                        <p>Meet the Star Badge tier on IRIAM for this content and join the Discord server to access perks.</p> 
+                                        <p><strong>Something not right?</strong> Make sure you meet the Star Badge tier
+                                        on IRIAM for this content, then join the Discord server to claim the corresponding Star Badge roles. After confirming you
+                                        have the roles, log out and log back in to this website with your Discord account.</p> 
                                         </center>
                                     </span>
                                     <div class="alert alert-dark" role="alert">

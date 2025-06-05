@@ -28,21 +28,38 @@ require $dir . "/templates/header.php";
 
                                 </p>
                                 <p>
-                                <a class="btn btn-light mb-2 w-100 shadow" href='/r/iriam-profile' target="_blank" style="max-width:300px">
+                                <small>Open via a mobile browser</small><br>
+                                <a class="btn btn-info mb-2 w-100 shadow" href='/r/iriam-profile' target="_blank" style="max-width:300px">
                                     <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
-                                    Open @browntulstar in IRIAM
+                                    <strong>Jump on IRIAM!</strong>
                                 </a>
-                                <br>
-                                <a href="#" id="navbarSubs-button" class="btn btn-success mb-2 w-100" style="max-width:300px">
-                                    <i class="fa-solid fa-circle-check"></i> Access Perks</a>
                                 <br>
                                 <a href='https://apps.apple.com/us/app/iriam/id1358057296' target="_blank" style="max-width:400px">
                                     <img style="height:46px;" src="https://res.cloudinary.com/browntulstar/image/upload/s--vjz59PvV--/c_scale,h_50/f_webp/v1/com.browntulstar/img/download-ios.png?_a=BAAAV6E0"></a>
                                 
                                 <a href='https://play.google.com/store/apps/details?id=jp.co.duo7.vr.iriam&hl=en_US'  target="_blank" style="max-width:400px">
                                     <img style="height:46px;" src="https://res.cloudinary.com/browntulstar/image/upload/s--iy2rRbzZ--/c_scale,h_50/f_webp/v1/com.browntulstar/img/download-gplay-2.png?_a=BAAAV6E0"></a>
+                                </p>
+                                <hr>
+                                <p>
+                                <a class="btn btn-light mb-2 w-100 shadow" href='/subs/iriam-rewards' target="_blank" style="max-width:300px">
+                                    <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    IRIAM Star Badge Rewards
+                                </a>
+                                <br>
+                                <a class="btn btn-danger mb-2 w-100" href="/subs/details" style="max-width:300px">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    Perks FAQ
+                                </a>
+                                <br>
+                                <a class="btn btn-light mb-2 w-100" href="/r/discord" style="max-width:300px" target="_blank">
+                                    <i class="fa-brands fa-discord"></i>
+                                    Join Turtle Pond Server
+                                </a>
 
                                 </p>
+                                <hr>
                                 <p>
                                     <small>IRIAM and its logo and artwork are copyrighted and trademarked by IRIAM Inc. All rights reserved.</small>                                    
                                 </p>
