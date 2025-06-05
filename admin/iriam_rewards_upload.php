@@ -70,7 +70,7 @@ $_SESSION['cloudinary_timer_start']=time();
           }
         }
       },
-      showAdvancedOptions: false,
+      showAdvancedOptions: true,
       cropping: false,
       multiple: false,
       defaultSource: "local",
@@ -78,7 +78,7 @@ $_SESSION['cloudinary_timer_start']=time();
       resourceType: "auto",
       maxFileSize: "104857600",
       thumbnails: false,
-      autoMinimize: true,
+      autoMinimize: false,
       inlineContainer: document.getElementById('cloudinary-upload-widget-span'),
       styles: {
           palette: {

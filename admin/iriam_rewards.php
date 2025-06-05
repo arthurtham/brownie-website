@@ -56,7 +56,7 @@ if ($result->num_rows > 0) {
         $iriam_published = $iriam_reward_post['published'];
         $iriam_reward_download_id = $iriam_reward_post['iriam_reward_download_id'];
         echo "<tr>" . 
-        "<td class='gl_thumbnail'><img src=\"".$iriam_reward_thumbnail."\" class='img-fluid rounded shadow' style='max-height: 75px; max-width: min(100%,125px);' alt='Thumbnail for ".$iriam_reward_name."'>".
+        "<td class='gl_thumbnail'><center><img src=\"".$iriam_reward_thumbnail."\" class='img-fluid rounded shadow' style='max-height: 75px; max-width: min(100%,125px);' alt='Thumbnail for ".$iriam_reward_name."' /></center>".
         "</td><td class='gl_name' style='min-width:200px'><strong>".$iriam_reward_name."</strong><br><em>".$iriam_reward_download_id."</em><br>".(strlen($iriam_reward_description) > 100
             ? substr($iriam_reward_description, 0, 100) . "..."
             : $iriam_reward_description) .
