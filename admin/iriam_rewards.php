@@ -61,11 +61,11 @@ if ($result->num_rows > 0) {
             ? substr($iriam_reward_description, 0, 100) . "..."
             : $iriam_reward_description) .
         "</td><td class='gl_reward_date_readable'>".$iriam_reward_date.
-        "</td><td class='gl_reward_date' style='display:none'>".strtotime($iriam_reward_date).
-        "</td><td class='gl_1star'>".$iriam_reward_post['1star'].
-        "</td><td class='gl_2star'>".$iriam_reward_post['2star'].
-        "</td><td class='gl_3star'>".$iriam_reward_post['3star'].
-        "</td><td class='gl_published'>".$iriam_published.
+        "</td><td class='gl_reward_date' style='display:none'>".strtotime($iriam_reward_post['iriam_reward_date']).
+        "</td><td class='gl_1star'>".(intval($iriam_reward_post['1star']) === 1 ? '<i class="fa-solid fa-square-check"></i>' : "-").
+        "</td><td class='gl_2star'>".(intval($iriam_reward_post['2star']) === 1 ? '<i class="fa-solid fa-square-check"></i>' : "-").
+        "</td><td class='gl_3star'>".(intval($iriam_reward_post['3star']) === 1 ? '<i class="fa-solid fa-square-check"></i>' : "-").
+        "</td><td class='gl_published'>".(intval($iriam_published) === 1 ? '<i class="fa-solid fa-square-check"></i>' : "-").
         "</td><td><a href='iriam_rewards_editor.php?public-id=$iriam_reward_download_id'><button class='btn btn-dark' type='button'>Edit</button></a>".
         "</td></tr>";
     }

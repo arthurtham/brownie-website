@@ -101,11 +101,17 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 										<div class="input-group mb-3">
 											<div class="input-group-text">
 												<i class="fa-solid fa-calendar-days"></i>&nbsp;
-												Select: 
+												 
 											</div>
 											<select class="form-select" id="rewards-table-select" style="width: auto;">
-												<option selected data-target="#tab-landing">Rewards Info</option>
+												<optgroup label="Rewards Information">
+													<option data-target="#tab-landing">General Info</option>
+												</optgroup>
+												<hr>
+												<optgroup label="Monthly Rewards">
+													<option disabled selected data-target="">Select a month...</option>
 												<?= $rewards_table_selection_options ?>
+												</optgroup>
 											</select>
 										</div>
 									</div>
@@ -160,7 +166,6 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 												$rewards = $content['rewards'];
 
 												echo "<div class='tab-pane w-100' id='tab-$content_id'>";
-													echo "<h2 class='text-center'>Rewards from $content_label</h2>";
 													if (count($rewards) > 0) {
 														foreach ($rewards as $reward) {
 															$cld_signer = new CloudinarySigner();

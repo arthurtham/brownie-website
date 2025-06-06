@@ -1,7 +1,7 @@
 <?php
 
 $dir = dirname(__DIR__, 1);
-$title = "Admin";
+$title = "Cloudinary";
 require $dir . "/includes/admin-check.php";
 require $dir . "/templates/header.php";
 

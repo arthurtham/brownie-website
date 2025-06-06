@@ -48,17 +48,21 @@ if (isset($_GET["public-id"])) {
     die();
 }
 
+$iriam_minimum_reward = 0;
 if ($iriam_reward_published == "1") {
     $iriam_reward_published = "checked";
 }
 if ($iriam_reward_1star == "1") {
     $iriam_reward_1star = "checked";
+    $iriam_minimum_reward = 1;
 } 
 if ($iriam_reward_2star == "1") {
     $iriam_reward_2star = "checked";
+    $iriam_minimum_reward = 2;
 }
 if ($iriam_reward_3star == "1") {
     $iriam_reward_3star = "checked";
+    $iriam_minimum_reward = 3;
 }
 
 // Make sure the reward ID exists
@@ -124,22 +128,33 @@ echo <<<FORM
                             <input required minlength="1" maxlength="512" class="form-control" type="text" id="iriam_reward_type" name="iriam_reward_type" value="$iriam_reward_type" /> 
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text"><label for ="iriam_reward_published">Published/Viewable</label></span>
+                            <span class="input-group-text"><label for ="iriam_reward_published">Listed</label></span>
                             <span class="input-group-text">
                                 <input class="form-check-input mt-0" type="checkbox" id="iriam_reward_published" name="iriam_reward_published" value="1" $iriam_reward_published />
                             </span>
-                            <span class="input-group-text"><label for ="iriam_reward_published">1★</label></span>
-                            <span class="input-group-text">
-                                <input class="form-check-input mt-0" type="checkbox" id="iriam_reward_1star" name="iriam_reward_1star" value="1" $iriam_reward_1star />
+                            <div class="d-none">
+                                <span class="input-group-text"><label for ="iriam_reward_1star">1★</label></span>
+                                <span class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox" id="iriam_reward_1star" name="iriam_reward_1star" value="1" $iriam_reward_1star />
+                                </span>
+                                <span class="input-group-text"><label for ="iriam_reward_2star">2★</label></span>
+                                <span class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox" id="iriam_reward_2star" name="iriam_reward_2star" value="1" $iriam_reward_2star />
+                                </span>
+                                <span class="input-group-text"><label for ="iriam_reward_3star">3★</label></span>
+                                <span class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox" id="iriam_reward_3star" name="iriam_reward_3star" value="1" $iriam_reward_3star />
+                                </span>
+                            </div>
+                            <span class="input-group-text"><label for ="iriam_reward_star_rating">★ Reward Level</label>
                             </span>
-                            <span class="input-group-text"><label for ="iriam_reward_published">2★</label></span>
-                            <span class="input-group-text">
-                                <input class="form-check-input mt-0" type="checkbox" id="iriam_reward_2star" name="iriam_reward_2star" value="1" $iriam_reward_2star />
-                            </span>
-                            <span class="input-group-text"><label for ="iriam_reward_published">3★</label></span>
-                            <span class="input-group-text">
-                                <input class="form-check-input mt-0" type="checkbox" id="iriam_reward_3star" name="iriam_reward_3star" value="1" $iriam_reward_3star />
-                            </span>
+                            <select class="input-group-text form-select" id="iriam_reward_star_rating" style="width: auto;max-width: 150px">
+                                <option  selected disabled value=""> Loading...</option>
+                                <option  value="0">List Only</option>
+                                <option  value="1">1★ Reward</option>
+                                <option  value="2">2★ Reward</option>
+                                <option  value="3">3★ Reward</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -197,6 +212,30 @@ VIDEOPLAYER;
         </div>
     </div>
 </div>
+<script>
+$("#iriam_reward_star_rating").on("change", function(e) {
+  var star_value = parseInt(e.target.value);
+  console.log(star_value);
+  if (star_value >= 1) {
+    $("#iriam_reward_1star").prop("checked", true);
+  } else {
+    $("#iriam_reward_1star").prop("checked", false);
+  };
+  if (star_value >= 2) {
+    $("#iriam_reward_2star").prop("checked", true);
+  } else {
+    $("#iriam_reward_2star").prop("checked", false);
+  };
+  if (star_value >= 3) {
+    $("#iriam_reward_3star").prop("checked", true);
+  } else {
+    $("#iriam_reward_3star").prop("checked", false);
+  };
+});
+jQuery(document).ready(function($){
+    $('#iriam_reward_star_rating').find('option[value=$iriam_minimum_reward]').attr('selected','selected');
+});
+</script>
 FORM;
 
 require $dir . "/templates/admin-check-script.php";

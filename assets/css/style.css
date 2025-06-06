@@ -100,7 +100,6 @@ body {
     font-weight: 400 !important;
     font-style: normal !important;
     font-variation-settings: "slnt" 0 !important;
-    background-attachment: fixed;
 }
 
 body.v1 {

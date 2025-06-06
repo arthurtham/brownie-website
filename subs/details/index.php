@@ -1,6 +1,6 @@
 <?php
 $dir = dirname(__DIR__, 2);
-$title = "Turtle Pond - Perks";
+$title = "Turtle Pond - Perks Hub";
 require $dir . "/templates/header.php";
 ?>
 <?php
@@ -85,6 +85,18 @@ $faqitems = array(
 echo <<<SUBPERKSHEADER2
 	<div class="row w-100">
 		<div class="col-lg-12">
+			<p class="text-center"><a class="btn btn-success mb-2 w-100" href="/subs" style="max-width:300px">
+				<i class="fa-solid fa-circle-check"></i>
+				Back to Perks Info
+			</a></p>
+			<hr>
+			<div class="row mb-2">
+				<div class="col-lg-12">
+SUBPERKSHEADER2;
+			require $dir . "/templates/sub-perks-description.php";
+echo <<<SUBPERKSHEADER2
+				</div>
+			</div>	
 			<div class="accordion" id="accordionFAQ">
 SUBPERKSHEADER2;
 for ($_i = 0; $_i < count($faqitems); ++$_i) {

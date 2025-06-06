@@ -1,20 +1,24 @@
 <?php
 $dir = dirname(__DIR__, 1);
-$title = "Turtle Pond - Perks Status";
+$title = "Turtle Pond - Perks Hub";
 require $dir . "/templates/header.php";
 ?>
 
 <div class="container-fluid body-container">
-	<div class="row" style="padding-top:120px">
-		<div class="col-md-12">
-			<center><img src="https://res.cloudinary.com/browntulstar/image/upload/s--s7BzgqvH--/c_scale,w_400/f_webp/v1/com.browntulstar/img/pngtuber-turtle-half.png?_a=BAAAV6E0" style="width:auto;max-width:min(70vw,400px)"></center>
-		</div>
-	</div>
-</div>
-<div class="container body-container" style="padding-top:40px !important">
+	<div class="row">
+		<div class="col-md-12 home-div-col" style="padding-bottom: 100px">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1">
+						<center><img src="https://res.cloudinary.com/browntulstar/image/upload/s--s7BzgqvH--/c_scale,w_400/f_webp/v1/com.browntulstar/img/pngtuber-turtle-half.png?_a=BAAAV6E0" style="width:auto;max-width:min(70vw,400px)"></center>
+						<div class="card">
+							<div class="card-body">
+								<div class="container">
+
+		
 	<div class="row">
 		<div class="col-md-8 offset-md-2">
-			<h1 class="text-center">Turtle Pond - Perks</h1>
+			<h1 class="text-center">Turtle Pond - Perks Hub</h1>
 			<p class="text-center">
 			Choose a platform, watch and support, and benefit!</p>
 		</div>
@@ -167,16 +171,18 @@ echo <<<SUBPERKSHEADER
 			</div>
 		</div>
 	</div>
-	<hr>
-	<div class="row mb-2">
-		<div class="col-lg-12">
-SUBPERKSHEADER;
-	require $dir . "/templates/sub-perks-description.php";
-echo <<<SUBPERKSHEADER
-		</div>
-	</div>
 </div>
 SUBPERKSHEADER;
+
+echo "	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>";
 
 ?>
 <?php require $dir . "/templates/footer.php" ?>

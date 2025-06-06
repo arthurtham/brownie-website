@@ -50,12 +50,12 @@ if (isset($_GET["uploadedfrom"]) && $_GET["uploadedfrom"] === "iriam-rewards"){/
     // If it's an image, generate the thumbnail URL
     if ($resource_type === "image") {
         $cldSigner = new CloudinarySigner();
-        $iriam_reward_thumbnail = $cldSigner->signUrl("https://res.cloudinary.com/$CLOUDINARY_CLOUD_NAME/image/$type/c_fit,h_200,w_300/$public_id.webp");
+        $iriam_reward_thumbnail = $cldSigner->signUrl("https://res.cloudinary.com/$CLOUDINARY_CLOUD_NAME/image/$type/t_iriam-reward-thumbnail-watermark/$public_id.webp");
     } 
     // Else, if it's a video, generate the thumbnail URL based on the public ID of the video
     else if ($resource_type === "video") {
         $cldSigner = new CloudinarySigner();
-        $iriam_reward_thumbnail = $cldSigner->signUrl("https://res.cloudinary.com/$CLOUDINARY_CLOUD_NAME/video/$type/c_fit,h_200,w_300/$public_id.webp");
+        $iriam_reward_thumbnail = $cldSigner->signUrl("https://res.cloudinary.com/$CLOUDINARY_CLOUD_NAME/video/$type/t_iriam-reward-thumbnail-watermark/$public_id.webp");
     }
     else {
         $iriam_reward_thumbnail = null;
