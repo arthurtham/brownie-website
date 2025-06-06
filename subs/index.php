@@ -34,7 +34,7 @@ echo <<<SUBPERKSHEADER
 			<ul>
 				<li>For Twitch, make sure you are already subscribed to <strong>/browntulstar</strong> before logging in with your Twitch account; or, link your Twitch account to Discord first and wait 24 hours before logging in with your Discord account. 
 				</li>
-				<li>For IRIAM Star Badge rewards, make sure you have the <strong>STARS</strong> or <strong>SUPER STARS</strong> role in the Turtle Pond Discord first. You'll need to claim the Discord roles manually. For help, please click "FAQ" below.
+				<li>For IRIAM Star Badge rewards, make sure you have the <strong>STARS</strong> or <strong>SUPER STARS</strong> role in the Turtle Pond Discord first. You'll need to claim the Discord roles in the #iriam-★badge-assign channel. For help, please click "FAQ" below.
 				</li>
 				<li>If using Discord login: after updating your roles on Discord, please log out and log back in to this website to access your perks.</li>
 			</ul>
@@ -117,8 +117,8 @@ echo <<<SUBPERKSHEADER
 					<a href="/r/discord" target="_blank" class="btn btn-dark mb-2"><i class="fa-brands fa-discord"></i> Join Discord</a>
 					<h5><span class="badge bg-danger">RED SHELLS (Twitch Subs)</span></h5>
 					<h5><span class="badge bg-primary">STARS (IRIAM 1★)</span></h5>
-					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★)</span></h5>
-					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 3★)</span></h5>
+					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★/3★)</span></h5>
+					<h5><span class="badge bg-warning">GOLD SHELLS (Discord VIPs)</span></h5>
 					<p class="card-text">Gain access to an exclusive Discord channel where Browntul may share some sneak peaks at what's ahead.
 					</p>
 				</div>
@@ -140,8 +140,8 @@ echo <<<SUBPERKSHEADER
 					<h3 class="card-title">Browntul's Blog</h3>
 					<a href="/subs/blog" class="btn btn-dark mb-2">Go To Browntul's Blog</a>
 					<h5><span class="badge bg-danger">RED SHELLS (Twitch Subs)</span></h5>
-					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★)</span></h5>
-					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 3★)</span></h5>
+					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★/3★)</span></h5>
+					<h5><span class="badge bg-warning">GOLD SHELLS (Discord VIPs)</span></h5>
 					<p class="card-text">Read Browntul's Blog on his adventuers, technology, and more! 
 					</p>
 				</div>
@@ -164,8 +164,8 @@ echo <<<SUBPERKSHEADER
 					<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
 					IRIAM Rewards</a>
 					<h5><span class="badge bg-primary">STARS (IRIAM 1★)</span></h5>
-					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★)</span></h5>
-					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 3★)</span></h5>
+					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★/3★)</span></h5>
+					<h5><span class="badge bg-warning">GOLD SHELLS (Discord VIPs)</span></h5>
 					<p class="card-text">Receive exclusive Star Badge rewards by gifting gifts to Browntul on IRIAM.</p>
 				</div>
 			</div>

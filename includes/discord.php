@@ -305,7 +305,7 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
                 <li><h6 class="dropdown-header">Account</h6></li>
                 <li><a class="dropdown-item" href="/profile"><i style="width:26px" class="fa-solid fa-user"></i> Profile</a></li>
                 <li><a class="dropdown-item" href="/subs"><i style="width:26px" class='
-                    <?=(check_roles($sub_perk_roles) ? "fa-solid fa-circle-check'></i> Perks" : "fa-solid fa-link'></i> Perks")?>
+                    <?=(check_roles($sub_perk_roles) ? "fa-solid fa-circle-check'></i> Perks Hub" : "fa-solid fa-link'></i> Perks Hub")?>
                 </a></li>
                 <li><a class="dropdown-item" href="/logout.php"><i style="width:26px" class='fa-solid fa-right-from-bracket'></i> Logout</a></li>
             </ul>

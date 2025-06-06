@@ -27,7 +27,7 @@ require $dir . "/templates/header.php";
                                     </span>
                                     <div class="alert alert-dark" role="alert">
                                         <p class="text-center">Trying to access perks? Click on
-                                        "<?php if (isset($_SESSION["user"])) echo "Verify Perks"; else echo "Login"; ?>"
+                                        "<?php if (isset($_SESSION["user"])) echo "Perks Hub"; else echo "Login"; ?>"
                                         below to get set up.<br/>
                                         For further help, please contact support.</p>
                                     <?php print_navbar_login_items($expand=true, $center=true, $subperks=true); ?>
