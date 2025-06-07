@@ -25,7 +25,9 @@
         </div>
     </div>
     <div id="player-footer" class="column add-bottom center">
-        <span id="npFooter">Ready</span><br/><br/>
+        <span id="npFooter">Thomas the Tank Engine & Friends is property of HiT Entertainment.<br>
+Original Music by Mike O'Donnell & Junior Campbell.<br>
+Instrumental recreations by Mavis M. on YouTube.</span><br/><br/>
     </div>
 </div>
 </div>

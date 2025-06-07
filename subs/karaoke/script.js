@@ -5,19 +5,18 @@ jQuery(function ($) {
         // initialize plyr
         var player = new Plyr('#audio1', {
             controls: [
-                'restart',
                 'play',
                 'progress',
                 'current-time',
                 'duration',
                 'mute',
-                'volume'
+                'volume',
             ]
         });
         // initialize playlist and controls
         var index = 0,
             playing = false,
-            mediaPath = myMediaPath,
+            mediaPath = '',
             extension = '',
             tracks = myTracks,
             buildPlaylist = $.each(tracks, function(key, value) {
@@ -43,24 +42,25 @@ jQuery(function ($) {
                 playing = true;
                 var htmlcontents = "<span class=\"bounce\"><i class=\"fa-solid fa-train\"></i> Choo-choo</span>";
                 npAction.html(htmlcontents);
-                npFooter.html(htmlcontents);
+                // npFooter.html(htmlcontents);
             }).on('pause', function () {
                 playing = false;
                 var htmlcontents = "<span><i class=\"fa-solid fa-train\"></i> Pause</span>";
                 npAction.html(htmlcontents);
-                npFooter.html(htmlcontents);
+                // npFooter.html(htmlcontents);
             }).on('ended', function () {
                 var htmlcontents = "<span><i class=\"fa-solid fa-train\"></i> Pause</span>";
                 npAction.html(htmlcontents);
-                npFooter.html(htmlcontents);
+                // npFooter.html(htmlcontents);
                 if ((index + 1) < trackCount) {
                     index++;
                     loadTrack(index);
                     audio.play();
                 } else {
-                    audio.pause();
+                    // audio.pause();
                     index = 0;
                     loadTrack(index);
+                    audio.play();
                 }
             }).get(0),
             btnPrev = $('#btnPrev').on('click', function () {
@@ -99,8 +99,26 @@ jQuery(function ($) {
                 $('.plSel').removeClass('plSel');
                 $('#plList li:eq(' + id + ')').addClass('plSel');
                 npTitle.text(tracks[id].name);
+                $.ajax({
+                    url: 'track-signer.php',
+                    method: 'GET',
+                    data: { 'track-id': tracks[id].file },
+                    dataType: 'json',
+                    async: false,
+                    success: function(response) {
+                        if (response.success) {
+                            var tempUrl = response.url;
+                            audio.src = tempUrl;
+                        } else {
+                            alert('An error occurred. Please try again later.');
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred. Please try again later.');
+                    }
+                });
                 index = id;
-                audio.src = mediaPath + tracks[id].file + extension;
+                // audio.src = mediaPath + tracks[id].file + extension;
                 updateDownload(id, audio.src);
             },
             updateDownload = function (id, source) {
