@@ -15,7 +15,7 @@ $response = [
 ];
 
 // Check if the user is logged in and has the required roles
-if (false){//(!isset($_SESSION['user']) || !check_roles($sub_perk_roles)) {
+if (true){//(!isset($_SESSION['user']) || !check_roles($sub_perk_roles)) {
     $response['reason'] = "Permission denied.";
     header('Content-Type: application/json');
     http_response_code(403);
@@ -24,7 +24,7 @@ if (false){//(!isset($_SESSION['user']) || !check_roles($sub_perk_roles)) {
 }
 
 // Get the link information from the GET request. reward_type and download_id are required.
-if (!isset($_GET) || !isset($_GET['track-id'])) {
+if (!isset($_POST) || !isset($_POST['track-id'])) {
     $response['reason'] = "This request is missing required parameters.";
     header('Content-Type: application/json');
     http_response_code(401);
@@ -33,7 +33,7 @@ if (!isset($_GET) || !isset($_GET['track-id'])) {
 }
 
 // Use the track ID to get the mp3 file from Cloudinary
-$track_id = htmlspecialchars($_GET['track-id']);
+$track_id = htmlspecialchars($_POST['track-id']);
 $track_public_id = "com.browntulstar/tank_engine_karaoke/$track_id";
 
 $cloudinary_file = (new SearchApi())->expression(

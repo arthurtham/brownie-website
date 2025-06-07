@@ -3,6 +3,9 @@ $dir = dirname(__DIR__, 2);
 require_once $dir . "/includes/default-includes.php";
 $title = "Turtle Pond - Tank Engine Karaoke";
 
+require $dir . "/error/404.php";
+die();
+
 if (!isset($_SESSION['user']) || !check_roles($sub_perk_roles)) {
 	require $dir . "/error/403-sub.php";
 	die();
