@@ -15,7 +15,7 @@ $response = [
 ];
 
 // Check if the user is logged in and has the required roles
-if (true){//(!isset($_SESSION['user']) || !check_roles($sub_perk_roles)) {
+if (!isset($_SESSION['user']) || !check_roles($sub_perk_roles)) {
     $response['reason'] = "Permission denied.";
     header('Content-Type: application/json');
     http_response_code(403);
@@ -60,8 +60,8 @@ $url = (new UploadApi())->privateDownloadUrl(
     [
         'resource_type' => $resource_type,
         'type' => 'private',
-        'attachment' => true,
-        'expires_at' => time() + 1 // URL expires in 1 second
+        'attachment' => false,
+        'expires_at' => time() + 5 // URL expires in 5 seconds
     ]
 );
 

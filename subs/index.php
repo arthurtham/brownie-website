@@ -131,7 +131,7 @@ echo <<<SUBPERKSHEADER
 				<center>
 					<img 
 						loading="lazy" 
-						src="https://res.cloudinary.com/browntulstar/image/private/s--hGiugx47--/c_fit,h_150,w_150/f_webp/v1/com.browntulstar/img/turtle-adult.webp?_a=BAAAV6E0" 
+						src="https://res.cloudinary.com/browntulstar/image/private/s--Ve0EgVxL--/c_fit,w_150,h_150/f_webp/v1/com.browntulstar/img/turtleyear-sm.png?_a=BAAAV6E0" 
 						class="card-img-top" 
 						style="height:150px;width:auto;padding:10px"
 						alt="Browntul's Blog"
@@ -167,6 +167,46 @@ echo <<<SUBPERKSHEADER
 					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★/3★)</span></h5>
 					<h5><span class="badge bg-warning">GOLD SHELLS (Discord VIPs)</span></h5>
 					<p class="card-text">Receive exclusive Star Badge rewards by gifting gifts to Browntul on IRIAM.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-6 mb-2 d-flex align-items-stretch">
+			<div class="card h-100 w-100">
+				<center>
+					<img 
+						loading="lazy" 
+						src="https://res.cloudinary.com/browntulstar/image/private/s--Jwq3O9Cw--/c_fit,w_150,h_150/f_webp/v1/com.browntulstar/img/credits-portfolio-yeoubiame.png?_a=BAAAV6E0" 
+						class="card-img-top" 
+						style="height:150px;width:auto;padding:10px"
+						alt="Tank Engine Karaoke"
+					>
+				<div class="card-body text-center">
+					<h3 class="card-title">Tank Engine Karaoke</h3>
+					<a href="/subs/karaoke" class="btn btn-dark mb-2">Go To Karaoke</a>
+					<h5><span class="badge bg-danger">RED SHELLS (Twitch Subs)</span></h5>
+					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★/3★)</span></h5>
+					<h5><span class="badge bg-warning">GOLD SHELLS (Discord VIPs)</span></h5>
+					<p class="card-text">Sing along with Browntul the Tank Engine! Formerly a meme reward, but returning for a limited run. 
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6 mb-2 d-flex align-items-stretch">
+			<div class="card h-100 w-100">
+				<center>
+					<img 
+						loading="lazy" 
+						src="https://res.cloudinary.com/browntulstar/image/private/s--hGiugx47--/c_fit,h_150,w_150/f_webp/v1/com.browntulstar/img/turtle-adult.webp?_a=BAAAV6E0" 
+						class="card-img-top" 
+						style="height:150px;width:auto;padding:10px"
+						alt="And More"
+					>
+				<div class="card-body text-center">
+					<h3 class="card-title">More Rewards!</h3>
+					<p class="card-text">Stay tuned! You never know if there will be more perks you can gain!
+					</p>
 				</div>
 			</div>
 		</div>

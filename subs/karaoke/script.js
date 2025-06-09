@@ -2,6 +2,8 @@ jQuery(function ($) {
     'use strict'
     var supportsAudio = !!document.createElement('audio').canPlayType;
     if (supportsAudio) {
+        var cacheMedia = {};
+
         // initialize plyr
         var player = new Plyr('#audio1', {
             controls: [
@@ -11,6 +13,7 @@ jQuery(function ($) {
                 'duration',
                 'mute',
                 'volume',
+                'download',
             ]
         });
         // initialize playlist and controls
@@ -42,25 +45,22 @@ jQuery(function ($) {
                 playing = true;
                 var htmlcontents = "<span class=\"bounce\"><i class=\"fa-solid fa-train\"></i> Choo-choo</span>";
                 npAction.html(htmlcontents);
-                // npFooter.html(htmlcontents);
             }).on('pause', function () {
                 playing = false;
                 var htmlcontents = "<span><i class=\"fa-solid fa-train\"></i> Pause</span>";
                 npAction.html(htmlcontents);
-                // npFooter.html(htmlcontents);
             }).on('ended', function () {
                 var htmlcontents = "<span><i class=\"fa-solid fa-train\"></i> Pause</span>";
                 npAction.html(htmlcontents);
-                // npFooter.html(htmlcontents);
                 if ((index + 1) < trackCount) {
                     index++;
                     loadTrack(index);
-                    audio.play();
+                    // audio.play();
                 } else {
                     // audio.pause();
                     index = 0;
                     loadTrack(index);
-                    audio.play();
+                    // audio.play();
                 }
             }).get(0),
             btnPrev = $('#btnPrev').on('click', function () {
@@ -95,31 +95,66 @@ jQuery(function ($) {
                     playTrack(id);
                 }
             }),
-            loadTrack = function (id) {
-                $('.plSel').removeClass('plSel');
-                $('#plList li:eq(' + id + ')').addClass('plSel');
-                npTitle.text(tracks[id].name);
-                $.ajax({
-                    url: 'track-signer.php',
-                    method: 'GET',
-                    data: { 'track-id': tracks[id].file },
-                    dataType: 'json',
-                    async: false,
-                    success: function(response) {
-                        if (response.success) {
-                            var tempUrl = response.url;
-                            audio.src = tempUrl;
+            loadTrack = async function (id) {
+                playing = false;
+                if (audio) {
+                    audio.pause();
+                }
+                var htmlcontents = "<span><i class=\"fa-solid fa-spinner\"></i> Loading...</span>";
+                npAction.html(htmlcontents);
+                var success = false;
+                if (cacheMedia["com-browntulstar-tek-"+tracks[id].file]) {
+                    audio.src = cacheMedia["com-browntulstar-tek-"+tracks[id].file];
+                    success = true;
+                } else {
+                    var cldMediaUrl = null;
+                    try {
+                        await $.ajax({
+                            url: 'track-signer.php',
+                            method: 'POST',
+                            data: { 'track-id': tracks[id].file },
+                            dataType: 'json',
+                            async: false,
+                            success: function(response) {
+                                if (response.success) {
+                                    cldMediaUrl = response.url;
+                                } else {
+                                    alert('An error occurred. Please try again later.');
+                                }
+                            },
+                            error: function() {
+                                alert('An error occurred. Please try again later.');
+                            }
+                        });
+                    } catch {
+                        //continue
+                    }
+                    if (cldMediaUrl) {
+                        const response = await fetch(cldMediaUrl);
+                        if (response.status === 200) {
+                            const blob = await response.blob();
+                            audio.src = URL.createObjectURL(blob);
+                            cacheMedia["com-browntulstar-tek-"+tracks[id].file] = audio.src;
+                            success = true;
                         } else {
                             alert('An error occurred. Please try again later.');
                         }
-                    },
-                    error: function() {
-                        alert('An error occurred. Please try again later.');
                     }
-                });
-                index = id;
-                // audio.src = mediaPath + tracks[id].file + extension;
-                updateDownload(id, audio.src);
+                }
+
+                if (success) {
+                    $('.plSel').removeClass('plSel');
+                    $('#plList li:eq(' + id + ')').addClass('plSel');
+                    npTitle.text(tracks[id].name);
+                    index = id;
+                    updateDownload(id, audio.src);
+                    audio.play();
+                    var htmlcontents = "<span class=\"bounce\"><i class=\"fa-solid fa-train\"></i> Choo-choo</span>";
+                    npAction.html(htmlcontents);                
+                } else {
+                    var htmlcontents = "<span><i class=\"fa-solid fa-ban\"></i> Error</span>";
+                    npAction.html(htmlcontents);
+                }
             },
             updateDownload = function (id, source) {
                 player.on('loadedmetadata', function () {
@@ -128,7 +163,7 @@ jQuery(function ($) {
             },
             playTrack = function (id) {
                 loadTrack(id);
-                audio.play();
+                // audio.play();
             };
         extension = audio.canPlayType('audio/mpeg') ? '.mp3' : audio.canPlayType('audio/ogg') ? '.ogg' : '';
         loadTrack(index);

@@ -49,6 +49,12 @@
                         <td><i class="fa-solid fa-square-check"></i></td>
                         <td><i class="fa-solid fa-square-check"></i></td>
                         </tr>
+                        <th scope="row">Tank Engine Karaoke</th>
+                        <td><i class="fa-solid fa-square-check"></i></td>
+                        <td><i class="fa-regular fa-square"></i></td>
+                        <td><i class="fa-solid fa-square-check"></i></td>
+                        <td><i class="fa-solid fa-square-check"></i></td>
+                        </tr>
                         <tr>
                         <th scope="row">Twitch Emotes</th>
                         <td><i class="fa-solid fa-square-check"></i></td>
