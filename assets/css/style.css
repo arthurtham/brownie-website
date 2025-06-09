@@ -36,15 +36,16 @@ div.container.body-container-no-bg {
 
 @media (min-height:701px) {
     div.container-fluid.body-container-home {
-        height:90vh;
-        max-height: 900px;
+        padding: 100px clamp(0px, 10%, 100px) 100px clamp(0px, 10%, 100px) !important;
+        height: 90vh;
+        min-height: max(90vh, 950px);
     }
     div.container.body-container-home {
         height:100vh;
     }
     div.container-fluid.body-container-home #center-block {
-        height:90vh;
-        max-height: inherit;
+        display: block;
+        height: 100%;
     }
     div.container.body-container-home #center-block {
         height:90vh;
@@ -53,8 +54,9 @@ div.container.body-container-no-bg {
 
 @media (max-height:700px) {
     div.container-fluid.body-container-home, div.container.body-container-home {
-        padding: 75px clamp(0px, 10%, 100px) 200px clamp(0px, 10%, 100px) !important;
-        min-height:700px;
+        padding: 100px clamp(0px, 10%, 100px) 100px clamp(0px, 10%, 100px) !important;
+        height: 90vh;
+        min-height: max(90vh, 950px);
     }
     div.container-fluid.body-container-home #center-block, div.container.body-container-home #center-block  {
         height:100%;
@@ -132,13 +134,21 @@ div.brownie-gray {
     background-attachment: fixed;
 }
 
-body.home, div.container-fluid.body-container-home, div.brownie-green {
+body.home, div.brownie-green {
     background: rgb(211,174,134);
     background: -moz-radial-gradient(circle, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 30%, rgba(58,103,62,1) 75%);
     background: -webkit-radial-gradient(circle, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 30%, rgba(58,103,62,1) 75%);
     background: radial-gradient(circle, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 30%, rgba(58,103,62,1) 75%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d3ae86",endColorstr="#3a673e",GradientType=1);
     background-attachment: fixed;
+}
+
+div.container-fluid.body-container-home {
+    background: rgb(211,174,134);
+    background: -moz-radial-gradient(circle, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 30%, rgba(58,103,62,1) 75%);
+    background: -webkit-radial-gradient(circle, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 30%, rgba(58,103,62,1) 75%);
+    background: radial-gradient(circle, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 30%, rgba(58,103,62,1) 75%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d3ae86",endColorstr="#3a673e",GradientType=1);
 }
 
 div.container-fluid.body-container-iriam {
@@ -187,7 +197,7 @@ div.home-div-col {
         max-width: 95vw;
     } */
     display: inline-block;
-    max-width: 100%;
+    /* max-width: 100%; */
     overflow-x: auto;
     overflow-y: hidden;
 }

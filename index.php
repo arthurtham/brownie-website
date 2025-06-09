@@ -6,40 +6,73 @@ require $dir . "/templates/header.php"
 ?>
 <div class="container-fluid body-container-home">
 	<div id="center-block" class="d-flex align-items-center justify-content-center" style="padding-top:50px">
-		<center><img src="https://res.cloudinary.com/browntulstar/image/private/s--gRiI4zsg--/c_pad,h_400/e_shadow/com.browntulstar/img/browntulstar-logo-v2-large.png" style="width:100%;max-width:500px" />
-			<div class="box bg-gradient shadow rounded" style="background-color: rgba(255,255,255,0.2); padding: 20px; width:100%; max-width:370px">
-				<div class="row g-2">
-					<div class="col col-md-6">
-						<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
+		<center><img src="https://res.cloudinary.com/browntulstar/image/private/s--gRiI4zsg--/c_pad,h_400/e_shadow/com.browntulstar/img/browntulstar-logo-v2-large.png" style="width:100%;max-width:460px" />
+			<div class="box bg-gradient shadow rounded text-center" style="background-color: rgba(255,255,255,0.2); padding: 20px; width:100%; max-width:500px">
+				<div class="row">
+					<div class="col-sm-6 p-1">
+						<span class="d-flex flex-row">
 						<a class="btn btn-primary w-100" href="/stream">
 							<i class="fa-brands fa-twitch"></i>
 							Twitch
 						</a>
 						</span>
 					</div>
-					<div class="col col-md-6">
-						<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
-							<a class="btn btn-primary w-100" href="/iriam">
+					<div class="col-sm-6 p-1">
+						<span class="d-flex flex-row">
+							<a class="btn btn-info w-100" href="/iriam">
 								<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
-								IRIAM
+								<strong>IRIAM</strong>
 							</a>
 						</span>
 					</div>
 				</div>
-				<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
-					<a href="#" id="navbarSubs-button" class="btn btn-success w-100"><i class="fa-solid fa-circle-check"></i> Perks</a>
-				</span>
-				<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
-					<a href="#home-section-about" class="btn btn-dark w-100">About</a>
-				</span>
-				<span class="d-flex flex-row gap-1" style="text-align: center; padding-bottom:6px">
-					<a href="/credits" class="btn btn-dark w-100">Credits</a>
-				</span>
-				<span class="d-flex flex-row gap-1 pt-2" style="text-align: center; padding-bottom:6px">
+				<div class="row">
+					<div class="col-sm-12 p-1">
+						<span class="d-flex flex-row">
+							<a href="/subs" class="btn btn-success w-100"><i class="fa-solid fa-circle-check"></i> Access Perks Hub</a>
+						</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 p-1">
+						<span class="d-flex flex-row">
+							<a href="#home-section-about" class="btn btn-dark w-100">About Me</a>
+						</span>
+					</div>
+					<div class="col-sm-3 p-1">
+						<span class="d-flex flex-row">
+							<a href="credits" class="btn btn-dark w-100">Credits</a>
+						</span>
+					</div>
+					<div class="col-sm-5 p-1">
+						<span class="d-flex flex-row">
+							<a href="/store" class="btn btn-dark w-100">Shop/Services</a>
+						</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5 p-1">
+						<span class="d-flex flex-row">
+							<a href="/announcements" class="btn btn-dark w-100">Announcements</a>
+						</span>
+					</div>
+					<div class="col-sm-4 p-1">
+						<span class="d-flex flex-row">
+							<a href="/app" class="btn btn-dark w-100">Apps/Games</a>
+						</span>
+					</div>
+					<div class="col-sm-3 p-1">
+						<span class="d-flex flex-row">
+							<a href="/guides" class="btn btn-dark w-100">Guides</a>
+						</span>
+					</div>
+				</div>
+				<div class="row pt-2">
 					<span class="w-100"><small> 
 					<a href="https://browntulstar.com/r/links" class="text-black" style="text-decoration: none" target="_blank">Socials: @browntulstar</a>
 					</small></span>
-				</span>
+				</div>
+				</div>
 		</center>
 	</div>
 </div>
@@ -65,13 +98,21 @@ require $dir . "/templates/header.php"
 									<i class="fa-brands fa-discord"></i>
 									Discord Server
 								</a> 
-								<a class="btn btn-dark m-2 shadow" href="/shoutcasting" style="max-width:400px">
-									<i class="fa-solid fa-video"></i>
-									Portfolio
-								</a> 
-								<a class="btn btn-dark m-2 shadow" href='#home-section-watch' style="max-width:400px">
-									<i class="fa-solid fa-link"></i> More Links and Socials
+								<a class="btn btn-dark m-2 shadow" href='/r/links' style="max-width:400px">
+									<i class="fa-solid fa-link"></i> Links/Socials
 								</a>
+								<a class="btn btn-dark m-2 shadow" href="/coding" style="max-width:400px">
+									<i class="fa-solid fa-video"></i>
+									Coding Portfolio
+								</a> 
+								<a class="btn btn-dark m-2 shadow" href="/esports" style="max-width:400px">
+									<i class="fa-solid fa-video"></i>
+									Esports Portfolio
+								</a> 
+								<a class="btn btn-dark m-2 shadow" href="/credits" style="max-width:400px">
+									<i class="fa-solid fa-paintbrush"></i>
+									Art and Stream Credits
+								</a> 
 								</div>
 							</div>
 						</div>

@@ -68,8 +68,6 @@ if (true) { // Type doesn't matter for now, //($_GET['type'] === 'cdncloud') {
     }
 
 
-
-    $secure_url = $resulting_file["resources"][0]["secure_url"];
     $format = $resulting_file["resources"][0]["format"];
     $resource_type = $resulting_file["resources"][0]["resource_type"];
 
