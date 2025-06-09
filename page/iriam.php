@@ -12,8 +12,18 @@ require $dir . "/templates/header.php";
                         <center><img src="https://res.cloudinary.com/browntulstar/image/upload/s--s7BzgqvH--/c_scale,w_400/f_webp/v1/com.browntulstar/img/pngtuber-turtle-half.png?_a=BAAAV6E0" style="width:auto;max-width:min(70vw,400px)"></center>
 						<div class="card bg-dark text-white mx-auto">
 							<div class="card-body text-center">
-                                <img loading="lazy" class="p-2 mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg" style="border-radius: 100%;height:200px" />&nbsp;
-                                <img loading="lazy" class="p-2 mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/upload/s--SV4KfjUv--/c_fill,h_200/f_webp/v1/com.browntulstar/img/iriam-eac-white-bubble.webp?_a=BAAAV6E0" style="height:200px" />
+                                <div class="container">
+                                    <div class="row mb-4">
+                                        <div class="col-lg-3 offset-lg-2">
+                                            <img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg" 
+                                            style="width:100%;max-height:125px;object-fit:contain;" />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/upload/s--SV4KfjUv--/c_fill,h_200/f_webp/v1/com.browntulstar/img/iriam-eac-white-bubble.webp?_a=BAAAV6E0" 
+                                            style="width:100%;max-height:125px;object-fit:contain;" />
+                                        </div>
+                                    </div>
+                                </div>
                                 <h1 class="card-title">Browntul's on IRIAM US!</h1>
                                 <h3>Early Access Streamer</h3>
                                 <p>

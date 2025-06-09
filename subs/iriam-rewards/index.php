@@ -98,10 +98,10 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 									?>
 
 									<div class="mb-2">
-										<div class="input-group mb-3">
+										<center>
+										<div class="input-group mb-3" style="max-width:300px;">
 											<div class="input-group-text">
-												<i class="fa-solid fa-calendar-days"></i>&nbsp;
-												 
+												<i class="fa-solid fa-calendar-days"></i> 
 											</div>
 											<select class="form-select" id="rewards-table-select" style="width: auto;">
 												<optgroup label="Rewards Information">
@@ -114,6 +114,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 												</optgroup>
 											</select>
 										</div>
+										</center>
 									</div>
 									<div class='w-100'>
 										<div class="tab-content d-flex flex-column align-items-center justify-content-center" style="min-height: 250px";>
