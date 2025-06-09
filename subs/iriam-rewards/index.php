@@ -31,7 +31,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 										<h1 class="card-title">IRIAM Star Badge Rewards</h1>
 										<p>
 											<h2>You're a star! A super star!</h2><br>
-											Thanks to the Star Fan Badge supporters on IRIAM, they get to claim these exclusive IRIAM star fan badge rewards. Isn't that so inspirational?
+											IRIAM ★ Star Fan Badge can claim exclusive rewards. Isn't that so inspirational?
 										</p>
 										<p>
 											All rewards are available no matter 

@@ -13,20 +13,17 @@ require $dir . "/templates/header.php";
 						<div class="card bg-dark text-white mx-auto">
 							<div class="card-body text-center">
                                 <img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg" style="border-radius: 100%;width:200px" />
-                                <h1 class="card-title">Browntul is now on IRIAM US!</h1>
-                                <h3>Early access streamer, here we come!</h3>
+                                <h1 class="card-title">Browntul x IRIAM US</h1>
+                                <h3>Early Access Streamer</h3>
                                 <p>
                                     IRIAM is a virtual reality live streaming platform where you can watch and interact with your favorite VTubers in real-time. You can watch them exclusively on your mobile smartphone device or tablet.
                                 </p>
                                 <p>
-                                    IRIAM Star Badges are gained by gifting points during my IRIAM livestreams. A 1★ Star Badge provides access to the private Discord sub-exclusive text channel, and a 2★/3★ Star Badge provides access to Browntul's Blog. What a great way to support me in a new, interactive way!
+                                    Gain IRIAM Star Badges by gifting points during my IRIAM livestreams. A 1★ Star Badge provides access to the private Discord sub-exclusive text channel, and a 2★/3★ Star Badge provides access to Browntul's Blog.
                                 </p>
                                 <p>
-                                    Join me on IRIAM to watch my Just Chatting livestreams anytime on the go.<br>
-
                                     <strong>Follow me on IRIAM to get notified when I go live!</strong><br>
                                     <strong>IRIAM ID: @browntulstar</strong><br>
-
                                 </p>
                                 <p>
                                 <small>Open via a mobile browser</small><br>
