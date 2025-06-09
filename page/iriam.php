@@ -9,7 +9,7 @@ require $dir . "/templates/header.php";
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8 offset-lg-2">	
-                        <center><img src="https://res.cloudinary.com/browntulstar/image/upload/s--s7BzgqvH--/c_scale,w_400/f_webp/v1/com.browntulstar/img/pngtuber-turtle-half.png?_a=BAAAV6E0" style="width:auto;max-width:min(70vw,400px)"></center>
+                        <center><img src="https://res.cloudinary.com/browntulstar/image/upload/s--3KMlDnX8--/c_scale,w_400/f_webp/v1/com.browntulstar/img/pngtuber-turtle-half-withiriampatch.png?_a=BAAAV6E0" style="width:auto;max-width:min(70vw,400px)"></center>
 						<div class="card bg-dark text-white mx-auto">
 							<div class="card-body text-center">
                                 <div class="container">
