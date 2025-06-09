@@ -26,6 +26,16 @@ if (true) { // Type doesn't matter for now, //($_GET['type'] === 'cdncloud') {
     $reward_public_id = "iriam/rewards/$reward_id";
     // var_dump($reward_id); // Debugging line to see the reward ID
 
+    // The file exists, but now we need to check the star badge permissions from the database
+    $sql_rewards = "SELECT * FROM `iriam_rewards` WHERE `published`=1 AND `iriam_reward_download_id`=\"" . mysqli_real_escape_string($conn, $reward_id) . "\" LIMIT 1;";
+    $result_rewards = $conn->query($sql_rewards);
+    unset($sql_rewards);
+    if ($result_rewards->num_rows === 0) {
+        // If the reward does not exist, return a 404 error
+        require $dir . "/error/404.php";
+        die();
+    }
+
     // Make sure the reward ID exists
     $resulting_file = (new SearchApi())->expression(
         "public_id=$reward_public_id"
@@ -33,16 +43,6 @@ if (true) { // Type doesn't matter for now, //($_GET['type'] === 'cdncloud') {
         ->execute();
     // Check if the file exists under the resources array
     if (!isset($resulting_file["resources"]) || count($resulting_file["resources"]) === 0) {
-        require $dir . "/error/404.php";
-        die();
-    }
-
-    // The file exists, but now we need to check the star badge permissions from the database
-    $sql_rewards = "SELECT * FROM `iriam_rewards` WHERE `published`=1 AND `iriam_reward_download_id`=\"" . mysqli_real_escape_string($conn, $reward_id) . "\" LIMIT 1;";
-    $result_rewards = $conn->query($sql_rewards);
-    unset($sql_rewards);
-    if ($result_rewards->num_rows === 0) {
-        // If the reward does not exist, return a 404 error
         require $dir . "/error/404.php";
         die();
     }
