@@ -12,14 +12,16 @@ require $dir . "/templates/header.php";
                         <center><img src="https://res.cloudinary.com/browntulstar/image/upload/s--s7BzgqvH--/c_scale,w_400/f_webp/v1/com.browntulstar/img/pngtuber-turtle-half.png?_a=BAAAV6E0" style="width:auto;max-width:min(70vw,400px)"></center>
 						<div class="card bg-dark text-white mx-auto">
 							<div class="card-body text-center">
-                                <img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg" style="border-radius: 100%;width:200px" />
-                                <h1 class="card-title">Browntul x IRIAM US</h1>
+                                <img loading="lazy" class="p-2 mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg" style="border-radius: 100%;height:200px" />&nbsp;
+                                <img loading="lazy" class="p-2 mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/upload/s--SV4KfjUv--/c_fill,h_200/f_webp/v1/com.browntulstar/img/iriam-eac-white-bubble.webp?_a=BAAAV6E0" style="height:200px" />
+                                <h1 class="card-title">Browntul's on IRIAM US!</h1>
                                 <h3>Early Access Streamer</h3>
                                 <p>
                                     IRIAM is a virtual reality live streaming platform where you can watch and interact with your favorite VTubers in real-time. You can watch them exclusively on your mobile smartphone device or tablet.
                                 </p>
                                 <p>
-                                    Gain IRIAM Star Badges by gifting points during my IRIAM livestreams. A 1★ Star Badge provides access to the private Discord sub-exclusive text channel, and a 2★/3★ Star Badge provides access to Browntul's Blog.
+                                    Gain IRIAM ★ Star Badges by gifting points during my IRIAM livestreams. Then, join the Discord server, claim your ★ Star Badge role, and gain access
+                                    to exclusive perks!
                                 </p>
                                 <p>
                                     <strong>Follow me on IRIAM to get notified when I go live!</strong><br>
