@@ -5,11 +5,7 @@ require_once $dir . "/includes/mysql.php";
 require_once $dir . "/includes/CloudinarySigner.php";
 $title = "BrowntulStar - IRIAM Star Badge Rewards";
 
-// if (!isset($_SESSION['user']) || !check_roles($iriam_star_roles)) {
-// 	require $dir . "/error/403-iriam.php";
-// 	die();
-// }
-
+$_iriam_access_allowed = (isset($_SESSION['user']) && check_roles($iriam_star_roles));
 
 require $dir . "/templates/header.php";
 
@@ -45,12 +41,10 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 <?php
 									if (isset($_SESSION['user'])) {
 									echo '<hr>';
-									echo '<div class="text-center">
+									echo "<div class=\"text-center\">
 									<h3>Confirm your roles</h3>
-									<p>Make sure you have one of the STARS (IRIAM 1★/2★/3★) roles from the Turtle Pond Discord server. 
-									You can view all rewards, but you can only download the rewards that you have access to.
-									The rewards are labeled by their ★ reward level.</p>
-									<p>You can claim the roles by going to the #iriam-★badge-assign Discord text channel.</p>';
+									<p>If you have one of the STARS (IRIAM 1★/2★/3★) roles from the Turtle Pond Discord server, then
+									you're good to go! Check your roles below.</p>";
 										require $dir . "/templates/profile-box.php";
 									}
 									echo '</div>';
@@ -106,11 +100,22 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 											<select class="form-select" id="rewards-table-select" style="width: auto;">
 												<optgroup label="Rewards Information">
 													<option data-target="#tab-landing">General Info</option>
+													<option data-target="#tab-history">Fan Badge History</option>
 												</optgroup>
 												<hr>
 												<optgroup label="Monthly Rewards">
+												<?php 
+												if ($_iriam_access_allowed) {
+												?>
 													<option disabled selected data-target="">Select a month...</option>
 												<?= $rewards_table_selection_options ?>
+												<?php 
+												} else {
+												?>
+													<option disabled data-target="">Get ★ Badge to access...</option>
+												<?php 
+												}
+												?>
 												</optgroup>
 											</select>
 										</div>
@@ -120,12 +125,13 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 										<div class="tab-content d-flex flex-column align-items-center justify-content-center" style="min-height: 250px";>
 											<div class="tab-pane active text-center w-100" id="tab-landing">
 												<?php 
-												if (!isset($_SESSION['user']) || !check_roles($iriam_star_roles)) {
+												if (!$_iriam_access_allowed) {
 												?>
 												<h2>Many IRIAM rewards await you!</h2>
 												<p>Watch on IRIAM and gain a ★ Star Badge.
 												<br>Then, join the Discord server and claim your role in the #iriam-★badge-assign text channel.
-												<br>Finally, log in to this website with Discord and access the perks!</p>
+												<br>Finally, log in to this website with Discord and access the perks!
+												<br>(If you just got your role, you may need to log out and log back in.)</p>
 												<p>To preview the rewards, select a month above.</p>
 												<br>
 												<?= print_navbar_login_items($expand=true, $center=true, $subperks=true) ?>
@@ -140,7 +146,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 												</a><br>
 												<a class="btn btn-success mb-2 w-100" href="/subs" style="max-width:300px">
 													<i class="fa-solid fa-circle-check"></i>
-													Overall Perks Info
+													Access Perks Hub
 												</a><br>
 												<?php
 												} else {
@@ -154,13 +160,21 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 												</a><br>
 												<a class="btn btn-success mb-2 w-100" href="/subs" style="max-width:300px">
 													<i class="fa-solid fa-circle-check"></i>
-													Overall Perks Info
+													Access Perks Hub
 												</a>
 												<?php 
 												}
 												?>
 											</div>
+											<div class="tab-pane text-center w-100" id="tab-history">
+												<h2>Fan Badge History</h2>
+												<p>Powered by Google Drive</p>
+												<iframe style="display:block;width:100%;height:100%;min-height:500px" width=100% height=calc(100vh-67px) overflow="scroll"
+												src="https://docs.google.com/document/d/e/2PACX-1vTWOwrwE9F1qwMN5R5BfVOw-id4t2SVUSl5-pEMu8LcbAk5oVtb6zJ2OUXgLHQ83MIS_z7dv2gDM662/pub?embedded=true">
+												</iframe>
+											</div>
 <?php
+											if ($_iriam_access_allowed) {
 											foreach ($rewards_table_selection_contents as $content) {
 												$content_id = $content['id'];
 												$content_label = $content['label'];
@@ -224,6 +238,7 @@ CREDITSPOST;
 NOREWARDS;
 														}
 													echo "</div>";
+												}
 												}
 ?>
 											</div>

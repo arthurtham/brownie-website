@@ -65,7 +65,7 @@ require $dir . "/templates/header.php";
                                 <br>
                                 <a class="btn btn-success mb-2 w-100" href="/subs" style="max-width:300px">
                                     <i class="fa-solid fa-circle-check"></i>
-                                    Overall Perks Info
+                                    Access Perks Hub
                                 </a>
 
                                 </p>
