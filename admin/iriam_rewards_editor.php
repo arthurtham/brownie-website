@@ -48,22 +48,22 @@ if (isset($_GET["public-id"])) {
     die();
 }
 
-$iriam_minimum_reward = 0;
+$iriam_minimum_reward = 4;
 if ($iriam_reward_published == "1") {
     $iriam_reward_published = "checked";
-}
-if ($iriam_reward_1star == "1") {
-    $iriam_reward_1star = "checked";
-    $iriam_minimum_reward = 1;
-} 
-if ($iriam_reward_2star == "1") {
-    $iriam_reward_2star = "checked";
-    $iriam_minimum_reward = 2;
 }
 if ($iriam_reward_3star == "1") {
     $iriam_reward_3star = "checked";
     $iriam_minimum_reward = 3;
 }
+if ($iriam_reward_2star == "1") {
+    $iriam_reward_2star = "checked";
+    $iriam_minimum_reward = 2;
+}
+if ($iriam_reward_1star == "1") {
+    $iriam_reward_1star = "checked";
+    $iriam_minimum_reward = 1;
+} 
 
 // Make sure the reward ID exists
 if ($iriam_reward_download_id !== "") {
@@ -150,7 +150,7 @@ echo <<<FORM
                             </span>
                             <select class="input-group-text form-select" id="iriam_reward_star_rating" style="width: auto;max-width: 150px">
                                 <option  selected disabled value=""> Loading...</option>
-                                <option  value="0">List Only</option>
+                                <option  value="4">List Only</option>
                                 <option  value="1">1★ Reward</option>
                                 <option  value="2">2★ Reward</option>
                                 <option  value="3">3★ Reward</option>
@@ -215,21 +215,20 @@ VIDEOPLAYER;
 <script>
 $("#iriam_reward_star_rating").on("change", function(e) {
   var star_value = parseInt(e.target.value);
-  console.log(star_value);
-  if (star_value >= 1) {
-    $("#iriam_reward_1star").prop("checked", true);
-  } else {
+  if (star_value > 1) {
     $("#iriam_reward_1star").prop("checked", false);
-  };
-  if (star_value >= 2) {
-    $("#iriam_reward_2star").prop("checked", true);
   } else {
+    $("#iriam_reward_1star").prop("checked", true);
+  };
+  if (star_value > 2) {
     $("#iriam_reward_2star").prop("checked", false);
-  };
-  if (star_value >= 3) {
-    $("#iriam_reward_3star").prop("checked", true);
   } else {
+    $("#iriam_reward_2star").prop("checked", true);
+  };
+  if (star_value > 3) {
     $("#iriam_reward_3star").prop("checked", false);
+  } else {
+    $("#iriam_reward_3star").prop("checked", true);
   };
 });
 jQuery(document).ready(function($){

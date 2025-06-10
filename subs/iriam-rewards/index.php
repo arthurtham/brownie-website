@@ -9,16 +9,16 @@ $_iriam_access_allowed = (isset($_SESSION['user']) && check_roles($iriam_star_ro
 
 require $dir . "/templates/header.php";
 
-$star1_small_banner = '<span class="badge bg-primary me-1">1★</span>';
-$star2_small_banner = '<span class="badge bg-primary me-1">2★</span>';
-$star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
+$star1_small_banner = '<span class="badge bg-primary me-1">STARS (IRIAM 1★)</span>';
+$star2_small_banner = '<span class="badge bg-primary me-1">SUPER STARS (IRIAM 2★)</span>';
+$star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3★)</span>';
 ?>
 <div class="container-fluid body-container-iriam">
 	<div id="iriam-section" class="row py-5 home-div-row h-100">
 		<div class="col-md-12 home-div-col" style="padding-bottom: 100px;">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-8 offset-lg-2">	
+					<div class="col-lg-10 offset-lg-1">	
 						<div class="card bg-dark text-white mx-auto">
 							<div class="card-body">
                                 <div>
@@ -30,21 +30,17 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 											IRIAM ★ Star Badge holders can claim exclusive rewards. Isn't that so inspirational?
 										</p>
 										<p>
-											All rewards are available no matter 
-											when a user achieved the IRIAM ★ Star Badge reward.<br>
-											All they need to do is have the corresponding IRIAM ★ Star Badge Discord role.
-										</p>
-										<p>
+											Rewards are available to those that have the IRIAM ★ Star Badge Discord role.<br>
 											All IRIAM Discord roles reset on every 5th of the new month.
 										</p>
 									</div>
 <?php
 									if (isset($_SESSION['user'])) {
 									echo '<hr>';
-									echo "<div class=\"text-center\">
+									echo "<div class=\"text-center\" style=\"max-width:400px;margin:auto\">
 									<h3>Confirm your roles</h3>
 									<p>If you have one of the STARS (IRIAM 1★/2★/3★) roles from the Turtle Pond Discord server, then
-									you're good to go! Check your roles below.</p>";
+									you're good to go! Check your roles below.</p><p>Browntul's BLUE SHELLS (Mods) and GOLD SHELLS (Discord VIPs) have the same download permissions as the GRAND STARS (IRIAM 3★).";
 										require $dir . "/templates/profile-box.php";
 									}
 									echo '</div>';
@@ -112,7 +108,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 												<?php 
 												} else {
 												?>
-													<option disabled data-target="">Get ★ Badge to access...</option>
+													<option disabled data-target="">Get ★ Badge to access</option>
 												<?php 
 												}
 												?>
@@ -123,16 +119,13 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 									</div>
 									<div class='w-100'>
 										<div class="tab-content d-flex flex-column align-items-center justify-content-center" style="min-height: 250px";>
-											<div class="tab-pane active text-center w-100" id="tab-landing">
+											<div class="tab-pane active text-center w-100" id="tab-landing" style="max-width:400px;margin:auto">
 												<?php 
 												if (!$_iriam_access_allowed) {
 												?>
-												<h2>Many IRIAM rewards await you!</h2>
-												<p>Watch on IRIAM and gain a ★ Star Badge.
-												<br>Then, join the Discord server and claim your role in the #iriam-★badge-assign text channel.
-												<br>Finally, log in to this website with Discord and access the perks!
-												<br>(If you just got your role, you may need to log out and log back in.)</p>
-												<p>To preview the rewards, select a month above.</p>
+												<h2>Many exclusive IRIAM rewards await you!</h2>
+												<p>Watch on IRIAM and gain a ★ Star Badge. Then, join the Turtle Pond Discord server and claim your role in the #iriam-★badge-assign text channel. Finally, log in to this website with Discord and access the perks!</p>
+												<p>(If you just got your Discord role, then you may need to log out and log back in to this website using your Discord account.)</p>
 												<br>
 												<?= print_navbar_login_items($expand=true, $center=true, $subperks=true) ?>
 												<br>
@@ -151,8 +144,8 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 												<?php
 												} else {
 												?>
-												<h2>Ready to claim your rewards?</h2>
-												<p>Select a month from the dropdown above to view the rewards for that month.</p>
+												<h2>Ready to claim your exclusive rewards?</h2>
+												<p>Select a month from the dropdown above to view the rewards for that month. Then, find the reward that you would like to download.</p>
 												<br>
 												<a class="btn btn-info mb-2 w-100 shadow" href='/iriam' style="max-width:300px">
 													<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
@@ -191,22 +184,22 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 															$download_id = $reward['download_id'];
 															$reward_star_banners = "";
 															$star_roles_to_check = array($vip_role_id, $mod_role_id);
-															if (intval($reward['1star']) == 1) {
-																$reward_star_banners .= $star1_small_banner;
-																$star_roles_to_check[] = $iriam_1star_role_id;
-															}
-															if (intval($reward['2star']) == 1) {
-																$reward_star_banners .= $star2_small_banner;
-																$star_roles_to_check[] = $iriam_2star_role_id;
-															}
 															if (intval($reward['3star']) == 1) {
-																$reward_star_banners .= $star3_small_banner;
+																$reward_star_banners = $star3_small_banner;
 																$star_roles_to_check[] = $iriam_3star_role_id;
 															}
+															if (intval($reward['2star']) == 1) {
+																$reward_star_banners = $star2_small_banner;
+																$star_roles_to_check[] = $iriam_2star_role_id;
+															}
+															if (intval($reward['1star']) == 1) {
+																$reward_star_banners = $star1_small_banner;
+																$star_roles_to_check[] = $iriam_1star_role_id;
+															}
 															if (!check_roles($star_roles_to_check)) {
-																$reward_download_button = "<p><button class=\"btn btn-danger\" disabled><i class=\"fa-solid fa-download\"></i> Download</button></p>";
+																$reward_download_button = "<p><button class=\"btn btn-light border-dark\" disabled><i class=\"fa-solid fa-circle-xmark\"></i> Insufficient Perks</button></p>";
 															} else {
-																$reward_download_button = "<p><a class=\"btn btn-danger\" href=\"/subs/iriam-rewards/download?type=$reward_type&id=$download_id\"><i class=\"fa-solid fa-download\"></i> Download</a></p>";
+																$reward_download_button = "<p><a class=\"btn btn-info\" href=\"/subs/iriam-rewards/download?type=$reward_type&id=$download_id\"><i class=\"fa-solid fa-download\"></i> <strong>Download Now</strong></a></p>";
 															}
 															
 															echo <<<CREDITSPOST
@@ -220,9 +213,9 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 																				</div>
 																				<div class="col-lg-8">
 																					<h2 class="card-title">$reward_name</h2>
-																					<h5>$reward_star_banners</h5>
 																					<p>$reward_description</p>
 																					$reward_download_button
+																					<h5>$reward_star_banners</h5>
 																				</div>
 																			</div>
 																		</div>
