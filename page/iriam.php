@@ -55,7 +55,7 @@ require $dir . "/templates/header.php";
                                 <a class="btn btn-info mb-2 w-100 shadow" href='/subs/iriam-rewards' style="max-width:300px">
                                     <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
                                     <i class="fa-solid fa-circle-check"></i>
-                                    IRIAM Star Badge Rewards
+                                    IRIAM ★ Star Badge Rewards
                                 </a>
                                 <br>
                                 <a class="btn btn-light mb-2 w-100" href="/r/discord" style="max-width:300px" target="_blank">

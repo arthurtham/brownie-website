@@ -22,7 +22,7 @@ $faqitems = array(
 		<li>You must have one of these criteria satisfied:</li>
 		<ul>
 			<li>You have your Twitch account linked to your Discord account (Discord connections), and you're subscribed to Browntul on Twitch.</li>
-			<li>You achieved a Star Badge reward on IRIAM and claimed the corresponding IRIAM Star Badge role in the Discord server.</li>
+			<li>You achieved a ★ Star Badge reward on IRIAM and claimed the corresponding IRIAM ★ Star Badge role in the Discord server.</li>
 			<li>Browntul himself has given you the VIP role in Turtle Pond.</li>
 		</ul>
 		<li>The criteria above must be satisfied by the time you log in to this website.</li>
@@ -55,8 +55,8 @@ $faqitems = array(
 		</span>&nbsp;How do I access my IRIAM Star Reward Perks?",
 		"contents" => "
 		<p>IRIAM is a virtual reality live streaming platform where you can watch and interact with your favorite VTubers in real-time. You can watch them exclusively on your mobile smartphone device or tablet.</p>
-		<p>You can learn more about IRIAM by clicking on the IRIAM button below. An IRIAM account is required to gain IRIAM Star Badge roles.</p>
-		<p>To access your IRIAM Star Badge rewards, you must have the <strong>STARS</strong> or <strong>SUPER STARS</strong> role in the Turtle Pond Discord server. You can claim these roles by going to the #iriam-★badge-assign text channel and following the instructions. After you are assigned the proper roles, log out and log back in to this website with your Discord account and visit the IRIAM link below.</p>
+		<p>You can learn more about IRIAM by clicking on the IRIAM button below. An IRIAM account is required to gain IRIAM ★ Star Badge roles.</p>
+		<p>To access your IRIAM ★ Star Badge rewards, you must have one of the <strong>STARS</strong> roles in the Turtle Pond Discord server. You can claim these roles by going to the #iriam-★badge-assign text channel and following the instructions. After you are assigned the proper roles, log out and log back in to this website with your Discord account and visit the IRIAM link below.</p>
 		
 		<p><a class=\"btn btn-info mb-2 w-100 shadow\" href='/iriam' style=\"max-width:400px\">
 			<img style=\"height:20px;margin-top:-4px\" src=\"https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg\">
@@ -71,13 +71,13 @@ $faqitems = array(
 	),
 	array(
 		"title" => "Are there other ways to get perks?",
-		"contents" => "<p>Currently, the only way to get perks is to link your subscribed Twitch accounts to Discord and join the Turtle Pond server; log in with Twitch directly; get a IRIAM Star Badge and claim the corresponding Discord role in the Turtle Pond server;
+		"contents" => "<p>Currently, the only way to get perks is to link your subscribed Twitch accounts to Discord and join the Turtle Pond server; log in with Twitch directly; get a IRIAM ★ Star Badge and claim the corresponding Discord role in the Turtle Pond server;
 		or get a VIP role from Browntul in the Turtle Pond Discord server. There are no other ways.</p>"
 	),
 	array(
 		"title" => "I did everything above, but I'm not getting my perks!",
 		"contents" => "<p>Please wait for up to 24 hours for all the Discord connections to sync on Twitch.</p>
-		<p>Please make sure that if you're an IRIAM Star Badge holder that you also received the corresponding role in the Discord server.</p>
+		<p>Please make sure that if you're an IRIAM ★ Star Badge holder that you also received the corresponding role in the Discord server.</p>
 		<p>Please also try to log out and log back in again.</p>
 		<p>If you still don't have your perks, please ping @Browntul on Discord in the #turtle-party channel or <a href='/contact' target='_blank'>email Browntul</a> with your Discord username.</p>"
 	),

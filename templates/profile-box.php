@@ -18,7 +18,7 @@ if (check_roles([$iriam_2star_role_id])) {
     echo '<h5><span class="badge bg-primary" style="width:100%">SUPER STARS (IRIAM 2★)</span></h5>';
 }
 if (check_roles([$iriam_3star_role_id])) {
-    echo '<h5><span class="badge bg-primary" style="width:100%">SUPER STARS (IRIAM 3★)</span></h5>';
+    echo '<h5><span class="badge bg-primary" style="width:100%">GRAND STARS (IRIAM 3★)</span></h5>';
 }
 if (check_roles([$vip_role_id])) {
     echo '<h5><span class="badge bg-warning text-black" style="width:100%">GOLD SHELLS (Discord VIPs)</span></h5>';

@@ -28,15 +28,15 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
                                 <div>
 									<div class="text-center">
 										<img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg" style="border-radius: 100%;width:200px" />
-										<h1 class="card-title">IRIAM Star Badge Rewards</h1>
+										<h1 class="card-title">IRIAM ★ Star Badge Rewards</h1>
 										<p>
 											<h2>You're a star! A super star!</h2><br>
-											IRIAM ★ Star Fan Badge can claim exclusive rewards. Isn't that so inspirational?
+											IRIAM ★ Star Badge holders can claim exclusive rewards. Isn't that so inspirational?
 										</p>
 										<p>
 											All rewards are available no matter 
-											when a user achieved the IRIAM Star Badge reward.<br>
-											All they need to do is have the corresponding IRIAM star badge Discord role.
+											when a user achieved the IRIAM ★ Star Badge reward.<br>
+											All they need to do is have the corresponding IRIAM ★ Star Badge Discord role.
 										</p>
 										<p>
 											All IRIAM Discord roles reset on every 5th of the new month.
@@ -47,7 +47,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 									echo '<hr>';
 									echo '<div class="text-center">
 									<h3>Confirm your roles</h3>
-									<p>Make sure you have the STARS (IRIAM 1★) or SUPER STARS (IRIAM 2★/3★) role from the Turtle Pond Discord server. 
+									<p>Make sure you have one of the STARS (IRIAM 1★/2★/3★) roles from the Turtle Pond Discord server. 
 									You can view all rewards, but you can only download the rewards that you have access to.
 									The rewards are labeled by their ★ reward level.</p>
 									<p>You can claim the roles by going to the #iriam-★badge-assign Discord text channel.</p>';
@@ -123,7 +123,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">3★</span>';
 												if (!isset($_SESSION['user']) || !check_roles($iriam_star_roles)) {
 												?>
 												<h2>Many IRIAM rewards await you!</h2>
-												<p>Watch on IRIAM and gain a Star Badge.
+												<p>Watch on IRIAM and gain a ★ Star Badge.
 												<br>Then, join the Discord server and claim your role in the #iriam-★badge-assign text channel.
 												<br>Finally, log in to this website with Discord and access the perks!</p>
 												<p>To preview the rewards, select a month above.</p>
