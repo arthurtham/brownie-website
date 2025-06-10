@@ -14,23 +14,30 @@
                     <thead class="table-light">
                         <tr>
                         <th scope="col" style="width: 100%;min-width:150px">Perks</th>
-                        <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-danger w-100">RED SHELLS<br/>(Twitch Subs)</span></th>
-                        <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-info w-100">STARS<br/>(IRIAM 1★)</span></th>
-                        <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-info w-100">SUPER STARS<br/>(IRIAM 2★)</span></th>
-                        <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-info w-100">GRAND STARS<br/>(IRIAM 3★)</span></th>
-                        <th scope="col" style="width: 100%;min-width:100px"><span class="badge bg-warning w-100">GOLD SHELLS<br/>(VIP)</span></th>
+                        <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-danger w-100">RED SHELLS<br/>(Twitch Subs)</span></th>
+                        <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-info w-100">STARS<br/>(IRIAM 1★)</span></th>
+                        <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-info w-100">SUPER STARS<br/>(IRIAM 2★)</span></th>
+                        <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-info w-100">GRAND STARS<br/>(IRIAM 3★)</span></th>
+                        <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-warning w-100">GOLD SHELLS<br/>(VIP)</span></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                        <th scope="row">Starting Cost</th>
-                        <td class="table-danger">US$5.99/mo</td>
-                        <td class="table-info">US$2.00/mo</td>
-                        <td class="table-info">US$10.00/mo</td>
-                        <td class="table-info">US$50.00/mo</td>
+                        <th scope="row">Starting Cost (USD)</th>
+                        <td class="table-danger">$5.99/mo</td>
+                        <td class="table-info">G1: $2/mo<br>G2: $10/mo</td>
+                        <td class="table-info">G1: $10/mo<br>G2: $50/mo</td>
+                        <td class="table-info">$50/mo</td>
                         <td class="table-warning">Invite Only</td>
                         </tr>
                         <tr>
+                        <th scope="row">Hours Requirement</th>
+                        <td class="table-danger">0+ hrs</td>
+                        <td class="table-info">G1: 3+ hrs<br>G2: 0+ hrs</td>
+                        <td class="table-info">G1: 10+ hrs<br>G2: 3+ hrs</td>
+                        <td class="table-info">15+ hrs</td>
+                        <td class="table-warning">Invite Only</td>
+                        </tr>
                         <tr>
                         <th scope="row">Discord Text Channel for Supporters</th>
                         <td class="table-danger"><i class="fa-solid fa-square-check"></i></td>

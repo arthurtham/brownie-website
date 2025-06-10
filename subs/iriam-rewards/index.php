@@ -162,9 +162,8 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 											<div class="tab-pane text-center w-100" id="tab-history">
 												<h2>Fan Badge History</h2>
 												<p>Powered by Google Drive</p>
-												<iframe style="display:block;width:100%;height:100%;min-height:500px" width=100% height=calc(100vh-67px) overflow="scroll"
-												src="https://docs.google.com/document/d/e/2PACX-1vTWOwrwE9F1qwMN5R5BfVOw-id4t2SVUSl5-pEMu8LcbAk5oVtb6zJ2OUXgLHQ83MIS_z7dv2gDM662/pub?embedded=true">
-												</iframe>
+												<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    							data-bs-target="#badgeHistoryModal">View History</button>
 											</div>
 <?php
 											if ($_iriam_access_allowed) {
@@ -253,6 +252,21 @@ NOREWARDS;
 			</div>
 		</div>
 	</div>
+</div>
+<div class="modal fade" id="badgeHistoryModal" tabindex="-1" role="dialog" aria-labelledby="badgeHistoryModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="badgeHistoryModalLabel">Fan Badge History</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe style="display:block;width:100%;height:100%" width=100% height=calc(100vh-67px) overflow="scroll"
+                    src="https://docs.google.com/document/d/e/2PACX-1vTWOwrwE9F1qwMN5R5BfVOw-id4t2SVUSl5-pEMu8LcbAk5oVtb6zJ2OUXgLHQ83MIS_z7dv2gDM662/pub?embedded=true"></iframe>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
 $("#rewards-table-select").on("change", function(e) {
