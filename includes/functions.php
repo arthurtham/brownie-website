@@ -75,4 +75,13 @@ if (!function_exists('str_contains')) {
     }
 }
 
+// A function to convert bytes to human readable formats. Stackoverflow 15188033
+function readable_bytes_thousands($bytes) {
+    if ($bytes === 0) return '0 B';
+    $i = floor(log($bytes) / log(1024));
+
+    $sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+
+    return sprintf('%.02F', $bytes / pow(1024, $i)) * 1 . ' ' . $sizes[$i];
+}
 ?>

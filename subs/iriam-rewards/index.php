@@ -80,6 +80,8 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 												'type' => $row['iriam_reward_type'],
 												'reward_date' => $row['iriam_reward_date'],
 												'download_id' => $row['iriam_reward_download_id'],
+												'file_size' => $row['iriam_reward_kilobytes'],
+												'file_format' => $row['iriam_reward_format'],
 												'1star' => $row['1star'],
 												'2star' => $row['2star'],
 												'3star' => $row['3star']
@@ -181,6 +183,8 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 															$reward_name = $reward['name'];
 															$reward_description = $reward['description'];
 															$reward_type = $reward['type'] ?? 'default'; // Default type if not set
+															$reward_file_format = $reward['file_format'];
+															$reward_file_size = readable_bytes_thousands(intval($reward['file_size'])*1000);
 															$download_id = $reward['download_id'];
 															$reward_star_banners = "";
 															$star_roles_to_check = array($vip_role_id, $mod_role_id);
@@ -199,7 +203,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 															if (!check_roles($star_roles_to_check)) {
 																$reward_download_button = "<p><button class=\"btn btn-light border-dark\" disabled><i class=\"fa-solid fa-circle-xmark\"></i> Insufficient Perks</button></p>";
 															} else {
-																$reward_download_button = "<p><a class=\"btn btn-info\" href=\"/subs/iriam-rewards/download?type=$reward_type&id=$download_id\"><i class=\"fa-solid fa-download\"></i> <strong>Download Now</strong></a></p>";
+																$reward_download_button = "<p><a class=\"btn btn-info\" href=\"/subs/iriam-rewards/download?type=$reward_type&id=$download_id\"><i class=\"fa-solid fa-download\"></i> <strong>Download ($reward_file_format)</strong></a><br><small>File Size: Approx. $reward_file_size</small></p>";
 															}
 															
 															echo <<<CREDITSPOST

@@ -19,6 +19,8 @@ $iriam_reward_2star = false;
 $iriam_reward_3star = false;
 $iriam_reward_description = "";
 $iriam_reward_date = "2022-1-1 00:00:00";
+$iriam_reward_file_size = 0;
+$iriam_reward_file_format = "unknown";
 
 $_temp = null;
 if (isset($_GET["public-id"])) {
@@ -36,6 +38,8 @@ if (isset($_GET["public-id"])) {
             $iriam_reward_3star = $iriam_reward_post['3star'];
             $iriam_reward_description = htmlspecialchars($iriam_reward_post['iriam_reward_description']);
             $iriam_reward_date = $iriam_reward_post['iriam_reward_date'];
+            $iriam_reward_file_size = $iriam_reward_post['iriam_reward_kilobytes'];
+            $iriam_reward_file_format = $iriam_reward_post['iriam_reward_format'];
             $_temp = var_export($iriam_reward_post,true);
         }
     } else {
@@ -78,8 +82,28 @@ if ($iriam_reward_download_id !== "") {
     } else {
         $iriam_reward_download_id_secure_url = "";
         $iriam_reward_resource_type = "";
+        echo <<<FORM
+        <div class="container body-container">
+            <div class="row">
+                <div class="col">
+                    <h1>Iriam Rewards Editor</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-12">
+                <p>The asset <strong>$iriam_reward_download_id</strong> is in the internal database but not on the Cloudinary CDN.
+                Please manually delete this asset from the internal database.</p>
+                <p><a href="iriam_rewards.php"><button class="btn btn-danger" type="button">Cancel (Back to Rewards List)</button></a></p>
+                </div>
+            </div>
+        </div>
+FORM;
+        $_footer_adminmode = true;
+        require $dir . "/templates/footer.php";
+        die();
     }
 } else {
+    // Download doesn't exist actually
     $iriam_reward_download_id_secure_url = "";
     $iriam_reward_resource_type = "";
 }
@@ -203,9 +227,10 @@ FORM;
                     });
                     </script>
 VIDEOPLAYER;
-                } else {
-                    echo "<p class='text-white'><strong>Raw media type: $iriam_reward_resource_type</strong></p>";
-                }
+                } 
+                echo "<p class='text-white'><strong>Raw media type: $iriam_reward_resource_type</strong><br>
+                File format: $iriam_reward_file_format<br>
+                File size: Approximately ". readable_bytes_thousands($iriam_reward_file_size*1000) ."</p>";
             echo <<<FORM
             </div></div>
             </form>

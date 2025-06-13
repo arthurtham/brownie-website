@@ -39,10 +39,12 @@ if (!(
 // error_log(var_export($json, true));
 if (isset($_GET["uploadedfrom"]) && $_GET["uploadedfrom"] === "iriam-rewards"){//} && isset($json["tags"]) && is_array($json["tags"]) && in_array("iriam-reward", $json["tags"])) {
     // error_log("Processing IRIAM reward upload...");
+    // error_log(var_export($json, true));
     $public_id = $json["public_id"];
     $resource_type = $json["resource_type"];
     $type = $json["type"];
     $format = $json["format"];
+    $kilobytes = ceil(intval($json["bytes"])/1000);
 
     $public_id_name_only = end(explode("/",$public_id));
     $iriam_reward_download_id = mysqli_real_escape_string($conn, $public_id_name_only);
@@ -63,17 +65,25 @@ if (isset($_GET["uploadedfrom"]) && $_GET["uploadedfrom"] === "iriam-rewards"){/
     
     if ($iriam_reward_thumbnail === null || empty($iriam_reward_thumbnail)) {
         $sql = "INSERT INTO iriam_rewards (
-            iriam_reward_download_id
+            iriam_reward_download_id,
+            iriam_reward_format,
+            iriam_reward_kilobytes
         ) VALUES (
-            \"$iriam_reward_download_id\"
+            \"$iriam_reward_download_id\",
+            \"$kilobytes\",
+            \"$kilobytes\"
     );";
     } else {
         $sql = "INSERT INTO iriam_rewards (
             iriam_reward_download_id,
-            iriam_reward_thumbnail
+            iriam_reward_thumbnail,
+            iriam_reward_format,
+            iriam_reward_kilobytes            
         ) VALUES (
             \"$iriam_reward_download_id\",
-            \"$iriam_reward_thumbnail\"
+            \"$iriam_reward_thumbnail\",
+            \"$format\",
+            \"$kilobytes\"
         );";
     }
     $result = $conn->query($sql);
