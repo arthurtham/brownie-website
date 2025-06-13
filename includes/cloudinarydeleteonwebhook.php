@@ -51,4 +51,28 @@ if (count($list_of_public_ids) > 0) {
         echo "<p>Error: SQL Error: $conn->error </p>";
         echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
     }
+    unset($sql);
+
+    $iriam_ids = array();
+    $prefix = "com.browntulstar/iriam/rewards/";
+    foreach($list_of_public_ids as $public_id) { 
+        if (str_starts_with($public_id, $prefix)) {
+            $iriam_ids[] = substr($public_id, strlen($prefix));
+        }
+    };
+    if (count($iriam_ids) > 0) {
+        $sql = "DELETE FROM `iriam_rewards` WHERE iriam_reward_download_id IN (\"" . 
+        implode('", "', $iriam_ids)
+        . "\");";
+
+        $result = $conn->query($sql);
+        if ($result === TRUE) {
+            echo "<p>Success!</p>";
+            echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
+        } else {
+            echo "<p>Error: SQL Error: $conn->error </p>";
+            echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
+        }
+        unset($sql);
+    }
 }
