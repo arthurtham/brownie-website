@@ -16,7 +16,7 @@ if (!isset($_SESSION['user']) || !check_roles($iriam_star_roles)) {
 
 // Get the link information from the GET request. reward_type and download_id are required.
 if (!isset($_GET['type']) || !isset($_GET['id'])) {
-    require $dir . "/error/403-iriam.php";
+    require $dir . "/error/404.php";
     die();
 }
 
@@ -50,18 +50,22 @@ if (true) { // Type doesn't matter for now, //($_GET['type'] === 'cdncloud') {
     unset($result_rewards);
     // Check if the user has the required star badge to download this reward
     // Includes VIP and Mod roles by default
+    $reward_list_only = true;
     $star_roles_to_check = array($vip_role_id, $mod_role_id);
     if (intval($reward['1star']) === 1) {
         $star_roles_to_check[] = $iriam_1star_role_id;
+        $reward_list_only = false;
     }
     if (intval($reward['2star']) === 1) {
         $star_roles_to_check[] = $iriam_2star_role_id;
+        $reward_list_only = false;
     }
     if (intval($reward['3star']) === 1) {
         $star_roles_to_check[] = $iriam_3star_role_id;
+        $reward_list_only = false;
     }
 
-    if (!check_roles($star_roles_to_check)) {
+    if ($reward_list_only || !check_roles($star_roles_to_check)) {
         // If the user does not have the required star badge, return a 403 error
         require $dir . "/error/403-iriam.php";
         die();

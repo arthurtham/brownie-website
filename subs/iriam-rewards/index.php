@@ -188,19 +188,25 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 															$download_id = $reward['download_id'];
 															$reward_star_banners = "";
 															$star_roles_to_check = array($vip_role_id, $mod_role_id);
+															$reward_list_only = true;
 															if (intval($reward['3star']) == 1) {
 																$reward_star_banners = $star3_small_banner;
 																$star_roles_to_check[] = $iriam_3star_role_id;
+																$reward_list_only = false;
 															}
 															if (intval($reward['2star']) == 1) {
 																$reward_star_banners = $star2_small_banner;
 																$star_roles_to_check[] = $iriam_2star_role_id;
+																$reward_list_only = false;
 															}
 															if (intval($reward['1star']) == 1) {
 																$reward_star_banners = $star1_small_banner;
 																$star_roles_to_check[] = $iriam_1star_role_id;
+																$reward_list_only = false;
 															}
-															if (!check_roles($star_roles_to_check)) {
+															if ($reward_list_only) {
+																$reward_download_button = "<p><button class=\"btn btn-light border-dark\" disabled><i class=\"fa-solid fa-circle-xmark\"></i> Unavailable</button></p>";
+															} else if (!check_roles($star_roles_to_check)) {
 																$reward_download_button = "<p><button class=\"btn btn-light border-dark\" disabled><i class=\"fa-solid fa-circle-xmark\"></i> Insufficient Perks</button></p>";
 															} else {
 																$reward_download_button = "<p><a class=\"btn btn-info\" href=\"/subs/iriam-rewards/download?type=$reward_type&id=$download_id\"><i class=\"fa-solid fa-download\"></i> <strong>Download ($reward_file_format)</strong></a><br><small>File Size: Approx. $reward_file_size</small></p>";
