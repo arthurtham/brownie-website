@@ -164,6 +164,17 @@ class CloudinarySigner {
             $new_markdown_text
         );
         $new_markdown_text = preg_replace_callback(
+            '#https://res\.cloudinary\.com/browntulstar/image/(upload|private|authenticated)/s--[^/]+--((/t_eastcoast-blog-photo)?)/v1/com\.browntulstar/([a-zA-Z0-9]+)_blog_post/(.+?\.[a-zA-Z0-9]+)#',
+            function ($matches) {
+                $upload_type = $matches[1];
+                $optional_transformation = $matches[3];
+                $folder = $matches[4];
+                $filename = pathinfo($matches[5], PATHINFO_FILENAME);
+                return "https://res.cloudinary.com/browntulstar/image/$upload_type$optional_transformation/com.browntulstar/blog/$folder/$filename.webp";
+            },
+            $new_markdown_text
+        );
+        $new_markdown_text = preg_replace_callback(
             '#https://res\.cloudinary\.com/browntulstar/video/(upload|private|authenticated)/s--[^/]+--/q_auto/f_mp4/v1/com\.browntulstar/([a-zA-Z0-9]+)_blog_post/(.+?\.mp4)#',
             function ($matches) {
                 $upload_type = $matches[1];
