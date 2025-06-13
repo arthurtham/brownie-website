@@ -188,7 +188,9 @@ class CloudinarySigner {
     }
 
     public function convertAllUrls($markdown_text) {
-        return $this->convertLocalUrlsToCloudinaryUrls($markdown_text);
+        // Unneeded now, so ignore
+        return $markdown_text;
+        // return $this->convertLocalUrlsToCloudinaryUrls($markdown_text);
     }
     
     
