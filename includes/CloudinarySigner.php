@@ -146,10 +146,33 @@ class CloudinarySigner {
     }
 
     public function convertLocalUrlsToCloudinaryUrls($markdown_text) {
+        $new_markdown_text = $markdown_text;
         $new_markdown_text = preg_replace_callback(
             '/\/subs\/blog\/(travelblog|gamedevlogs)\/media\/([^.]*).(jpg|png|mov|mp4)/',
             array($this, "localToCloudinaryHelper"),
-            $markdown_text);
+            $new_markdown_text);
+        $new_markdown_text = $this->signUrlsInMarkdown($new_markdown_text);
+        $new_markdown_text = preg_replace_callback(
+            '#https://res\.cloudinary\.com/browntulstar/image/(upload|private|authenticated)/s--[^/]+--((/c_pad,w_400)?)/f_webp/v1/com\.browntulstar/([a-zA-Z0-9]+)_blog_post/(.+?\.[a-zA-Z0-9]+)#',
+            function ($matches) {
+                $upload_type = $matches[1];
+                $optional_transformation = $matches[3];
+                $folder = $matches[4];
+                $filename = pathinfo($matches[5], PATHINFO_FILENAME);
+                return "https://res.cloudinary.com/browntulstar/image/$upload_type$optional_transformation/com.browntulstar/blog/$folder/$filename.webp";
+            },
+            $new_markdown_text
+        );
+        $new_markdown_text = preg_replace_callback(
+            '#https://res\.cloudinary\.com/browntulstar/video/(upload|private|authenticated)/s--[^/]+--/q_auto/f_mp4/v1/com\.browntulstar/([a-zA-Z0-9]+)_blog_post/(.+?\.mp4)#',
+            function ($matches) {
+                $upload_type = $matches[1];
+                $folder = $matches[2];
+                $filename = $matches[3];
+                return "https://res.cloudinary.com/browntulstar/video/$upload_type/q_auto/com.browntulstar/blog/$folder/$filename";
+            },
+            $new_markdown_text
+        );
         return $this->signUrlsInMarkdown($new_markdown_text);
     }
 
