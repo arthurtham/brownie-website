@@ -304,6 +304,8 @@ div.brownie-red h1, div.brownie-red h2, div.brownie-red h3 {
 }
 
 div.post-contents {
+    word-wrap: break-word;
+
     blockquote {
         margin: 0;
         padding-left: 30px;
@@ -325,16 +327,14 @@ div.post-contents {
         border: 1px solid;
     }
     img {
-        width: 100%;
-        max-width: 600px;
+        max-width: min(90vw,100%,600px);
         display: block;
         margin-left: auto;
         margin-right: auto;
         padding: 10px;
     }
     video {
-        width: 100%;
-        max-width: 300px;
+        width: min(90vw,100%,600px);
         display: block;
         margin-left: auto;
         margin-right: auto;
