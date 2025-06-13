@@ -17,7 +17,7 @@ class CloudinarySigner {
     public function __construct() {
         global $CLOUDINARY_CONFIG;
         $this->cld = new Cloudinary($CLOUDINARY_CONFIG);
-        $this->cldUrlPattern = '/(?:https:\/\/res.cloudinary.com\/browntulstar\/)(image|video)\/(private|authenticated|upload)\/(.*\/?)(com\.browntulstar|iriam\/rewards)\/(.\S*\.(webp|mov|mp4|jpg|png|gif)*)/';
+        $this->cldUrlPattern = '/(?:https:\/\/res.cloudinary.com\/browntulstar\/)(image|video)\/(private|authenticated|upload)\/(.*\/?)(com\.browntulstar)\/(.\S*\.(webp|mov|mp4|jpg|png|gif)*)/';
     }
 
     public function signUrl($url) {
@@ -33,7 +33,7 @@ class CloudinarySigner {
         1   =>  "image" or "video" (literal)
         2	=>	Delivery Type
         3	=>	Transformation
-        4   =>  either "com.browntulstar" or "iriam/rewards"
+        4   =>  "com.browntulstar"
         5	=>	public id after 4: <input>
         6   => file extension (webp, mov, mp4, jpg, png, gif)
         */

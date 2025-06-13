@@ -85,6 +85,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 												'3star' => $row['3star']
 											);
 										}
+									}
 									?>
 
 									<div class="mb-2">
@@ -236,10 +237,6 @@ NOREWARDS;
 											</div>
 										</div>
 									</div>
-
-									<?php
-									}
-									?>
 									<hr>
                                     <p class="text-center">
                                         <small>IRIAM and its logo and artwork are copyrighted and trademarked by IRIAM Inc. All rights reserved.</small>                                    

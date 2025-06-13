@@ -68,7 +68,7 @@ if ($iriam_reward_1star == "1") {
 // Make sure the reward ID exists
 if ($iriam_reward_download_id !== "") {
     $_cloudinary_results = (new SearchApi())->expression(
-        "public_id=iriam/rewards/$iriam_reward_download_id"
+        "public_id=com.browntulstar/iriam/rewards/$iriam_reward_download_id"
         )
         ->execute();
     // Check if the file exists under the resources array
@@ -110,7 +110,7 @@ echo <<<FORM
                         </div>
                         <small class="text-white">To change this asset, you must delete it from Cloudinary and make a new asset.</small>
                         <div class="input-group mb-3">
-                            <span class="input-group-text"><label for ="iriam_reward_name">Cloudinary Public ID: /iriam/rewards/</label></span>
+                            <span class="input-group-text"><label for ="iriam_reward_name">Cloudinary Public ID: com.browntulstar/iriam/rewards/</label></span>
                             <input disabled class="form-control" type="text" value="$iriam_reward_download_id"></input>
                             <input required minlength="1" maxlength="512" class="d-none form-control" type="text" id="iriam_reward_download_id" name="iriam_reward_download_id" value="$iriam_reward_download_id" /> 
                         </div>
