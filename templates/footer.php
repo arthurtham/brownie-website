@@ -58,13 +58,13 @@ echo <<<FOOTER
         <div class="col-lg-4">
             <ul class="nav justify-content-center list-unstyled d-flex" style="font-size:20px">
                 <li class="ms-2">
-                    <a style="text-decoration: none;color:#000" href="https://twitch.tv/browntulstar" target="_blank">
+                    <a style="text-decoration: none;color:#000" href="/stream">
                         <i class="fab fa-twitch"></i>
                     </a> 
                 </li>
                 <li class="ms-2">
                     <a style="text-decoration: none;" href="/iriam">
-                        <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
+                        <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
                     </a>
                 </li>
                 <li class="ms-2">
@@ -83,7 +83,7 @@ echo <<<FOOTER
                     </a>
                 </li>    
                 <li class="ms-2">
-                    <a style="text-decoration: none;color:#000" href="https://browntulstar.com/r/discord" target="_blank">
+                    <a style="text-decoration: none;color:#000" href="/discord">
                         <i class="fab fa-discord"></i>
                     </a> 
                 </li>

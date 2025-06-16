@@ -18,7 +18,7 @@ require $dir . "/templates/header.php";
             "Login"
             below to get set up.<br/>
             For further help, please contact support.</p>       
-        <?php print_navbar_login_items($expand=true, $center=true, $subperks=true); ?>
+        <?php print_navbar_login_items($expand=true, $center=true, $subperks=true, $label=true); ?>
         </div>
     </div>
 </div>

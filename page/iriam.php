@@ -15,7 +15,7 @@ require $dir . "/templates/header.php";
                                 <div class="container">
                                     <div class="row mb-4">
                                         <div class="col-lg-3 offset-lg-2">
-                                            <img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg" 
+                                            <img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0" 
                                             style="width:100%;max-height:125px;object-fit:contain;" />
                                         </div>
                                         <div class="col-lg-6">
@@ -40,7 +40,7 @@ require $dir . "/templates/header.php";
                                 <p>
                                 <small>Open via a mobile browser</small><br>
                                 <a class="btn btn-info mb-2 w-100 shadow" href='/r/iriam-profile' target="_blank" style="max-width:300px">
-                                    <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
+                                    <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
                                     <strong>Jump on IRIAM!</strong>
                                 </a>
                                 <br>
@@ -53,12 +53,12 @@ require $dir . "/templates/header.php";
                                 <hr>
                                 <p>
                                 <a class="btn btn-info mb-2 w-100 shadow" href='/subs/iriam-rewards' style="max-width:300px">
-                                    <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
+                                    <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
                                     <i class="fa-solid fa-circle-check"></i>
                                     IRIAM ★ Star Badge Rewards
                                 </a>
                                 <br>
-                                <a class="btn btn-light mb-2 w-100" href="/r/discord" style="max-width:300px" target="_blank">
+                                <a class="btn btn-light mb-2 w-100" href="/discord" style="max-width:300px">
                                     <i class="fa-brands fa-discord"></i>
                                     Join Turtle Pond Server
                                 </a>

@@ -245,10 +245,11 @@ function rate_limit_wrapper($function, array $param=null) {
     }
 }
 
-function print_navbar_login_items($expand=false, $center=false, $subperks=false) {
+function print_navbar_login_items($expand=false, $center=false, $subperks=false, $label=false) {
     global $sub_perk_roles, $mod_role_id, $vip_role_id, $turtle_role_id, $iriam_1star_role_id, $iriam_2star_role_id, $iriam_3star_role_id, $sub_role_id;
     // Auth_URL now handled in login file
     // $auth_url = url($client_id, $redirect_url, $scopes);\
+    // $label = true;
 
     if ($expand) {
         echo "<div><ul class='navbar-nav d-flex flex-row";
@@ -262,52 +263,70 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
         echo '<a href="/profile" style="text-decoration: none !important"><img style="text-decoration: none; border: 1; border-color:black; border-top-left-radius:4px;border-bottom-left-radius:4px;height:38px;border-color:gray;border:1px solid;" src="'.get_avatar_url().'" /></button></a>';
         if ($subperks) {
             if ($expand) echo "</li>";
-            echo "<li class='nav-item dropdown' style='width: 175px'>";
+            echo "<li class='nav-item dropdown' style='" . ($label ? "width: 175px;" : "width:100%;max-width:58px") . "'>";
             $dropdown_style = "dropdown-toggle w-100' style='border-radius:0' href='#' id='accountMenu' role='button' data-bs-toggle='dropdown' aria-expanded='false'";
+            $label_symbol = "fa-circle-xmark";
+            $label_color = "btn-primary";
+            $label_contents = "";
             if (check_roles([$turtle_role_id])) {
-                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-person-shelter\"></i> Head Turtle</a>";
+                $label_color = "btn-success";
+                $label_symbol = "fa-person-shelter";
+                $label_contents = $label ? " Head Turtle" : "";
             } else if (check_roles([$mod_role_id])) {
-                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> Discord Mod</a>";
+                $label_color = "btn-success";
+                $label_symbol = "fa-circle-check";
+                $label_contents = $label ? " Discord Mod" : "";
             } else if (check_roles([$vip_role_id])) {
-                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> Discord VIP</a>";
+                $label_color = "btn-success";
+                $label_symbol = "fa-circle-check";
+                $label_contents = $label ? " Discord VIP" : "";
             } else if (check_roles([$iriam_3star_role_id])) {
-                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> IRIAM 3★</a>";
+                $label_color = "btn-success";
+                $label_symbol = "fa-circle-check";
+                $label_contents = $label ? " IRIAM 3★" : "";
             } else if (check_roles([$iriam_2star_role_id])) {
-                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> IRIAM 2★</a>";
+                $label_color = "btn-success";
+                $label_symbol = "fa-circle-check";
+                $label_contents = $label ? " IRIAM 2★" : "";
             } else if (check_roles([$sub_role_id])) {
-                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> Twitch Sub</a>";
+                $label_color = "btn-success";
+                $label_symbol = "fa-circle-check";
+                $label_contents = $label ? " Twitch Sub" : "";
             } else if (check_roles([$iriam_1star_role_id])) {
-                echo "<a class='btn btn-success $dropdown_style><i class=\"fa-solid fa-circle-check\"></i> IRIAM 1★</a>";
+                $label_color = "btn-success";
+                $label_symbol = "fa-circle-check";
+                $label_contents = $label ? " IRIAM 1★" : "";
             } else {
-                echo "<a class='btn btn-primary $dropdown_style><i class=\"fa-solid fa-link\"></i> Get Perks</a>";
+                $label_color = "btn-primary";
+                $label_symbol = "fa-link";
+                $label_contents = " Get Perks";
             }
+
+            echo "<a class='btn $label_color $dropdown_style><i class=\"fa-solid $label_symbol\"></i> $label_contents</a>";
             ?>
-            <ul class="dropdown-menu dropdown-menu-end" id="accountMenu-menu" aria-labelledby="accountMenu" style="width: inherit">
-                <li><h6 class="dropdown-header">
+            <ul class="dropdown-menu dropdown-menu-end" id="accountMenu-menu" aria-labelledby="accountMenu">
+                <li><h6 class="dropdown-header pb-0">
                     <?=(isset($_SESSION["twitch_user_access_token"]) 
-                    ? '<i class="fa-brands fa-twitch" style="font-size: 12px"></i>' 
-                    : '<i class="fa-brands fa-discord" style="font-size: 12px"></i>') 
+                    ? '<i class="fa-brands fa-twitch" style="font-size: 12px"></i> Twitch' 
+                    : '<i class="fa-brands fa-discord" style="font-size: 12px"></i> Discord') 
                     ?>
-                Logged In As</h6></li>                
-                <li><a class="dropdown-item text-wrap text-break" href="/profile">
-                    <strong><?=$_SESSION["username"] ?></strong>
+                <br>Logged in as:</h6>
+                </li>                
+                <li><a class="dropdown-item text-wrap text-break pt-0" href="/profile">
+                    <strong> <?=$_SESSION["username"] ?></strong>
                 </a></li>
                 <li class="dropdown-divider"></li>
+                <li><h6 class="dropdown-header">Menu</h6></li>
                 <?php
                 if (check_roles([$turtle_role_id])) {
                 ?>
-                <li><h6 class="dropdown-header">Internal Admin Tools</h6></li>
                 <li><a class="dropdown-item" href="/admin"><i style="width:26px" class='fa-solid fa-cog'></i> Admin</a></li>
-                <li class="dropdown-divider"></li>
                 <?php 
                 }
                 ?>
-                <li><h6 class="dropdown-header">Account</h6></li>
-                <li><a class="dropdown-item" href="/profile"><i style="width:26px" class="fa-solid fa-user"></i> Profile</a></li>
-                <li><a class="dropdown-item" href="/subs"><i style="width:26px" class='
-                    <?=(check_roles($sub_perk_roles) ? "fa-solid fa-circle-check'></i> Perks Hub" : "fa-solid fa-link'></i> Perks Hub")?>
-                </a></li>
-                <li><a class="dropdown-item" href="/logout.php"><i style="width:26px" class='fa-solid fa-right-from-bracket'></i> Logout</a></li>
+                <li><a class="dropdown-item" href="/discord"><i style="width:26px" class='fa-brands fa-discord'></i>Join Server</a></li>
+                <li><a class="dropdown-item" href="/subs"><i style="width:26px" class='fa-solid fa-circle-check'></i>Perks Hub</a></li>
+                <li><a class="dropdown-item" href="/logout.php"><i style="width:26px" class='fa-solid fa-right-from-bracket'></i>Logout</a></li>
             </ul>
             <?php
             echo "</li>";
@@ -316,17 +335,28 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false)
         echo '<a href="/logout.php" class="btn btn-danger" style="border-top-left-radius:0;border-bottom-left-radius:0;height:38px;font-size:22px"><i class="fa-solid fa-right-from-bracket"></i></a>';
         if ($expand) echo "</li>";
     } else {
+        if ($label) {
+            $login_label = " Login";
+            $login_style = "width:192px;";
+            $login_dropdown_style = "";
+        } else {
+            $login_label = "";
+            $login_style = "";
+            $login_dropdown_style = "width:100%;max-width:58px";
+        }
         echo <<<LOGINITEMS
-        <li class="nav-item dropdown">
-            <a class="btn btn-success dropdown-toggle" style="font-weight:500;width:190px;" href="#" id="accountLogin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-right-to-bracket"></i> Login
+        <li class="nav-item dropdown" style="$login_dropdown_style">
+            <a class="btn btn-success dropdown-toggle" style="font-weight:500;$login_style" href="#" id="accountLogin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-right-to-bracket"></i>$login_label
             </a>
             <ul class="dropdown-menu dropdown-menu-end" id="accountLogin-menu" aria-labelledby="accountLogin">
-                <li><h6 class="dropdown-header">Twitch/IRIAM★ perks and <br>#BrownieVAL locked pages</h6></li>
-                <li><a class="dropdown-item" href="/login.php"><i style="width:26px" class='fa-brands fa-discord'></i> Discord Login</a></li>
+                <li><h2 class="dropdown-header-navbar">Login with:</h2></li>
+                <li><a class="dropdown-item" href="/login.php"><i style="width:26px" class='fa-brands fa-discord'></i>Discord Login</a></li>
+                <li><a class="dropdown-item" href="/discord"><i style="width:26px" class='fa-solid fa-arrow-up-right-from-square'></i>Join Server</a></li>
+                <li><h6 class="dropdown-header pb-0">- Twitch/IRIAM★ perks<br>- #BrownieVAL player</h6></li>
                 <li><hr class="dropdown-divider"></hr></li>
-                <li><h6 class="dropdown-header">Twitch perks only</h6></li>
-                <li><a class="dropdown-item" href="/login-twitch.php"><i style="width:26px" class='fa-brands fa-twitch'></i> Twitch Login</a></li>
+                <li><a class="dropdown-item" href="/login-twitch.php"><i style="width:26px" class='fa-brands fa-twitch'></i>Twitch Login</a></li>
+                <li><h6 class="dropdown-header pb-0">- Twitch perks only</h6></li>
             </ul>
         </li>
 LOGINITEMS;

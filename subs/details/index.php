@@ -29,7 +29,7 @@ $faqitems = array(
 		</ul>
 		<p>To learn how to connect your Twitch account to Discord or claim the IRIAM Discord role, please see the sections below.</p>
 		<br />
-		<p><a class='btn btn-dark w-100' href='/discord' target='_blank' style='max-width:400px'>
+		<p><a class='btn btn-dark w-100' href='/discord' style='max-width:400px'>
 			<i class='fa-brands fa-discord'></i>
 			Join Turtle Pond Discord Server
 			</a></p>
@@ -45,24 +45,24 @@ $faqitems = array(
 		<i class='fa-brands fa-twitch'></i>
 		Visit Twitch Page
 		</a></p>
-		<p><a class='btn btn-dark w-100' href='/discord' target='_blank' style='max-width:400px'>
+		<p><a class='btn btn-dark w-100' href='/discord' style='max-width:400px'>
 			<i class='fa-brands fa-discord'></i>
 			Join Turtle Pond Discord Server
 			</a></p>"
 	),
 	array(
-		"title" => "<span style='width:20px'><img style=\"height:20px;margin-top:-4px\" src=\"https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg\">
+		"title" => "<span style='width:20px'><img style=\"height:20px;margin-top:-4px\" src=\"https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0\">
 		</span>&nbsp;How do I access my IRIAM Star Reward Perks?",
 		"contents" => "
 		<p>IRIAM is a virtual reality live streaming platform where you can watch and interact with your favorite VTubers in real-time. You can watch them exclusively on your mobile smartphone device or tablet.</p>
 		<p>You can learn more about IRIAM by clicking on the IRIAM button below. An IRIAM account is required to gain IRIAM ★ Star Badge roles.</p>
-		<p>To access your IRIAM ★ Star Badge rewards, you must have one of the <strong>STARS</strong> roles in the Turtle Pond Discord server. You can claim these roles by going to the #iriam-★badge-assign text channel and following the instructions. After you are assigned the proper roles, log out and log back in to this website with your Discord account and visit the IRIAM link below.</p>
+		<p>To access your IRIAM ★ Star Badge rewards, you must have one of the <strong>STARS</strong> roles in the Turtle Pond Discord server. You can claim these roles by going to the <span style=\"white-space:nowrap\"><strong>#iriam-★badge-assign</strong></span> text channel and following the instructions. After you are assigned the proper roles, log out and log back in to this website with your Discord account and visit the IRIAM link below.</p>
 		
 		<p><a class=\"btn btn-info mb-2 w-100 shadow\" href='/iriam' style=\"max-width:400px\">
-			<img style=\"height:20px;margin-top:-4px\" src=\"https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg\">
+			<img style=\"height:20px;margin-top:-4px\" src=\"https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0\">
 			Learn more about IRIAM
 		</a></p>
-		<p><a class='btn btn-dark w-100' href='/discord' target='_blank' style='max-width:400px'>
+		<p><a class='btn btn-dark w-100' href='/discord' style='max-width:400px'>
 			<i class='fa-brands fa-discord'></i>
 			Join Turtle Pond Discord Server
 			</a></p>

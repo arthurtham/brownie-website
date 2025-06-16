@@ -23,7 +23,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 							<div class="card-body">
                                 <div>
 									<div class="text-center">
-										<img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg" style="border-radius: 100%;width:200px" />
+										<img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0" style="border-radius: 100%;width:200px" />
 										<h1 class="card-title">IRIAM â˜… Star Badge Rewards</h1>
 										<p>
 											<h2>You're a star! A super star!</h2><br>
@@ -127,16 +127,16 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 												if (!$_iriam_access_allowed) {
 												?>
 												<h2>Many exclusive IRIAM rewards await you!</h2>
-												<p>Watch on IRIAM and gain a â˜… Star Badge. Then, join the Turtle Pond Discord server and claim your role in the #iriam-â˜…badge-assign text channel. Finally, log in to this website with Discord and access the perks!</p>
+												<p>Watch on IRIAM and gain a â˜… Star Badge. Then, join the Turtle Pond Discord server and claim your role in the <span style="white-space:nowrap"><strong>#iriam-â˜…badge-assign</strong></span> text channel. Finally, log in to this website with Discord and access the perks!</p>
 												<p>(If you just got your Discord role, then you may need to log out and log back in to this website using your Discord account.)</p>
 												<br>
-												<?= print_navbar_login_items($expand=true, $center=true, $subperks=true) ?>
+												<?= print_navbar_login_items($expand=true, $center=true, $subperks=true, $label=true) ?>
 												<br>
 												<a class="btn btn-info mb-2 w-100 shadow" href='/iriam' style="max-width:300px">
-													<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
+													<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
 													About IRIAM
 												</a><br>
-												<a class="btn btn-light mb-2 w-100" href="/r/discord" style="max-width:300px" target="_blank">
+												<a class="btn btn-light mb-2 w-100" href="/discord" style="max-width:300px">
 													<i class="fa-brands fa-discord"></i>
 													Join Turtle Pond Server
 												</a><br>
@@ -151,7 +151,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 												<p>Select a month from the dropdown above to view the rewards for that month. Then, find the reward that you would like to download.</p>
 												<br>
 												<a class="btn btn-info mb-2 w-100 shadow" href='/iriam' style="max-width:300px">
-													<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
+													<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
 													IRIAM
 												</a><br>
 												<a class="btn btn-success mb-2 w-100" href="/subs" style="max-width:300px">

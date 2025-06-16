@@ -212,8 +212,7 @@ div.home-div-col {
 
 @media (max-width:991px) {
     #navbarSupportedContent {
-        max-height: 400px;
-        height:70vh;
+        max-height: min(400px, calc(100vh - 155px));
         overflow-y: auto;
     }
 }
@@ -394,6 +393,41 @@ div.post-contents {
     0% { background-color: rgba(0, 0, 0, 0); }
     50% { background-color: yellow; }
     100% { background-color: rgba(0, 0, 0, 0); }
+}
+
+
+.navbar-mobile-login-items-small, .navbar-mobile-login-items-medium {
+    display:none;
+}
+@media ((min-width:461px) and (max-width:991px)) {
+    .navbar-mobile-login-items-medium {
+        display:block;
+        position:absolute;
+        top: 9px;
+        right: 0px;
+        transform: translate(-30%, 0%);
+        z-index: 3;
+    }
+}
+
+@media (max-width:460px) {
+    .navbar-mobile-login-items-small {
+        display:block;
+        position:absolute;
+        top: 9px;
+        left: 50%;
+        transform: translate(-47%, 0%);
+        z-index: 3;
+    }
+}
+
+.navbar-desktop-login-items {
+    display:block;
+}
+@media (max-width:991px) {
+    .navbar-desktop-login-items {
+        display:none;
+    }
 }
 
 @media (min-width:1400px) {

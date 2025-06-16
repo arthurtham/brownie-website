@@ -13,7 +13,7 @@ if (!isset($_SESSION['user'])) {
   echo '<h1 class="text-center">Clip Uploader</h1>';
   echo "<div class='alert alert-danger' role='alert'>
   <center>Players, please log in with Discord to access this page.</center>";
-  print_navbar_login_items($expand=true, $center=true);
+  print_navbar_login_items($expand=true, $center=true, $label=true);
   echo "
   </div></div>";
   require $dir . "/templates/footer.php"; 

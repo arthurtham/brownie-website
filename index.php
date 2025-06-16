@@ -9,7 +9,7 @@ require $dir . "/templates/header.php"
 		<center><img src="https://res.cloudinary.com/browntulstar/image/private/s--gRiI4zsg--/c_pad,h_400/e_shadow/com.browntulstar/img/browntulstar-logo-v2-large.png" style="width:100%;max-width:460px" />
 			<div class="box bg-gradient shadow rounded text-center" style="background-color: rgba(255,255,255,0.2); padding: 20px; width:100%; max-width:500px">
 				<div class="row">
-					<div class="col-sm-6 p-1">
+					<div class="col-sm-12 p-1">
 						<span class="d-flex flex-row">
 						<a class="btn btn-primary w-100" href="/stream">
 							<i class="fa-brands fa-twitch"></i>
@@ -17,17 +17,24 @@ require $dir . "/templates/header.php"
 						</a>
 						</span>
 					</div>
-					<div class="col-sm-6 p-1">
+				</div>
+				<div class="row">
+					<div class="col-sm-12 p-1">
 						<span class="d-flex flex-row">
 							<a class="btn btn-info w-100" href="/iriam">
-								<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/com.browntulstar/img/iriam-logo.svg">
+								<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
 								<strong>IRIAM</strong>
 							</a>
 						</span>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-12 p-1">
+					<div class="col-sm-6 p-1">
+						<span class="d-flex flex-row">
+							<a href="/discord" class="btn btn-light w-100"><i class="fa-brands fa-discord"></i> Join Server</a>
+						</span>
+					</div>
+					<div class="col-sm-6 p-1">
 						<span class="d-flex flex-row">
 							<a href="/subs" class="btn btn-success w-100"><i class="fa-solid fa-circle-check"></i> Access Perks Hub</a>
 						</span>
@@ -82,7 +89,7 @@ require $dir . "/templates/header.php"
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8 offset-lg-2">	
-						<center><img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/private/s--Gq5rx5qg--/c_mpad,h_300,w_300/com.browntulstar/img/turtleyear-sm.png" style="border-radius: 100%;width:auto;max-width:min(300px, 100vw)" /></center>
+						<center><img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/private/s--Gq5rx5qg--/c_mpad,h_300,w_300/com.browntulstar/img/turtleyear-sm.png" style="border-radius: 100%;width:auto;max-width:min(300px, 70vw)" /></center>
 						<div class="card mx-auto">
 							<div class="card-body">
 								<h1 class="card-title text-center">About Me</h1>
@@ -94,12 +101,13 @@ require $dir . "/templates/header.php"
 									I hope you can enjoy my content!
 								</p>
 								<div class="text-center">
-								<a class="btn btn-dark m-2 shadow" href="/r/discord" target="_blank" style="max-width:400px">
+								<a class="btn btn-dark m-2 shadow" href="/discord" style="max-width:400px">
 									<i class="fa-brands fa-discord"></i>
 									Discord Server
 								</a> 
 								<a class="btn btn-dark m-2 shadow" href='/r/links' style="max-width:400px">
-									<i class="fa-solid fa-link"></i> Links/Socials
+									<i class="fa-solid fa-link"></i> 
+									Links/Socials
 								</a>
 								<a class="btn btn-dark m-2 shadow" href="/coding" style="max-width:400px">
 									<i class="fa-solid fa-video"></i>
@@ -126,7 +134,7 @@ require $dir . "/templates/header.php"
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8 offset-lg-2">	
-						<center><img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/private/s--y9zZhHfd--/ar_1:1,c_scale,h_400/f_webp/com.browntulstar/img/brownieval-logo-v1.png" style="border: 3px solid black; border-radius: 100%;width:auto;max-width:min(300px, 100vw)" /></center>
+						<center><img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/private/s--y9zZhHfd--/ar_1:1,c_scale,h_400/f_webp/com.browntulstar/img/brownieval-logo-v1.png" style="border: 3px solid black; border-radius: 100%;width:auto;max-width:min(300px, 70vw)" /></center>
 						<div class="card mx-auto">
 							<div class="card-body">
 								<h1 class="card-title text-center">#BrownieVAL</h1>
@@ -250,7 +258,7 @@ require $dir . "/templates/header.php"
 						</a>
 					</div>
 					<div class="col-lg-3 mb-2 text-center">
-						<a class="btn btn-dark text-white my-2 shadow w-100" href="/contact" target="_blank">
+						<a class="btn btn-dark text-white my-2 shadow w-100" href="/contact">
 							<i class="fa-solid fa-envelope"></i>
 							Contact
 						</a>
