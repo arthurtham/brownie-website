@@ -404,8 +404,8 @@ div.post-contents {
         display:block;
         position:absolute;
         top: 9px;
-        right: 0px;
-        transform: translate(-30%, 0%);
+        right: 80px;
+        transform: translate(0%, 0%);
         z-index: 3;
     }
 }

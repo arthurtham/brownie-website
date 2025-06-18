@@ -105,8 +105,13 @@ echo <<<FOOTER
             </ul>
         </div>
         <div class="col-lg-4">
-            <ul class="nav align-items-center justify-content-center list-unstyled d-flex flex-column" style="margin-top:4px">
-            <small><span class="text-muted">© 2025 BrowntulStar (<a style="text-decoration: none" href="https://browntulstar.com/r/links" target="_blank">@browntulstar</a>)</span></small>
+            <ul class="nav align-items-center justify-content-center list-unstyled d-flex flex-column" style="margin-top:4px;font-size:14px">
+                <li class="ms-2">
+                    <span class="text-muted">
+                        © 2025 BrowntulStar (<a style="text-decoration: none" href="https://browntulstar.com/r/links" target="_blank">@browntulstar</a>)
+                    </span>
+                </li>
+            </ul>
         </div>
         <div class="col-lg-4">
             <ul class="nav justify-content-center list-unstyled d-flex" style="margin-top:4px;font-size:14px">
