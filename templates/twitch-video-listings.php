@@ -1,5 +1,5 @@
 <?php
-function echoCardEntries($result) {
+function echoTwitchCardEntries($result) {
     if (isset($result["error"])) {
         echo '<div class="row">';
         echo '<div class="col">';
@@ -10,6 +10,7 @@ function echoCardEntries($result) {
     $count = 0;
     foreach ($result as $item) {
         $short_title = explode("|", $item["title"])[0];
+        $url = $item["url"];
         $date = date("M d, Y", strtotime($item["published_at"]));
         if ($count % 3 == 0) {
             if ($count > 0) {
@@ -18,11 +19,13 @@ function echoCardEntries($result) {
             echo '<div class="row" style="padding-bottom:10px" oncontextmenu="return false;">';
         }
         echo '<div class="col-md-4 mb-2 d-flex align-items-stretch"><div class="card" style="width:100% !important;">';
-        echo '<a data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'">
-        <div style="position:relative;background-color:lightgray"><img src="'.$item["thumbnail_url"].'" 
-        class="card-img-top" alt="video thumbnail image: '.$short_title.'"></div></a>';
+        // echo '<a data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'"><div style="position:relative;background-color:lightgray">';
+        echo '<img src="'.$item["thumbnail_url"].'" 
+        class="card-img-top" alt="video thumbnail image: '.$short_title.'">';
+        // echo '</div></a>';
         echo '<div class="card-body">';
-        echo '<button type="button" class="btn btn-dark" style="width:100%;margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'">Watch</button>';
+        // echo '<button type="button" class="btn btn-dark" style="width:100%;margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-'.$item["id"].'">Watch</button>';
+        echo '<a type="button" class="btn btn-dark" style="width:100%;margin-bottom:18px" href="'.$url.'" target="_blank">Watch</a>';
         echo '<h5 class="card-title">'.$short_title = explode("|", $item["title"])[0].'</h5>';
         echo '<p class="card-text">'.$date.'</p>';
         echo '</div>';
@@ -32,7 +35,7 @@ function echoCardEntries($result) {
     echo '</div>';
 }
 
-function echoModalEntries($result) {
+function echoTwitchModalEntries($result) {
     if (isset($result["error"])) {
         return;
     }

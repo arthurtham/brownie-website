@@ -30,6 +30,10 @@ require $dir . "/templates/header.php";
                                     IRIAM is a virtual reality live streaming platform where you can watch and interact with your favorite VTubers in real-time. You can watch them exclusively on your mobile smartphone device or tablet.
                                 </p>
                                 <p>
+                                    Every Sunday, Tuesday, and Thursday, listen to Browntul talk about the latest sports events and your favorite hot topics on the "Around the Rock" podcast streaming live exclusively on the IRIAM mobile app in the US region.
+                                    Catch the replays of the podcast on YouTube.
+                                </p>
+                                <p>
                                     Gain IRIAM ★ Star Badges by gifting points during my IRIAM livestreams. Then, join the Discord server, claim your ★ Star Badge role, and gain access
                                     to exclusive perks!
                                 </p>

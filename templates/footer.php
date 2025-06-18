@@ -78,7 +78,7 @@ echo <<<FOOTER
                     </a>
                 </li>
                 <li class="ms-2">
-                    <a style="text-decoration: none;color:#000" href="https://youtube.com/@browntulstar" target="_blank">
+                    <a style="text-decoration: none;color:#000" href="/stream?youtube">
                         <i class="fa-brands fa-youtube"></i>
                     </a>
                 </li>    

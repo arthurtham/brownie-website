@@ -203,7 +203,7 @@ function _helper_twitch_get_videos($url) {
                 usort($resulting_data, function($a, $b) {
                     return intval(strtotime($a["published_at"]) < intval(strtotime($b["published_at"])));
                 });
-                $cache->set($resulting_data)->expiresAfter(43200);
+                $cache->set($resulting_data)->expiresAfter(21600);
                 $instanceCache->save($cache);
                 return $resulting_data;
             } else if (isset($results['error']) && (isset($results['status']) && ($results['status'] == "401"))) {

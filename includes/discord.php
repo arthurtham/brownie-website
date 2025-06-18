@@ -320,7 +320,7 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false,
                 <?php
                 if (check_roles([$turtle_role_id])) {
                 ?>
-                <li><a class="dropdown-item" href="/admin"><i style="width:26px" class='fa-solid fa-cog'></i> Admin</a></li>
+                <li><a class="dropdown-item" href="/admin"><i style="width:26px" class='fa-solid fa-cog'></i>Admin</a></li>
                 <?php 
                 }
                 ?>

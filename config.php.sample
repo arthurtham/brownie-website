@@ -53,4 +53,11 @@ $twitch_user_scopes = "channel:read:subscriptions";
 $twitch_redirect_url = "";
 $brownieval_sub_only_videos = array();
 
+
+##############################
+###########YOUTUBE############
+##############################
+$youtube_user_id = "";
+$youtube_api_key = "";
+
 ?>
