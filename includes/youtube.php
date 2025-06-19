@@ -60,7 +60,6 @@ function _helper_youtube_get_videos($url) {
 }
 
 function youtube_get_recent_videos($count = 12) {
-    // https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCKaqbVfcK6XmANqwC1xRzig&type=video&maxResults=12&order=date&key=AIzaSyAUUqPug7OOftblILUtiIqeA1OOQD3cGZM
     global $youtube_user_id, $youtube_api_key;
     $url = $GLOBALS["youtube_api_url"]."/youtube/v3/search?part=snippet&channelId=".$youtube_user_id."&type=video&maxResults=".$count."&order=date&key=".$youtube_api_key;
     return _helper_youtube_get_videos($url);
