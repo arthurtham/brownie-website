@@ -9,13 +9,15 @@ use Cloudinary\Api\Search\SearchApi;
 use Cloudinary\Api\Upload\UploadApi;
 
 // Check if the user is logged in and has the required roles
-if (!isset($_SESSION['user']) || !check_roles($iriam_star_roles)) {
+if (!isset($_SESSION['user']) || !check_roles(array_merge($iriam_star_roles, array($vip_role_id, $mod_role_id)))) {
+    header('HTTP/1.0 403 Forbidden');
     require $dir . "/error/403-iriam.php";
     die();
 }
 
 // Get the link information from the GET request. reward_type and download_id are required.
 if (!isset($_GET['type']) || !isset($_GET['id'])) {
+    header('HTTP/1.0 404 Not Found');
     require $dir . "/error/404.php";
     die();
 }
@@ -23,7 +25,7 @@ if (!isset($_GET['type']) || !isset($_GET['id'])) {
 // If the reward type is "cloudinary / cdncloud", use Cloudinary to download the file
 if (true) { // Type doesn't matter for now, //($_GET['type'] === 'cdncloud') {
     $reward_id = htmlspecialchars($_GET['id']);
-    $reward_public_id = "com.browntulstar/iriam/rewards/$reward_id";
+    $reward_public_id = "$iriam_reward_download_folder/$reward_id";
     // var_dump($reward_id); // Debugging line to see the reward ID
 
     // The file exists, but now we need to check the star badge permissions from the database
@@ -32,6 +34,7 @@ if (true) { // Type doesn't matter for now, //($_GET['type'] === 'cdncloud') {
     unset($sql_rewards);
     if ($result_rewards->num_rows === 0) {
         // If the reward does not exist, return a 404 error
+        header('HTTP/1.0 404 Not Found');
         require $dir . "/error/404.php";
         die();
     }
@@ -43,6 +46,7 @@ if (true) { // Type doesn't matter for now, //($_GET['type'] === 'cdncloud') {
         ->execute();
     // Check if the file exists under the resources array
     if (!isset($resulting_file["resources"]) || count($resulting_file["resources"]) === 0) {
+        header('HTTP/1.0 404 Not Found');
         require $dir . "/error/404.php";
         die();
     }
@@ -50,27 +54,43 @@ if (true) { // Type doesn't matter for now, //($_GET['type'] === 'cdncloud') {
     unset($result_rewards);
     // Check if the user has the required star badge to download this reward
     // Includes VIP and Mod roles by default
+    $star_roles_to_check = array();
     $reward_list_only = true;
-    $star_roles_to_check = array($vip_role_id, $mod_role_id);
-    if (intval($reward['1star']) === 1) {
-        $star_roles_to_check[] = $iriam_1star_role_id;
-        $reward_list_only = false;
-    }
-    if (intval($reward['2star']) === 1) {
-        $star_roles_to_check[] = $iriam_2star_role_id;
-        $reward_list_only = false;
-    }
-    if (intval($reward['3star']) === 1) {
+    if (intval($reward['3star']) == 1) {
+        $reward_star_banners = $star3_small_banner;
         $star_roles_to_check[] = $iriam_3star_role_id;
         $reward_list_only = false;
+    }
+    if (intval($reward['2star']) == 1 || intval($reward['1star']) == 1) {
+        $star_roles_to_check[] = $mod_role_id;
+        $star_roles_to_check[] = $vip_role_id;
+        $reward_list_only = false;
+        if (intval($reward['2star']) == 1) {
+            $reward_star_banners = $star2_small_banner;
+            $star_roles_to_check[] = $iriam_2star_role_id;
+        }
+        if (intval($reward['1star']) == 1) {
+            $reward_star_banners = $star1_small_banner;
+            $star_roles_to_check[] = $iriam_1star_role_id;
+        }
     }
 
     if ($reward_list_only || !check_roles($star_roles_to_check)) {
         // If the user does not have the required star badge, return a 403 error
+        header('HTTP/1.0 403 Forbidden');
         require $dir . "/error/403-iriam.php";
         die();
     }
 
+    //SELECT * FROM `iriam_rewards` WHERE `published`=1 AND `iriam_reward_download_id`=\"" . mysqli_real_escape_string($conn, $reward_id) . "\" LIMIT 1;"
+    $sql_update = "UPDATE `iriam_rewards` SET hits = IFNULL(hits, 0) + 1 WHERE `iriam_reward_download_id`=\"" . mysqli_real_escape_string($conn, $reward_id) . "\";";
+    $result_update = $conn->query($sql_update);
+    unset($sql_update);
+    if ($result_update === false) {
+        header('HTTP/1.0 500 Internal Server Error');
+        require $dir . "/error/500.php";
+        die();
+    }
 
     $format = $resulting_file["resources"][0]["format"];
     $resource_type = $resulting_file["resources"][0]["resource_type"];

@@ -106,22 +106,20 @@ echo <<<SUBPERKSHEADER
 				<center>
 					<img 
 						loading="lazy" 
-						src="https://res.cloudinary.com/browntulstar/image/upload/s--BLjgU7Ax--/c_fit,h_150,w_150/f_webp/v1/com.browntulstar/img/platform-discord.jpg?_a=BAAAV6E0" 
+						src="https://res.cloudinary.com/browntulstar/image/upload/s--_-gDZIU6--/c_fit,w_150,h_150/f_webp/v1/com.browntulstar/img/iriam-logo?_a=BAAAV6E0" 
 						class="card-img-top" 
 						style="height:150px;width:auto;padding:10px"
-						alt="Discord Perks"
+						alt="IRIAM Reward Perks"
 					>
 				</center>
 				<div class="card-body text-center">
-					<h3 class="card-title">Discord Channel</h3>
-					<a href="/discord" class="btn btn-dark mb-2"><i class="fa-brands fa-discord"></i> Join Discord</a>
-					<h5><span class="badge bg-danger">RED SHELLS (Twitch Subs)</span></h5>
-					<h5><span class="badge bg-primary">STARS (IRIAM 1★)</span></h5>
-					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★)</span></h5>
-					<h5><span class="badge bg-primary">GRAND STARS (IRIAM 3★)</span></h5>
-					<h5><span class="badge bg-warning">GOLD SHELLS (Discord VIPs)</span></h5>
-					<p class="card-text">Gain access to an exclusive Discord channel where Browntul may share some sneak peaks at what's ahead.
-					</p>
+					<h3 class="card-title">IRIAM ★ Rewards</h3>
+					<a href="/subs/iriam-rewards" class="btn btn-info mb-2">
+					<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
+					IRIAM Rewards</a>
+					<h5><span class="badge bg-primary">STARS (IRIAM 1★) AND ABOVE</span></h5>
+					<h5><span class="badge bg-warning text-black">GOLD SHELLS (Discord VIPs)<br>1★/2★ Rewards Only</span></h5>
+					<p class="card-text">Receive exclusive Star Badge rewards by gifting gifts to Browntul on IRIAM.</p>
 				</div>
 			</div>
 		</div>
@@ -141,9 +139,8 @@ echo <<<SUBPERKSHEADER
 					<h3 class="card-title">Browntul's Blog</h3>
 					<a href="/subs/blog" class="btn btn-dark mb-2">Go To Browntul's Blog</a>
 					<h5><span class="badge bg-danger">RED SHELLS (Twitch Subs)</span></h5>
-					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★)</span></h5>
-					<h5><span class="badge bg-primary">GRAND STARS (IRIAM 3★)</span></h5>
-					<h5><span class="badge bg-warning">GOLD SHELLS (Discord VIPs)</span></h5>
+					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★) AND ABOVE</span></h5>
+					<h5><span class="badge bg-warning text-black">GOLD SHELLS (Discord VIPs)</span></h5>
 					<p class="card-text">Read Browntul's Blog on his adventuers, technology, and more! 
 					</p>
 				</div>
@@ -154,22 +151,20 @@ echo <<<SUBPERKSHEADER
 				<center>
 					<img 
 						loading="lazy" 
-						src="https://res.cloudinary.com/browntulstar/image/upload/s--_-gDZIU6--/c_fit,w_150,h_150/f_webp/v1/com.browntulstar/img/iriam-logo?_a=BAAAV6E0" 
+						src="https://res.cloudinary.com/browntulstar/image/upload/s--BLjgU7Ax--/c_fit,h_150,w_150/f_webp/v1/com.browntulstar/img/platform-discord.jpg?_a=BAAAV6E0" 
 						class="card-img-top" 
 						style="height:150px;width:auto;padding:10px"
-						alt="IRIAM Reward Perks"
+						alt="Discord Perks"
 					>
 				</center>
 				<div class="card-body text-center">
-					<h3 class="card-title">IRIAM ★ Rewards</h3>
-					<a href="/subs/iriam-rewards" class="btn btn-info mb-2">
-					<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
-					IRIAM Rewards</a>
-					<h5><span class="badge bg-primary">STARS (IRIAM 1★)</span></h5>
-					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★)</span></h5>
-					<h5><span class="badge bg-primary">GRAND STARS (IRIAM 3★)</span></h5>
-					<h5><span class="badge bg-warning">GOLD SHELLS (Discord VIPs)</span></h5>
-					<p class="card-text">Receive exclusive Star Badge rewards by gifting gifts to Browntul on IRIAM.</p>
+					<h3 class="card-title">Discord Channel</h3>
+					<a href="/discord" class="btn btn-dark mb-2"><i class="fa-brands fa-discord"></i> Join Discord</a>
+					<h5><span class="badge bg-danger">RED SHELLS (Twitch Subs)</span></h5>
+					<h5><span class="badge bg-primary">STARS (IRIAM 1★) AND ABOVE</span></h5>
+					<h5><span class="badge bg-warning text-black">GOLD SHELLS (Discord VIPs)</span></h5>
+					<p class="card-text">Gain access to an exclusive Discord channel where Browntul may share some sneak peaks at what's ahead.
+					</p>
 				</div>
 			</div>
 		</div>
@@ -189,9 +184,8 @@ echo <<<SUBPERKSHEADER
 					<h3 class="card-title">Tank Engine Karaoke</h3>
 					<a href="/subs/karaoke" class="btn btn-dark mb-2">Go To Karaoke</a>
 					<h5><span class="badge bg-danger">RED SHELLS (Twitch Subs)</span></h5>
-					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★)</span></h5>
-					<h5><span class="badge bg-primary">GRAND STARS (IRIAM 3★)</span></h5>
-					<h5><span class="badge bg-warning">GOLD SHELLS (Discord VIPs)</span></h5>
+					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★) AND ABOVE</span></h5>
+					<h5><span class="badge bg-warning text-black">GOLD SHELLS (Discord VIPs)</span></h5>
 					<p class="card-text">Sing along with Browntul the Tank Engine! Formerly a meme reward, but returning for a limited run. 
 					</p>
 				</div>

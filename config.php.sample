@@ -60,4 +60,9 @@ $brownieval_sub_only_videos = array();
 $youtube_user_id = "";
 $youtube_api_key = "";
 
+##############################
+############IRIAM#############
+##############################
+$iriam_reward_download_folder = "";
+
 ?>

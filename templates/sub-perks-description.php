@@ -52,7 +52,7 @@
                         <td class="table-info"><i class="fa-solid fa-square-check"></i></td>
                         <td class="table-info"><i class="fa-solid fa-square-check"></i></td>
                         <td class="table-info"><i class="fa-solid fa-square-check"></i></td>
-                        <td class="table-warning"><i class="fa-solid fa-square-check"></i></td>
+                        <td class="table-warning"><i class="fa-solid fa-square-check"></i><br>1★/2★ Only</td>
                         </tr>
                         <th scope="row">Browntul's Blog</th>
                         <td class="table-danger"><i class="fa-solid fa-square-check"></i></td>

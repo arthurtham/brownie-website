@@ -54,7 +54,7 @@ if (count($list_of_public_ids) > 0) {
     unset($sql);
 
     $iriam_ids = array();
-    $prefix = "com.browntulstar/iriam/rewards/";
+    $prefix = "$iriam_reward_download_folder/";
     foreach($list_of_public_ids as $public_id) { 
         if (str_starts_with($public_id, $prefix)) {
             $iriam_ids[] = substr($public_id, strlen($prefix));

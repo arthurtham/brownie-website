@@ -5,7 +5,7 @@ require_once $dir . "/includes/mysql.php";
 require_once $dir . "/includes/CloudinarySigner.php";
 $title = "BrowntulStar - IRIAM Star Badge Rewards";
 
-$_iriam_access_allowed = (isset($_SESSION['user']) && check_roles($iriam_star_roles));
+$_iriam_access_allowed = (isset($_SESSION['user']) && check_roles(array_merge($iriam_star_roles, array($vip_role_id, $mod_role_id))));
 
 require $dir . "/templates/header.php";
 
@@ -40,7 +40,8 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 									echo "<div class=\"text-center\" style=\"max-width:400px;margin:auto\">
 									<h3>Confirm your roles</h3>
 									<p>If you have one of the STARS (IRIAM 1â˜…/2â˜…/3â˜…) roles from the Turtle Pond Discord server, then
-									you're good to go! Check your roles below.</p><p>Browntul's BLUE SHELLS (Mods) and GOLD SHELLS (Discord VIPs) have the same download permissions as the GRAND STARS (IRIAM 3â˜…).";
+									you're good to go! In addition, GOLD SHELLS (Discord VIPs) have the 
+									same permissions as the SUPER STARS (IRIAM 2â˜…).";
 										require $dir . "/templates/profile-box.php";
 									}
 									echo '</div>';
@@ -53,7 +54,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 									);
 									$rewards_table_selection_options = '';
 
-									$sql_rewards = "SELECT * FROM `iriam_rewards` WHERE `published`=1 ORDER BY `iriam_reward_date` DESC";
+									$sql_rewards = "SELECT * FROM `iriam_rewards` WHERE `published`=1 ORDER BY `1star` DESC, `2star` DESC, `3star` DESC, `iriam_reward_name` ASC, `iriam_reward_date` DESC;";
 									$result_rewards = $conn->query($sql_rewards);
 									unset($sql_rewards);
 
@@ -84,7 +85,8 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 												'file_format' => $row['iriam_reward_format'],
 												'1star' => $row['1star'],
 												'2star' => $row['2star'],
-												'3star' => $row['3star']
+												'3star' => $row['3star'],
+												'hits' => $row['hits']
 											);
 										}
 									}
@@ -111,7 +113,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 												<?php 
 												} else {
 												?>
-													<option disabled data-target="">Get â˜… Badge to access</option>
+													<option disabled data-target="">Get â˜…Badge to access</option>
 												<?php 
 												}
 												?>
@@ -187,29 +189,36 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 															$reward_file_size = readable_bytes_thousands(intval($reward['file_size'])*1000);
 															$download_id = $reward['download_id'];
 															$reward_star_banners = "";
-															$star_roles_to_check = array($vip_role_id, $mod_role_id);
+															$star_roles_to_check = array();
 															$reward_list_only = true;
 															if (intval($reward['3star']) == 1) {
 																$reward_star_banners = $star3_small_banner;
 																$star_roles_to_check[] = $iriam_3star_role_id;
 																$reward_list_only = false;
 															}
-															if (intval($reward['2star']) == 1) {
-																$reward_star_banners = $star2_small_banner;
-																$star_roles_to_check[] = $iriam_2star_role_id;
+															if (intval($reward['2star']) == 1 || intval($reward['1star']) == 1) {
+																$star_roles_to_check[] = $mod_role_id;
+																$star_roles_to_check[] = $vip_role_id;
 																$reward_list_only = false;
-															}
-															if (intval($reward['1star']) == 1) {
-																$reward_star_banners = $star1_small_banner;
-																$star_roles_to_check[] = $iriam_1star_role_id;
-																$reward_list_only = false;
+																if (intval($reward['2star']) == 1) {
+																	$reward_star_banners = $star2_small_banner;
+																	$star_roles_to_check[] = $iriam_2star_role_id;
+																}
+																if (intval($reward['1star']) == 1) {
+																	$reward_star_banners = $star1_small_banner;
+																	$star_roles_to_check[] = $iriam_1star_role_id;
+																}
 															}
 															if ($reward_list_only) {
 																$reward_download_button = "<p><button class=\"btn btn-light border-dark\" disabled><i class=\"fa-solid fa-circle-xmark\"></i> Unavailable</button></p>";
 															} else if (!check_roles($star_roles_to_check)) {
 																$reward_download_button = "<p><button class=\"btn btn-light border-dark\" disabled><i class=\"fa-solid fa-circle-xmark\"></i> Insufficient Perks</button></p>";
 															} else {
-																$reward_download_button = "<p><a class=\"btn btn-info\" href=\"/subs/iriam-rewards/download?type=$reward_type&id=$download_id\"><i class=\"fa-solid fa-download\"></i> <strong>Download ($reward_file_format)</strong></a><br><small>File Size: Approx. $reward_file_size</small></p>";
+																$reward_download_button = "<p><a class=\"btn btn-info\" href=\"/subs/iriam-rewards/download?type=$reward_type&id=$download_id\">
+																<i class=\"fa-solid fa-download\"></i> <strong>Download ($reward_file_format)</strong></a><br>
+																<small>File Size: Approx. $reward_file_size</small><br>
+																<small>Total Downloads: " . number_format($reward['hits']) . "</small>
+																</p>";
 															}
 															
 															echo <<<CREDITSPOST
