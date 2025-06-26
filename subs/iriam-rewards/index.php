@@ -3,6 +3,9 @@ $dir = dirname(__DIR__, 2);
 require_once $dir . "/includes/default-includes.php";
 require_once $dir . "/includes/mysql.php";
 require_once $dir . "/includes/CloudinarySigner.php";
+require_once $dir . "/vendor/autoload.php";
+use Phpfastcache\CacheManager;
+use Phpfastcache\Config\ConfigurationOption;
 $title = "BrowntulStar - IRIAM Star Badge Rewards";
 
 $_iriam_access_allowed = (isset($_SESSION['user']) && check_roles(array_merge($iriam_star_roles, array($vip_role_id, $mod_role_id))));
@@ -49,46 +52,65 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 									<hr>
 									<?php
 
-									$rewards_table_selection_contents = array(
-										#'id' => array('id' => '2025-06', 'label' => 'June 2025', 'rewards' => array()),
-									);
-									$rewards_table_selection_options = '';
+									CacheManager::setDefaultConfig(new ConfigurationOption([
+										"path" => $dir . "/cache"
+									]));
+									$instanceCache = CacheManager::getInstance("files");
+									$key = "iriam_rewards_list";
+									$cache = $instanceCache->getItem($key);
+									if (!$cache->isHit() || isset($_GET["refreshcache"])) {
+										$rewards_table_selection_contents = array(
+											#'id' => array('id' => '2025-06', 'label' => 'June 2025', 'rewards' => array()),
+										);
+										$rewards_table_selection_options = '';
+										
 
-									$sql_rewards = "SELECT * FROM `iriam_rewards` WHERE `published`=1 ORDER BY `1star` DESC, `2star` DESC, `3star` DESC, `iriam_reward_name` ASC, `iriam_reward_date` DESC;";
-									$result_rewards = $conn->query($sql_rewards);
-									unset($sql_rewards);
+										$sql_rewards = "SELECT * FROM `iriam_rewards` WHERE `published`=1 ORDER BY `1star` DESC, `2star` DESC, `3star` DESC, `iriam_reward_name` ASC, `iriam_reward_date` DESC;";
+										$result_rewards = $conn->query($sql_rewards);
+										unset($sql_rewards);
 
-									if ($result_rewards && $result_rewards->num_rows > 0) {
-										// Fetch all rewards and organize them by month
-										while ($row = $result_rewards->fetch_assoc()) {
-											$content_id = date('Y-m', strtotime($row['iriam_reward_date']));
-											// If the content id is not in the array, add it
-											if (!isset($rewards_table_selection_contents[$content_id])) {
-												$content_month = date('F Y', strtotime($row['iriam_reward_date']));
-												$rewards_table_selection_contents[$content_id] = array(
-													'id' => $content_id,
-													'label' => $content_month,
-													'rewards' => array()
+										if ($result_rewards && $result_rewards->num_rows > 0) {
+											// Fetch all rewards and organize them by month
+											while ($row = $result_rewards->fetch_assoc()) {
+												$content_id = date('Y-m', strtotime($row['iriam_reward_date']));
+												// If the content id is not in the array, add it
+												if (!isset($rewards_table_selection_contents[$content_id])) {
+													$content_month = date('F Y', strtotime($row['iriam_reward_date']));
+													$rewards_table_selection_contents[$content_id] = array(
+														'id' => $content_id,
+														'label' => $content_month,
+														'rewards' => array()
+													);
+													// Add the option to the selection options
+													$rewards_table_selection_options .= "<option data-target='#tab-$content_id'>$content_month</option>";
+												}
+												// Add the reward to the corresponding month. There can be multiple rewards in a month.
+												$rewards_table_selection_contents[$content_id]['rewards'][] = array(
+													'name' => $row['iriam_reward_name'],
+													'description' => $row['iriam_reward_description'],
+													'thumbnail' => $row['iriam_reward_thumbnail'],
+													'type' => $row['iriam_reward_type'],
+													'reward_date' => $row['iriam_reward_date'],
+													'download_id' => $row['iriam_reward_download_id'],
+													'file_size' => $row['iriam_reward_kilobytes'],
+													'file_format' => $row['iriam_reward_format'],
+													'1star' => $row['1star'],
+													'2star' => $row['2star'],
+													'3star' => $row['3star'],
+													'hits' => $row['hits']
 												);
-												// Add the option to the selection options
-												$rewards_table_selection_options .= "<option data-target='#tab-$content_id'>$content_month</option>";
 											}
-											// Add the reward to the corresponding month. There can be multiple rewards in a month.
-											$rewards_table_selection_contents[$content_id]['rewards'][] = array(
-												'name' => $row['iriam_reward_name'],
-												'description' => $row['iriam_reward_description'],
-												'thumbnail' => $row['iriam_reward_thumbnail'],
-												'type' => $row['iriam_reward_type'],
-												'reward_date' => $row['iriam_reward_date'],
-												'download_id' => $row['iriam_reward_download_id'],
-												'file_size' => $row['iriam_reward_kilobytes'],
-												'file_format' => $row['iriam_reward_format'],
-												'1star' => $row['1star'],
-												'2star' => $row['2star'],
-												'3star' => $row['3star'],
-												'hits' => $row['hits']
-											);
 										}
+										$instanceCache->save($cache->set(array(
+											'contents' => $rewards_table_selection_contents,
+											'options' => $rewards_table_selection_options
+										))->expiresAfter(1800));
+										// error_log("Cached IRIAM rewards list for 5 seconds.");
+									} else {
+										$cached_data = $cache->get();
+										$rewards_table_selection_contents = $cached_data['contents'];
+										$rewards_table_selection_options = $cached_data['options'];
+										// error_log("Loaded IRIAM rewards list from cache.");
 									}
 									?>
 
@@ -152,10 +174,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 												<h2>Ready to claim your exclusive rewards?</h2>
 												<p>Select a month from the dropdown above to view the rewards for that month. Then, find the reward that you would like to download.</p>
 												<br>
-												<a class="btn btn-info mb-2 w-100 shadow" href='/iriam' style="max-width:300px">
-													<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
-													IRIAM
-												</a><br>
+												<h3>Looking for more perks?</h3>
 												<a class="btn btn-success mb-2 w-100" href="/subs" style="max-width:300px">
 													<i class="fa-solid fa-circle-check"></i>
 													Access Perks Hub

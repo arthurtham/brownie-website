@@ -17,11 +17,7 @@ require $dir . "/templates/header.php";
             </center>
         </span>
         <div class="alert alert-dark" role="alert">
-            <p class="text-center">Trying to access perks? Click on
-            "<?php if (isset($_SESSION["user"])) echo "Verify Perks"; else echo "Login"; ?>"
-            below to get set up.<br/>
-            For further help, please contact support.</p>
-        <?php print_navbar_login_items($expand=true, $center=true, $subperks=true, $label=true); ?>
+            <p class="text-center">Trying to access perks? For help setting up your perks, please go to <a href="/subs/details">this page</a>.</p>
         </div>
     </div>
 </div>

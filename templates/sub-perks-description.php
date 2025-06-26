@@ -18,7 +18,7 @@
                         <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-info w-100">STARS<br/>(IRIAM 1★)</span></th>
                         <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-info w-100">SUPER STARS<br/>(IRIAM 2★)</span></th>
                         <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-info w-100">GRAND STARS<br/>(IRIAM 3★)</span></th>
-                        <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-warning w-100">GOLD SHELLS<br/>(VIP)</span></th>
+                        <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-warning w-100">GOLD SHELLS<br/>(Discord VIPs)</span></th>
                         </tr>
                     </thead>
                     <tbody>

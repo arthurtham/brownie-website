@@ -299,7 +299,7 @@ function print_navbar_login_items($expand=false, $center=false, $subperks=false,
             } else {
                 $label_color = "btn-primary";
                 $label_symbol = "fa-link";
-                $label_contents = " Get Perks";
+                $label_contents = $label ? " Get Perks" : "";
             }
 
             echo "<a class='btn $label_color $dropdown_style><i class=\"fa-solid $label_symbol\"></i> $label_contents</a>";

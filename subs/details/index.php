@@ -87,7 +87,7 @@ echo <<<SUBPERKSHEADER2
 		<div class="col-lg-12">
 			<p class="text-center"><a class="btn btn-success mb-2 w-100" href="/subs" style="max-width:300px">
 				<i class="fa-solid fa-circle-check"></i>
-				Back to Perks Info
+				Back to Perks Hub
 			</a></p>
 			<hr>
 			<div class="row mb-2">

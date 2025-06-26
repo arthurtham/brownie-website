@@ -26,18 +26,8 @@ require $dir . "/templates/header.php";
 <?php
 $_kofi_logo = "<img height='18' style='border:0px;height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/s--mOeZPgHn--/c_pad,h_48/f_webp/v1/com.browntulstar/img/platform-kofi?_a=BAAAUWGX' border='0' alt='Buy Me a Coffee at ko-fi.com' />";
 echo <<<SUBPERKSHEADER
-	<hr>
 	<div class="row">
 		<div class="col-lg-8 offset-lg-2">
-			<h2 class="text-center">Access your perks!</h2>
-			<p class="text-center">Log in with your Twitch or Discord account to access your perks.</p>
-			<ul>
-				<li>For Twitch, make sure you are already subscribed to <strong>/browntulstar</strong> before logging in with your Twitch account; or, link your Twitch account to Discord first and wait 24 hours before logging in with your Discord account. 
-				</li>
-				<li>For IRIAM ★ Star Badge rewards, make sure you have one of the <strong>STARS</strong> roles in the Turtle Pond Discord first. You'll need to claim the Discord roles in the <span style="white-space:nowrap"><strong>#iriam-★badge-assign</strong></span> channel. For help, please click "FAQ" below.
-				</li>
-				<li>If using Discord login: after updating your roles on Discord, please log out and log back in to this website to access your perks.</li>
-			</ul>
 SUBPERKSHEADER;
 
 if (isset($_SESSION['user'])) {
@@ -48,30 +38,45 @@ echo <<<SUBPERKSHEADER
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6 offset-md-3">
-			<a class="btn btn-dark mb-2 w-100" href="/discord">
-				<i class="fa-brands fa-discord"></i>
-				Join Turtle Pond Discord Server		
-			</a><br>
-			<a class="btn btn-danger mb-2 w-100" href="details">
-				<i class="fa-solid fa-circle-info"></i>
-				FAQ and Fine Print
-			</a>
-			<hr>
-			<a class="btn btn-dark mb-2 w-100" href="https://www.twitch.tv/browntulstar" target="_blank">
-				<i class="fa-brands fa-twitch"></i>
-				Sub on Twitch
-			</a>
-			<br>
-			<a class="btn btn-dark mb-2 w-100" href='https://ko-fi.com/browntulstar' target='_blank'>
-			$_kofi_logo
-			Donate on Ko-fi
-			</a>
-			<br>
-			<a class="btn btn-info mb-2 w-100" href='/iriam'>
-			<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
-			Gift on IRIAM
-			</a>
+		<div class="col-md-10 offset-md-1">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<a class="btn btn-dark mb-2 w-100" href="/discord">
+							<i class="fa-brands fa-discord"></i>
+							Join Turtle Pond Discord Server		
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<a class="btn btn-danger mb-2 w-100" href="details">
+							<i class="fa-solid fa-circle-info"></i>
+							Details + How to Set Up Perks
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<a class="btn btn-dark mb-2 w-100" href="https://www.twitch.tv/browntulstar" target="_blank">
+							<i class="fa-brands fa-twitch"></i>
+							Subscribe
+						</a>
+					</div>
+					<div class="col-sm-4">
+						<a class="btn btn-dark mb-2 w-100" href='https://ko-fi.com/browntulstar' target='_blank'>
+						$_kofi_logo
+						Donate
+						</a>
+					</div>
+					<div class="col-sm-4">
+						<a class="btn btn-info mb-2 w-100" href='/iriam'>
+						<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
+						Gift
+						</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<hr>
@@ -117,7 +122,7 @@ echo <<<SUBPERKSHEADER
 					<a href="/subs/iriam-rewards" class="btn btn-info mb-2">
 					<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
 					IRIAM Rewards</a>
-					<h5><span class="badge bg-primary">STARS (IRIAM 1★) AND ABOVE</span></h5>
+					<h5><span class="badge bg-primary">STARS (IRIAM 1★)<br>AND ABOVE</span></h5>
 					<h5><span class="badge bg-warning text-black">GOLD SHELLS (Discord VIPs)<br>1★/2★ Rewards Only</span></h5>
 					<p class="card-text">Receive exclusive Star Badge rewards by gifting gifts to Browntul on IRIAM.</p>
 				</div>
@@ -137,9 +142,9 @@ echo <<<SUBPERKSHEADER
 					>
 				<div class="card-body text-center">
 					<h3 class="card-title">Browntul's Blog</h3>
-					<a href="/subs/blog" class="btn btn-dark mb-2">Go To Browntul's Blog</a>
+					<a href="/subs/blog" class="btn btn-dark mb-2">Read Browntul's Blog</a>
 					<h5><span class="badge bg-danger">RED SHELLS (Twitch Subs)</span></h5>
-					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★) AND ABOVE</span></h5>
+					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★)<br>AND ABOVE</span></h5>
 					<h5><span class="badge bg-warning text-black">GOLD SHELLS (Discord VIPs)</span></h5>
 					<p class="card-text">Read Browntul's Blog on his adventuers, technology, and more! 
 					</p>
@@ -161,7 +166,7 @@ echo <<<SUBPERKSHEADER
 					<h3 class="card-title">Discord Channel</h3>
 					<a href="/discord" class="btn btn-dark mb-2"><i class="fa-brands fa-discord"></i> Join Discord</a>
 					<h5><span class="badge bg-danger">RED SHELLS (Twitch Subs)</span></h5>
-					<h5><span class="badge bg-primary">STARS (IRIAM 1★) AND ABOVE</span></h5>
+					<h5><span class="badge bg-primary">STARS (IRIAM 1★)<br>AND ABOVE</span></h5>
 					<h5><span class="badge bg-warning text-black">GOLD SHELLS (Discord VIPs)</span></h5>
 					<p class="card-text">Gain access to an exclusive Discord channel where Browntul may share some sneak peaks at what's ahead.
 					</p>
@@ -182,9 +187,9 @@ echo <<<SUBPERKSHEADER
 					>
 				<div class="card-body text-center">
 					<h3 class="card-title">Tank Engine Karaoke</h3>
-					<a href="/subs/karaoke" class="btn btn-dark mb-2">Go To Karaoke</a>
+					<a href="/subs/karaoke" class="btn btn-dark mb-2">Listen to Karaoke</a>
 					<h5><span class="badge bg-danger">RED SHELLS (Twitch Subs)</span></h5>
-					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★) AND ABOVE</span></h5>
+					<h5><span class="badge bg-primary">SUPER STARS (IRIAM 2★)<br>AND ABOVE</span></h5>
 					<h5><span class="badge bg-warning text-black">GOLD SHELLS (Discord VIPs)</span></h5>
 					<p class="card-text">Sing along with Browntul the Tank Engine! Formerly a meme reward, but returning for a limited run. 
 					</p>
