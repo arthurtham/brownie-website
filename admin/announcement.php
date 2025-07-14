@@ -40,9 +40,9 @@ $sql = "SELECT * FROM announcement_posts ORDER BY publish_date DESC, id ASC, tit
 echo "<table class='table'><thead class='table-dark sticky-top' style='z-index:1'><tr>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_id\">ID</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_name\">Name</button></th>
+<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_visible\">Listed</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_published_readable\">Published Date</button></th>
 <th><button class='sort btn btn-success btn-sm' data-sort=\"gl_date_modified_readable\">Modified Date</button></th>
-<th><button class='sort btn btn-success btn-sm' data-sort=\"gl_visible\">List in Dir</button></th>
 <th>Actions</th></tr></thead><tbody class='list'>";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -55,11 +55,11 @@ if ($result->num_rows > 0) {
         "<td class='gl_id'>".$announcement_post['id'].
         "</td><td class='gl_name' style='min-width:200px'><strong>".$announcement_post['title'].
             "</strong><br><a target='_blank' href='/announcements/$announcement_id/'>/announcements/$announcement_id</a>".
+        "</td><td class='gl_visible'>".((intval($announcement_post['visible']) === 1) ? '<i class="fa-solid fa-square-check"></i>': '-').
         "</td><td class='gl_date_published_readable'>".$announcement_publish_date.
         "</td><td class='gl_date_published' style='display:none'>".strtotime($announcement_post['publish_date']).
         "</td><td class='gl_date_modified_readable'>".$announcement_modified_date.
         "</td><td class='gl_date_modified' style='display:none'>".strtotime($announcement_post['modified_date']).
-        "</td><td class='gl_visible'>".$announcement_post['visible'].
         "</td><td><a href='announcement_editor.php?announcement-id=$announcement_id'><button class='btn btn-dark' type='button'>Edit</button></a>".
         "</td></tr>";
     }

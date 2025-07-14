@@ -105,12 +105,10 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 											'contents' => $rewards_table_selection_contents,
 											'options' => $rewards_table_selection_options
 										))->expiresAfter(1800));
-										// error_log("Cached IRIAM rewards list for 5 seconds.");
 									} else {
 										$cached_data = $cache->get();
 										$rewards_table_selection_contents = $cached_data['contents'];
 										$rewards_table_selection_options = $cached_data['options'];
-										// error_log("Loaded IRIAM rewards list from cache.");
 									}
 									?>
 
