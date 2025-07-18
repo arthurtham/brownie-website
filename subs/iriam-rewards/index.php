@@ -34,7 +34,8 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3�
 										</p>
 										<p>
 											Rewards are available to those that have the IRIAM ★ Star Badge Discord role.<br>
-											All IRIAM Discord roles reset on every 5th of the new month.
+											1★ roles reset at the end of 2025 (special promotion).<br>
+											2★ and 3★ roles reset on every 5th of the new month.
 										</p>
 									</div>
 <?php

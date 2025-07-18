@@ -52,7 +52,7 @@ require_once $dir . "/includes/youtube.php";
             </iframe> -->
             <hr />
 <?php
-            $video_ids = twitch_get_recent_videos(3);
+            $video_ids = twitch_get_recent_videos(6);
             echoTwitchCardEntries($video_ids);
             // echoTwitchModalEntries($video_ids);
 ?>
@@ -70,14 +70,7 @@ require_once $dir . "/includes/youtube.php";
                 </strong></a>
             </p>
             <p class="text-center">
-                <a class="btn btn-danger w-100 shadow" href='https://www.youtube.com/playlist?list=PLOZtzWcmmccj6AgsKc69z2FZWB5e-02PV' target="_blank" style="max-width:300px"><strong>
-                    <i class="fa-brands fa-youtube"></i>
-                    Around the Rock Podcast
-                </strong></a>
-            </p>
-            <p class="text-center">
-                Every Sunday, Tuesday, and Thursday, listen to Browntul talk about the latest sports events and your favorite hot topics on the "Around the Rock" podcast streaming live exclusively on the IRIAM mobile app in the US region.
-                Catch the replays of the podcast on YouTube.
+                Listen to Browntul talk about the latest sports events and your favorite variety topics exclusively on the IRIAM mobile app in the US region.
             </p>
             <p class="text-center">
                 Every Saturday night, catch the simulcasted Just-Chatting portion of the Twitch stream in audio-only mode on IRIAM.
@@ -95,17 +88,11 @@ require_once $dir . "/includes/youtube.php";
                 </strong></a>
             </p>
             <p class="text-center">
-                <a class="btn btn-danger w-100 shadow" href='https://www.youtube.com/playlist?list=PLOZtzWcmmccj6AgsKc69z2FZWB5e-02PV' target="_blank" style="max-width:300px"><strong>
-                    <i class="fa-brands fa-youtube"></i>
-                    Around the Rock Podcast
-                </strong></a>
-            </p>
-            <p class="text-center">
                 Watch replays of Browntul's events and podcasts on YouTube. Catch the highlights of the Twitch streams and fun gaming shorts.
             </p>
             <hr/>
 <?php
-            $video_ids = youtube_get_recent_videos(6);
+            $video_ids = youtube_get_recent_videos(9);
             echoYouTubeCardEntries($video_ids);
 ?>
         </div>

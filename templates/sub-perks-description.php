@@ -24,11 +24,11 @@
                     <tbody>
                         <tr>
                         <th scope="row">Starting Cost (USD)</th>
-                        <td class="table-danger">$5.99/mo</td>
-                        <td class="table-info">G1: $2/mo<br>G2: $10/mo</td>
-                        <td class="table-info">G1: $10/mo<br>G2: $50/mo</td>
-                        <td class="table-info">$50/mo</td>
-                        <td class="table-warning">Invite Only</td>
+                        <td class="table-danger">$5.99<br>per month</td>
+                        <td class="table-info">G1: $2 for all of 2025<br>G2: $10 for all of 2025</td>
+                        <td class="table-info">G1: $10<br>per month<br>G2: $50<br>per month</td>
+                        <td class="table-info">$50<br>per month</td>
+                        <td class="table-warning">Invite</td>
                         </tr>
                         <tr>
                         <th scope="row">Hours Requirement</th>
@@ -36,7 +36,7 @@
                         <td class="table-info">G1: 3+ hrs<br>G2: 0+ hrs</td>
                         <td class="table-info">G1: 10+ hrs<br>G2: 3+ hrs</td>
                         <td class="table-info">15+ hrs</td>
-                        <td class="table-warning">Invite Only</td>
+                        <td class="table-warning">Invite</td>
                         </tr>
                         <tr>
                         <th scope="row">Discord Text Channel for Supporters</th>
@@ -49,9 +49,9 @@
                         <tr>
                         <th scope="row">IRIAM ★ Star Badge Rewards</th>
                         <td><i class="fa-regular fa-square"></i></td>
-                        <td class="table-info"><i class="fa-solid fa-square-check"></i></td>
-                        <td class="table-info"><i class="fa-solid fa-square-check"></i></td>
-                        <td class="table-info"><i class="fa-solid fa-square-check"></i></td>
+                        <td class="table-info"><i class="fa-solid fa-square-check"></i><br>1★ Only</td>
+                        <td class="table-info"><i class="fa-solid fa-square-check"></i><br>1★/2★ Only</td>
+                        <td class="table-info"><i class="fa-solid fa-square-check"></i><br>All Rewards</td>
                         <td class="table-warning"><i class="fa-solid fa-square-check"></i><br>1★/2★ Only</td>
                         </tr>
                         <th scope="row">Browntul's Blog</th>
@@ -91,7 +91,8 @@
         <div class="col">
             <p><small><strong>Fine print:</strong>
             <ul>
-                <li><strong>IRIAM:</strong> All IRIAM roles gained for a given month reset at the 5th of the following month regardless of when they are achieved or verified.
+                <li><strong>IRIAM:</strong> The IRIAM 1★ role gained before December 31st, 2025 at 11:59pm PDT will remain assigned to the corresponding Discord user until the end of 2025.
+                 IRIAM 2★ and IRIAM 3★ roles gained for a given month reset at the 5th of the following month regardless of when they are achieved or verified.
                     Roles can be gained at the start of each month
                 in accordance to IRIAM's monthly calendar system. It may not be possible to achieve IRIAM 2★ or IRIAM 3★
             in a given month; please spend responsibly. The "Secret Personalized Reward" is
