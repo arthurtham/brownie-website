@@ -2,7 +2,8 @@
 
 $dir = dirname(__DIR__, 1);
 
-require_once($dir . "/includes/mysql.php");
+require_once $dir . "/config.php";
+require_once $dir . "/includes/mysql.php" ;
 require_once $dir . "/includes/cloudinary.env.php";
 require_once $dir . "/vendor/autoload.php";
 use Cloudinary\Utils\SignatureVerifier;
