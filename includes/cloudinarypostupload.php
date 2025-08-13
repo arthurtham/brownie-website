@@ -17,13 +17,21 @@ if (is_null($json)) {
 $HEADERS = getallheaders();
 
 if (!(
-    isset($HEADERS["X-Cld-Timestamp"]) && isset($HEADERS["X-Cld-Signature"])
+    (
+        (isset($HEADERS["X-Cld-Timestamp"]) && (isset($HEADERS["X-Cld-Signature"])))
+        || (isset($HEADERS["x-cld-timestamp"]) && (isset($HEADERS["x-cld-signature"])))
+    )
     && strlen($json_string) > 0
 )) {
     die("Error: missing headers or body");
 }
 
-if (!(SignatureVerifier::verifyNotificationSignature($json_string, $HEADERS["X-Cld-Timestamp"], $HEADERS["X-Cld-Signature"]))) {
+if (
+    !(
+        (isset($HEADERS["X-Cld-Timestamp"]) && (isset($HEADERS["X-Cld-Signature"])) && SignatureVerifier::verifyNotificationSignature($json_string, $HEADERS["X-Cld-Timestamp"], $HEADERS["X-Cld-Signature"]))
+        || ((isset($HEADERS["x-cld-timestamp"]) && (isset($HEADERS["x-cld-signature"]))) && SignatureVerifier::verifyNotificationSignature($json_string, $HEADERS["x-cld-timestamp"], $HEADERS["x-cld-signature"]))
+        )
+    ) {
     die("Error: webhook is unverified");
 }
 
