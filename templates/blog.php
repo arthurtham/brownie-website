@@ -36,7 +36,7 @@ if ($result->num_rows > 0) {
             echo "<div class='row post-contents' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
             echo "<center><h1>" . $blog_post["blog_name"] . "</h1>";
             echo "<a href='/subs/blog/'>Blog</a> / <a href='/subs/blog/$blog_type/'>" . $blog_post["blog_type_name"] . "</a></center>";
-            echo "<center>Written on: " . $blog_date . "</center>";
+            echo "<center>Post Date: " . $blog_date . "</center>";
             if ($blog_post["published"]) {
                 if ($blog_post["free"]) {
                     echo '<center><span class="badge text-bg-secondary">Free to Read</span></center>';

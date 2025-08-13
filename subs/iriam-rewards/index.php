@@ -64,6 +64,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 											#'id' => array('id' => '2025-06', 'label' => 'June 2025', 'rewards' => array()),
 										);
 										$rewards_table_selection_options = '';
+										$rewards_table_selection_options_dates = array();
 										
 
 										$sql_rewards = "SELECT * FROM `iriam_rewards` WHERE `published`=1 ORDER BY `1star` DESC, `2star` DESC, `3star` DESC, `iriam_reward_name` ASC, `iriam_reward_date` DESC;";
@@ -76,14 +77,14 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 												$content_id = date('Y-m', strtotime($row['iriam_reward_date']));
 												// If the content id is not in the array, add it
 												if (!isset($rewards_table_selection_contents[$content_id])) {
-													$content_month = date('F Y', strtotime($row['iriam_reward_date']));
+													$content_date = date('F Y', strtotime($row['iriam_reward_date']));
 													$rewards_table_selection_contents[$content_id] = array(
 														'id' => $content_id,
-														'label' => $content_month,
+														'label' => $content_date,
 														'rewards' => array()
 													);
 													// Add the option to the selection options
-													$rewards_table_selection_options .= "<option data-target='#tab-$content_id'>$content_month</option>";
+													$rewards_table_selection_options_dates[] = $row['iriam_reward_date'];
 												}
 												// Add the reward to the corresponding month. There can be multiple rewards in a month.
 												$rewards_table_selection_contents[$content_id]['rewards'][] = array(
@@ -100,6 +101,13 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 													'3star' => $row['3star'],
 													'hits' => $row['hits']
 												);
+											}
+											// Sort the dates in ascending order before generating options
+											rsort($rewards_table_selection_options_dates);
+											foreach ($rewards_table_selection_options_dates as $date) {
+												$content_date = date('F Y', strtotime($date));
+												$content_id = date('Y-m', strtotime($date));
+												$rewards_table_selection_options .= "<option data-target='#tab-$content_id'>$content_date</option>";
 											}
 										}
 										$instanceCache->save($cache->set(array(

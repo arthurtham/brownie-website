@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
             echo "<div class='row post-contents' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
             $publish_date = DateTime::createFromFormat('Y-m-d H:i:s', $embed["publish_date"])->format("F d, Y h:i A");
             $modified_date = DateTime::createFromFormat('Y-m-d H:i:s', $embed["modified_date"])->format("F d, Y h:i A");
-            echo "<center><h1>" . $embed["title"] . "</h1><a href='/announcements/'>Browntul Says</a><br>Published: " . $publish_date .  "<br>Last modified: " . $modified_date . "</center><br/><hr/>";
+            echo "<center><h1>" . $embed["title"] . "</h1><a href='/announcements/'>Browntul Says</a><br>Published: " . $publish_date .  " PT<br>Last modified: " . $modified_date . " PT</center><br/><hr/>";
             $embed_contents = (new CloudinarySigner())->convertAllUrls($embed["content"]);
             include_once $dir . "/templates/markdown-render.php";
             echo "</div></div>";
