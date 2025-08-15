@@ -206,8 +206,13 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 												echo "<div class='tab-pane w-100' id='tab-$content_id'>";
 													if (count($rewards) > 0) {
 														foreach ($rewards as $reward) {
+															if ($reward['thumbnail'] != "") {
+																$thumbnail = $reward['thumbnail'];
+															} else {
+																$thumbnail = 'https://res.cloudinary.com/browntulstar/image/private/s--ZS_Mw6wW--/c_thumb,g_auto,h_200,w_300/f_webp/v1/com.browntulstar/img/turtle-adult.webp?_a=BAAAV6E0';
+															}
 															$cld_signer = new CloudinarySigner();
-															$reward_thumbnail = $cld_signer->signUrl($reward['thumbnail']);
+															$reward_thumbnail = $cld_signer->signUrl($thumbnail);
 															$reward_name = $reward['name'];
 															$reward_description = $reward['description'];
 															$reward_type = $reward['type'] ?? 'default'; // Default type if not set
@@ -240,11 +245,17 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 															} else if (!check_roles($star_roles_to_check)) {
 																$reward_download_button = "<p><button class=\"btn btn-light border-dark\" disabled><i class=\"fa-solid fa-circle-xmark\"></i> Insufficient Perks</button></p>";
 															} else {
-																$reward_download_button = "<p><a class=\"btn btn-info\" href=\"/subs/iriam-rewards/download?type=$reward_type&id=$download_id\">
-																<i class=\"fa-solid fa-download\"></i> <strong>Download ($reward_file_format)</strong></a><br>
-																<small>File Size: Approx. $reward_file_size</small><br>
-																<small>Total Downloads: " . number_format($reward['hits']) . "</small>
-																</p>";
+																$reward_download_button = "<p><a class=\"btn btn-info\" target=\"_blank\" href=\"/subs/iriam-rewards/download?type=$reward_type&id=$download_id\">";
+																if ($reward_type === 'cdncloud') {
+																	$reward_download_button .= "<i class=\"fa-solid fa-download\"></i> <strong>Download ($reward_file_format)</strong></a><br>
+																	<small>File Size: Approx. $reward_file_size</small><br>
+																	<small>Total Downloads: " . number_format($reward['hits']) . "</small>
+																	</p>";
+																} else if ($reward_type === 'url') {
+																	$reward_download_button .= "<i class=\"fa-solid fa-link\"></i> <strong>Go To Link</strong></a><br>
+																	<small>Total Clicks: " . number_format($reward['hits']) . "</small>
+																	</p>";
+																}
 															}
 															
 															echo <<<CREDITSPOST

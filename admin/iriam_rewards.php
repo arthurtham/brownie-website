@@ -20,8 +20,12 @@ require_once($dir . "/includes/mysql.php");
             <div class='col'>
                 <h1>IRIAM Rewards Editor</h1>
                 <div class="input-group mb-3">
-                    <a href="iriam_rewards_upload.php" class="btn btn-success">Upload New Reward</a>
+                    <a href="iriam_rewards_upload.php" class="btn btn-success">Upload New Cloudinary Reward</a>
+                    <a href="iriam_rewards_editor.php?new-asset" class="btn btn-warning">Add New External Reward</a>
                     <a href="/admin" class="btn btn-danger">Return to Main Menu</a>
+                </div>
+                <div class="input-group mb-3">
+                    <a href="/subs/iriam-rewards/" target="_blank" class="btn btn-info">View Rewards Page</a>
                 </div>
                 <div class="input-group mb-3">
                     <label for="search-text" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></label>
@@ -49,15 +53,16 @@ echo "<table class='table'><thead class='table-dark sticky-top' style='z-index:1
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($iriam_reward_post = $result->fetch_assoc()) {
-        $iriam_reward_thumbnail = $iriam_reward_post['iriam_reward_thumbnail'];
+        $iriam_reward_thumbnail = !empty($iriam_reward_post['iriam_reward_thumbnail']) ? $iriam_reward_post['iriam_reward_thumbnail'] : 'https://res.cloudinary.com/browntulstar/image/private/s--ZS_Mw6wW--/c_thumb,g_auto,h_200,w_300/f_webp/v1/com.browntulstar/img/turtle-adult.webp?_a=BAAAV6E0';
+        $iriam_reward_type = $iriam_reward_post['iriam_reward_type'];
         $iriam_reward_name = $iriam_reward_post['iriam_reward_name'];
         $iriam_reward_description = $iriam_reward_post['iriam_reward_description'];
-        $iriam_reward_date = DateTime::createFromFormat('Y-m-d H:i:s', $iriam_reward_post['iriam_reward_date'])->format("F d, Y<\b\\r>h:i A");
+        $iriam_reward_date = DateTime::createFromFormat('Y-m-d H:i:s', $iriam_reward_post['iriam_reward_date'])->format("F d, Y");
         $iriam_published = $iriam_reward_post['published'];
         $iriam_reward_download_id = $iriam_reward_post['iriam_reward_download_id'];
         echo "<tr>" . 
         "<td class='gl_thumbnail'><center><img src=\"".$iriam_reward_thumbnail."\" class='img-fluid rounded shadow' style='max-height: 75px; max-width: min(100%,125px);' alt='Thumbnail for ".$iriam_reward_name."' /></center>".
-        "</td><td class='gl_name' style='min-width:200px'><strong>".$iriam_reward_name."</strong><br><em>".$iriam_reward_download_id."</em><br>".(strlen($iriam_reward_description) > 100
+        "</td><td class='gl_name' style='min-width:200px'><strong>".$iriam_reward_name."</strong><br><em>$iriam_reward_type</em><br>".(strlen($iriam_reward_description) > 100
             ? substr($iriam_reward_description, 0, 100) . "..."
             : $iriam_reward_description) .
         "</td><td class='gl_reward_date_readable'>".$iriam_reward_date.
@@ -66,7 +71,7 @@ if ($result->num_rows > 0) {
         "</td><td class='gl_2star'>".(intval($iriam_reward_post['2star']) === 1 ? '<i class="fa-solid fa-square-check"></i>' : "-").
         "</td><td class='gl_3star'>".(intval($iriam_reward_post['3star']) === 1 ? '<i class="fa-solid fa-square-check"></i>' : "-").
         "</td><td class='gl_published'>".(intval($iriam_published) === 1 ? '<i class="fa-solid fa-square-check"></i>' : "-").
-        "</td><td><a href='iriam_rewards_editor.php?public-id=$iriam_reward_download_id'><button class='btn btn-dark' type='button'>Edit</button></a>".
+        "</td><td><a href='iriam_rewards_editor.php?asset-type=$iriam_reward_type&asset-id=$iriam_reward_download_id'><button class='btn btn-dark' type='button'>Edit</button></a>".
         "</td></tr>";
     }
 }

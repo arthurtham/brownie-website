@@ -9,26 +9,28 @@ require_once $dir . "/includes/cloudinary.env.php";
 require_once $dir . "/includes/CloudinarySigner.php";
 use Cloudinary\Api\Search\SearchApi;
 
-$iriam_reward_download_id = "";
+$iriam_reward_download_id = "0";
+$iriam_reward_url = "";
 $iriam_reward_name = "";
-$iriam_reward_type = "announcement";
+$iriam_reward_type = "url";
 $iriam_reward_published = false;
 $iriam_reward_thumbnail = "";
 $iriam_reward_1star = false;
 $iriam_reward_2star = false;
 $iriam_reward_3star = false;
 $iriam_reward_description = "";
-$iriam_reward_date = "2022-1-1 00:00:00";
+$iriam_reward_date = $iriam_reward_date = date("Y-m-d");
 $iriam_reward_file_size = 0;
-$iriam_reward_file_format = "unknown";
+$iriam_reward_file_format = "URL";
 
 $_temp = null;
-if (isset($_GET["public-id"])) {
-    $sql = "SELECT * FROM iriam_rewards WHERE iriam_reward_download_id = \"".mysqli_real_escape_string($conn, $_GET["public-id"])."\" LIMIT 1;";
+if (isset($_GET["asset-type"]) && isset($_GET["asset-id"])) {
+    $sql = "SELECT * FROM iriam_rewards WHERE iriam_reward_type = \"". mysqli_real_escape_string($conn, $_GET["asset-type"]) . "\" AND iriam_reward_download_id = \"".mysqli_real_escape_string($conn, $_GET["asset-id"])."\" LIMIT 1;";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($iriam_reward_post = $result->fetch_assoc()) {
             $iriam_reward_download_id = htmlspecialchars($iriam_reward_post['iriam_reward_download_id']);
+            $iriam_reward_url = htmlspecialchars($iriam_reward_post['iriam_reward_url']);
             $iriam_reward_name = htmlspecialchars($iriam_reward_post['iriam_reward_name']);
             $iriam_reward_type = htmlspecialchars($iriam_reward_post['iriam_reward_type']);
             $iriam_reward_published = $iriam_reward_post['published'];
@@ -37,19 +39,57 @@ if (isset($_GET["public-id"])) {
             $iriam_reward_2star = $iriam_reward_post['2star'];
             $iriam_reward_3star = $iriam_reward_post['3star'];
             $iriam_reward_description = htmlspecialchars($iriam_reward_post['iriam_reward_description']);
-            $iriam_reward_date = $iriam_reward_post['iriam_reward_date'];
+            // Convert MySQL datetime to HTML date input format (yyyy-mm-dd)
+            $iriam_reward_date = DateTime::createFromFormat('Y-m-d H:i:s', $iriam_reward_post['iriam_reward_date'])->format("Y-m-d");
+
             $iriam_reward_file_size = $iriam_reward_post['iriam_reward_kilobytes'];
             $iriam_reward_file_format = $iriam_reward_post['iriam_reward_format'];
             $_temp = var_export($iriam_reward_post,true);
         }
     } else {
         // If no results, redirect to the rewards list
-        redirect("/admin/iriam_rewards.php");
+        // redirect("/admin/iriam_rewards.php");
+        // die();
+        echo <<<FORM
+        <div class="container body-container">
+            <div class="row">
+                <div class="col">
+                    <h1>Iriam Rewards Editor</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-12">
+                <p>There was a problem finding this asset, or it does not exist in the database.
+                <p><a href="iriam_rewards.php"><button class="btn btn-danger" type="button">Cancel (Back to Rewards List)</button></a></p>
+                </div>
+            </div>
+        </div>
+FORM;
+        $_footer_adminmode = true;
+        require $dir . "/templates/footer.php";
         die();
     }
-} else {
-    redirect("/admin/iriam_rewards.php");
-    die();
+} else if (!isset($_GET["new-asset"])) {
+    // redirect("/admin/iriam_rewards.php");
+    // die();
+    echo <<<FORM
+        <div class="container body-container">
+            <div class="row">
+                <div class="col">
+                    <h1>Iriam Rewards Editor</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-12">
+                <p>Please designate an asset type and ID to edit.
+                <p><a href="iriam_rewards.php"><button class="btn btn-danger" type="button">Cancel (Back to Rewards List)</button></a></p>
+                </div>
+            </div>
+        </div>
+FORM;
+        $_footer_adminmode = true;
+        require $dir . "/templates/footer.php";
+        die();
 }
 
 $iriam_minimum_reward = 4;
@@ -69,8 +109,11 @@ if ($iriam_reward_1star == "1") {
     $iriam_minimum_reward = 1;
 } 
 
-// Make sure the reward ID exists
-if ($iriam_reward_download_id !== "") {
+$iriam_is_cdncloud = ($iriam_reward_type === "cdncloud");
+$iriam_is_url = ($iriam_reward_type === "url");
+
+// Make sure the reward ID exists if its type is "cdncloud"
+if ($iriam_is_cdncloud && $iriam_reward_download_id !== "") {
     $_cloudinary_results = (new SearchApi())->expression(
         "public_id=$iriam_reward_download_folder/$iriam_reward_download_id"
         )
@@ -110,7 +153,25 @@ FORM;
 }
 
 $cldSigner = new CloudinarySigner();
-$iriam_reward_thumbnail_signed_url = $cldSigner->signUrl($iriam_reward_thumbnail);
+if (empty($iriam_reward_thumbnail)) {
+    $iriam_reward_thumbnail_signed_url = 'https://res.cloudinary.com/browntulstar/image/private/s--ZS_Mw6wW--/c_thumb,g_auto,h_200,w_300/f_webp/v1/com.browntulstar/img/turtle-adult.webp?_a=BAAAV6E0';
+} else {
+    $iriam_reward_thumbnail_signed_url = $cldSigner->signUrl($iriam_reward_thumbnail);
+}
+
+if ($iriam_is_cdncloud) {
+    $iriam_reward_download_id_disabled = "";
+} else {
+    $iriam_reward_download_id_disabled = "d-none";
+}
+
+if ($iriam_is_url) {
+    $iriam_reward_url_disabled = "";
+    $iriam_reward_url_required = "required";
+} else {
+    $iriam_reward_url_disabled = "d-none";
+    $iriam_reward_url_required = "";
+}
 
 
 echo <<<FORM
@@ -130,27 +191,38 @@ echo <<<FORM
                             <input required minlength="1" maxlength="255" class="form-control" type="text" id="iriam_reward_name" name="iriam_reward_name" value="$iriam_reward_name" /> 
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text"><label for ="iriam_reward_name">Description</label></span>
+                            <span class="input-group-text"><label for ="iriam_reward_description">Description</label></span>
                             <input required minlength="1" maxlength="512" class="form-control" type="text" id="iriam_reward_description" name="iriam_reward_description" value="$iriam_reward_description" /> 
                         </div>
-                        <small class="text-white">To change this asset, you must delete it from Cloudinary and make a new asset.</small>
                         <div class="input-group mb-3">
-                            <span class="input-group-text"><label for ="iriam_reward_name">Cloudinary Public ID: $iriam_reward_download_folder/</label></span>
-                            <input disabled class="form-control" type="text" value="$iriam_reward_download_id"></input>
-                            <input required minlength="1" maxlength="512" class="d-none form-control" type="text" id="iriam_reward_download_id" name="iriam_reward_download_id" value="$iriam_reward_download_id" /> 
+                            <span class="input-group-text"><label for ="iriam_reward_name">Reward Source</label></span>
+                            <input required readonly minlength="1" maxlength="512" class="form-control" type="text" id="iriam_reward_type" name="iriam_reward_type" value="$iriam_reward_type" /> 
+                        </div>
+                        <div class="$iriam_reward_download_id_disabled">
+                            <small class="text-white">Configured Cloudinary folder: $iriam_reward_download_folder<br>
+                            If the reward source is "cdncloud", then its reward is hosted on Cloudinary and will ignore the URL setting below.<br>
+                            To change this asset, you must delete it from Cloudinary and make a new asset.</small>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><label for ="iriam_reward_public_id">Cloudinary Public ID</label></span>
+                                <input disabled class="form-control" type="text" value="$iriam_reward_download_id"></input>
+                                <input required minlength="1" maxlength="512" class="d-none form-control" type="text" id="iriam_reward_download_id" name="iriam_reward_download_id" value="$iriam_reward_download_id" /> 
+                            </div>
+                        </div>
+                        <div class="$iriam_reward_url_disabled">
+                            <small class="text-white">If the Reward Source is "url", then this is the link to the an external URL where the reward is located.</small>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><label for ="iriam_reward_url">Reward External URL</label></span>
+                                <input $iriam_reward_url_required id="iriam_reward_url" name="iriam_reward_url" class="form-control" type="text" value="$iriam_reward_url"></input>
+                            </div>
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text"><label for ="iriam_reward_name">Thumbnail URL</label></span>
-                            <input required minlength="1" maxlength="512" class="form-control" type="text" id="iriam_reward_thumbnail" name="iriam_reward_thumbnail" value="$iriam_reward_thumbnail" /> 
+                            <span class="input-group-text"><label for ="iriam_reward_thumbnail">Thumbnail URL</label></span>
+                            <input minlength="1" maxlength="512" class="form-control" type="text" id="iriam_reward_thumbnail" name="iriam_reward_thumbnail" value="$iriam_reward_thumbnail" /> 
                         </div>
                         <small class="text-white">Set a date for this reward. Only the month and year matters in terms of displaying it on the IRIAM rewards list.</small>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><label for ="iriam_reward_date">Reward Date</label></span>
-                            <input class="form-control" type="datetime-local" id="iriam_reward_date" name="iriam_reward_date" value="$iriam_reward_date" />
-                        </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><label for ="iriam_reward_name">Reward Type (backend)</label></span>
-                            <input required minlength="1" maxlength="512" class="form-control" type="text" id="iriam_reward_type" name="iriam_reward_type" value="$iriam_reward_type" /> 
+                            <input required class="form-control" type="date" id="iriam_reward_date" name="iriam_reward_date" value="$iriam_reward_date" />
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><label for ="iriam_reward_published">Listed</label></span>
@@ -195,10 +267,15 @@ echo <<<FORM
                     </div>
                 </div>
                 <div class="card bg-secondary mb-2"><div class="card-body">
-                <h1 class="text-white">Thumbnail Preview</h1>
+                <h3 class="text-white">Currently Saved Thumbnail Preview</h3>
                 <p><img id="iriam_reward_thumbnail_preview" src="$iriam_reward_thumbnail_signed_url" class="img-fluid rounded shadow" style="max-height: 200px; max-width: min(100%,225px);" /></p>
                 <br>
-                <h1 class="text-white">Cloudinary Asset Preview</h1>
+                <div class="$iriam_reward_url_disabled">
+                <h3 class="text-white">Currently Saved External URL Asset Preview</h3>
+                <p><a class="btn btn-danger" href="$iriam_reward_url" target="_blank">Open in New Tab</a></p>
+                </div>
+                <div class="$iriam_reward_download_id_disabled">
+                <h3 class="text-white">Cloudinary Asset Preview</h3>
                 <p><a class="btn btn-danger" href="$iriam_reward_download_id_secure_url" target="_blank">Open in New Tab</a></p>
 FORM;
                 // If it an image, show an image. If it's a video, show a video. Variable: 
@@ -206,7 +283,7 @@ FORM;
                     echo "<img id=\"iriam_reward_thumbnail_preview_full\" src=\"$iriam_reward_download_id_secure_url\" class=\"img-fluid rounded shadow\" style=\"max-height: 500px; max-width: min(100%,600px);\" />";
                 } else if ($iriam_reward_resource_type === "video") {
                     echo <<<VIDEOPLAYER
-                    <div id="video-player-div">
+                    <div id="video-player-div" style="max-height: 500px;">
                         <video id="video-player-media"></video>
                     </div> 
                     <link href="https://unpkg.com/cloudinary-video-player@1.10.4/dist/cld-video-player.min.css" 
@@ -234,6 +311,7 @@ VIDEOPLAYER;
                 File size: Approximately ". readable_bytes_thousands($iriam_reward_file_size*1000) ."</p>";
             echo <<<FORM
             </div></div>
+            </div>
             </form>
         </div>
     </div>

@@ -129,7 +129,7 @@ $_SESSION['cloudinary_timer_start']=time();
           form.setAttribute("style", "display: none;");
           var inputPublicId = document.createElement("input");
           inputPublicId.setAttribute("type", "hidden");
-          inputPublicId.setAttribute("name", "public-id");
+          inputPublicId.setAttribute("name", "asset-id");
           inputPublicId.setAttribute("value", public_id_name_only);
           form.appendChild(inputPublicId);
           document.body.appendChild(form);
