@@ -127,11 +127,16 @@ $_SESSION['cloudinary_timer_start']=time();
           form.setAttribute("method", "get");
           form.setAttribute("action", "/admin/iriam_rewards_editor.php");
           form.setAttribute("style", "display: none;");
-          var inputPublicId = document.createElement("input");
-          inputPublicId.setAttribute("type", "hidden");
-          inputPublicId.setAttribute("name", "asset-id");
-          inputPublicId.setAttribute("value", public_id_name_only);
-          form.appendChild(inputPublicId);
+          var inputAssetType = document.createElement("input");
+          inputAssetType.setAttribute("type", "hidden");
+          inputAssetType.setAttribute("name", "asset-type");
+          inputAssetType.setAttribute("value", "cdncloud");
+          form.appendChild(inputAssetType);
+          var inputAssetId = document.createElement("input");
+          inputAssetId.setAttribute("type", "hidden");
+          inputAssetId.setAttribute("name", "asset-id");
+          inputAssetId.setAttribute("value", public_id_name_only);
+          form.appendChild(inputAssetId);
           document.body.appendChild(form);
           setTimeout(() => {
             form.submit()
