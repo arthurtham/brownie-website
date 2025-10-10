@@ -1,4 +1,5 @@
 <?php
+http_response_code(401);
 $dir = dirname(__DIR__, 1);
 require_once $dir . "/includes/default-includes.php";
 if (!isset($title)) {

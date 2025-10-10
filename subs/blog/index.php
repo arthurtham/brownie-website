@@ -15,9 +15,11 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 	$result = $conn->query($sql);
 	$blog_free = false;
 	if ($result->num_rows > 0) {
+		$title = "BrowntulStar - Browntul's Blog";
 		while ($blog_post = $result->fetch_assoc()) {
 			$blog_free = (intval($blog_post["free"]) === 1);
 			$blog_title = $blog_post["blog_name"];
+			$title = "$blog_title - BrowntulStar - Browntul's Blog";
 			// User unauthorized checks
 			// Force 401 page if not logged in
 			// Force 403 page if unauthorized
@@ -29,16 +31,15 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 					die();
 				} else {
 					// If the blog is not free, we need to show the 403 page
-					require $dir . "/error/403-sub.php";
+					require $dir . "/error/403-blog.php";
 					die();
 				}
 			} else if (!$blog_free && !check_roles($sub_perk_roles)) {
 				// If the blog is not free and the user is not a subscriber, we need to show the 403 page		
-				require $dir . "/error/403-sub.php";
+				require $dir . "/error/403-blog.php";
 				die();
 			}
 		}
-		$title = "$blog_title - BrowntulStar - Browntul's Blog";
 	} else {
 		// Blog post doesn't exist, but we must load the blog template which handles missing posts.
 		$title = "BrowntulStar - Browntul's Blog";

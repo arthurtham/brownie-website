@@ -1,4 +1,5 @@
 <?php
+http_response_code(500);
 $dir = dirname(__DIR__, 1);
 $title = "BrowntulStar - Error"; 
 require $dir . "/templates/header.php";
