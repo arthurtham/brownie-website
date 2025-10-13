@@ -42,19 +42,21 @@ const configs = {
 };
 
 loadParticles(configs).then((container) => {
-    const rect = yeahbutton.getBoundingClientRect();
-
     yeahbutton.addEventListener("click", (e) => {
+        const x = Math.random() * window.innerWidth;
+        const y = Math.min(0.5,Math.random()) * window.innerHeight;
         container.particles.addParticle({
-            x: e.clientX,
-            y: e.clientY
+            x,
+            y
         });
     });
     document.body.addEventListener("keyup", (e) => {
-        if (e.key == " ") {
+        if (e.code === "Space") {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
             container.particles.addParticle({
-                x: (rect.left + rect.right) / 2,
-                y: (rect.top + rect.bottom) / 2
+                x,
+                y
             });
         }
     });

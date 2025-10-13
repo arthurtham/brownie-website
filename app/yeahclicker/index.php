@@ -13,8 +13,8 @@ require $dir . "/templates/header.php";
         </div>
     </div>
 </div>
-<script src="script.js" type="text/javascript"></script>
-<script type="module" src="particles.js" type="text/javascript"></script>
+<script src="script.js?v=2025-10-13" type="text/javascript"></script>
+<script type="module" src="particles.js?v=2025-10-13" type="text/javascript"></script>
 
 <?php
 

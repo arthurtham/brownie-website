@@ -39,10 +39,16 @@ function onButtonUp() {
 
 function updateYeahButtonPresentation() {
     yeahbuttoncounterspan.innerText = yeahbuttoncounter.toLocaleString();
-    if (yeahbuttoncounter % 200 >= 100) {
+    if (yeahbuttoncounter % 300 >= 200) {
+        bodycontainer.classList.add("iriam");
+        bodycontainer.classList.remove("profile");
+        yeahbuttoncounterspan.classList.remove("text-white");
+    } else if (yeahbuttoncounter % 300 >= 100) {
+        bodycontainer.classList.remove("iriam");
         bodycontainer.classList.add("profile");
         yeahbuttoncounterspan.classList.add("text-white");
     } else {
+        bodycontainer.classList.remove("iriam");
         bodycontainer.classList.remove("profile");
         yeahbuttoncounterspan.classList.remove("text-white");
     }

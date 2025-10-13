@@ -29,6 +29,12 @@ require $dir . "/includes/default-includes.php";
 ))
 ) {
 	echo '<body class="profile">';
+} else if (isset($title) && in_array($title, array(
+	"BrowntulStar - IRIAM",
+	"BrowntulStar - IRIAM Star Badge Rewards"
+))
+) {
+	echo '<body class="iriam">';
 } else {
 	echo '<body>';
 }
