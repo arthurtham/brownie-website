@@ -1,6 +1,7 @@
 <?php
 $dir = dirname(__DIR__, 2);
 $title = "Turtle Pond - YEAH!";
+$_disallow_navbar_alert = true;
 require $dir . "/templates/header.php";
 
 ?>

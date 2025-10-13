@@ -1,6 +1,7 @@
 <?php
 $dir = dirname(__DIR__, 2);
 $title = "BrowntulStar - Concentration Training";
+$_disallow_navbar_alert = true;
 require $dir . "/templates/header.php";
 
 ?>

@@ -81,7 +81,7 @@ function _helper_get_alert_post($conn)
 }
 
 $_alert_post = _helper_get_alert_post($conn);
-$_alert_post_exists = isset($_alert_post) && $_alert_post["exists"];
+$_alert_post_exists = (isset($_alert_post) && $_alert_post["exists"]) && (!isset($_disallow_navbar_alert) || $_disallow_navbar_alert != true);
 $_alert_post_height = 50;
 ?>
 
