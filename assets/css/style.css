@@ -7,6 +7,8 @@ div.container.body-container {
     background-color: var(--bs-white) !important;
     padding: 75px 100px 200px 100px !important;
     box-shadow: 0px 0px 10px #a58e8e;
+    height: fit-content;
+    min-height: calc(100vh - 10px);
 }
 
 div.container.body-container-no-bg {
@@ -90,9 +92,6 @@ div.card div.card-content-center {
 
 body {
     background-color: var(--bs-gray) !important;
-    display: grid;
-    align-items: top;
-    grid-template-rows: auto 1fr auto;
     background: rgb(211,174,134);
     background: -moz-linear-gradient(0deg, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 25%, rgba(58,103,62,1) 100%);
     background: -webkit-linear-gradient(0deg, rgba(211,174,134,1) 0%, rgba(196,212,137,1) 25%, rgba(58,103,62,1) 100%);

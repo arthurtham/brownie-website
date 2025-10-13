@@ -52,24 +52,18 @@ echo <<<SUBPERKSHEADER
 					<div class="col-md-12">
 						<a class="btn btn-danger mb-2 w-100" href="details">
 							<i class="fa-solid fa-circle-info"></i>
-							Details + How to Set Up Perks
+							Perks Chart + FAQ
 						</a>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-sm-6">
 						<a class="btn btn-dark mb-2 w-100" href="https://www.twitch.tv/browntulstar" target="_blank">
 							<i class="fa-brands fa-twitch"></i>
 							Subscribe
 						</a>
 					</div>
-					<div class="col-sm-4">
-						<a class="btn btn-dark mb-2 w-100" href='https://ko-fi.com/browntulstar' target='_blank'>
-						$_kofi_logo
-						Donate
-						</a>
-					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-6">
 						<a class="btn btn-info mb-2 w-100" href='/iriam'>
 						<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
 						Gift

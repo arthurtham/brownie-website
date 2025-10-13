@@ -88,11 +88,6 @@ echo <<<FOOTER
                     </a> 
                 </li>
                 <li class="ms-2">
-                    <a style="text-decoration: none;" href="https://ko-fi.com/browntulstar" target="_blank">
-                        <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/s--mOeZPgHn--/c_pad,h_48/f_webp/v1/com.browntulstar/img/platform-kofi?_a=BAAAUWGX">
-                    </a> 
-                </li> 
-                <li class="ms-2">
                     <a style="text-decoration: none;" href="https://brownieval.browntulstar.com" target="_blank">
                         <img class="rounded" style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/s--fcXDbYLp--/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX">
                     </a> 
@@ -176,14 +171,13 @@ FOOTER;
             $logged_out_message = 'Your login session expired. Please log in again to continue your session.';
         }
 		echo <<<LOGGEDOUT
-		<div class="toast show fade position-absolute start-50 translate-middle-x" role="alert" aria-live="assertive" aria-atomic="true" style="margin-top:100px">
-		<div class="toast-header">
-			<strong class="me-auto">$logged_out_title</strong>
-			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-		</div>
-        <div class="toast-body">
-            $logged_out_message
-        </div>
+		<div class="toast show fade position-absolute top-0 start-50 translate-middle-x" role="alert" aria-live="assertive" aria-atomic="true" style="margin-top:120px">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <strong>$logged_out_title</strong>: $logged_out_message
+                </div>
+                <button type="button" class="btn-close btn-close-black me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
 		</div>
 LOGGEDOUT;
         $_SESSION['logout-flow-ran'] = false;

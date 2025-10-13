@@ -1,88 +1,77 @@
+<?php 
 
-<center><div class="container rounded bg-dark text-white" style="max-width:min(800px,100vw);width:auto;margin:0">
+$_perk_discord = "Access Discord Text Channel for Supporters";
+$_perk_iriam_1 = "View/Download IRIAM ";
+$_perk_iriam_2 = "★ Star Badge Rewards";
+$_perk_blog    = "Read Browntul's Blog";
+$_perk_karaoke = "Listen to Tank Engine Karaoke Anytime";
+$_perk_personal= "Receive A Secret Personalized Reward";
+$_perk_emotes  = "Use Twitch-exclusive Emotes on Twitch and Discord";
+
+
+?>
+
+
+<div class="container rounded bg-dark text-white" style="max-width:min(800px,100vw);width:auto;margin:0">
     <div class="row">
         <div class="col">
             <center><img src="https://res.cloudinary.com/browntulstar/image/private/s--ZPURbd45--/c_pad,w_200,h_200,ar_1:1/f_webp/v1/com.browntulstar/img/turtle-adult?_a=BAAAUWGX" style="width:100%;max-width:200px" /></center><br/>
-            <h2 class="text-center">Perks Chart</h2>
-            <p class="text-center">There's lots of ways you can support Browntul. Pick a path and start earning them!</p>
+            <h2 class="text-center mb-2">Perks Chart</h2>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <div style="overflow-x:auto">
-                <table class="table table-responsive table-hover table-striped table-bordered table-dark" style="text-align:center">
+                <table class="table table-fixed table-hover table-striped table-bordered table-dark" style="text-align:center">
                     <thead class="table-light">
                         <tr>
-                        <th scope="col" style="width: 100%;min-width:150px">Perks</th>
-                        <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-danger w-100">RED SHELLS<br/>(Twitch Subs)</span></th>
-                        <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-info w-100">STARS<br/>(IRIAM 1★)</span></th>
-                        <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-info w-100">SUPER STARS<br/>(IRIAM 2★)</span></th>
-                        <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-info w-100">GRAND STARS<br/>(IRIAM 3★)</span></th>
-                        <th scope="col" style="width: 100%;min-width:110px"><span class="badge bg-warning w-100">GOLD SHELLS<br/>(Discord VIPs)</span></th>
+                        <th scope="col"><span class="badge bg-danger w-100">RED SHELLS<br/>(Twitch Subs)</span></th>
+                        <th scope="col"><span class="badge bg-info w-100">STARS<br/>(IRIAM 1★)</span></th>
+                        <th scope="col"><span class="badge bg-info w-100">SUPER STARS<br/>(IRIAM 2★)</span></th>
+                        <th scope="col"><span class="badge bg-info w-100">GRAND STARS<br/>(IRIAM 3★)</span></th>
+                        <th scope="col"><span class="badge bg-warning w-100">GOLD SHELLS<br/>(Discord VIPs)</span></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                        <th scope="row">Starting Cost (USD)</th>
-                        <td class="table-danger">$5.99<br>per month</td>
-                        <td class="table-info">G1: $2 for all of 2025<br>G2: $10 for all of 2025</td>
-                        <td class="table-info">G1: $10<br>per month<br>G2: $50<br>per month</td>
-                        <td class="table-info">$50<br>per month</td>
-                        <td class="table-warning">Invite</td>
+                        <td class="table-danger"><?=$_perk_discord ?></td>
+                        <td class="table-info"><?=$_perk_discord ?></td>
+                        <td class="table-info"><?=$_perk_discord ?></td>
+                        <td class="table-info"><?=$_perk_discord ?></td>
+                        <td class="table-warning"><?=$_perk_discord ?></td>
                         </tr>
                         <tr>
-                        <th scope="row">Hours Requirement</th>
-                        <td class="table-danger">0+ hrs</td>
-                        <td class="table-info">G1: 3+ hrs<br>G2: 0+ hrs</td>
-                        <td class="table-info">G1: 10+ hrs<br>G2: 3+ hrs</td>
-                        <td class="table-info">15+ hrs</td>
-                        <td class="table-warning">Invite</td>
+                        <td><i class="fa-solid fa-minus"></i></td>
+                        <td class="table-info"><?=$_perk_iriam_1 . "1" . $_perk_iriam_2 ?></td>
+                        <td class="table-info"><?=$_perk_iriam_1 . "1/2" . $_perk_iriam_2 ?></td>
+                        <td class="table-info"><?=$_perk_iriam_1 . "1/2/3" . $_perk_iriam_2 ?></td>
+                        <td class="table-warning"><?=$_perk_iriam_1 . "1/2" . $_perk_iriam_2 ?></td>
+                        </tr>
+                        <td class="table-danger"><?=$_perk_blog ?></td>
+                        <td><i class="fa-solid fa-minus"></i></td>
+                        <td class="table-info"><?=$_perk_blog ?></td>
+                        <td class="table-info"><?=$_perk_blog ?></td>
+                        <td class="table-warning"><?=$_perk_blog ?></td>
+                        </tr>
+                        <td class="table-danger"><?=$_perk_karaoke ?></td>
+                        <td><i class="fa-solid fa-minus"></i></td>
+                        <td class="table-info"><?=$_perk_karaoke ?></td>
+                        <td class="table-info"><?=$_perk_karaoke ?></td>
+                        <td class="table-warning"><?=$_perk_karaoke ?></td>
                         </tr>
                         <tr>
-                        <th scope="row">Discord Text Channel for Supporters</th>
-                        <td class="table-danger"><i class="fa-solid fa-square-check"></i></td>
-                        <td class="table-info"><i class="fa-solid fa-square-check"></i></td>
-                        <td class="table-info"><i class="fa-solid fa-square-check"></i></td>
-                        <td class="table-info"><i class="fa-solid fa-square-check"></i></td>
-                        <td class="table-warning"><i class="fa-solid fa-square-check"></i></td>
+                        <td><i class="fa-solid fa-minus"></i></td>
+                        <td><i class="fa-solid fa-minus"></i></td>
+                        <td><i class="fa-solid fa-minus"></i></td>
+                        <td class="table-info"><?=$_perk_personal ?></td>
+                        <td><i class="fa-solid fa-minus"></i></td>
                         </tr>
                         <tr>
-                        <th scope="row">IRIAM ★ Star Badge Rewards</th>
-                        <td><i class="fa-regular fa-square"></i></td>
-                        <td class="table-info"><i class="fa-solid fa-square-check"></i><br>1★ Only</td>
-                        <td class="table-info"><i class="fa-solid fa-square-check"></i><br>1★/2★ Only</td>
-                        <td class="table-info"><i class="fa-solid fa-square-check"></i><br>All Rewards</td>
-                        <td class="table-warning"><i class="fa-solid fa-square-check"></i><br>1★/2★ Only</td>
-                        </tr>
-                        <th scope="row">Browntul's Blog</th>
-                        <td class="table-danger"><i class="fa-solid fa-square-check"></i></td>
-                        <td><i class="fa-regular fa-square"></i></td>
-                        <td class="table-info"><i class="fa-solid fa-square-check"></i></td>
-                        <td class="table-info"><i class="fa-solid fa-square-check"></i></td>
-                        <td class="table-warning"><i class="fa-solid fa-square-check"></i></td>
-                        </tr>
-                        <th scope="row">Tank Engine Karaoke</th>
-                        <td class="table-danger"><i class="fa-solid fa-square-check"></i></td>
-                        <td><i class="fa-regular fa-square"></i></td>
-                        <td class="table-info"><i class="fa-solid fa-square-check"></i></td>
-                        <td class="table-info"><i class="fa-solid fa-square-check"></i></td>
-                        <td class="table-warning"><i class="fa-solid fa-square-check"></i></td>
-                        </tr>
-                        <tr>
-                        <th scope="row">A Secret Personalized Reward</th>
-                        <td><i class="fa-regular fa-square"></i></td>
-                        <td><i class="fa-regular fa-square"></i></td>
-                        <td><i class="fa-regular fa-square"></i></td>
-                        <td class="table-info"><i class="fa-solid fa-square-check"></i></td>
-                        <td><i class="fa-regular fa-square"></i></td>
-                        </tr>
-                        <tr>
-                        <th scope="row">Twitch Emotes</th>
-                        <td class="table-danger"><i class="fa-solid fa-square-check"></i></td>
-                        <td><i class="fa-regular fa-square"></i></td>
-                        <td><i class="fa-regular fa-square"></i></td>
-                        <td><i class="fa-regular fa-square"></i></td>
-                        <td><i class="fa-regular fa-square"></i></td>
+                        <td class="table-danger"><?=$_perk_emotes ?></td>
+                        <td><i class="fa-solid fa-minus"></i></td>
+                        <td><i class="fa-solid fa-minus"></i></td>
+                        <td><i class="fa-solid fa-minus"></i></td>
+                        <td><i class="fa-solid fa-minus"></i></td>
                         </tr>
                     </tbody>
                 </table>
@@ -105,4 +94,4 @@
             </small></p>
         </div>
     </div>
-</div></center>
+</div>

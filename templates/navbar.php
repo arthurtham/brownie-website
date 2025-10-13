@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . "/navbar-contents.php";
+require_once dirname(__DIR__, 1) . "/vendor/autoload.php";
+use Phpfastcache\CacheManager;
+use Phpfastcache\Config\ConfigurationOption;
 require_once dirname(__DIR__, 1) . "/includes/discord.php";
+require_once dirname(__DIR__, 1) . "/includes/mysql.php";
 
 function create_navbar_items($navbar_items, $depth = 0)
 {
@@ -40,11 +44,77 @@ function _helper_create_nav_item_dropdown($item, $depth = 0)
     echo '</ul></li>';
 }
 
+function _helper_get_alert_post($conn)
+{
+    CacheManager::setDefaultConfig(new ConfigurationOption([
+        "path" => dirname(__DIR__, 1) . "/cache"
+    ]));
+    $instanceCache = CacheManager::getInstance("files");
+    $key = "alert_post";
+    $cache = $instanceCache->getItem($key);
+    if (true) {
+    // if (!$cache->isHit()) {
+        $sql = "SELECT * FROM alert_posts WHERE alert_active=1 ORDER BY id DESC LIMIT 1";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $alert_post = $result->fetch_assoc();
+            // Place in an organized array
+            $alert_post_array = array();
+            $alert_post_array["exists"] = true;
+            $alert_post_array["id"] = $alert_post["id"];
+            $alert_post_array["title"] = htmlspecialchars($alert_post["alert_title"]);
+            $alert_post_array["contents"] = htmlspecialchars($alert_post["alert_contents"]);
+            $alert_post_array["url"] = htmlspecialchars($alert_post["alert_url"]);
+            $alert_post_array["popout"] = (($alert_post["alert_popout"]) == 1 ? true : false);
+            $alert_post_array["active"] = (($alert_post["alert_active"]) == 1 ? true : false);
+            $cache->set($alert_post_array)->expiresAfter(3600);
+            $instanceCache->save($cache);
+            return $alert_post_array;
+        } else {
+            $alert_post_array = array();
+            $alert_post_array["exists"] = false;
+            return $alert_post_array;
+        }
+    } else {
+        return $cache->get();
+    }
+}
+
+$_alert_post = _helper_get_alert_post($conn);
+$_alert_post_exists = isset($_alert_post) && $_alert_post["exists"];
+$_alert_post_height = 50;
 ?>
 
 
 <header>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark shadow">
+<?php
+    if ($_alert_post_exists) {
+?>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-warning shadow flex-column" style="height:<?=$_alert_post_height?>px;">
+        <div class="navbar-topbar-text text-center justify-content-center align-items-center d-flex w-100 h-100 p-2">
+            <span style="line-height:0.9em;"><?=$_alert_post["contents"];?></span>
+<?php
+            if (!empty($_alert_post["url"])) {
+?>
+            <a href="<?=$_alert_post['url'];?>" <?=(($_alert_post["popout"]) ? 'target="_blank"' : "") ?> 
+            class="btn btn-sm btn-light ms-3 p-2"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+<?php
+            }
+?>
+        </div>
+    </nav>
+<?php
+    }
+?>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark shadow"
+<?php 
+    if ($_alert_post_exists) {
+?>
+        style="margin-top:<?=$_alert_post_height?>px"';
+<?php
+    }
+?>
+    >
         <div class="container-fluid">
             <a class="navbar-brand" href="/" style="margin-top:-10px;margin-bottom:-10px;">
                 <img src="https://res.cloudinary.com/browntulstar/image/private/s--4EOtuy1N--/c_pad,h_200/f_webp/v1/com.browntulstar/img/browntulstar-logo-v2-large?_a=BAAAUWGX" height=50px class="d-inline-block align-top" />
@@ -85,5 +155,13 @@ function _helper_create_nav_item_dropdown($item, $depth = 0)
                 </div>
             </div>
         </div>
-    </div>
+    </nav>
 </header>
+
+<?php 
+if ($_alert_post_exists) {
+?>
+<div class="container-fluid" style="height:<?=$_alert_post_height?>px;"></div>
+<?php
+}  
+?>
