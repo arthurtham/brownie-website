@@ -1,18 +1,18 @@
 <?php 
 
 $_perk_discord = "Access Discord Text Channel for Supporters";
-$_perk_iriam_1 = "View/Download IRIAM ";
-$_perk_iriam_2 = "★ Star Badge Rewards";
+$_perk_iriam_1 = "View/Download IRIAM<br> ";
+$_perk_iriam_2 = "★ Star<br>Fan Badge Rewards";
 $_perk_blog    = "Read Browntul's Blog";
-$_perk_karaoke = "Listen to Tank Engine Karaoke Anytime";
-$_perk_personal= "Receive A Secret Personalized Reward";
-$_perk_emotes  = "Use Twitch-exclusive Emotes on Twitch and Discord";
+$_perk_karaoke = "Listen to Tank Engine Karaoke On-Demand";
+$_perk_personal= "Receive A Custom Personalized Reward";
+$_perk_emotes  = "Use Twitch-exclusive Emotes";
 
 
 ?>
 
 
-<div class="container rounded bg-dark text-white" style="max-width:min(800px,100vw);width:auto;margin:0">
+<div class="container rounded bg-dark text-white" style="margin:0">
     <div class="row">
         <div class="col">
             <center><img src="https://res.cloudinary.com/browntulstar/image/private/s--ZPURbd45--/c_pad,w_200,h_200,ar_1:1/f_webp/v1/com.browntulstar/img/turtle-adult?_a=BAAAUWGX" style="width:100%;max-width:200px" /></center><br/>
@@ -77,6 +77,8 @@ $_perk_emotes  = "Use Twitch-exclusive Emotes on Twitch and Discord";
                 </table>
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col">
             <p><small><strong>Fine print:</strong>
             <ul>
