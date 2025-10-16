@@ -74,7 +74,7 @@ $_SESSION['cloudinary_timer_start']=time();
       cropping: false,
       multiple: false,
       defaultSource: "local",
-      clientAllowedFormats: "mp4,mkv,mov,webp,png,jpg,jpeg,gif,zip",
+      clientAllowedFormats: "mp3,mp4,wav,mkv,mov,webp,png,jpg,jpeg,gif,zip",
       resourceType: "auto",
       maxFileSize: "104857600",
       thumbnails: false,
