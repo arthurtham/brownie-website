@@ -77,7 +77,7 @@ ITEM;
 	$pagination_html_details = "";
 	
 	$sql = "SELECT * FROM announcement_posts WHERE published=1 AND visible=1 $sql_criteria ORDER BY publish_date DESC, id DESC, title ASC LIMIT $pagestartfrom, $entrylimit;";
-	$sql_count = "SELECT COUNT(*) AS total_entries FROM announcement_posts WHERE published=1 $sql_criteria";
+	$sql_count = "SELECT COUNT(*) AS total_entries FROM announcement_posts WHERE published=1 AND visible=1 $sql_criteria";
 
 	$result_count = $conn->query($sql_count);
 	if ($result_count->num_rows > 0) {

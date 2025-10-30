@@ -95,7 +95,7 @@ echo <<<FORM
                             <span class="input-group-text">
                                 <label for ="blog_type_name">Display Name</label>
                             </span>
-                            <input class="form-control" required maxlength="45" pattern="^\S+$" type="text" id="blog_type_name" name="blog_type_name" value="$blog_type_name" />
+                            <input class="form-control" required maxlength="45" type="text" id="blog_type_name" name="blog_type_name" value="$blog_type_name" />
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text">
