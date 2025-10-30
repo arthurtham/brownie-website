@@ -271,6 +271,18 @@ div.home-div-col {
     border-color: #ff4545 !important;
 }
 
+.btn-twitch {
+    background-color: #8956FB !important;
+    border-color: #8956FB !important;
+    color: white !important;
+    font-weight: bold !important;
+}
+
+.btn-twitch:hover {
+    background-color: #6b40d6 !important;
+    border-color: #6b40d6 !important;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "League Spartan", "Helvetica Neue", sans-serif !important;
     margin-bottom: 0.2rem !important;

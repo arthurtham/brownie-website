@@ -48,7 +48,7 @@ require $dir . "/templates/header.php";
                 <center>
                     <h2>2022 Shoutcasting Highlights</h2>
                     <p>On YouTube</p>
-                    <iframe width="100%" height="315" style="max-width:516px" src="https://www.youtube.com/embed/mM0aQ0V4EjI"
+                    <iframe loading="lazy" width="100%" height="315" style="max-width:516px" src="https://www.youtube.com/embed/mM0aQ0V4EjI"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
@@ -92,7 +92,7 @@ require $dir . "/templates/header.php";
                     <hr />
                     <h2>2023 Production Highlights</h2>
                     <p>On YouTube</p>
-                    <iframe width="100%" height="315" style="max-width:516px"
+                    <iframe loading="lazy" width="100%" height="315" style="max-width:516px"
                         src="https://www.youtube.com/embed/ag3RgaXbLoM" title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
@@ -140,7 +140,7 @@ require $dir . "/templates/header.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe style="display:block;width:100%;height:100%" width=100% height=calc(100vh-67px) overflow="scroll"
+                <iframe loading="lazy" style="display:block;width:100%;height:100%" width=100% height=calc(100vh-67px) overflow="scroll"
                     src="https://docs.google.com/document/d/e/2PACX-1vQrfP_CiPjcTAWXJGm2Wzj5nVXXHTI2bZLF6oeCigXTVrNeizRJZTQ_g6ftcG6NV4pUtypJv20VI87u/pub?embedded=true"></iframe>
             </div>
         </div>
@@ -156,7 +156,7 @@ require $dir . "/templates/header.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe style="display:block;width:100%;height:100%" width=100% height=calc(100vh-67px) overflow="scroll"
+                <iframe loading="lazy" style="display:block;width:100%;height:100%" width=100% height=calc(100vh-67px) overflow="scroll"
                     src="https://docs.google.com/document/d/e/2PACX-1vTWgBvPC8yndQcXrJQ4hnQBUlzXxE_tS35NPkpInI9QEp5eQ4lX3Esjto8Qlkz3cn41pyUps1EFSgMj/pub?embedded=true"></iframe>
             </div>
         </div>
@@ -172,7 +172,7 @@ require $dir . "/templates/header.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe style="display:block;width:100%;height:100%" width=100% height=calc(100vh-67px) overflow="scroll"
+                <iframe loading="lazy" style="display:block;width:100%;height:100%" width=100% height=calc(100vh-67px) overflow="scroll"
                     src="https://docs.google.com/document/d/1Ndu5xplrrjMmWjaMOOk8SZffjlxGkwpTMTl2TSJazjc/pub?embedded=true"></iframe>
             </div>
         </div>

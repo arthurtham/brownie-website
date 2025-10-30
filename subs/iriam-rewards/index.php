@@ -315,7 +315,7 @@ NOREWARDS;
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe style="display:block;width:100%;height:100%" width=100% height=calc(100vh-67px) overflow="scroll"
+                <iframe loading="lazy" style="display:block;width:100%;height:100%" width=100% height=calc(100vh-67px) overflow="scroll"
                     src="https://docs.google.com/document/d/e/2PACX-1vTWOwrwE9F1qwMN5R5BfVOw-id4t2SVUSl5-pEMu8LcbAk5oVtb6zJ2OUXgLHQ83MIS_z7dv2gDM662/pub?embedded=true"></iframe>
             </div>
         </div>

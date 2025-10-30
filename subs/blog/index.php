@@ -25,10 +25,10 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 			// Force 403 page if unauthorized
 			if (!isset($_SESSION['user'])) {
 				if ($blog_free) {
-					// If the blog is free, we can show it to non-subscribers
-					// but we still need to show the 401 page for non-logged in users
-					require $dir . "/error/401-blog.php";
-					die();
+					// If the blog is free, we are allowing all users to see it.
+					// If we change our minds, we can uncomment the 401 block below.
+					// require $dir . "/error/401-blog.php";
+					// die();
 				} else {
 					// If the blog is not free, we need to show the 403 page
 					require $dir . "/error/403-blog.php";
@@ -97,15 +97,13 @@ if (!isset($_SESSION['user']) || !check_roles($sub_perk_roles)) {
 		Login with perks to read
 SUBSCRIBE;
 		$button_free_read_text = <<<FREE
-		<i class='fa-brands fa-discord'></i>
-		<i class="fa-brands fa-twitch"></i>
-		Login to read for free
+		Read for free
 FREE;
 	} else { // If user isn't subscribed
 		$button_read_text = <<<SUBSCRIBE
 		<i class='fa-brands fa-discord'></i>
 		<i class="fa-brands fa-twitch"></i>
-		Sub on Twitch/Get IRIAM 2★ to read
+		Get Twitch Sub/IRIAM 2★ to read
 SUBSCRIBE;
 		$button_free_read_text = "Read for free";
 	}

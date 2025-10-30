@@ -11,7 +11,7 @@ require $dir . "/templates/header.php"
 				<div class="row">
 					<div class="col-sm-12 p-1">
 						<span class="d-flex flex-row">
-						<a class="btn btn-primary w-100" href="/stream">
+						<a class="btn btn-twitch w-100" href="/stream">
 							<i class="fa-brands fa-twitch"></i>
 							Twitch
 						</a>
@@ -19,7 +19,7 @@ require $dir . "/templates/header.php"
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-12 p-1">
+					<div class="col-sm-8 p-1">
 						<span class="d-flex flex-row">
 							<a class="btn btn-info w-100" href="/iriam">
 								<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
@@ -27,50 +27,62 @@ require $dir . "/templates/header.php"
 							</a>
 						</span>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6 p-1">
-						<span class="d-flex flex-row">
-							<a href="/discord" class="btn btn-light w-100"><i class="fa-brands fa-discord"></i> Join Server</a>
-						</span>
-					</div>
-					<div class="col-sm-6 p-1">
-						<span class="d-flex flex-row">
-							<a href="/subs" class="btn btn-success w-100"><i class="fa-solid fa-circle-check"></i> Access Perks Hub</a>
-						</span>
-					</div>
-				</div>
-				<div class="row">
 					<div class="col-sm-4 p-1">
 						<span class="d-flex flex-row">
-							<a href="#home-section-about" class="btn btn-dark w-100">About Me</a>
+							<a class="btn btn-info w-100" href="/subs/iriam-rewards/">
+								<strong>Rewards</strong>
+							</a>
+						</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 p-1">
+						<span class="d-flex flex-row">
+							<a href="/subs" class="btn btn-success w-100"><i class="fa-solid fa-circle-check"></i> Perks Hub</a>
 						</span>
 					</div>
 					<div class="col-sm-3 p-1">
 						<span class="d-flex flex-row">
-							<a href="credits" class="btn btn-dark w-100">Credits</a>
+							<a href="/subs/blog" class="btn btn-success w-100">Blog</a>
 						</span>
 					</div>
-					<div class="col-sm-5 p-1">
+					<div class="col-sm-3 p-1">
 						<span class="d-flex flex-row">
-							<a href="/store" class="btn btn-dark w-100">Shop/Services</a>
+							<a href="/discord" class="btn btn-light w-100"><i class="fa-brands fa-discord"></i> Server</a>
 						</span>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-5 p-1">
-						<span class="d-flex flex-row">
-							<a href="/announcements" class="btn btn-dark w-100">Announcements</a>
-						</span>
-					</div>
 					<div class="col-sm-4 p-1">
 						<span class="d-flex flex-row">
 							<a href="/app" class="btn btn-dark w-100">Apps/Games</a>
 						</span>
 					</div>
-					<div class="col-sm-3 p-1">
+					<div class="col-sm-4 p-1">
+						<span class="d-flex flex-row">
+							<a href="/announcements" class="btn btn-dark w-100">Browntul Says</a>
+						</span>
+					</div>
+					<div class="col-sm-4 p-1">
 						<span class="d-flex flex-row">
 							<a href="/guides" class="btn btn-dark w-100">Guides</a>
+						</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 p-1">
+						<span class="d-flex flex-row">
+							<a href="#home-section-about" class="btn btn-dark w-100">About</a>
+						</span>
+					</div>
+					<div class="col-sm-4 p-1">
+						<span class="d-flex flex-row">
+							<a href="credits" class="btn btn-dark w-100">Credits</a>
+						</span>
+					</div>
+					<div class="col-sm-4 p-1">
+						<span class="d-flex flex-row">
+							<a href="/store" class="btn btn-dark w-100">Shop</a>
 						</span>
 					</div>
 				</div>
@@ -93,12 +105,12 @@ require $dir . "/templates/header.php"
 						<div class="card mx-auto">
 							<div class="card-body">
 								<h1 class="card-title text-center">About Me</h1>
-								<p class="text-center">I'm a content creator, esports commentator and producer, and software programmer. You might know me from being a community member
-									in many Twitch streams on the Pacific time zone and the host of a VALORANT tournament called #BrownieVAL!
+								<p class="text-center">I'm a content creator, event organizer, esports commentator/producer, and software programmer. You might know me as the host of a community VALORANT tournament named #BrownieVAL.
 								</p>
-								<p class="text-center">I first started streaming on Twitch in August of 2019. On my stream, I enjoy playing chaotic multiplayer games and exploring new ways to play.
+								<p class="text-center">I first started streaming on Twitch in August of 2019, and on IRIAM in June of 2025.
 									You'll find my Killjoy turtle PNGTuber hanging out in my comfy bedroom, tinkering with new stream widgets and coding up new software for my turtle shells to enjoy.
-									I hope you can enjoy my content!
+								</p>
+								<p class="text-center">As a support staff in esports events online and IRL, I'm your go-to person to help with event organization and execution. With over 5 years of experience, I've worked in fast-paced adaptable environments to ensure smooth operations and a great experience for the true stars of the show: the players. Ultimately, I hope to provide opportunities for newcomers in the esports space to experience the thrill of competitive gaming in more intimate community environments.
 								</p>
 								<div class="text-center">
 								<a class="btn btn-dark m-2 shadow" href="/discord" style="max-width:400px">
@@ -145,10 +157,6 @@ require $dir . "/templates/header.php"
 									towards championship glory.
 								</p>
 								<div class="text-center">
-								<a class="btn btn-dark m-2 shadow" href="/r/brownievaldiscord" target="_blank" style="max-width:400px">
-									<img class='rounded' style='height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/s--fcXDbYLp--/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX'> <i class="fa-brands fa-discord"></i>
-									Tournament Server
-								</a>
 								<a class="btn btn-dark m-2 shadow" href='https://brownieval.browntulstar.com/' target='_blank' style="max-width:400px">
 									<img class='rounded' style='height:18px;margin-top:-4px' src='https://res.cloudinary.com/browntulstar/image/private/s--fcXDbYLp--/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX'> <i class="fa-solid fa-link"></i> Website
 								</a>
@@ -165,40 +173,54 @@ require $dir . "/templates/header.php"
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<h1 class="text-center text-white">Games I Stream</h1>
+						<h1 class="text-center text-white">By The Numbers</h1>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row mt-2 mb-2">
 					<div class="col-md-4 mb-2">
-						<div class="card w-100 h-100">
-							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--NUbAjcLX--/c_pad,h_400/com.browntulstar/img/games-honkaistarrail.jpg" class="card-img-top" alt="qingque honkai star rail" style="object-fit: cover;height:200px">
-							<div class="card-body">
-								<h4 class="card-title  text-center">Honkai: Star Rail</h4>
-							</div>
-						</div>
+						<a href="/stream" type="button" class="btn btn-twitch btn-lg w-100 py-4">
+							<h2>1.3k Followers</h2>
+							<i class="fa-brands fa-twitch"></i> Twitch
+						</a>
 					</div>
 					<div class="col-md-4 mb-2">
-						<div class="card w-100 h-100">
-							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--hvYzDb2e--/c_crop,h_0.95,w_0.95/c_pad,h_400/com.browntulstar/img/games-marvelrivals.jpg" class="card-img-top" alt="marvel rivals" style="object-fit: cover;height:200px">
-							<div class="card-body">
-								<h4 class="card-title  text-center">Marvel Rivals</h4>
-							</div>
-						</div>
-					</div>
+						<a href="/iriam" type="button" class="btn btn-info btn-lg w-100 py-4">
+							<h2>300 Followers</h2>
+							<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0"> IRIAM
+						</a>
+					</div>	
 					<div class="col-md-4 mb-2">
-						<div class="card w-100 h-100">
-							<img loading="lazy" src="https://res.cloudinary.com/browntulstar/image/private/s--1WaZm_di--/c_pad,h_400/com.browntulstar/img/games-valorant-kj.jpg" class="card-img-top" alt="valorant killjoy" style="object-fit: cover;height:200px">
-							<div class="card-body">
-								<h4 class="card-title  text-center">VALORANT</h4>
-							</div>
-						</div>
+						<a href="https://x.com/browntulstar" target="_blank" type="button" class="btn btn-light btn-lg w-100 py-4">
+							<h2>800 Followers</h2>
+							<i class="fa-brands fa-x-twitter"></i> X
+						</a>
+					</div>	
+				</div>
+				<div class="row mb-2">	
+					<div class="col-md-6 mb-2">
+						<a href="/esports" type="button" class="btn btn-primary btn-lg w-100 py-4">
+							<h2>50+ Appearances</h2>
+							as Esports Caster/Producer
+						</a>
+					</div>		
+					<div class="col-md-6 mb-2">
+						<a href="/esports" type="button" class="btn btn-primary btn-lg w-100 py-4">
+							<h2>15+ Events</h2>
+							as Event Organizer
+						</a>
+					</div>				
+				</div>
+				<div class="row mb-2">
+					<div class="col-md-12 mb-2 text-white text-center">
+						<small>Estimates as of Wednesday, October 29th, 2025</small>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<hr />
-					</div>
-				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row py-5 home-div-row brownie-red">
+		<div class="col-md-12 home-div-col">
+			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 						<h1 class="text-center text-white">Organizations I'm In</h1>
@@ -242,7 +264,7 @@ require $dir . "/templates/header.php"
 			</div>
 		</div>
 	</div>
-	<div id="home-section-watch" class="row py-5 d-flex align-items-center justify-content-center home-div-row brownie-red" style="padding-bottom:200px !important; min-height:fit-content !important">
+	<div id="home-section-watch" class="row py-5 d-flex align-items-center justify-content-center home-div-row brownie-green" style="padding-bottom:200px !important; min-height:fit-content !important">
 		<div class="col-lg-12 d-flex justify-content-center home-div-col">
 			<div class="container">
 				<div class="row">

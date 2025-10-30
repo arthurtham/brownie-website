@@ -123,11 +123,7 @@ function echoModalEntries($result) {
     global $cldSigner;
     if (isset($result->num_rows) && $result->num_rows > 0) {
         while ($item = $result->fetch_assoc()) {
-            // $media = (isset($item["youtube_id"]) && ($item["youtube_id"] !== "") ? 
-            // '<iframe width="100%" height="200" src="https://www.youtube-nocookie.com/embed/'.$item["youtube_id"].'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
-            // : 
             $media = '<img loading="lazy" src="'.$cldSigner->signUrl($item["thumbnail"]).'" class="mb-2" style="width:200px;height:200px;object-fit:cover;border: 3px solid black;border-radius:20px;" oncontextmenu="return false;" alt="logo image: '.$item["name"].'" />';
-            // );
             /* Export */
             echo <<<MODALENTRY
             <div class="modal modal-description fade" style="overflow: hidden !important" id="modal-{$item["id"]}" tabindex="-1" aria-labelledby="modal-{$item["id"]}-label" aria-hidden="true">
