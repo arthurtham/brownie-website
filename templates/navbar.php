@@ -80,17 +80,27 @@ function _helper_get_alert_post($conn)
     }
 }
 
-$_alert_post = _helper_get_alert_post($conn);
-$_alert_post_exists = (isset($_alert_post) && $_alert_post["exists"]) && (!isset($_disallow_navbar_alert) || $_disallow_navbar_alert != true);
-$_alert_post_height = 50;
+$_disallow_navbar = (isset($_disallow_navbar) && ($_disallow_navbar === true));
+
+if ($_disallow_navbar) {
+    $_alert_post = null;
+    $_alert_post_exists = false;
+    $_alert_post_height = 0;
+} else {
+    $_alert_post = _helper_get_alert_post($conn);
+    $_alert_post_exists = (isset($_alert_post) && $_alert_post["exists"]) && (!isset($_disallow_navbar_alert) || $_disallow_navbar_alert != true);
+    $_alert_post_height = 50;
+}
 ?>
 
 
 <header>
+
 <?php
+if (!$_disallow_navbar) {
     if ($_alert_post_exists) {
 ?>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-warning shadow flex-column" style="height:<?=$_alert_post_height?>px;">
+    <nav class="navbar brownie-navbar fixed-top navbar-expand-lg navbar-dark bg-warning shadow flex-column" style="height:<?=$_alert_post_height?>px;">
         <div class="navbar-topbar-text text-center justify-content-center align-items-center d-flex w-100 h-100 p-2">
             <span style="line-height:0.9em;"><?=$_alert_post["contents"];?></span>
 <?php
@@ -106,7 +116,7 @@ $_alert_post_height = 50;
 <?php
     }
 ?>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark shadow"
+    <nav class="navbar brownie-navbar fixed-top navbar-expand-lg navbar-dark bg-dark shadow"
 <?php 
     if ($_alert_post_exists) {
 ?>
@@ -156,10 +166,13 @@ $_alert_post_height = 50;
             </div>
         </div>
     </nav>
+<?php 
+}
+?>
 </header>
 
 <?php 
-if ($_alert_post_exists) {
+if (!$_disallow_navbar && $_alert_post_exists) {
 ?>
 <div class="container-fluid" style="height:<?=$_alert_post_height?>px;"></div>
 <?php

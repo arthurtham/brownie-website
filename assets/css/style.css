@@ -330,6 +330,7 @@ div.post-contents {
     }
     
     iframe {
+        padding-top: 10px;
         padding-bottom: 30px;
         width: 100%;
     }
@@ -343,12 +344,15 @@ div.post-contents {
         margin-left: auto;
         margin-right: auto;
         padding: 10px;
+        border-radius: 20px;
     }
     video {
         width: min(90vw,100%,600px);
         display: block;
         margin-left: auto;
         margin-right: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
     }
 }
 

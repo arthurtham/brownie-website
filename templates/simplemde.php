@@ -12,15 +12,18 @@ let simplemde = new SimpleMDE({
     element: document.getElementById("<?=$simplemde_element_name ?>"),
     forceSync: true
 });
+$("#<?=$simplemde_element_name ?>").addClass("d-none");
 
 function toggleFooter(visible) {
     setTimeout(() => {
         if (simplemde.isFullscreenActive()) {
             $("#admin-mode-footer").addClass("d-none");
+            $(".brownie-navbar").addClass("d-none");
         } else {
             $("#admin-mode-footer").removeClass("d-none");
+            $(".brownie-navbar").removeClass("d-none");
         }
-    }, 200);
+    }, 150);
 }
 // add an event listener for the window that runs on mouse click or keyboard press
 document.addEventListener("click", function() {
