@@ -283,6 +283,19 @@ div.home-div-col {
     border-color: #6b40d6 !important;
 }
 
+.game-div {
+    width: 100%;
+    height: 100vh;
+    border: none;
+}
+
+.game-div-iframe {
+    width: 100%;
+    height: 100vh;
+    border: none;
+    background-color: gray;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "League Spartan", "Helvetica Neue", sans-serif !important;
     margin-bottom: 0.2rem !important;

@@ -6,6 +6,21 @@ $scroll_to_top_button = <<<SCROLLABLE
 </button>
 SCROLLABLE;
 
+if (isset($_FOOTER_APPS) && $_FOOTER_APPS == true) {
+    $_FOOTER_HOME = true;
+    $scroll_to_top_button = "";
+    $back_to_apps_button = <<<BACKTOAPPSBUTTON
+    <a href="/app"><button id="scroll-to-top-button" class="btn btn-lg btn-primary border-white shadow" style="position:absolute; top: -100; right: 20px; z-index: 3; width:75px;">
+        <i class="fa-solid fa-grip"></i>
+    </button></a>
+    <button id="scroll-to-top-button" class="btn btn-lg btn-light border-white shadow" style="position:absolute; top: -50; right: 20px; z-index: 3; width:75px;" onclick="window.scrollTo(0,document.body.scrollHeight)">
+	<img src="https://res.cloudinary.com/browntulstar/image/private/s--4EOtuy1N--/c_pad,h_200/f_webp/v1/com.browntulstar/img/browntulstar-logo-v2-large?_a=BAAAUWGX" style="height:24px">
+</button>
+BACKTOAPPSBUTTON;
+} else {
+    $back_to_apps_button = "";
+}
+
 if (isset($_footer_adminmode) && $_footer_adminmode == true) { 
     echo <<<FOOTER
     <footer id="admin-mode-footer" class="d-flex flex-column w-100 justify-content-center align-items-center border-top bg-danger text-white shadow" style="position:fixed;bottom:0;padding-top:4px;padding-bottom:0px;z-index:1021">
@@ -54,6 +69,7 @@ FOOTER;
 echo <<<FOOTER
 <footer class="d-flex flex-column w-100 justify-content-center align-items-center border-top bg-light shadow" style="{$_footer_style}">
     $scroll_to_top_button
+    $back_to_apps_button
     <div class="row w-100">
         <div class="col-lg-4">
             <ul class="nav justify-content-center list-unstyled d-flex" style="font-size:20px">
