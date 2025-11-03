@@ -16,15 +16,13 @@ $cldSigner = new CloudinarySigner();
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
     <h1 class="text-center">Apps and Games</h1>
     <p class="text-center">
-        Here are some of the apps and games that I have developed. 
-        You can check out the links below to play them.
+        Enjoy these apps and games that I have created!
     </p>
     
 
 <?php 
 $mysql_applications = queryAppEntries($conn);
 
-/* Carousel: Highlighting Artists (temporary removal)*/
 // echoHighlightedAppEntries($mysql_applications);
 echoCardEntries($mysql_applications);
 echoModalEntries($mysql_applications);
@@ -91,22 +89,22 @@ function echoCardEntries($result) {
                 }
                 echo '<div class="row" style="padding-bottom:10px">';
             }
-            echo '<div class="col-md-4 mb-2 d-flex align-items-stretch">';
+            echo '<div class="col-lg-4 mb-2 d-flex align-items-stretch">';
                 echo <<<CARD
-                <div class="card mb-2 text-center" style="width: 100%;color:black">
+                <div class="card mb-2 bg-dark text-center text-white" style="width: 100%;color:black">
                     <div class="row g-0 p-4">
                         <center>
                             <a data-bs-toggle="modal" data-bs-target="#modal-{$item['id']}">
-                            <img loading="lazy" src="{$cldSigner->signUrl($item["thumbnail"])}" class="shadow rounded" style="max-height: 200px; width: auto; max-width: 100%; aspect-ratio: 1 / 1;" />
+                            <img loading="lazy" src="{$cldSigner->signUrl($item["thumbnail"])}" class="shadow rounded" style="max-height: 200px; width: auto; max-width: 100%; aspect-ratio: 1 / 1; background-color:white" />
                             </a>
                         </center>
                         <div class="card-body card-content-center">
-                            <h4 class="card-title">{$item['name']}</h4>
-                            <p class="card-text">{$item['short_description']}</p>
                             <p>
                                 <a class="btn btn-primary" href="{$item['game_link']}" role="button">Play</a>
                                 <button type="button" class="btn btn-success" margin-bottom:18px" data-bs-toggle="modal" data-bs-target="#modal-{$item['id']}">Info</button>
                             </p>
+                            <h4 class="card-title">{$item['name']}</h4>
+                            <p class="card-text">{$item['short_description']}</p>
                         </div>
                     </div>
                 </div>

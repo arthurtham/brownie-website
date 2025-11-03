@@ -15,6 +15,9 @@ if (isset($_FOOTER_APPS) && $_FOOTER_APPS == true) {
     </button></a>
     <button id="scroll-to-top-button" class="btn btn-lg btn-light border-white shadow" style="position:absolute; top: -50; right: 20px; z-index: 3; width:75px;" onclick="window.scrollTo(0,document.body.scrollHeight)">
 	<img src="https://res.cloudinary.com/browntulstar/image/private/s--4EOtuy1N--/c_pad,h_200/f_webp/v1/com.browntulstar/img/browntulstar-logo-v2-large?_a=BAAAUWGX" style="height:24px">
+    </button>
+    <button id="scroll-to-top-button" class="btn btn-lg btn-dark border-white shadow" style="position:absolute; top: 5; right: 20px; z-index: 3; width:75px;" onclick="window.scrollTo(0,0)">
+	<i class="fa-solid fa-circle-arrow-up"></i>
 </button>
 BACKTOAPPSBUTTON;
 } else {
