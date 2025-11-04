@@ -127,7 +127,7 @@ if (!$_disallow_navbar) {
     >
         <div class="container-fluid">
             <a class="navbar-brand" href="/" style="margin-top:-10px;margin-bottom:-10px;">
-                <img src="https://res.cloudinary.com/browntulstar/image/private/s--4EOtuy1N--/c_pad,h_200/f_webp/v1/com.browntulstar/img/browntulstar-logo-v2-large?_a=BAAAUWGX" height=50px class="d-inline-block align-top" />
+                <img src="https://res.cloudinary.com/browntulstar/image/private/s--4EOtuy1N--/c_pad,h_200/f_webp/v1/com.browntulstar/img/browntulstar-logo-v2-large?_a=BAAAUWGX" height=50px class="d-inline-block align-top shiny" />
             </a>
             <div class="navbar-mobile-login-items-small">
                 <ul class="navbar-nav mt-auto ms-0 d-flex flex-row">

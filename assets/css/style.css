@@ -296,6 +296,20 @@ div.home-div-col {
     background-color: gray;
 }
 
+img.home-logo {
+    width: 100%;
+    max-width: 460px;
+}
+
+.shiny {
+    transition: filter 0.3s;
+}
+
+.shiny:hover {
+    filter: brightness(110%);
+}
+
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "League Spartan", "Helvetica Neue", sans-serif !important;
     margin-bottom: 0.2rem !important;

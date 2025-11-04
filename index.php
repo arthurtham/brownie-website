@@ -6,7 +6,7 @@ require $dir . "/templates/header.php"
 ?>
 <div class="container-fluid body-container-home">
 	<div id="center-block" class="d-flex align-items-center justify-content-center" style="padding-top:50px">
-		<center><img src="https://res.cloudinary.com/browntulstar/image/private/s--gRiI4zsg--/c_pad,h_400/e_shadow/com.browntulstar/img/browntulstar-logo-v2-large.png" style="width:100%;max-width:460px" />
+		<center><img name="home-logo" id="home-logo" class="home-logo shiny" src="https://res.cloudinary.com/browntulstar/image/private/s--gRiI4zsg--/c_pad,h_400/e_shadow/com.browntulstar/img/browntulstar-logo-v2-large.png" />
 			<div class="box bg-gradient shadow rounded text-center" style="background-color: rgba(255,255,255,0.2); padding: 20px; width:100%; max-width:500px">
 				<div class="row">
 					<div class="col-sm-12 p-1">

@@ -122,7 +122,7 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 	// We need to get all directories from the database, plus the search tab
 	$directories = array();
 	array_push($directories, array("search", "All Posts", "View the most recent blog posts below, search for one, or pick a category above."));
-	$sql = "SELECT blog_type, name, description FROM blog_types WHERE visible=1";
+	$sql = "SELECT blog_type, name, description FROM blog_types WHERE visible=1 ORDER BY name ASC;";
 	$result = $conn->query($sql);
 	// Store all categories in the directories array, but also check if the get parameters set the category already.
 	$directory_category_found = false;
@@ -147,11 +147,11 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 		<center>Read about Browntul's adventures below! Exclusive to active Twitch subs and IRIAM 2★/3★ members.</center><br/>
 ABOUT;
 	//Set up tabs
-	echo '<div class="nav-tabs-div"><ul class="nav nav-tabs" id="blogdirectory" role="tablist">';
 	$show_active_toggle = "true";
 	$show_active_text = "active";
 	$show_active_href = "";
 	$nav_tabs_html = "";
+	$nav_buttons_html = "";
 	foreach ($directories as $directory) {
 		if (isset($_GET["category"])) {
 			if (strcmp($_GET["category"], $directory[0] . "-tab") === 0) {
@@ -167,57 +167,58 @@ ABOUT;
 			$show_active_href = "/subs/blog/$directory[0]/";
 		}
 		$nav_tabs_html_helper = <<<ITEM
-		<li class="nav-item" role="presentation">
-			<a href="$show_active_href">
-			<button 
-			class="nav-link $show_active_text" 
+			
+ITEM;
+		if ($show_active_toggle === "true") {
+			$nav_tabs_html = <<<ITEM
+			<li class="nav-item" role="presentation">
+				<a href="$show_active_href">
+				<button 
+				class="nav-link $show_active_text" 
+				id="$directory[0]-tab" 
+				type="button" 
+				role="tab" 
+				aria-controls="$directory[0]-tab" 
+				aria-selected="$show_active_toggle">
+				Blog Entries
+				</button>
+				</a>
+			</li>
+ITEM;
+		} 
+		$nav_buttons_html_color = ($show_active_toggle === "true") ? "btn-primary" : "btn-dark";
+		$nav_buttons_html .= <<<ITEM
+			<a href="$show_active_href"><button 
+			class="btn $nav_buttons_html_color m-1" 
 			id="$directory[0]-tab" 
 			type="button" 
 			role="tab" 
 			aria-controls="$directory[0]-tab" 
 			aria-selected="$show_active_toggle">
 			$directory[1]
-			</button>
-			</a>
-		</li>
+			</button></a>
 ITEM;
-		// Add these data toggles back if reverting to dynamic tab display,
-		// While also changing the href to "#"
-		// **********************
-		// data-bs-toggle="tab" 
-		// data-bs-target="#$directory[0]-tab-content" 
-		if ($show_active_toggle === "true") {
-			$nav_tabs_html = $nav_tabs_html_helper . $nav_tabs_html;
-		} else {
-			$nav_tabs_html .= $nav_tabs_html_helper;
-		}
 		$show_active_toggle = "false";
 		$show_active_text = "";
 	}
-	echo $nav_tabs_html;
-	echo '</ul></div>';
+	echo <<<NAV_BUTTONS_HTML
+	<div class="nav-buttons-div" style="text-align:center;">
+		$nav_buttons_html
+	</div>
+NAV_BUTTONS_HTML;
+	echo "<br/>";
+	echo <<<NAV_TABS_HTML
+		<div class="nav-tabs-div"><ul class="nav nav-tabs" id="blogdirectory" role="tablist">
+		$nav_tabs_html
+		</ul></div>
+NAV_TABS_HTML;
 	echo '<div class="tab-content bg-dark" id="blogdirectorycontent" style="padding:20px;color:white">';
-	// $show_active_toggle = true;
 	foreach ($directory_to_browse as $directory) {	
 		echo '<div class="tab-pane fade';
-		// Before, we would check what tab we were in so we can display the right one,
-		// but now that we are explicitly defining the active tab,
-		// the checks below are commented out as unnecessary.
-		// *******************************
-		// if (isset($_GET["category"])) {
-		// 	if (!$directory_category_found || strcmp($_GET["category"], $directory[0] . "-tab") === 0) {
-		// 		echo ' show active';
-		// 		$show_active_toggle = false;
-		// 	};
-		// } else if ($show_active_toggle) {
-		// 		echo ' show active';
-		// 		$show_active_toggle = false;
-		// }
 		echo ' show active';
 		echo '" id="'.$directory[0].'-tab-content" role="tabpanel" aria-labelledby="'.$directory[0].'-tab-content">';
 		echo "<h3>" . $directory[1] . "</h3>";
 		echo "<small>" . $directory[2] . "</small><br>";
-
 		// Show searchbox on the search page only
 		// Also deal with search criteria
 		if ($directory[0] === "search") {
