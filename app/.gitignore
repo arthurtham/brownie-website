@@ -13,3 +13,7 @@
 /baseballderby/*
 !/baseballderby/index.php
 !/baseballderby/.htaccess
+
+/bobaroll/*
+!/bobaroll/index.php
+!/bobaroll/.htaccess
