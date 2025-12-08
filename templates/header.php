@@ -6,6 +6,9 @@ if (!isset($dir)) {
 
 # Including all the required scripts
 require $dir . "/includes/default-includes.php";
+
+# Escape title for security
+$title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
 ?>
 
 <html>

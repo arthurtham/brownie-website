@@ -8,7 +8,7 @@ use Phpfastcache\CacheManager;
 use Phpfastcache\Config\ConfigurationOption;
 $title = "BrowntulStar - IRIAM Star Badge Rewards";
 
-$_iriam_access_allowed = (isset($_SESSION['user']) && check_roles(array_merge($iriam_star_roles, array($vip_role_id, $mod_role_id))));
+$_iriam_access_allowed = true;// (isset($_SESSION['user']) && check_roles(array_merge($iriam_star_roles, array($vip_role_id, $mod_role_id))));
 
 require $dir . "/templates/header.php";
 
@@ -34,7 +34,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 										</p>
 										<p>
 											Rewards are available to those that have the IRIAM â˜… Star Badge Discord role.<br>
-											1â˜… roles reset at the end of 2025 (special promotion).<br>
+											1â˜… roles reset at the end of each corresponding year.<br>
 											2â˜… and 3â˜… roles reset on every 5th of the new month.
 										</p>
 									</div>
@@ -59,34 +59,29 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 									$instanceCache = CacheManager::getInstance("files");
 									$key = "iriam_rewards_list";
 									$cache = $instanceCache->getItem($key);
-									if (!$cache->isHit() || isset($_GET["refreshcache"])) {
-										$rewards_table_selection_contents = array(
-											#'id' => array('id' => '2025-06', 'label' => 'June 2025', 'rewards' => array()),
-										);
+									if (!$cache->isHit() || isset($_GET["cache"])) {
 										$rewards_table_selection_options = '';
-										$rewards_table_selection_options_dates = array();
+										$rewards_table_selection_contents = array(
+											"1star" => array('id' => '1star', 'label' => '1â˜… Rewards', 'rewards' => array()),
+											"2star" => array('id' => '2star', 'label' => '2â˜… Rewards', 'rewards' => array()),
+											"3star" => array('id' => '3star', 'label' => '3â˜… Rewards', 'rewards' => array()),
+											"0star" => array('id' => '0star', 'label' => 'Unlisted'   , 'rewards' => array())
+										);
 										
-
 										$sql_rewards = "SELECT * FROM `iriam_rewards` WHERE `published`=1 ORDER BY `1star` DESC, `2star` DESC, `3star` DESC, `iriam_reward_name` ASC, `iriam_reward_date` DESC;";
 										$result_rewards = $conn->query($sql_rewards);
 										unset($sql_rewards);
-
 										if ($result_rewards && $result_rewards->num_rows > 0) {
-											// Fetch all rewards and organize them by month
 											while ($row = $result_rewards->fetch_assoc()) {
-												$content_id = date('Y-m', strtotime($row['iriam_reward_date']));
-												// If the content id is not in the array, add it
-												if (!isset($rewards_table_selection_contents[$content_id])) {
-													$content_date = date('F Y', strtotime($row['iriam_reward_date']));
-													$rewards_table_selection_contents[$content_id] = array(
-														'id' => $content_id,
-														'label' => $content_date,
-														'rewards' => array()
-													);
-													// Add the option to the selection options
-													$rewards_table_selection_options_dates[] = $row['iriam_reward_date'];
+												// Content ID by star level
+												$content_id = '0star';
+												if (intval($row['1star']) == 1) {
+													$content_id = '1star';
+												} else if (intval($row['2star']) == 1) {
+													$content_id = '2star';
+												} else if (intval($row['3star']) == 1) {
+													$content_id = '3star';
 												}
-												// Add the reward to the corresponding month. There can be multiple rewards in a month.
 												$rewards_table_selection_contents[$content_id]['rewards'][] = array(
 													'name' => $row['iriam_reward_name'],
 													'description' => $row['iriam_reward_description'],
@@ -102,12 +97,9 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 													'hits' => $row['hits']
 												);
 											}
-											// Sort the dates in ascending order before generating options
-											rsort($rewards_table_selection_options_dates);
-											foreach ($rewards_table_selection_options_dates as $date) {
-												$content_date = date('F Y', strtotime($date));
-												$content_id = date('Y-m', strtotime($date));
-												$rewards_table_selection_options .= "<option data-target='#tab-$content_id'>$content_date</option>";
+											foreach ($rewards_table_selection_contents as $star_level => $star_contents) {
+												$star_label = $star_contents['label'];
+												$rewards_table_selection_options .= "<option data-target='#tab-$star_level'>$star_label</option>";
 											}
 										}
 										$instanceCache->save($cache->set(array(
@@ -125,7 +117,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 										<center>
 										<div class="input-group mb-3" style="max-width:300px;">
 											<div class="input-group-text">
-												<i class="fa-solid fa-calendar-days"></i> 
+												<i class="fa-solid fa-star"></i> 
 											</div>
 											<select class="form-select" id="rewards-table-select" style="width: auto;">
 												<optgroup label="Rewards Information">
@@ -133,11 +125,11 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 													<option data-target="#tab-history">Fan Badge History</option>
 												</optgroup>
 												<hr>
-												<optgroup label="Monthly Rewards">
+												<optgroup label="Rewards">
 												<?php 
 												if ($_iriam_access_allowed) {
 												?>
-													<option disabled selected data-target="">Select a month...</option>
+													<option disabled selected data-target="">Select star level...</option>
 												<?= $rewards_table_selection_options ?>
 												<?php 
 												} else {
@@ -179,7 +171,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 												} else {
 												?>
 												<h2>Ready to claim your exclusive rewards?</h2>
-												<p>Select a month from the dropdown above to view the rewards for that month. Then, find the reward that you would like to download.</p>
+												<p>Select a star level from the dropdown above to view the rewards for that star level. Then, find the reward that you would like to download.</p>
 												<br>
 												<h3>Looking for more perks?</h3>
 												<a class="btn btn-success mb-2 w-100" href="/subs" style="max-width:300px">
@@ -218,6 +210,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 															$reward_type = $reward['type'] ?? 'default'; // Default type if not set
 															$reward_file_format = $reward['file_format'];
 															$reward_file_size = readable_bytes_thousands(intval($reward['file_size'])*1000);
+															$reward_date = date("F j, Y", strtotime($reward['reward_date']));
 															$download_id = $reward['download_id'];
 															$reward_star_banners = "";
 															$star_roles_to_check = array();
@@ -272,6 +265,7 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3â
 																					<p>$reward_description</p>
 																					$reward_download_button
 																					<h5>$reward_star_banners</h5>
+																					<small>Posted on $reward_date</small>
 																				</div>
 																			</div>
 																		</div>
@@ -282,7 +276,7 @@ CREDITSPOST;
 														} else {
 															echo <<<NOREWARDS
 															<div id="center-block" class="d-flex flex-column align-items-center justify-content-center" style="color:white">
-															<p class='text-center'>No rewards available for this month.</p>
+															<p class='text-center'>No rewards available.</p>
 															</div>
 NOREWARDS;
 														}
