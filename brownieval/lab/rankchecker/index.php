@@ -6,13 +6,14 @@ require $dir . "/templates/header.php";
 ?>
 
 <div class="container body-container" style="padding-top:50px;padding-bottom:100px">
-    <h1 class="text-center">Rank Checker for #BrownieVAL Impact</h1>
+    <h1 class="text-center">Rank Checker for #BrownieVAL X</h1>
     <div class="alert alert-dark">
         <form>
             <div class="form-group">
             <p>Please enter the peak ranks of the starting players that are playing
-                in #BrownieVAL Impact. The ranks listed for each player is the highest
-                rank that a player achieved in either Episode 7 or 8 or 9, whichever is higher.
+                in #BrownieVAL X. The ranks listed for each player is the highest
+                rank that a player achieved in either Episode 9, Season 2025 Acts 1-3, Season 2025 Acts 4-6,
+                or Season 2026 Act 1, whichever is higher.
                 They must have also played at least 10 competitive games for that episode
                 which the rank will be used.</p>
             <p>For the detailed ranked restrictions, please go to
@@ -22,7 +23,8 @@ require $dir . "/templates/header.php";
             </p>
             </div>
             <h2>Your Next Game's Starting Lineup</h2>
-            <p>Enter the player's peak ranks from Episode 7, 8, OR 9, whichever is higher, in the boxes below</p>
+            <p>Enter the players' peak ranks from Episode 9, Season 2025 Acts 1-3, Season 2025 Acts 4-6,
+                or Season 2026 Act 1, whichever is higher, in the boxes below</p>
             <div class="form-group" style="line-height:2">
 <?php   
             $totalPlayers = 5;

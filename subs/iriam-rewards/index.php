@@ -29,13 +29,10 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3�
 										<img loading="lazy" class="bg-light mb-4 shadow" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0" style="border-radius: 100%;width:200px" />
 										<h1 class="card-title">IRIAM ★ Star Badge Rewards</h1>
 										<p>
-											<h2>You're a star! A super star!</h2><br>
 											IRIAM ★ Star Badge holders can claim exclusive rewards. Isn't that so inspirational?
 										</p>
 										<p>
 											Rewards are available to those that have the IRIAM ★ Star Badge Discord role.<br>
-											1★ roles reset at the end of each corresponding year.<br>
-											2★ and 3★ roles reset on every 5th of the new month.
 										</p>
 									</div>
 <?php
@@ -170,8 +167,8 @@ $star3_small_banner = '<span class="badge bg-primary me-1">GRAND STARS (IRIAM 3�
 												<?php
 												} else {
 												?>
-												<h2>Ready to claim your exclusive rewards?</h2>
-												<p>Select a star level from the dropdown above to view the rewards for that star level. Then, find the reward that you would like to download.</p>
+												<h2>Claim your rewards!</h2>
+												<p>Select a star level from the dropdown above to view the rewards. Then, find the reward that you would like to download.</p>
 												<br>
 												<h3>Looking for more perks?</h3>
 												<a class="btn btn-success mb-2 w-100" href="/subs" style="max-width:300px">

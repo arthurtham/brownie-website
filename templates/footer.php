@@ -37,7 +37,7 @@ if (isset($_footer_adminmode) && $_footer_adminmode == true) {
             </div>
             <div class="col-lg-2">
                 <ul class="nav justify-content-center list-unstyled d-flex" style="margin-top:4px">
-                <small><span>© 2025 BrowntulStar</span></small>
+                <small><span>© 2026 BrowntulStar</span></small>
             </div>
         </div>
     </footer>
@@ -57,7 +57,7 @@ FOOTER;
             <div class="col-lg-4">
                 <ul class="nav justify-content-center list-unstyled d-flex" style="margin-top:4px">
                 <small>
-                    <span>© 2025 BrowntulStar</span>
+                    <span>© 2026 BrowntulStar</span>
                     - 
                     <a style="color: white" href="/privacy">
                         Privacy Policy
@@ -75,15 +75,15 @@ echo <<<FOOTER
     $back_to_apps_button
     <div class="row w-100">
         <div class="col-lg-4">
-            <ul class="nav justify-content-center list-unstyled d-flex" style="font-size:20px">
+            <ul class="nav justify-content-center list-unstyled d-flex" style="font-size:16px">
                 <li class="ms-2">
-                    <a style="text-decoration: none;color:#000" href="/stream">
+                    <a style="text-decoration: none;color:#A970FF" href="/stream">
                         <i class="fab fa-twitch"></i>
                     </a> 
                 </li>
                 <li class="ms-2">
                     <a style="text-decoration: none;" href="/iriam">
-                        <img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
+                        <img style="height:16px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
                     </a>
                 </li>
                 <li class="ms-2">
@@ -92,17 +92,12 @@ echo <<<FOOTER
                     </a>
                 </li>
                 <li class="ms-2">
-                    <a style="text-decoration: none;color:#000" href="https://instagram.com/browntulstar" target="_blank">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                </li>
-                <li class="ms-2">
-                    <a style="text-decoration: none;color:#000" href="/stream?youtube">
+                    <a style="text-decoration: none;color:#FF0000" href="/stream?youtube">
                         <i class="fa-brands fa-youtube"></i>
                     </a>
                 </li>    
                 <li class="ms-2">
-                    <a style="text-decoration: none;color:#000" href="/discord">
+                    <a style="text-decoration: none;color:#5865F2" href="/discord">
                         <i class="fab fa-discord"></i>
                     </a> 
                 </li>
@@ -110,6 +105,16 @@ echo <<<FOOTER
                     <a style="text-decoration: none;" href="https://brownieval.browntulstar.com" target="_blank">
                         <img class="rounded" style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/private/s--fcXDbYLp--/f_webp/v1/com.browntulstar/img/brownieval-logo-v1?_a=BAAAUWGX">
                     </a> 
+                </li>
+                <li class="ms-2">
+                    <a style="text-decoration: none;color:#57b100" href="https://vgen.co/browntulstar" target="_blank">
+                        <i class="fa-solid fa-store"></i>
+                    </a>
+                </li>
+                <li class="ms-2">
+                    <a style="text-decoration: none;color:#000" href="https://browntulstar.com/r/donate" target="_blank">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </a>
                 </li>
                 <li class="ms-2">
                     <a style="text-decoration: none;color:#000" href="https://browntulstar.com/r/links" target="_blank">
@@ -122,7 +127,7 @@ echo <<<FOOTER
             <ul class="nav align-items-center justify-content-center list-unstyled d-flex flex-column" style="margin-top:4px;font-size:14px">
                 <li class="ms-2">
                     <span class="text-muted">
-                        © 2025 BrowntulStar (<a style="text-decoration: none" href="https://browntulstar.com/r/links" target="_blank">@browntulstar</a>)
+                        © 2026 BrowntulStar (<a style="text-decoration: none" href="https://browntulstar.com/r/links" target="_blank">@browntulstar</a>)
                     </span>
                 </li>
             </ul>

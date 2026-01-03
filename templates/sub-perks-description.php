@@ -5,6 +5,7 @@ $_perk_iriam_1 = "View/Download IRIAM<br> ";
 $_perk_iriam_2 = "★ Star<br>Fan Badge Rewards";
 $_perk_blog    = "Read Browntul's Blog";
 $_perk_karaoke = "Listen to Tank Engine Karaoke On-Demand";
+$_perk_letter =  "Receive a Handwritten Digital Letter";
 $_perk_personal= "Receive A Custom Personalized Reward";
 $_perk_emotes  = "Use Twitch-exclusive Emotes";
 
@@ -34,6 +35,13 @@ $_perk_emotes  = "Use Twitch-exclusive Emotes";
                     </thead>
                     <tbody>
                         <tr>
+                        <td class="table-danger">Active Until:<br>30 days since purchase</td>
+                        <td class="table-info">Active Until:<br>Dec 31st, 2026 at 11:59pm PST</td>
+                        <td class="table-info">Active Until:<br>5th day of month after badge earned</td>
+                        <td class="table-info">Active Until:<br>5th day of month after badge earned</td>
+                        <td class="table-warning">Active Until:<br>-</td>
+                        </tr>
+                        <tr>
                         <td class="table-danger"><?=$_perk_discord ?></td>
                         <td class="table-info"><?=$_perk_discord ?></td>
                         <td class="table-info"><?=$_perk_discord ?></td>
@@ -62,6 +70,13 @@ $_perk_emotes  = "Use Twitch-exclusive Emotes";
                         <tr>
                         <td><i class="fa-solid fa-minus"></i></td>
                         <td><i class="fa-solid fa-minus"></i></td>
+                        <td class="table-info"><?=$_perk_letter ?></i></td>
+                        <td class="table-info"><?=$_perk_letter ?></td>
+                        <td><i class="fa-solid fa-minus"></i></td>
+                        </tr>
+                        <tr>
+                        <td><i class="fa-solid fa-minus"></i></td>
+                        <td><i class="fa-solid fa-minus"></i></td>
                         <td><i class="fa-solid fa-minus"></i></td>
                         <td class="table-info"><?=$_perk_personal ?></td>
                         <td><i class="fa-solid fa-minus"></i></td>
@@ -82,7 +97,7 @@ $_perk_emotes  = "Use Twitch-exclusive Emotes";
         <div class="col">
             <p><small><strong>Fine print:</strong>
             <ul>
-                <li><strong>IRIAM:</strong> The IRIAM 1★ role gained before December 31st, 2025 at 11:59pm PDT will remain assigned to the corresponding Discord user until the end of 2025.
+                <li><strong>IRIAM:</strong> The IRIAM 1★ role gained on or after January 1st, 2026 at 12:00am PST will remain assigned to the corresponding Discord user until the end of 2026.
                  IRIAM 2★ and IRIAM 3★ roles gained for a given month reset at the 5th of the following month regardless of when they are achieved or verified.
                     Roles can be gained at the start of each month
                 in accordance to IRIAM's monthly calendar system. It may not be possible to achieve IRIAM 2★ or IRIAM 3★

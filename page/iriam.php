@@ -30,9 +30,6 @@ require $dir . "/templates/header.php";
                                     IRIAM is a virtual reality live streaming platform where you can watch and interact with your favorite VTubers in real-time. You can watch them exclusively on your mobile smartphone device or tablet.
                                 </p>
                                 <p>
-                                    Listen to Browntul talk about the latest sports events and your favorite variety topics on a unique stream format exclusive to the IRIAM mobile app in the US region.
-                                </p>
-                                <p>
                                     Gain IRIAM ★ Star Badges by gifting points during the IRIAM livestreams. Then, join the Discord server, claim your ★ Star Badge role, and gain access
                                     to exclusive perks!
                                 </p>
