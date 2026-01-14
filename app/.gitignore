@@ -17,3 +17,7 @@
 /bobaroll/*
 !/bobaroll/index.php
 !/bobaroll/.htaccess
+
+/bonkabubu/*
+!/bonkabubu/index.php
+!/bonkabubu/.htaccess
