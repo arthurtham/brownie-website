@@ -6,10 +6,15 @@
  */
  
 # A function to redirect user.
-function redirect($url)
+function redirect($url, $permanent = false)
 {
     if (!headers_sent())
     {    
+        if ($permanent) {
+            header("HTTP/1.1 301 Moved Permanently");
+        } else {
+            header("HTTP/1.1 302 Found");
+        }
         header('Location: '.$url);
         exit;
         }
@@ -83,5 +88,21 @@ function readable_bytes_thousands($bytes) {
     $sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 
     return sprintf('%.02F', $bytes / pow(1024, $i)) * 1 . ' ' . $sizes[$i];
+}
+
+// A function to convert binary to UUID. Generated via GitHub Copilot.
+function bin_to_uuid($bin) {
+    $hex = bin2hex($bin);
+    return sprintf('%08s-%04s-%04s-%04s-%12s',
+        substr($hex, 0, 8),
+        substr($hex, 8, 4),
+        substr($hex, 12, 4),
+        substr($hex, 16, 4),
+        substr($hex, 20));
+}
+
+// A function to check if a post ID is an old or new one
+function is_new_blog_id($id) {
+    return !is_numeric($id) || strlen($id) != 5;
 }
 ?>

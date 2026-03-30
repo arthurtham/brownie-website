@@ -12,22 +12,75 @@ if (empty($_POST)) {
     echo ("No variables passed");
 } else {
 
-$sql = "REPLACE INTO blog_posts (blog_id, blog_name, blog_date, blog_type, blog_content, visible, published, free) VALUES (";
-$sql .= "\"" . $_POST["blog_id"] . "\",";
-$sql .= "\"" . mysqli_real_escape_string($conn, $_POST["blog_name"]) . "\",";
-$sql .= "\"" . $_POST["blog_date"] . "\",";
-$sql .= "\"" . $_POST["blog_type"] . "\",";
-$sql .= "\"" . mysqli_real_escape_string($conn, $_POST["blog_content"]) . "\",";
-$sql .= "\"" . (isset($_POST["blog_visible"]) ? 1 : 0) . "\",";
-$sql .= "\"" . (isset($_POST["blog_published"]) ? 1 : 0)."\",";
-$sql .= "\"" . (isset($_POST["blog_free"]) ? 1 : 0)."\"";
-$sql .= ");";
+$is_new_post = ($_POST["blog_id"] === "-1" && $_POST["blog_new_id"] === "-1");
+
+if ($is_new_post) {
+    $sql = "SELECT blog_id FROM blog_posts ORDER BY blog_id DESC LIMIT 1;";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($blog_post = $result->fetch_assoc()) {
+            $blog_id = intval($blog_post["blog_id"])+1;
+        }
+    } else {
+        $blog_id = 10001;
+    }
+    $sql = "INSERT INTO blog_posts (blog_name, blog_new_id, blog_id, blog_date, blog_type, blog_content, visible, published, free) VALUES (";
+    $sql .= "\"" . mysqli_real_escape_string($conn, $_POST["blog_name"]) . "\",";
+    $sql .= "UUID_TO_BIN(UUID()),";
+    $sql .= "\"" . $blog_id . "\",";
+    $sql .= "\"" . $_POST["blog_date"] . "\",";
+    $sql .= "\"" . $_POST["blog_type"] . "\",";
+    $sql .= "\"" . mysqli_real_escape_string($conn, $_POST["blog_content"]) . "\",";
+    $sql .= "\"" . (isset($_POST["blog_visible"]) ? 1 : 0) . "\",";
+    $sql .= "\"" . (isset($_POST["blog_published"]) ? 1 : 0)."\",";
+    $sql .= "\"" . (isset($_POST["blog_free"]) ? 1 : 0)."\"";
+    $sql .= ");";
+} else {
+    $sql = "UPDATE blog_posts SET ";
+    $sql .= "blog_name = \"" . mysqli_real_escape_string($conn, $_POST["blog_name"]) . "\",";
+    $sql .= "blog_date = \"" . $_POST["blog_date"] . "\",";
+    $sql .= "blog_type = \"" . $_POST["blog_type"] . "\",";
+    $sql .= "blog_content = \"" . mysqli_real_escape_string($conn, $_POST["blog_content"]) . "\",";
+    $sql .= "visible = \"" . (isset($_POST["blog_visible"]) ? 1 : 0) . "\",";
+    $sql .= "published = \"" . (isset($_POST["blog_published"]) ? 1 : 0)."\",";
+    $sql .= "free = \"" . (isset($_POST["blog_free"]) ? 1 : 0)."\"";
+
+    if ($_POST["blog_id"] !== "-1") {
+        $sql .= " WHERE blog_id = \"" . mysqli_real_escape_string($conn, $_POST["blog_id"]) . "\"";
+    } else if ($_POST["blog_new_id"] !== "-1") {
+        $sql .= " WHERE blog_new_id = UUID_TO_BIN(\"" . mysqli_real_escape_string($conn, $_POST["blog_new_id"]) . "\")";
+    } else {
+        echo "<p>Failure: Invalid blog ID condition for updating blog post</p>";
+    }
+    $sql .= ";";
+}
+
 $result = $conn->query($sql);
 if ($result === TRUE) {
     echo "<p>Success!</p>";
     echo "<a href='/admin/blog.php'><button>Main</button></a></p>";
     // echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
-    redirect("/admin/blog_editor.php?blog_id=".$_POST["blog_id"]);
+    // If it is a new post, we need to get the new blog ID that was auto-assigned by the database. 
+    // That means we must search for the new blog post ID.
+    if ($is_new_post) {
+        $sql = "SELECT blog_id, blog_new_id FROM blog_posts WHERE blog_name = \"" . mysqli_real_escape_string($conn, $_POST["blog_name"]) . "\" AND blog_date = \"" . $_POST["blog_date"] . "\" AND blog_type = \"" . $_POST["blog_type"] . "\" ORDER BY blog_id DESC LIMIT 1;";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($blog_post = $result->fetch_assoc()) {
+                $sql_return_blog_id = $blog_post["blog_id"];
+                $sql_return_blog_new_id = bin_to_uuid($blog_post["blog_new_id"]);
+            }
+        } else {
+            echo "<p>Failure: Could not find new blog post after insertion</p>";
+            echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
+            exit;
+        }
+    } else {
+        // If it is not a new post, then we can just use the existing ID from the form.
+        $sql_return_blog_id = $_POST["blog_id"];
+        $sql_return_blog_new_id = $_POST["blog_new_id"];
+    }
+    redirect("/admin/blog_editor.php?blog_id=".mysqli_real_escape_string($conn, $sql_return_blog_new_id));
 } else {
     echo "<p>Failure: $conn->error </p>";
     echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";

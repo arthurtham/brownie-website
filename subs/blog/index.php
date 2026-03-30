@@ -11,12 +11,33 @@ require_once $dir . "/includes/CloudinarySigner.php";
 // If loading a blog page, check user status
 if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 	// Set page title based on blog id if provided
-	$sql = "SELECT blog_name, free FROM blog_posts WHERE blog_id = \"".mysqli_real_escape_string($conn, $_GET['blog-id'])."\" AND blog_type = \"".mysqli_real_escape_string($conn, $_GET['blog-type'])."\" AND published=1;"; 
+	$is_new_id = is_new_blog_id($_GET["blog-id"]);
+	if ($is_new_id) {
+		$sql_where_blog_id = "blog_new_id = UUID_TO_BIN(\"".mysqli_real_escape_string($conn,$_GET['blog-id'])."\")";
+	} else {
+		$sql_where_blog_id = "blog_id = \"".mysqli_real_escape_string($conn,$_GET['blog-id'])."\"";
+	}
+	$sql = "SELECT blog_name, blog_id, blog_new_id, free, legacy FROM blog_posts WHERE $sql_where_blog_id AND blog_type = \"".mysqli_real_escape_string($conn, $_GET['blog-type'])."\" AND published=1;"; 
 	$result = $conn->query($sql);
 	$blog_free = false;
 	if ($result->num_rows > 0) {
 		$title = "BrowntulStar - Browntul's Blog";
 		while ($blog_post = $result->fetch_assoc()) {
+			// Before we continue, if the blog_id is an old blog_id, redirect to the new blog id and rerun this script.
+			$blog_id = $blog_post["blog_id"];
+			$blog_new_id = bin_to_uuid($blog_post["blog_new_id"]) ?: "-1";
+			// If a new ID does not exist for some reason, but the old ID does exist, throw a 404.
+			// In addition, make sure that the post is a legacy post by checking the legacy column.
+			// New posts will still store a legacy ID but will use the new ID for linking.
+			if (!$is_new_id && $blog_id > 0) {
+				if ($blog_post["legacy"] && $blog_post["blog_new_id"] !== null) {
+					redirect("/subs/blog/".$_GET["blog-type"]."/$blog_new_id", true);
+					die();
+				} else {
+					require $dir . "/error/404-blog.php";
+					die();
+				}
+			}
 			$blog_free = (intval($blog_post["free"]) === 1);
 			$blog_title = $blog_post["blog_name"];
 			$title = "$blog_title - BrowntulStar - Browntul's Blog";
@@ -254,7 +275,7 @@ NAV_TABS_HTML;
 		$pagination_html_details = "";
 
 		//Prepare all sql statements
-		$sql = "SELECT blog_posts.blog_id, blog_posts.blog_name, blog_posts.blog_date, blog_posts.blog_type, 
+		$sql = "SELECT blog_posts.blog_id, blog_posts.blog_new_id, blog_posts.blog_name, blog_posts.blog_date, blog_posts.blog_type, 
 		blog_types.name as blog_type_name, blog_posts.blog_content, blog_posts.free, 
 		COUNT(*) OVER() AS total_entries
 		FROM blog_posts LEFT JOIN blog_types ON blog_posts.blog_type = blog_types.blog_type 
@@ -311,7 +332,7 @@ NAV_TABS_HTML;
 					}
 					$blog_free = (intval($blog_entry["free"]) === 1);
 					$blog_date = date_format(date_create_from_format("Y-m-d",explode(" ",$blog_entry["blog_date"])[0]),"F d, Y");
-					$blog_id = $blog_entry["blog_id"];
+					$blog_id = bin_to_uuid($blog_entry["blog_new_id"]) ?: $blog_entry["blog_id"];
 					$blog_type_name = $blog_entry["blog_type_name"];
 					$blog_read_button = (($blog_free)
 						? "<p><a class='btn btn-dark' href='/subs/blog/$blog_type/$blog_id'>$button_free_read_text</a></p>"

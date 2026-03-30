@@ -54,8 +54,9 @@ echo "<table class='table'><thead class='table-dark sticky-top' style='z-index:1
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($blog_post = $result->fetch_assoc()) {
-        $blog_id = $blog_post['blog_id'];
         $blog_type = $blog_post['blog_type'];
+        $blog_legacy = $blog_post['legacy'];
+        $blog_id = $blog_legacy ? $blog_post['blog_id'] : bin_to_uuid($blog_post['blog_new_id']);
         echo "<tr><td class='bl_id'>".$blog_id.
         "</td><td class='bl_name'><strong>".$blog_post['blog_name'].
             '</strong><br><a href="/subs/blog/'.$blog_type.'/'.$blog_id.'/" target="_blank">/subs/blog/'.$blog_type.'/'.$blog_id.'/</a>'.
