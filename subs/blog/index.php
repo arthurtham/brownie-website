@@ -34,7 +34,7 @@ if (isset($_GET["blog-type"]) && (isset($_GET["blog-id"]))) {
 					redirect("/subs/blog/".$_GET["blog-type"]."/$blog_new_id", true);
 					die();
 				} else {
-					require $dir . "/error/404-blog.php";
+					require $dir . "/error/404.php";
 					die();
 				}
 			}
