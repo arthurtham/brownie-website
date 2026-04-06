@@ -12,11 +12,12 @@ if (empty($_POST)) {
     echo ("No variables passed");
 } else {
     $new_post = (intval($_POST["announcement_id"]) == 0);
+    $new_post_uuid = null;
     $was_published_before = false;
     $was_published_before_date = null;
 
     if (!$new_post) {
-        $sql = "SELECT published, publish_date FROM announcement_posts WHERE id = " . mysqli_real_escape_string($conn, $_POST["announcement_id"]) . " LIMIT 1;";
+        $sql = "SELECT published, publish_date FROM announcement_posts WHERE id = UUID_TO_BIN(\"" . mysqli_real_escape_string($conn, $_POST["announcement_id"]) . "\") LIMIT 1;";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($announcement_post = $result->fetch_assoc()) {
@@ -36,6 +37,8 @@ if (empty($_POST)) {
         $announcement_published_date = null;
     }
 
+    $sql = null;
+
     if (!$new_post) {
         $sql = "UPDATE announcement_posts SET
         title = \"" . mysqli_real_escape_string($conn, $_POST["announcement_name"]) . "\",
@@ -44,24 +47,37 @@ if (empty($_POST)) {
         visible = " . (isset($_POST["announcement_visible"]) ? 1 : 0) . ",
         published = " . (isset($_POST["announcement_published"]) ? 1 : 0) . ",
         content = \"" . mysqli_real_escape_string($conn, $_POST["announcement_content"]) . "\"
-        WHERE id = " . mysqli_real_escape_string($conn, $_POST["announcement_id"]) . ";";
+        WHERE id = UUID_TO_BIN(\"" . mysqli_real_escape_string($conn, $_POST["announcement_id"]) . "\");";
     } else {
-        $sql = "INSERT INTO announcement_posts (title, publish_date, modified_date, visible, published, content) VALUES (" . 
-        "\"" . mysqli_real_escape_string($conn, $_POST["announcement_name"]) . "\", " . 
-        ($announcement_published_date != null ? ("\"" . mysqli_real_escape_string($conn, $announcement_published_date)) . "\"" : "NULL") . ", " .
-        "\"" . date("Y-m-d H:i:s") . "\", " . 
-        (isset($_POST["announcement_visible"]) ? 1 : 0) . ", " . 
-        (isset($_POST["announcement_published"]) ? 1 : 0) . ", " . 
-        "\"" . mysqli_real_escape_string($conn, $_POST["announcement_content"]) . "\");";
+        $uuid_sql = "SELECT UUID() AS new_uuid;";
+        $uuid_result = $conn->query($uuid_sql);
+        if ($uuid_result !== false && $uuid_result->num_rows > 0) {
+            $uuid_row = $uuid_result->fetch_assoc();
+            $new_post_uuid = $uuid_row["new_uuid"];
+        }
+
+        if ($new_post_uuid !== null) {
+            $sql = "INSERT INTO announcement_posts (title, publish_date, modified_date, visible, published, content, id) VALUES (" . 
+            "\"" . mysqli_real_escape_string($conn, $_POST["announcement_name"]) . "\", " . 
+            ($announcement_published_date != null ? ("\"" . mysqli_real_escape_string($conn, $announcement_published_date)) . "\"" : "NULL") . ", " .
+            "\"" . date("Y-m-d H:i:s") . "\", " . 
+            (isset($_POST["announcement_visible"]) ? 1 : 0) . ", " . 
+            (isset($_POST["announcement_published"]) ? 1 : 0) . ", " . 
+            "\"" . mysqli_real_escape_string($conn, $_POST["announcement_content"]) . "\", " .
+            "UUID_TO_BIN(\"" . mysqli_real_escape_string($conn, $new_post_uuid) . "\")" . ");";
+        }
     }
     #echo $sql;
     try {
+        if ($sql === null) {
+            throw new Exception("Unable to generate UUID for new announcement");
+        }
         $result = $conn->query($sql);
         if ($result === TRUE) {
             echo "<p>Success!</p>";
             echo "<a href='/admin/announcement.php'><button>Main</button></a></p>";
             // echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";
-            redirect("/admin/announcement_editor.php?announcement-id=" . (($new_post) ? $conn->insert_id : $_POST["announcement_id"]) );
+            redirect("/admin/announcement_editor.php?announcement-id=" . (($new_post) ? $new_post_uuid : $_POST["announcement_id"]) );
         } else {
             echo "<p>Failure: $conn->error </p>";
             echo "<xmp style=\"white-space: pre-wrap\">$sql</xmp>";

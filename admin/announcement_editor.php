@@ -19,11 +19,11 @@ $announcement_modified_date = "2022-1-1 00:00:00";
 
 
 if (isset($_GET["announcement-id"])) {
-    $sql = "SELECT * FROM announcement_posts WHERE id = \"".mysqli_real_escape_string($conn, $_GET["announcement-id"])."\" LIMIT 1;";
+    $sql = "SELECT * FROM announcement_posts WHERE id = UUID_TO_BIN(\"".mysqli_real_escape_string($conn, $_GET["announcement-id"])."\") LIMIT 1;";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($announcement_post = $result->fetch_assoc()) {
-            $announcement_id = $announcement_post["id"];
+            $announcement_id = bin_to_uuid($announcement_post["id"]);
             $announcement_name = htmlspecialchars($announcement_post["title"]);
             $announcement_type = $announcement_post["category"];
             $announcement_published_date = $announcement_post["publish_date"]; 
@@ -67,7 +67,7 @@ echo <<<FORM
                         </div>
                         <div class="input-group mb-3" style="display:none">
                             <span class="input-group-text"><label for ="announcement_id">ID</label></span>
-                            <input readonly class="form-control" type="number" id="announcement_id" name="announcement_id" value="$announcement_id" />
+                            <input readonly class="form-control" type="text" id="announcement_id" name="announcement_id" value="$announcement_id" />
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><label for ="announcement_published_date">Published</label></span>

@@ -111,7 +111,7 @@ ITEM;
 		$cldSigner = new CloudinarySigner();
 		while ($announcement_embed = $result->fetch_assoc()) {
 			$announcement_date = date_format(date_create_from_format("Y-m-d",explode(" ",$announcement_embed["publish_date"])[0]),"F d, Y");
-			$announcement_id = $announcement_embed["id"];
+			$announcement_id = bin_to_uuid($announcement_embed["id"]);
 			$announcement_name = $announcement_embed["title"];
 			if ($title[0] === "-") {
 				continue;

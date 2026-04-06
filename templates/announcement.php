@@ -12,7 +12,7 @@ $_error_message = <<<ERROR
 ERROR;
 
 //MYSQL is already imported
-$sql = "SELECT announcement_posts.title, announcement_posts.published, announcement_posts.visible, announcement_posts.publish_date, announcement_posts.modified_date, announcement_posts.content FROM announcement_posts WHERE id = \"" . mysqli_real_escape_string($conn, $announcement_id) . "\""; 
+$sql = "SELECT announcement_posts.title, announcement_posts.published, announcement_posts.visible, announcement_posts.publish_date, announcement_posts.modified_date, announcement_posts.content FROM announcement_posts WHERE id = UUID_TO_BIN(\"" . mysqli_real_escape_string($conn, $announcement_id) . "\") LIMIT 1;"; 
 // echo $sql;
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {

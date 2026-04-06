@@ -34,7 +34,7 @@ require_once($dir . "/includes/mysql.php");
 <?php
 
 
-$sql = "SELECT * FROM announcement_posts ORDER BY publish_date DESC, id ASC, title ASC;";
+$sql = "SELECT * FROM announcement_posts ORDER BY publish_date DESC, modified_date DESC, title ASC;";
 //echo "<p>$sql</p>";
 
 echo "<table class='table'><thead class='table-dark sticky-top' style='z-index:1'><tr>
@@ -47,12 +47,12 @@ echo "<table class='table'><thead class='table-dark sticky-top' style='z-index:1
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($announcement_post = $result->fetch_assoc()) {
-        $announcement_id = $announcement_post['id'];
+        $announcement_id = bin_to_uuid($announcement_post['id']);
         $announcement_type = $announcement_post['category'];
         $announcement_publish_date = (!is_null($announcement_post['publish_date'])) ? DateTime::createFromFormat('Y-m-d H:i:s', $announcement_post['publish_date'])->format("F d, Y<\b\\r>h:i A") : "Not Published";
         $announcement_modified_date = DateTime::createFromFormat('Y-m-d H:i:s', $announcement_post['modified_date'])->format("F d, Y<\b\\r>h:i A");
         echo "<tr>" . 
-        "<td class='gl_id'>".$announcement_post['id'].
+        "<td class='gl_id'>".$announcement_id.
         "</td><td class='gl_name' style='min-width:200px'><strong>".$announcement_post['title'].
             "</strong><br><a target='_blank' href='/announcements/$announcement_id/'>/announcements/$announcement_id</a>".
         "</td><td class='gl_visible'>".((intval($announcement_post['visible']) === 1) ? '<i class="fa-solid fa-square-check"></i>': '-').
