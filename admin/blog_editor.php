@@ -17,6 +17,7 @@ $blog_free = false;
 $blog_content = "";
 $blog_date = "2022-1-1";
 $can_change_blog_id = "";
+$blog_modified_date = "";
 
 if (isset($_GET["blog_id"])) {
     $can_change_blog_id = "readonly=\"readonly\"";
@@ -39,12 +40,16 @@ if (isset($_GET["blog_id"])) {
             $blog_published = $blog_post["published"];
             $blog_free = $blog_post["free"];
             $blog_content = $blog_post["blog_content"];
+            $blog_modified_date = $blog_post["blog_modified_date"];
         }
     }
     $cldSigner = new CloudinarySigner();
     $blog_content = $cldSigner->convertAllUrls($blog_content);
     $blog_url_snippet = ($blog_new_id != "-1") ? "$blog_type/$blog_new_id" : "$blog_type/$blog_id";
-    $blog_url_button_if_exists = ($blog_id > 0) ? <<<BLOGURL
+    $blog_url_button_if_exists = 
+    // ($blog_id > 0) 
+    ($blog_new_id != "-1")
+    ? <<<BLOGURL
 <span class="input-group-text"><a href="/subs/blog/$blog_url_snippet" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></span>
 BLOGURL : "";
 } else {
@@ -97,28 +102,28 @@ echo <<<FORM
             <div class="card-body">
                 <form id="post-editor" action="blog_process.php" method="post">
                     <div class="card bg-secondary mb-2" style="width: 100%; overflow-x: auto;">
-                        <div class="card-body" style="min-width: 500px">
-                            <div class="input-group mb-3" style="max-width:500px">
+                        <div class="card-body" style="min-width: 525px; max-width: 800px">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text"><label for ="blog_name">Title</label></span>
                                 <input required maxlength="255" class="form-control" type="text" id="blog_name" name="blog_name" value="$blog_name" />
                             </div>
-                            <div class="input-group mb-3" style="max-width:500px">
-                                <span class="input-group-text"><label for ="blog_id">ID</label></span>
-                                <input $can_change_blog_id class="form-control" type="number" id="blog_id" name="blog_id" value="$blog_id" />
-                            </div>
-                            <div class="input-group mb-3" style="max-width:500px">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><label for ="blog_id">Legacy ID</label></span>
+                                <input $can_change_blog_id class="form-control flex-grow-0" style="width:90px" type="number" id="blog_id" name="blog_id" value="$blog_id" />
                                 <span class="input-group-text"><label for ="blog_new_id">New ID</label></span>
                                 $blog_url_button_if_exists
                                 <input readonly="readonly" class="form-control" id="blog_new_id" name="blog_new_id" value="$blog_new_id" />
                             </div>
-                            <div class="input-group mb-3" style="max-width:500px">
-                            $html_blog_types
+                            <div class="input-group mb-3">
+                                $html_blog_types
                             </div>
-                            <div class="input-group mb-3" style="max-width:500px">
-                                <span class="input-group-text"><label for ="blog_date">Date</label></span>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><label for ="blog_date">Post Date</label></span>
                                 <input required class="form-control" type="date" id="blog_date" name="blog_date" value="$blog_date" />
+                                <span class="input-group-text"><label for ="blog_modified_date">Modified Date</label></span>
+                                <input readonly class="form-control" type="datetime-local" id="blog_modified_date" name="blog_modified_date" value="$blog_modified_date" />
                             </div>
-                            <div class="input-group mb-3" style="max-width:500px">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text"><label for ="blog_visible">Show on Blog Listings</label></span>
                                 <span class="input-group-text">
                                     <input class="form-check-input mt-0" type="checkbox" id="blog_visible" name="blog_visible" value="1" $blog_visible />

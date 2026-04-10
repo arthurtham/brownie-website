@@ -24,7 +24,7 @@ if (count($legacy_link) == 5) {
 $is_new_id = is_new_blog_id($_GET["blog-id"]);
 if ($is_new_id) { // Only new IDs will be supported now.
     $sql_where_blog_id = "blog_new_id = UUID_TO_BIN(\"".mysqli_real_escape_string($conn,$_GET['blog-id'])."\")";
-    $sql = "SELECT blog_posts.blog_name, blog_posts.blog_date, blog_posts.blog_content, blog_types.name AS blog_type_name, blog_posts.blog_type AS blog_type_raw, blog_posts.visible, blog_posts.published, blog_posts.free
+    $sql = "SELECT blog_posts.blog_name, blog_posts.blog_date, blog_posts.blog_modified_date, blog_posts.blog_content, blog_types.name AS blog_type_name, blog_posts.blog_type AS blog_type_raw, blog_posts.visible, blog_posts.published, blog_posts.free
     FROM blog_posts 
     INNER JOIN blog_types ON blog_posts.blog_type = blog_types.blog_type 
     WHERE $sql_where_blog_id
@@ -37,10 +37,11 @@ if ($is_new_id) { // Only new IDs will be supported now.
                 echo $_error_message;
             } else {
                 $blog_date = date_format(date_create_from_format("Y-m-d",explode(" ",$blog_post["blog_date"])[0]),"F d, Y");
+                $blog_modified_date = ($blog_post["blog_modified_date"] && date_create_from_format("Y-m-d H:i:s", $blog_post["blog_modified_date"])) ? date_format(date_create_from_format("Y-m-d H:i:s", $blog_post["blog_modified_date"]), "F d, Y H:i:s") . " PT" : "None (Legacy Post)";
                 echo "<div class='row post-contents' oncontextmenu='return false;' ondragstart='return false;' ondrop='return false;'><div class='col col-md-12'>";
                 echo "<center><h1>" . $blog_post["blog_name"] . "</h1>";
                 echo "<a href='/subs/blog/'>Blog</a> / <a href='/subs/blog/$blog_type/'>" . $blog_post["blog_type_name"] . "</a></center>";
-                echo "<center>Post Date: " . $blog_date . "</center>";
+                echo "<center>Post Date: " . $blog_date . "<br>Last modified: " . $blog_modified_date . "</center>";
                 if ($blog_post["published"]) {
                     if ($blog_post["free"]) {
                         echo '<center><span class="badge text-bg-secondary">Free to Read</span></center>';

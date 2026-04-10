@@ -12,23 +12,35 @@ if (empty($_POST)) {
     echo ("No variables passed");
 } else {
 
-$is_new_post = ($_POST["blog_id"] === "-1" && $_POST["blog_new_id"] === "-1");
+// $is_new_post = ($_POST["blog_id"] === "-1" && $_POST["blog_new_id"] === "-1");
+$is_new_post = ($_POST["blog_new_id"] === "-1");
+
 
 if ($is_new_post) {
-    $sql = "SELECT blog_id FROM blog_posts ORDER BY blog_id DESC LIMIT 1;";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        while ($blog_post = $result->fetch_assoc()) {
-            $blog_id = intval($blog_post["blog_id"])+1;
-        }
+    // $sql = "SELECT blog_id FROM blog_posts ORDER BY blog_id DESC LIMIT 1;";
+    // $result = $conn->query($sql);
+    // if ($result->num_rows > 0) {
+    //     while ($blog_post = $result->fetch_assoc()) {
+    //         $blog_id = intval($blog_post["blog_id"])+1;
+    //     }
+    // } else {
+    //     $blog_id = 10001;
+    // }
+    $uuid_sql = "SELECT UUID() AS new_uuid;";
+    $uuid_result = $conn->query($uuid_sql);
+    if ($uuid_result !== false && $uuid_result->num_rows > 0) {
+        $uuid_row = $uuid_result->fetch_assoc();
+        $new_post_uuid = $uuid_row["new_uuid"];
     } else {
-        $blog_id = 10001;
+        echo "<p>Failure: Could not generate new UUID for blog post</p>";
+        exit;
     }
-    $sql = "INSERT INTO blog_posts (blog_name, blog_new_id, blog_id, blog_date, blog_type, blog_content, visible, published, free) VALUES (";
+    
+    $sql = "INSERT INTO blog_posts (blog_name, blog_new_id, blog_date, blog_modified_date, blog_type, blog_content, visible, published, free) VALUES (";
     $sql .= "\"" . mysqli_real_escape_string($conn, $_POST["blog_name"]) . "\",";
-    $sql .= "UUID_TO_BIN(UUID()),";
-    $sql .= "\"" . $blog_id . "\",";
+    $sql .= "UUID_TO_BIN(\"" . $new_post_uuid . "\"),";
     $sql .= "\"" . $_POST["blog_date"] . "\",";
+    $sql .= "\"" . date("Y-m-d H:i:s") . "\",";
     $sql .= "\"" . $_POST["blog_type"] . "\",";
     $sql .= "\"" . mysqli_real_escape_string($conn, $_POST["blog_content"]) . "\",";
     $sql .= "\"" . (isset($_POST["blog_visible"]) ? 1 : 0) . "\",";
@@ -39,17 +51,23 @@ if ($is_new_post) {
     $sql = "UPDATE blog_posts SET ";
     $sql .= "blog_name = \"" . mysqli_real_escape_string($conn, $_POST["blog_name"]) . "\",";
     $sql .= "blog_date = \"" . $_POST["blog_date"] . "\",";
+    $sql .= "blog_modified_date = \"" . date("Y-m-d H:i:s") . "\",";
     $sql .= "blog_type = \"" . $_POST["blog_type"] . "\",";
     $sql .= "blog_content = \"" . mysqli_real_escape_string($conn, $_POST["blog_content"]) . "\",";
     $sql .= "visible = \"" . (isset($_POST["blog_visible"]) ? 1 : 0) . "\",";
     $sql .= "published = \"" . (isset($_POST["blog_published"]) ? 1 : 0)."\",";
     $sql .= "free = \"" . (isset($_POST["blog_free"]) ? 1 : 0)."\"";
 
-    if ($_POST["blog_id"] !== "-1") {
-        $sql .= " WHERE blog_id = \"" . mysqli_real_escape_string($conn, $_POST["blog_id"]) . "\"";
-    } else if ($_POST["blog_new_id"] !== "-1") {
+    
+    if (($_POST["blog_new_id"] !== null) && ($_POST["blog_new_id"] !== "-1")) {
         $sql .= " WHERE blog_new_id = UUID_TO_BIN(\"" . mysqli_real_escape_string($conn, $_POST["blog_new_id"]) . "\")";
-    } else {
+    } 
+    else 
+    if (($_POST["blog_id"] !== null) && ($_POST["blog_id"] !== "-1")) {
+        $sql .= " WHERE blog_id = \"" . mysqli_real_escape_string($conn, $_POST["blog_id"]) . "\"";
+    } 
+    else 
+    {
         echo "<p>Failure: Invalid blog ID condition for updating blog post</p>";
     }
     $sql .= ";";
