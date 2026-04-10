@@ -1,11 +1,11 @@
 # Important files
 .DS_Store
 .vscode/settings.json
-config.php
+.env
+.env.bak.*
 .htaccess
 .htpasswd
 compose-dev.yaml
-includes/.env.php
 
 # Sub Perks Content
 subs/giveaway/giveaway-links.md
@@ -23,10 +23,9 @@ shoutcasting/producing.md
 # Privacy Policy
 privacy/privacy-policy.md
 
-# Composer, Cloudinary, and Google Analytics
+# Composer and Google Analytics
 composer.phar
 vendor/
-includes/cloudinary.env.php
 includes/ganalytics.php
 /cache
 

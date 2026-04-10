@@ -1,6 +1,6 @@
 <?php
 
-require_once(".env.php");
+require_once __DIR__ . "/mysql.env.php";
 
 $servername = $_environmental_variables["servername"];
 $username = $_environmental_variables["username"];
