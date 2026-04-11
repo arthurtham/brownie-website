@@ -4,9 +4,9 @@ $title = "BrowntulStar - Search";
 require $dir . "/templates/header.php";
 ?>
 <div class="container body-container">
-    <h1>Website Search</h1>
-    <p>What would you like to search for?</p>
-    <p>All results will pull from non-sub-perk pages on browntulstar.com and its subdomains.</p>
+    <h1>Domain-wide Search</h1>
+    <p>Search across all pages on browntulstar.com and its subdomains.</p>
+    <p>To search for specific blog posts, please visit the <a href="/subs/blog">blog page</a>.</p>
     <hr>
     <script async src="https://cse.google.com/cse.js?cx=723c7135330e047f5">
     </script>

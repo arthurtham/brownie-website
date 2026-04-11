@@ -7,9 +7,9 @@ require $dir . "/templates/header.php"
 <div class="container-fluid body-container-home">
 	<div id="center-block" class="d-flex align-items-center justify-content-center" style="padding-top:50px">
 		<center><img name="home-logo" id="home-logo" class="home-logo shiny" src="https://res.cloudinary.com/browntulstar/image/private/s--gRiI4zsg--/c_pad,h_400/e_shadow/com.browntulstar/img/browntulstar-logo-v2-large.png" />
-			<div class="box bg-gradient shadow rounded text-center" style="background-color: rgba(255,255,255,0.2); padding: 20px; width:100%; max-width:500px">
+			<div class="box home-box bg-gradient shadow rounded text-center" style="background-color: rgba(255,255,255,0.2); padding: 20px; width:100%; max-width:600px">
 				<div class="row">
-					<div class="col-sm-12 p-1">
+					<div class="col-sm-4 p-1">
 						<span class="d-flex flex-row">
 						<a class="btn btn-twitch w-100" href="/stream">
 							<i class="fa-brands fa-twitch"></i>
@@ -17,9 +17,7 @@ require $dir . "/templates/header.php"
 						</a>
 						</span>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-8 p-1">
+					<div class="col-sm-4 p-1">
 						<span class="d-flex flex-row">
 							<a class="btn btn-info w-100" href="/iriam">
 								<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0">
@@ -29,8 +27,9 @@ require $dir . "/templates/header.php"
 					</div>
 					<div class="col-sm-4 p-1">
 						<span class="d-flex flex-row">
-							<a class="btn btn-info w-100" href="/subs/iriam-rewards/">
-								<strong>Rewards</strong>
+							<a class="btn btn-danger w-100" href="/stream?youtube">
+								<i class="fa-brands fa-youtube"></i>
+								<strong>YouTube</strong>
 							</a>
 						</span>
 					</div>
@@ -41,12 +40,7 @@ require $dir . "/templates/header.php"
 							<a href="/subs" class="btn btn-success w-100"><i class="fa-solid fa-circle-check"></i> Perks Hub</a>
 						</span>
 					</div>
-					<div class="col-sm-3 p-1">
-						<span class="d-flex flex-row">
-							<a href="/subs/blog" class="btn btn-success w-100">Blog</a>
-						</span>
-					</div>
-					<div class="col-sm-3 p-1">
+					<div class="col-sm-6 p-1">
 						<span class="d-flex flex-row">
 							<a href="/discord" class="btn btn-light w-100"><i class="fa-brands fa-discord"></i> Server</a>
 						</span>
@@ -55,12 +49,12 @@ require $dir . "/templates/header.php"
 				<div class="row">
 					<div class="col-sm-4 p-1">
 						<span class="d-flex flex-row">
-							<a href="/app" class="btn btn-dark w-100">Apps/Games</a>
+							<a href="/announcements" class="btn btn-dark w-100">Browntul Says</a>
 						</span>
 					</div>
 					<div class="col-sm-4 p-1">
 						<span class="d-flex flex-row">
-							<a href="/announcements" class="btn btn-dark w-100">Browntul Says</a>
+							<a href="/subs/blog" class="btn btn-dark w-100">Blog</a>
 						</span>
 					</div>
 					<div class="col-sm-4 p-1">
@@ -82,7 +76,7 @@ require $dir . "/templates/header.php"
 					</div>
 					<div class="col-sm-4 p-1">
 						<span class="d-flex flex-row">
-							<a href="/store" class="btn btn-dark w-100">Shop</a>
+							<a href="/app" class="btn btn-dark w-100">Apps/Games</a>
 						</span>
 					</div>
 				</div>
@@ -113,10 +107,6 @@ require $dir . "/templates/header.php"
 								<p class="text-center">As a support staff in esports events online and IRL, I'm your go-to person to help with event organization and execution. With over 5 years of experience, I've worked in fast-paced adaptable environments to ensure smooth operations and a great experience for the true stars of the show: the players. Ultimately, I hope to provide opportunities for newcomers in the esports space to experience the thrill of competitive gaming in more intimate community environments.
 								</p>
 								<div class="text-center">
-								<a class="btn btn-dark m-2 shadow" href="/discord" style="max-width:400px">
-									<i class="fa-brands fa-discord"></i>
-									Discord Server
-								</a> 
 								<a class="btn btn-dark m-2 shadow" href='/r/links' style="max-width:400px">
 									<i class="fa-solid fa-link"></i> 
 									Links/Socials
@@ -128,10 +118,6 @@ require $dir . "/templates/header.php"
 								<a class="btn btn-dark m-2 shadow" href="/esports" style="max-width:400px">
 									<i class="fa-solid fa-video"></i>
 									Esports Portfolio
-								</a> 
-								<a class="btn btn-dark m-2 shadow" href="/credits" style="max-width:400px">
-									<i class="fa-solid fa-paintbrush"></i>
-									Art and Stream Credits
 								</a> 
 								</div>
 							</div>
@@ -185,13 +171,13 @@ require $dir . "/templates/header.php"
 					</div>
 					<div class="col-md-4 mb-2">
 						<a href="/iriam" type="button" class="btn btn-info btn-lg w-100 py-4">
-							<h2>300 Followers</h2>
+							<h2>550 Followers</h2>
 							<img style="height:20px;margin-top:-4px" src="https://res.cloudinary.com/browntulstar/image/upload/s--UJNCDZjT--/c_scale,w_200,h_200/f_webp/v1/com.browntulstar/img/iriam-logo.webp?_a=BAAAV6E0"> IRIAM
 						</a>
 					</div>	
 					<div class="col-md-4 mb-2">
 						<a href="https://x.com/browntulstar" target="_blank" type="button" class="btn btn-light btn-lg w-100 py-4">
-							<h2>800 Followers</h2>
+							<h2>850 Followers</h2>
 							<i class="fa-brands fa-x-twitter"></i> X
 						</a>
 					</div>	
@@ -212,7 +198,7 @@ require $dir . "/templates/header.php"
 				</div>
 				<div class="row mb-2">
 					<div class="col-md-12 mb-2 text-white text-center">
-						<small>Estimates as of Wednesday, October 29th, 2025</small>
+						<small>Estimates as of April 11th, 2026</small>
 					</div>
 				</div>
 			</div>

@@ -298,7 +298,12 @@ div.home-div-col {
 
 img.home-logo {
     width: 100%;
-    max-width: 460px;
+    max-width: 600px;
+}
+
+.home-box {
+    width: 100%;
+    max-width: 600px;
 }
 
 .shiny {

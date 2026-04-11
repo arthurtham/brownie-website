@@ -1,7 +1,23 @@
 <?php
 /**
  * A sample file showing how to construct the navbar_contents array.
+ * 
+ * ICON FIELD (Optional):
+ * - Use "icon" key to add icons to navbar items
+ * - Can be a Font Awesome icon: "<i class='fa-solid fa-icon-name'></i>"
+ * - Can be an image: "<img src='url' style='max-width:20px; max-height:20px;'>"
+ * - If no icon is provided or icon is empty, a 20×20px padding space is reserved
+ * - All icons are centered within a fixed 20×20px container
+ * - No icons allowed for nav-item and nav-item dropdown
+ * 
+ * ITEM TYPES:
+ * - nav-dropdown: Main dropdown menu item with children
+ * - nav-item: Simple navigation link (no submenu)
+ * - dropdown-item: Item within a dropdown menu
+ * - dropdown-header: Header/label within a dropdown (e.g., "Category Name")
+ * - dropdown-divider: Visual separator line within dropdown
  */
+
 $navbar_contents = array(
     array(
         "type" => "nav-dropdown",
@@ -10,19 +26,38 @@ $navbar_contents = array(
         "contents" => "About",
         "children" => array(
             array(
+                "type" => "dropdown-header",
+                "contents" => "About"
+            ),
+            array(
                 "type" => "dropdown-item",
                 "href" => "/about",
                 "popout" => false,
+                "icon" => "<i class='fa-solid fa-user'></i>",  // Example: Font Awesome icon
                 "contents" => "About Me"
             ),
+            array(
+                "type" => "dropdown-divider"
+            ),
+            array(
+                "type" => "dropdown-header",
+                "contents" => "Portfolio"
+            ),
+            array(
+                "type" => "dropdown-item",
+                "href" => "/portfolio",
+                "popout" => false,
+                "icon" => "<img src='https://example.com/code-icon.png' style='max-width:20px; max-height:20px;'>",  // Example: Image icon
+                "contents" => "Portfolio"
+            ),
         )
-    )
-    , array(
+    ),
+    array(
         "type" => "nav-item",
         "href" => "/store",
         "popout" => false,
         "contents" => "Support/Donate"
     )
-)
+);
 
 ?>

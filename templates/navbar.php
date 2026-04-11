@@ -6,6 +6,27 @@ use Phpfastcache\Config\ConfigurationOption;
 require_once dirname(__DIR__, 1) . "/includes/discord.php";
 require_once dirname(__DIR__, 1) . "/includes/mysql.php";
 
+function _helper_render_icon($icon_markup = null)
+{
+    // Creates a fixed 20×20px centered container for icons
+    // If icon_markup is provided, it centers the icon inside the container
+    // If not provided, returns an empty 20×20px space for alignment
+    $icon_html = '';
+    if (!empty($icon_markup)) {
+        $icon_html = '<span style="display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; flex:0 0 20px; margin-right:8px; vertical-align:middle;">' . $icon_markup . '</span>';
+    } else {
+        // Empty space to maintain alignment
+        $icon_html = '<span style="display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; flex:0 0 20px; margin-right:8px; vertical-align:middle;"></span>';
+    }
+    return $icon_html;
+}
+
+function _helper_render_label($contents)
+{
+    // Allows labels to wrap in narrow containers while keeping icon alignment.
+    return '<span style="white-space:normal; overflow-wrap:break-word; min-width:0; flex:1 1 auto; line-height:1.2;">' . $contents . '</span>';
+}
+
 function create_navbar_items($navbar_items, $depth = 0)
 {
     $depth_style = $depth == 0 ? 'style="font-weight:500"' : '';
@@ -16,17 +37,24 @@ function create_navbar_items($navbar_items, $depth = 0)
                 break;
             case "dropdown-item":
                 $target = $navbar_item["popout"] ? 'target="_blank"' : "";
-                echo '<li><a class="dropdown-item" ' . $depth_style . 'href="' . $navbar_item["href"] . '" ' . $target . '>' . $navbar_item["contents"] . '</a></li>';
+                $icon = isset($navbar_item["icon"]) ? $navbar_item["icon"] : null;
+                $icon_html = _helper_render_icon($icon);
+                $label_html = _helper_render_label($navbar_item["contents"]);
+                echo '<li><a class="dropdown-item d-flex align-items-center" ' . $depth_style . 'href="' . $navbar_item["href"] . '" ' . $target . '>' . $icon_html . $label_html . '</a></li>';
                 break;
             case "nav-item":
                 $target = $navbar_item["popout"] ? 'target="_blank"' : "";
-                echo '<li class="nav-item"><a class="nav-link" ' . $depth_style . 'href="' . $navbar_item["href"] . '" ' . $target . '>' . $navbar_item["contents"] . '</a></li>';
+                $icon_html = ""; // No icon support allowed for nav-item
+                $label_html = _helper_render_label($navbar_item["contents"]);
+                echo '<li class="nav-item"><a class="nav-link d-flex align-items-center" ' . $depth_style . 'href="' . $navbar_item["href"] . '" ' . $target . '>' . $icon_html . $label_html . '</a></li>';
                 break;
             case "dropdown-divider":
                 echo '<li><hr class="dropdown-divider" ' . $depth_style . ' />';
                 break;
             case "dropdown-header":
-                echo '<li><h2 class="dropdown-header-navbar" ' . $depth_style . '>' . $navbar_item["contents"] . '</h2></li>';
+                $icon_html = ""; // No icon support allowed for dropdown-header
+                $label_html = _helper_render_label($navbar_item["contents"]);
+                echo '<li><h2 class="dropdown-header-navbar d-flex align-items-center" ' . $depth_style . '>' . $icon_html . $label_html . '</h2></li>';
                 break;
             default:
                 break;
@@ -37,9 +65,11 @@ function create_navbar_items($navbar_items, $depth = 0)
 function _helper_create_nav_item_dropdown($item, $depth = 0)
 {
     $depth_style = $depth == 0 ? 'style="font-weight:500"' : '';
+    $icon_html = ""; // No icon support allowed for nav-dropdown
+    $label_html = _helper_render_label($item["contents"]);
     echo '<li class="nav-item dropdown">';
-    echo '<a class="nav-link dropdown-toggle" ' . $depth_style . ' href="' . $item["href"] . '" id="navbar' . $item["id"] . '" role="button" data-bs-toggle="dropdown" aria-expanded="false">' . $item["contents"] . '</a>';
-    echo '<ul class="dropdown-menu" id="navbar' . $item["id"] . '-menu" aria-labelledby="navbar' . $item["id"] . '">';
+    echo '<a class="nav-link dropdown-toggle d-flex align-items-center" ' . $depth_style . ' href="' . $item["href"] . '" id="navbar' . $item["id"] . '" role="button" data-bs-toggle="dropdown" aria-expanded="false">' . $icon_html . $label_html . '</a>';
+    echo '<ul class="dropdown-menu" id="navbar' . $item["id"] . '-menu" aria-labelledby="navbar' . $item["id"] . '" style="min-width:200px;">';
     create_navbar_items($item["children"], $depth + 1);
     echo '</ul></li>';
 }
@@ -52,8 +82,8 @@ function _helper_get_alert_post($conn)
     $instanceCache = CacheManager::getInstance("files");
     $key = "alert_post";
     $cache = $instanceCache->getItem($key);
-    if (true) {
-    // if (!$cache->isHit()) {
+    // if (true) {
+    if (!$cache->isHit()) {
         $sql = "SELECT * FROM alert_posts WHERE alert_active=1 ORDER BY id DESC LIMIT 1";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
@@ -67,7 +97,7 @@ function _helper_get_alert_post($conn)
             $alert_post_array["url"] = htmlspecialchars($alert_post["alert_url"]);
             $alert_post_array["popout"] = (($alert_post["alert_popout"]) == 1 ? true : false);
             $alert_post_array["active"] = (($alert_post["alert_active"]) == 1 ? true : false);
-            $cache->set($alert_post_array)->expiresAfter(3600);
+            $cache->set($alert_post_array)->expiresAfter(60); // Cache for 1 minute
             $instanceCache->save($cache);
             return $alert_post_array;
         } else {
